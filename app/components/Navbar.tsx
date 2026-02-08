@@ -149,7 +149,7 @@ export default function Navbar() {
                     <nav className="hidden lg:flex items-center relative">
                         <div className="flex items-center gap-8 rounded-full bg-[#E8E5E6] pl-10 pr-40 py-3">
 
-                            <div className="flex items-center gap-4 text-[15px] font-medium text-[#4A4A4A]">
+                            <div className="flex items-center gap-2 text-[15px] font-medium text-[#4A4A4A]">
                                 <Link
                                     href="/"
                                     className={`hover:text-[#E87733] whitespace-nowrap transition-colors ${isActive("/") ? "text-[#E87733]" : ""
