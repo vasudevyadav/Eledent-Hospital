@@ -272,11 +272,11 @@ export default function Navbar() {
                                 </div>
                             </div>
 
-                            <div className=" absolute -right-10 top-0 py-2 z-50">
+                            <div className=" absolute -right-10 top-[2px] py-2 z-50">
 
                                 <Link
                                     href="/book-appointment"
-                                    className="rounded-md bg-[#E87733] px-5 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-[#d66b2b] whitespace-nowrap"
+                                    className="rounded bg-[#E87733] px-5 py-3 text-[11px] font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-[#d66b2b] whitespace-nowrap"
                                 >
                                     Book an Appointment
                                 </Link>

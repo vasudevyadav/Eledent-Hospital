@@ -87,11 +87,9 @@ function ServiceCard({
 export default function HomeServices() {
     return (
         <section className="relative w-full bg-white overflow-hidden">
-            <div className="relative h-[70px] bg-white">
+            <div className="relative h-[50px] bg-white">
                 <div className="absolute inset-0 opacity-[0.08] hex-pattern" />
             </div>
-
-
 
             <div className="pb-16">
                 <div className="mx-auto max-w-6xl px-6">
