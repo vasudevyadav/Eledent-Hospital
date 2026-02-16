@@ -4,7 +4,7 @@ import { ChevronRight, Play } from "lucide-react";
 
 export default function AboutUs() {
     return (
-        <div className="my-24 mx-4 sm:mx-8 lg:mx-24">
+        <div className="mt-40 mx-4 sm:mx-8 lg:mx-24">
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
 
