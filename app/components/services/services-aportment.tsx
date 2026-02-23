@@ -2,100 +2,110 @@
 
 import type { FC } from "react";
 
-type MVItem = {
-    id: "vision" | "mission";
-    title: string;
-    desc: string;
-};
-
-const MissionVision: FC = () => {
-    // ✅ White card BG image (public folder path)
-    // Example: /images/mission-bg.jpg
-    const CARD_BG_IMAGE = "/about-us/vission.png";
-
-    // ✅ Single content only (no slider, no multiple services)
-    const MV_ITEMS: MVItem[] = [
-        {
-            id: "vision",
-            title: "Vision",
-            desc: "For a long time, pain and dentistry have been associated together and have made a great team, but the time has finally come for them to part ways.",
-        },
-        {
-            id: "mission",
-            title: "Mission",
-            desc: "Welcome to the Modern World of Painless Dentistry at Eledent Dental Hospital. With new technology, updated equipment, and better techniques, we focus on comfortable treatment.",
-        },
-    ];
-
+const ServicesAportment: FC = () => {
     return (
-        <section className="pt-20 pb-10 px-4 sm:px-8 lg:px-20">
-            <div className="max-w-[1240px] mx-auto">
+        <section className="py-20 px-4 sm:px-8 lg:px-20 bg-[#f4f4f4]">
+            <div className="max-w-[1200px] mx-auto relative">
 
-                <div className="relative overflow-visible">
+                {/* ORANGE CONTAINER */}
+                <div className="relative bg-[#F37021] rounded-[20px] h-[360px] flex items-center px-10 overflow-visible">
 
-                    <div className="relative h-[320px] sm:h-[270px] rounded-[18px] bg-[#E67735] overflow-visible">
+                    {/* LEFT CONTENT */}
+                    <div className="text-white max-w-[420px]">
+                        <p className="text-xs opacity-80 mb-3">Booking</p>
 
-                        <div className="h-full w-full px-10 sm:px-36 py-12 sm:py-10 flex flex-col justify-center">
-                            <p className="text-white/85 text-xs sm:text-sm mb-4">Lorem ipsum</p>
+                        <h2 className="text-3xl font-extrabold leading-tight mb-4">
+                            Book Your Dental Care <br /> Appointment Now!
+                        </h2>
 
-                            <h3 className="text-white font-extrabold leading-tight text-2xl sm:text-3xl max-w-[420px]">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            </h3>
-                        </div>
+                        <p className="text-sm opacity-90 mb-6">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
 
-                        <div
-                            className={[
-                                "absolute z-20",
-                                "top-1/2 -translate-y-1/2",
-
-                                "lg:right-28 md:right-[-40px]",
-
-                                "right-0 sm:right-2",
-
-                                "w-[340px] sm:w-[400px] md:w-[420px]",
-                            ].join(" ")}
-                        >
-                            <div className="relative rounded-[18px] bg-white shadow-2xl overflow-hidden">
-
-                                <div
-                                    className="absolute inset-0 bg-cover bg-bottom bg-center "
-                                    style={{ backgroundImage: `url('${CARD_BG_IMAGE}')` }}
-                                />
-
-
-                                <div className="relative px-6 py-6 mt-1">
-                                    {MV_ITEMS.map((item, idx) => (
-                                        <div key={item.id}>
-                                            <div className="flex gap-4 items-start">
-                                                <div className="w-10 h-10 rounded-full bg-[#2F2F2F] flex items-center justify-center shrink-0">
-                                                    <span className="w-2.5 h-2.5 rounded-full bg-[#E67735]" />
-                                                </div>
-
-                                                <div>
-                                                    <h4 className="text-[#2F2F2F] font-bold text-base">
-                                                        {item.title}
-                                                    </h4>
-                                                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mt-1 max-w-[280px]">
-                                                        {item.desc}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            {idx !== MV_ITEMS.length - 1 && (
-                                                <div className="my-5 h-px bg-gray-200" />
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white">
+                                ☎
+                            </div>
+                            <div>
+                                <p className="text-sm font-semibold">Support</p>
+                                <p className="text-sm font-bold">24/7 Emergency Call</p>
                             </div>
                         </div>
 
-                        <div className="absolute right-0 top-0 h-full w-[90px] sm:w-[110px] rounded-[18px] bg-[#E67735]" />
+                        <div className="text-sm flex justify-between max-w-[300px] border-t border-white/30 pt-4">
+                            <div>
+                                <p>Mon–Fri</p>
+                                <p>Sat–Sun</p>
+                            </div>
+                            <div className="text-right">
+                                <p>8:00am – 6:00pm</p>
+                                <p>9:00am – 4:00pm</p>
+                            </div>
+                        </div>
                     </div>
+
+                    {/* RIGHT FORM CARD */}
+                    <div className="absolute right-10 top-1/2 -translate-y-1/2 w-[440px]">
+
+                        <div className="relative bg-white/60 backdrop-blur-xl rounded-[20px] shadow-2xl p-8">
+
+                            <h3 className="text-lg font-bold mb-6 text-gray-800">
+                                Book An Appointment
+                            </h3>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <input
+                                    type="text"
+                                    placeholder="Full Name"
+                                    className="bg-white rounded-full px-4 py-2 text-sm outline-none shadow-inner"
+                                />
+                                <input
+                                    type="email"
+                                    placeholder="Email Address"
+                                    className="bg-white rounded-full px-4 py-2 text-sm outline-none shadow-inner"
+                                />
+                                <input
+                                    type="tel"
+                                    placeholder="Phone Number"
+                                    className="bg-white rounded-full px-4 py-2 text-sm outline-none shadow-inner"
+                                />
+                                <input
+                                    type="date"
+                                    className="bg-white rounded-full px-4 py-2 text-sm outline-none shadow-inner"
+                                />
+                            </div>
+
+                            <div className="mt-4">
+                                <input
+                                    type="text"
+                                    placeholder="Find Doctor"
+                                    className="w-full bg-white rounded-full px-4 py-2 text-sm outline-none shadow-inner"
+                                />
+                            </div>
+
+                            <div className="mt-4">
+                                <textarea
+                                    placeholder="Your Message"
+                                    rows={4}
+                                    className="w-full bg-white rounded-xl px-4 py-3 text-sm outline-none shadow-inner resize-none"
+                                />
+                            </div>
+
+                            <div className="flex justify-center mt-6">
+                                <button className="bg-[#F37021] text-white px-8 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition">
+                                    Book Appointment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT SIDE ORANGE STRIP */}
+                    <div className="absolute right-0 top-0 h-full w-[90px] rounded-r-[20px] bg-[#F37021]" />
                 </div>
             </div>
         </section>
     );
 };
 
-export default MissionVision;
+export default ServicesAportment;

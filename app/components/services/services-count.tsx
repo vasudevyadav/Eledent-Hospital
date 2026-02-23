@@ -2,181 +2,141 @@
 
 import Image from "next/image";
 import type { FC } from "react";
-import type { LucideIcon } from "lucide-react";
-import { Users, Clock3, HeartPulse } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-type StatVariant = "primary" | "neutral";
-
-type StatItem = {
+type Stat = {
   id: string;
-  icon: LucideIcon;
-  value: string;
-  line1: string;
-  line2: string;
-  variant: StatVariant;
+  icon: string;
+  value: number;
+  suffix?: string;
+  label1: string;
+  label2?: string;
 };
 
-const STATS: StatItem[] = [
-  {
-    id: "patients",
-    icon: Users,
-    value: "8,200+",
-    line1: "Patients",
-    line2: "Recovered",
-    variant: "primary",
-  },
-  {
-    id: "waiting",
-    icon: Clock3,
-    value: "15 Min",
-    line1: "Average Waiting",
-    line2: "Time",
-    variant: "neutral",
-  },
-  {
-    id: "rating",
-    icon: HeartPulse,
-    value: "4.9/5",
-    line1: "Satisfaction",
-    line2: "Rating",
-    variant: "neutral",
-  },
+const STATS: Stat[] = [
+  { id: "cases", icon: "/services/count-1.png", value: 30000, suffix: "+", label1: "Cases" },
+  { id: "rct", icon: "/services/count-2.png", value: 27000, suffix: "+", label1: "Root Canals" },
+  { id: "implants", icon: "/services/count-3.png", value: 22000, suffix: "+", label1: "Implants" },
+  { id: "smile", icon: "/services/count-4.png", value: 5000, suffix: "+", label1: "Digital Smile", label2: "Designing" },
 ];
 
-type StatCardProps = {
-  icon: LucideIcon;
-  value: string;
-  line1: string;
-  line2: string;
-  variant: StatVariant;
-};
+const STATS_BG_IMAGE = "/services/service-count-bg.png";
 
-const StatCard: FC<StatCardProps> = ({ icon: Icon, value, line1, line2, variant }) => {
-  const isPrimary = variant === "primary";
+
+function useCountUp(start: boolean, end: number, duration = 1200) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!start) return;
+
+    let raf = 0;
+    const startTime = performance.now();
+
+    const animate = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(end * eased));
+      if (progress < 1) raf = requestAnimationFrame(animate);
+    };
+
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
+  }, [start, end, duration]);
+
+  return value;
+}
+
+const StatPill: FC<{ stat: Stat; start: boolean }> = ({ stat, start }) => {
+  const count = useCountUp(start, stat.value);
+
+  const formatted = useMemo(
+    () => `${count}${stat.suffix ?? ""}`,
+    [count, stat.suffix]
+  );
 
   return (
-    <div
-      className={[
-        "rounded-xl p-5",
-        isPrimary ? "bg-orange-500 text-white shadow-lg" : "bg-gray-100 text-gray-800",
-      ].join(" ")}
-    >
-      <div
-        className={[
-          "w-10 h-10 rounded-lg flex items-center justify-center mb-4",
-          isPrimary ? "bg-white/20" : "bg-white shadow-sm",
-        ].join(" ")}
-      >
-        <Icon className={["w-5 h-5", isPrimary ? "" : "text-orange-500"].join(" ")} />
+    <div className="flex flex-col items-center text-center">
+
+      <div className="relative mb-4 w-20 h-20 rounded-full border border-dashed border-blue-100 flex items-center justify-center">
+        <Image
+          src={stat.icon}
+          alt={stat.label1}
+          width={34}
+          height={34}
+          className="object-contain w-10 h-10"
+          priority
+        />
       </div>
 
-      <p className="text-2xl font-bold leading-none">{value}</p>
-      <p className={["text-xs mt-2", isPrimary ? "opacity-95" : "text-gray-600"].join(" ")}>
-        {line1}
+      <p className="text-[#F37021] font-extrabold text-2xl leading-none">
+        {formatted}
       </p>
-      <p className={["text-xs font-semibold mt-1", isPrimary ? "" : "text-gray-600"].join(" ")}>
-        {line2}
+
+      <p className="text-gray-700 text-sm mt-2 leading-tight">
+        {stat.label1}
+        {stat.label2 && <br />}
+        {stat.label2}
       </p>
     </div>
   );
 };
 
-const AboutDetails: FC = () => {
+const StatsBar: FC = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setStart(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="mt-24 mx-4 sm:mx-8 lg:mx-24">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-        {/* LEFT */}
-        <div className="relative">
-          <div className="relative overflow-hidden rounded-[28px] shadow-2xl bg-white">
-            <Image
-              src="/about-us/about-2.png"
-              alt="About Eledent"
-              width={900}
-              height={900}
-              priority
-              className="w-full h-[530px] object-cover"
-            />
+    <div ref={ref} className="w-full">
+      <div className="relative rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] overflow-hidden">
 
-            {/* QUALITY DENTAL CARE BOX */}
-            <div className="absolute left-6 bottom-6 right-6 sm:right-auto sm:w-[360px]">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl px-5 py-10 flex gap-4 items-center">
-                {/* Background image for the box */}
-                <Image
-                  src="/about-us/about-2bg.png"
-                  alt="Background"
-                  fill
-                  priority
-                  className="object-cover"
-                />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url('${STATS_BG_IMAGE}')`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        />
 
-                {/* Overlay for readability */}
-                <div className="absolute inset-0 bg-white/75 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-white/10" />
 
-                {/* Content */}
-                <div className="relative z-10 flex gap-4 items-center w-full">
-                  <div className="w-14 h-14 flex items-center justify-center shrink-0">
-                    <Image
-                      src="/about-us/about-3.png"
-                      alt="Icon"
-                      width={112}
-                      height={112}
-                      priority
-                      className="w-14 h-14 object-contain"
-                    />
-                  </div>
-
-                  <div className="min-w-0">
-                    <p className="text-xl font-semibold text-orange-600 leading-tight">
-                      Quality Dental care
-                    </p>
-                    <p className="text-[15px] text-black mt-1 leading-snug">
-                      Facilisis nulla lacus at ultrices us praesent fringilla scelerisque.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* /QUALITY DENTAL CARE BOX */}
-          </div>
-        </div>
-
-        {/* RIGHT */}
-        <div>
-          <div className="inline-flex items-center bg-orange-500 text-white px-3 py-1 text-base font-semibold mb-5">
-            About us
-          </div>
-
-          <h2 className="text-3xl lg:text-[40px] font-bold text-orange-600 leading-tight">
-            Who &amp; Where we are
-          </h2>
-
-          <p className="text-gray-800 text-lg font-semibold mt-2">
-            World-Renowned Dentistry Right At Your Neighborhood!
-          </p>
-
-          <p className="text-gray-500 text-base leading-relaxed mt-4 max-w-xl">
-            Located in the core of Kondapur and Kukatpally – Hyderabad, Eledent Dental Hospital is the one-stop
-            solution for all your dental needs. Our primary goal is always to offer you comprehensive dental
-            treatment in relaxed and stylish surroundings. You will notice the difference the moment you enter
-            the clinic.
-          </p>
-
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="relative px-8 sm:px-16 py-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-12 items-center">
             {STATS.map((item) => (
-              <StatCard
-                key={item.id}
-                icon={item.icon}
-                value={item.value}
-                line1={item.line1}
-                line2={item.line2}
-                variant={item.variant}
-              />
+              <StatPill key={item.id} stat={item} start={start} />
             ))}
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const ServicesCount: FC = () => {
+  return (
+    <section className="max-w-6xl mx-auto my-16 px-4 sm:px-8">
+      <StatsBar />
     </section>
   );
 };
 
-export default AboutDetails;
+export default ServicesCount;

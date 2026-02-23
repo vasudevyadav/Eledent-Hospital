@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-export default function HomeTestimonial() {
+export default function ServicesTestimonial() {
     const [activeTab, setActiveTab] = useState("text");
     const [currentIndex, setCurrentIndex] = useState(0);
 
