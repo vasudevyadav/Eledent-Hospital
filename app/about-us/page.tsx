@@ -9,6 +9,8 @@ import OverValue from "../components/services/value";
 import AfterBefore from "../components/services/after-before";
 import ServicesTestimonial from "../components/services/home-testimonial";
 import DentalImplantsSections from "../components/services/dental-implant-plan";
+import CommanTopRated from "../components/services/make-appointment";
+import ServicesFaq from "../components/services/services-faq";
 
 
 
@@ -26,6 +28,8 @@ export default function Home() {
         <AfterBefore />
         <ServicesTestimonial />
         <DentalImplantsSections />
+        <CommanTopRated />
+        <ServicesFaq />
         <Footer />
       </main>
     </div>
