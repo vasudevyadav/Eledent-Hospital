@@ -56,8 +56,8 @@ export default function DentalImplantsSection({
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative mx-auto flex w-full max-w-[420px] items-center justify-center">
-             
+            <div className="relative mx-auto flex w-full max-w-[420px] items-center justify-center lg:block hidden">
+
               <div className="relative">
                 <div className="absolute inset-0 rounded-full" />
               </div>
@@ -74,6 +74,18 @@ export default function DentalImplantsSection({
               </div>
 
             </div>
+
+            <div className="block lg:hidden">
+              <Image
+                src={doctorImageSrc}
+                alt="Dental implants illustration"
+                width={900}
+                height={900}
+                className="h-auto w-full object-contain"
+                priority
+              />
+            </div>
+
           </div>
 
         </div>

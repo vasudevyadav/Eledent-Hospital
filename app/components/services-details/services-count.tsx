@@ -4,7 +4,7 @@ import Image from "next/image";
 import type { FC } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type Stat = {
+type CountStatItem = {
   id: string;
   icon: string;
   value: number;
@@ -13,15 +13,14 @@ type Stat = {
   label2?: string;
 };
 
-const STATS: Stat[] = [
-  { id: "cases", icon: "/services/count-1.png", value: 30000, suffix: "+", label1: "Cases" },
-  { id: "rct", icon: "/services/count-2.png", value: 27000, suffix: "+", label1: "Root Canals" },
-  { id: "implants", icon: "/services/count-3.png", value: 22000, suffix: "+", label1: "Implants" },
-  { id: "smile", icon: "/services/count-4.png", value: 5000, suffix: "+", label1: "Digital Smile", label2: "Designing" },
-];
+type CountSectionData = {
+  bgImage: string;
+  stats: CountStatItem[];
+};
 
-const STATS_BG_IMAGE = "/services/service-count-bg.png";
-
+type Props = {
+  data?: CountSectionData;
+};
 
 function useCountUp(start: boolean, end: number, duration = 1200) {
   const [value, setValue] = useState(0);
@@ -46,7 +45,7 @@ function useCountUp(start: boolean, end: number, duration = 1200) {
   return value;
 }
 
-const StatPill: FC<{ stat: Stat; start: boolean }> = ({ stat, start }) => {
+const StatPill: FC<{ stat: CountStatItem; start: boolean }> = ({ stat, start }) => {
   const count = useCountUp(start, stat.value);
 
   const formatted = useMemo(
@@ -56,23 +55,22 @@ const StatPill: FC<{ stat: Stat; start: boolean }> = ({ stat, start }) => {
 
   return (
     <div className="flex flex-col items-center text-center">
-
-      <div className="relative mb-4 w-20 h-20 rounded-full border border-dashed border-blue-100 flex items-center justify-center">
+      <div className="relative mb-4 h-20 w-20 rounded-full border border-dashed border-blue-100 flex items-center justify-center">
         <Image
           src={stat.icon}
           alt={stat.label1}
           width={34}
           height={34}
-          className="object-contain w-10 h-10"
+          className="h-10 w-10 object-contain"
           priority
         />
       </div>
 
-      <p className="text-[#F37021] font-extrabold text-2xl leading-none">
+      <p className="text-[#F37021] text-2xl font-extrabold leading-none">
         {formatted}
       </p>
 
-      <p className="text-gray-700 text-sm mt-2 leading-tight">
+      <p className="mt-2 text-sm leading-tight text-gray-700">
         {stat.label1}
         {stat.label2 && <br />}
         {stat.label2}
@@ -81,7 +79,7 @@ const StatPill: FC<{ stat: Stat; start: boolean }> = ({ stat, start }) => {
   );
 };
 
-const StatsBar: FC = () => {
+const StatsBar: FC<{ data: CountSectionData }> = ({ data }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [start, setStart] = useState(false);
 
@@ -105,12 +103,11 @@ const StatsBar: FC = () => {
 
   return (
     <div ref={ref} className="w-full">
-      <div className="relative rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] overflow-hidden">
-
+      <div className="relative overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.12)]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('${STATS_BG_IMAGE}')`,
+            backgroundImage: `url('${data.bgImage}')`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
@@ -119,9 +116,9 @@ const StatsBar: FC = () => {
 
         <div className="absolute inset-0 bg-white/10" />
 
-        <div className="relative px-8 sm:px-16 py-8">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-12 items-center">
-            {STATS.map((item) => (
+        <div className="relative px-8 py-8 sm:px-16">
+          <div className="grid grid-cols-2 items-center gap-12 sm:grid-cols-4">
+            {data.stats.map((item) => (
               <StatPill key={item.id} stat={item} start={start} />
             ))}
           </div>
@@ -131,10 +128,12 @@ const StatsBar: FC = () => {
   );
 };
 
-const ServicesCount: FC = () => {
+const ServicesCount: FC<Props> = ({ data }) => {
+  if (!data || !data.stats?.length) return null;
+
   return (
-    <section className="max-w-6xl mx-auto my-16 px-4 sm:px-8">
-      <StatsBar />
+    <section className="mx-auto lg:my-16 my-10 max-w-6xl px-4 sm:px-8">
+      <StatsBar data={data} />
     </section>
   );
 };

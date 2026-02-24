@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import type { JSX } from "react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /* -----------------------------
   1) DATA TYPES
@@ -13,7 +14,7 @@ type ServiceCardItem = {
   iconSrc?: string;
   title: string;
   description: string;
-  href?: string;
+  slug: string;
 };
 
 type ServicesSectionData = {
@@ -23,116 +24,174 @@ type ServicesSectionData = {
   cardsPerPage?: number;
 };
 
+type ServicesApiResponse = {
+  data: ServiceCardItem[];
+};
+
 /* -----------------------------
-  2) PAGE DATA
+  2) PAGE DATA (STATIC SECTION META)
 ----------------------------- */
-const SERVICE_CARDS: ServiceCardItem[] = [
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
+const SERVICE_SECTION_META = {
+  badge: "Our",
+  heading: "Services",
+  cardsPerPage: 6,
+};
 
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-
-  {
-    imageSrc: "/services-main/our-services.png",
-    imageAlt: "Advanced And Painless Dental Implants",
-    iconSrc: "/services-main/dental-icon.png",
-    title: "Advanced And Painless Dental Implants",
-    description:
-      "Dental implants are small titanium or zirconia posts that act like artificial tooth roots.",
-    href: "#dental-implants",
-  },
-
-
-];
-
-const SERVICE_SECTIONS: ServicesSectionData[] = [
-  {
-    badge: "Our",
-    heading: "Services",
-    cards: SERVICE_CARDS,
-    cardsPerPage: 6,
-  },
-];
+const SERVICES_API_URL =
+  "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services";
 
 export default function DentalServices(): JSX.Element {
-  return (
-    <>
-      {SERVICE_SECTIONS.map((section, index) => (
-        <DentalServicesGrid key={`services-section-${index}`} {...section} />
-      ))}
-    </>
+  const [cards, setCards] = useState<ServiceCardItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchServices = async (): Promise<void> => {
+      try {
+        setLoading(true);
+        setError("");
+
+        const response = await fetch(SERVICES_API_URL, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          cache: "no-store", // fresh data (works in browser, harmless here)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch services (${response.status})`);
+        }
+
+        const result: ServicesApiResponse = await response.json();
+
+        const safeData = Array.isArray(result?.data) ? result.data : [];
+
+        // Basic cleanup / fallback
+        const normalizedData: ServiceCardItem[] = safeData.map((item, index) => ({
+          imageSrc: item.imageSrc || "/images/placeholder-service.jpg",
+          imageAlt: item.imageAlt || item.title || `Service image ${index + 1}`,
+          iconSrc: item.iconSrc || "",
+          title: item.title || `Service ${index + 1}`,
+          description: item.description || "Service details will be updated soon.",
+          slug: item.slug || "#",
+        }));
+
+        if (isMounted) {
+          setCards(normalizedData);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(
+            err instanceof Error
+              ? err.message
+              : "Something went wrong while loading services."
+          );
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchServices();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const sectionData: ServicesSectionData = useMemo(
+    () => ({
+      badge: SERVICE_SECTION_META.badge,
+      heading: SERVICE_SECTION_META.heading,
+      cards,
+      cardsPerPage: SERVICE_SECTION_META.cardsPerPage,
+    }),
+    [cards]
   );
+
+  if (loading) {
+    return (
+      <section className="w-full px-4 sm:px-6 lg:px-20">
+        <div className="w-full rounded-xl bg-[#F3F4F6] py-10 sm:py-8 lg:py-12">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-6 text-center sm:mb-8 lg:mb-10">
+              <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+                {SERVICE_SECTION_META.badge}
+              </span>
+              <h2 className="text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl lg:text-4xl">
+                {SERVICE_SECTION_META.heading}
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={`skeleton-${i}`}
+                  className="overflow-hidden rounded-2xl bg-white shadow-sm"
+                >
+                  <div className="h-[200px] animate-pulse bg-gray-200 sm:h-[220px] lg:h-[240px]" />
+                  <div className="p-4 sm:p-5">
+                    <div className="mb-3 h-5 w-3/4 animate-pulse rounded bg-gray-200" />
+                    <div className="mb-2 h-4 w-full animate-pulse rounded bg-gray-200" />
+                    <div className="mb-2 h-4 w-11/12 animate-pulse rounded bg-gray-200" />
+                    <div className="h-4 w-2/3 animate-pulse rounded bg-gray-200" />
+                    <div className="mt-5 h-10 w-32 animate-pulse rounded-md bg-gray-200" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="w-full px-4 sm:px-6 lg:px-20">
+        <div className="w-full rounded-xl bg-[#F3F4F6] py-10 sm:py-8 lg:py-12">
+          <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+              {SERVICE_SECTION_META.badge}
+            </span>
+            <h2 className="text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl lg:text-4xl">
+              {SERVICE_SECTION_META.heading}
+            </h2>
+            <p className="mt-4 text-sm text-red-600 sm:text-base">
+              {error}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!cards.length) {
+    return (
+      <section className="w-full px-4 sm:px-6 lg:px-20">
+        <div className="w-full rounded-xl bg-[#F3F4F6] py-10 sm:py-8 lg:py-12">
+          <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+              {SERVICE_SECTION_META.badge}
+            </span>
+            <h2 className="text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl lg:text-4xl">
+              {SERVICE_SECTION_META.heading}
+            </h2>
+            <p className="mt-4 text-sm text-[#6B7280] sm:text-base">
+              No services available right now.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return <DentalServicesGrid {...sectionData} />;
 }
 
 function DentalServicesGrid({
@@ -147,8 +206,15 @@ function DentalServicesGrid({
   const start = (currentPage - 1) * cardsPerPage;
   const visibleCards = cards.slice(start, start + cardsPerPage);
 
+  // Reset page if API data changes and current page becomes invalid
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(1);
+    }
+  }, [currentPage, totalPages]);
+
   return (
-    <section className="w-full px-20">
+    <section className="w-full px-4 sm:px-6 lg:px-20">
       <div className="w-full bg-[#F3F4F6] py-10 sm:py-8 lg:py-12 rounded-xl">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Heading */}
@@ -166,7 +232,7 @@ function DentalServicesGrid({
           {/* Cards Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
             {visibleCards.map((card, idx) => (
-              <ServiceCard key={`svc-${start + idx}`} {...card} />
+              <ServiceCard key={`svc-${start + idx}-${card.slug}`} {...card} />
             ))}
           </div>
 
@@ -203,7 +269,9 @@ function DentalServicesGrid({
 
               <button
                 type="button"
-                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
                 disabled={currentPage === totalPages}
                 aria-label="Next page"
                 className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:border-[#F47A20] hover:text-[#F47A20] disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
@@ -214,7 +282,7 @@ function DentalServicesGrid({
           )}
         </div>
       </div>
-    </section >
+    </section>
   );
 }
 
@@ -224,8 +292,10 @@ function ServiceCard({
   iconSrc,
   title,
   description,
-  href,
+  slug,
 }: ServiceCardItem): JSX.Element {
+  const serviceHref = `/services/${slug}`;
+
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       {/* Image */}
@@ -263,8 +333,14 @@ function ServiceCard({
             </svg>
           )}
 
+          {/* Heading clickable */}
           <h3 className="text-base font-semibold leading-snug text-[#1a1a1a] sm:text-lg">
-            {title}
+            <Link
+              href={serviceHref}
+              className="transition-colors hover:text-[#F47A20]"
+            >
+              {title}
+            </Link>
           </h3>
         </div>
 
@@ -274,8 +350,9 @@ function ServiceCard({
           {description}
         </p>
 
-        <a
-          href={href ?? "#"}
+        {/* Know More clickable */}
+        <Link
+          href={serviceHref}
           className="mt-auto mx-auto flex w-full items-center gap-1.5 rounded-md bg-[#F47A20] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-[#e46713] sm:w-fit sm:px-8 sm:text-sm"
         >
           Know More
@@ -293,7 +370,7 @@ function ServiceCard({
           >
             <path d="M9 18l6-6-6-6" />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );
