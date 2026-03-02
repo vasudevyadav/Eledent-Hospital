@@ -11,7 +11,7 @@ export default function ServiceAppointment({
   bgImageSrc = "/about-us/vission.png",
 }: Props) {
   return (
-    <section className="w-full bg-white py-12 md:py-16 !pt-36">
+    <section className="w-full bg-white py-12 md:py-16 lg:!pt-36 !pt-10 hidden lg:block">
       <div className="mx-auto max-w-7xl px-4">
         {/* ===== DESKTOP ===== */}
         <div className="relative hidden lg:block">

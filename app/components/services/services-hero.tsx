@@ -6,12 +6,11 @@ import { PhoneCall, Clock } from "lucide-react";
 
 export default function ServicesHero() {
     return (
-        <div className="mt-12 px-4">
-            {/* Wrapper gives bottom space so floating bar never gets cut */}
-            <div className="mx-auto w-full max-w-6xl pb-16">
+        <div className="lg:mt-12 mt-6 px-4">
+            <div className="mx-auto w-full max-w-6xl lg:pb-16 pb-4">
 
                 <section className="relative h-[360px] w-full overflow-visible rounded-3xl md:h-[420px]">
-                    {/* Background image */}
+                
                     <Image
                         src="/services-main/our-services.png"
                         alt="Services banner"

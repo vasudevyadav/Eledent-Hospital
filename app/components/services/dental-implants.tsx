@@ -10,11 +10,11 @@ export default function DentalImplantsSection({
   doctorImageSrc = "/services-main/services-main-about.png",
 }: Props) {
   return (
-    <section className="w-full bg-white py-10 md:py-14 mb-10">
+    <section className="w-full bg-white py-2 lg:py-14 mb-10">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
+        <div className="grid items-center lg:gap-10 gap-4 grid-cols-1 lg:grid-cols-12">
 
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6 lg:py-0 py-4">
 
             <h2 className="mt-4 text-[28px] font-semibold leading-[1.15] text-[#F47A20] md:text-[34px]">
               Comprehensive
@@ -36,7 +36,7 @@ export default function DentalImplantsSection({
                 <div className="absolute inset-0 rounded-full" />
               </div>
 
-              <div className="absolute left-1/2 top-1/2 w-[250px] -translate-x-1/2 -translate-y-1/2 md:w-[500px]">
+              <div>
                 <Image
                   src={doctorImageSrc}
                   alt="Dental implants illustration"

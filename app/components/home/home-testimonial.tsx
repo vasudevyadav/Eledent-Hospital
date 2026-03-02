@@ -97,7 +97,7 @@ export default function HomeTestimonial() {
                         Our
                     </span>
 
-                    <h2 className="mt-4 text-3xl font-extrabold text-gray-800 md:text-[40px]">
+                    <h2 className="mt-4 lg:text-3xl text-2xl lg:font-extrabold font-semibold text-gray-800 md:text-[40px]">
                         Testimonials
                     </h2>
 
@@ -107,7 +107,7 @@ export default function HomeTestimonial() {
                                 setActiveTab("text");
                                 setCurrentIndex(0);
                             }}
-                            className={`rounded-full px-6 py-2 text-[15px] font-semibold transition ${activeTab === "text"
+                            className={`rounded-full px-6 py-2 lg:text-[15px]  font-semibold transition ${activeTab === "text"
                                 ? "bg-orange-500 text-white shadow-sm"
                                 : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
                                 }`}
@@ -138,7 +138,7 @@ export default function HomeTestimonial() {
                                 }`}
                         >
                             {activeTab === "text" && (
-                                <div className="relative w-[400px] overflow-visible">
+                                <div className="relative lg:w-[400px] w-full overflow-visible">
                                     <div className="relative h-[240px] w-full ">
                                         <Image
                                             src={textTestimonials[safeIndex].image}
@@ -150,7 +150,7 @@ export default function HomeTestimonial() {
                                         />
                                     </div>
 
-                                    <div className="absolute bottom-3 -right-8 z-20 rounded-lg bg-[#e96a14] px-6 py-4 shadow-[0_10px_25px_rgba(0,0,0,0.12)] backdrop-blur">
+                                    <div className="absolute lg:bottom-3 bottom-0 lg:-right-8 right-0 z-20 lg:rounded-lg bg-[#e96a14] px-6 py-4 shadow-[0_10px_25px_rgba(0,0,0,0.12)] backdrop-blur">
                                         <div className="flex items-end gap-4 items-center">
                                             <div>
                                                 <span className="text-[30px] font-extrabold text-white">
