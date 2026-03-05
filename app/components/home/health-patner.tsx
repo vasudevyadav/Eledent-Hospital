@@ -21,7 +21,7 @@ export default function HealthPatner(): JSX.Element {
             title: "Whole-Body, Whole-Family\nCare",
             desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
             icon: (
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
                         d="M8.5 10.2c1.3 0 2.3-1.05 2.3-2.35S9.8 5.5 8.5 5.5 6.2 6.55 6.2 7.85 7.2 10.2 8.5 10.2Zm7 0c1.3 0 2.3-1.05 2.3-2.35S16.8 5.5 15.5 5.5s-2.3 1.05-2.3 2.35 1 2.35 2.3 2.35Z"
                         stroke="currentColor"
@@ -47,7 +47,7 @@ export default function HealthPatner(): JSX.Element {
             title: "Door-to-Door Service\nOptions",
             desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
             icon: (
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path d="M7 10.5V20h10v-9.5" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
                     <path
                         d="M5 11.5 12 5l7 6.5"
@@ -69,7 +69,7 @@ export default function HealthPatner(): JSX.Element {
             title: "Transparent,\nWallet-Friendly Pricing",
             desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
             icon: (
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
                         d="M7.5 9.2c0-2.1 1.8-3.7 4.5-3.7s4.5 1.6 4.5 3.7c0 2.4-2.1 3.2-4.5 3.7-2.4.5-4.5 1.3-4.5 3.7 0 2.1 1.8 3.7 4.5 3.7s4.5-1.6 4.5-3.7"
                         stroke="currentColor"
@@ -87,7 +87,7 @@ export default function HealthPatner(): JSX.Element {
             title: "Hospital-Level Technology,\nBoutique Feel",
             desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
             icon: (
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
                         d="M7 20V6.5c0-.8.7-1.5 1.5-1.5h7c.8 0 1.5.7 1.5 1.5V20"
                         stroke="currentColor"
@@ -102,7 +102,7 @@ export default function HealthPatner(): JSX.Element {
             title: "Rapid Results, Proven\nOutcomes",
             desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
             icon: (
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
                         d="M7 12l3 3 7-7"
                         stroke="currentColor"
@@ -118,7 +118,7 @@ export default function HealthPatner(): JSX.Element {
             title: "Compassion Centred\nCulture",
             desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
             icon: (
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
                         d="M12 20s-7-4.5-7-10.2C5 7.1 6.7 5.5 9 5.5c1.4 0 2.6.7 3 1.8.4-1.1 1.6-1.8 3-1.8 2.3 0 4 1.6 4 4.3C19 15.5 12 20 12 20Z"
                         stroke="currentColor"
@@ -132,23 +132,20 @@ export default function HealthPatner(): JSX.Element {
     ];
 
     return (
-        <section className="w-full bg-white py-16">
-            <div className="mx-auto max-w-7xl px-6">
-                <div className="relative overflow-hidden rounded-[22px] border border-slate-100 bg-gradient-to-br from-slate-50 via-white to-slate-50 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.35)]">
-                    {/* soft blobs */}
-                    <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-sky-100/50 blur-3xl" />
-                    <div className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-indigo-100/40 blur-3xl" />
+        <section className="w-full bg-white lg:pt-16 pt-4">
+            <div className="mx-auto max-w-7xl lg:px-6 px-4">
+                <div className="relative overflow-hidden rounded-t-[22px] border border-slate-100 bg-[#f9fbff] pt-10 lg:pb-5 pb-12">
 
-                    <div className="relative px-6 py-12 sm:px-10">
-                        {/* heading */}
+                    <div className="relative px-6 py-0 sm:px-10">
                         <div className="text-center">
-                            <p className="text-[11px] font-semibold tracking-[0.22em] text-slate-400">WHY CHOOSE US</p>
+
+                            <p className=" w-fit mx-auto text-slate-400  px-5 py-1 text-sm bg-[#f36d00] text-white font-semibold ">WHY CHOOSE US</p>
                             <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
                                 The Health Partner You&apos;ve Been Looking For
                             </h2>
                         </div>
 
-                        <div className="mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
+                        <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
 
 
                             <div className="space-y-8">
@@ -159,30 +156,15 @@ export default function HealthPatner(): JSX.Element {
                             <div className="relative mx-auto w-full max-w-[360px]">
                                 <div className="relative mx-auto aspect-[3/4] w-[260px] sm:w-[300px]">
                                     <Image
-                                        src="/home/Special-1.png"
+                                        src="/about-us/why-chose-doctor.png"
                                         alt="Doctor"
                                         fill
-                                        sizes="(max-width: 640px) 260px, 300px"
-                                        className="rounded-2xl object-cover"
+                                        className="rounded-2xl object-contain"
                                         priority
                                     />
                                 </div>
 
-                                {/* faint stethoscope stroke */}
-                                <svg
-                                    className="pointer-events-none absolute -right-10 top-10 hidden h-[420px] w-[420px] opacity-10 lg:block"
-                                    viewBox="0 0 500 500"
-                                    fill="none"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        d="M330 70c30 40 20 120-20 150-25 18-50 7-68-10-30-28-55-18-55 20 0 40 40 90 95 112 50 20 78 55 78 95"
-                                        stroke="#0f172a"
-                                        strokeWidth={8}
-                                        strokeLinecap="round"
-                                    />
-                                    <circle cx="405" cy="440" r="26" stroke="#0f172a" strokeWidth={8} />
-                                </svg>
+
                             </div>
 
                             <div className="space-y-8">
@@ -192,7 +174,6 @@ export default function HealthPatner(): JSX.Element {
                             </div>
                         </div>
 
-                        <div className="pointer-events-none absolute -bottom-10 left-1/2 h-28 w-[520px] -translate-x-1/2 rounded-[26px] bg-sky-100/60 blur-sm" />
                     </div>
                 </div>
             </div>
@@ -205,13 +186,13 @@ function FeatureRow({ title, desc, icon, align = "left" }: FeatureRowProps): JSX
 
     return (
         <div className={`flex items-start gap-4 ${isRight ? "lg:flex-row-reverse lg:text-right" : ""}`}>
-            <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#f47200] text-white shadow-[0_10px_25px_-18px_rgba(244,114,0,0.9)]">
+            <div className="mt-1 grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#f47200] text-white shadow-[0_10px_25px_-18px_rgba(244,114,0,0.9)]">
                 {icon}
             </div>
 
             <div className={isRight ? "lg:pr-1" : "lg:pl-1"}>
-                <h3 className="whitespace-pre-line text-[15px] font-semibold leading-snug text-slate-900">{title}</h3>
-                <p className="mt-2 max-w-[260px] text-[12.5px] leading-relaxed text-slate-500 lg:max-w-[280px]">{desc}</p>
+                <h3 className="whitespace-pre-line text-sm font-semibold leading-snug text-slate-900">{title}</h3>
+                <p className=" max-w-[260px] text-xs leading-relaxed font-medium text-slate-500 lg:max-w-[280px]">{desc}</p>
             </div>
         </div>
     );

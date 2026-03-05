@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
     Mail,
@@ -26,9 +26,34 @@ type NavDropdownItem = {
     type: "dropdown";
     name: string;
     key: "services" | "locations";
+    href?: string;
 };
 
 type NavItem = NavLinkItem | NavDropdownItem;
+
+type ApiService =
+    | {
+        id?: number | string;
+        name?: string;
+        title?: string;
+        slug?: string;
+        link?: string;
+        url?: string;
+        href?: string;
+        post_name?: string;
+        post_title?: string;
+        service_name?: string;
+    }
+    | any;
+
+function toSlug(input: string) {
+    return input
+        .toLowerCase()
+        .trim()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+}
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -39,52 +64,107 @@ export default function Navbar() {
     const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
     const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
 
-    // Services submenu items
-    const servicesItems = [
-        { name: "Advanced And Painless Dental Implants", href: "/services/dental-implants" },
-        { name: "Braces & Aligners", href: "/services/braces-aligners" },
-        { name: "Dental Fillings", href: "/services/dental-fillings" },
-        { name: "Single Visit Dentistry", href: "/services/single-visit-dentistry" },
-        { name: "Conseous Sedation", href: "/services/conseous-sedation" },
-        { name: "Microscopic Dentistry", href: "/services/microscopic-dentistry" },
-        { name: "Invisalign Treatment", href: "/services/invisalign-treatment" },
-        { name: "Wisdom Teeth Removal", href: "/services/wisdom-teeth-removal" },
-        { name: "Dental Veneers", href: "/services/dental-veneers" },
-        { name: "Tooth Pain Treatment", href: "/services/tooth-pain-treatment" },
-        { name: "Atraumatic Extraction", href: "/services/atraumatic-extraction" },
-        { name: "Dental Crowns", href: "/services/dental-crowns" },
-        { name: "Root Canal Treatment", href: "/services/root-canal-treatment" },
-        { name: "Teeth Whitening", href: "/services/teeth-whitening" },
-        { name: "Guided Biofilm Therapy (GBT)", href: "/services/guided-biofilm-therapy" },
-        { name: "Advanced And Painless Dental Implants", href: "/services/advanced-dental-implants" },
-        { name: "Smile Makeover", href: "/services/smile-makeover" },
-        { name: "Laser Gum Treatment", href: "/services/laser-gum-treatment" },
-        { name: "Orthodontist", href: "/services/orthodontist" },
-        { name: "Teeth Gap Treatment", href: "/services/teeth-gap-treatment" },
-    ];
+    // Services from API
+    const [servicesItems, setServicesItems] = useState<{ name: string; href: string }[]>([]);
+    const [servicesLoading, setServicesLoading] = useState(true);
 
-    const locationsItems = [
-        { name: "kondapur", href: "/locations/kondapur" },
-        { name: "Kukatpally", href: "/locations/kukatpally" },
-        { name: "Manikonda", href: "/locations/manikonda" },
-        { name: "Banjara Hills", href: "/locations/banjara-hills" },
-        { name: "Kompally", href: "/locations/kompally" },
-    ];
+    useEffect(() => {
+        let cancelled = false;
 
-    const navItems: NavItem[] = [
-        { type: "link", name: "Home", href: "/" },
-        { type: "link", name: "About Us", href: "/about-us" },
-        { type: "link", name: "Services", href: "services" },
-        { type: "link", name: "Dental Tourism", href: "/dental-tourism" },
-        { type: "link", name: "Technology", href: "/technology" },
-        { type: "link", name: "Facilities", href: "/facilities" },
-        { type: "link", name: "Contact Us", href: "/contact" },
-        { type: "dropdown", name: "Locations", key: "locations" },
-    ];
+        async function loadServices() {
+            try {
+                setServicesLoading(true);
+
+                const res = await fetch(
+                    "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services",
+                    { cache: "no-store" }
+                );
+
+                const data: ApiService[] = await res.json();
+
+                const list: ApiService[] = Array.isArray(data)
+                    ? data
+                    : Array.isArray((data as any)?.data)
+                        ? (data as any).data
+                        : Array.isArray((data as any)?.services)
+                            ? (data as any).services
+                            : [];
+
+                const mapped = list
+                    .map((s) => {
+                        const label = String(
+                            s?.name || s?.title || s?.service_name || s?.post_title || ""
+                        ).trim();
+
+                        if (!label) return null;
+
+                        const direct =
+                            (typeof s?.href === "string" && s.href) ||
+                            (typeof s?.link === "string" && s.link) ||
+                            (typeof s?.url === "string" && s.url);
+
+                        let href = "";
+                        if (direct) {
+                            try {
+                                const u = new URL(direct);
+                                href = u.pathname || direct;
+                            } catch {
+                                href = direct;
+                            }
+                        } else {
+                            const slug = String(s?.slug || s?.post_name || toSlug(label)).trim();
+                            href = `/services/${slug}`;
+                        }
+
+                        return { name: label, href };
+                    })
+                    .filter(Boolean) as { name: string; href: string }[];
+
+                mapped.sort((a, b) => a.name.localeCompare(b.name));
+
+                if (!cancelled) setServicesItems(mapped);
+            } catch {
+                if (!cancelled) setServicesItems([]);
+            } finally {
+                if (!cancelled) setServicesLoading(false);
+            }
+        }
+
+        loadServices();
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
+    const locationsItems = useMemo(
+        () => [
+            { name: "Kondapur", href: "/location/kondapur" },
+            { name: "Kukatpally", href: "/location/kukatpally" },
+            { name: "Manikonda", href: "/location/manikonda" },
+            { name: "Banjara Hills", href: "/location/banjara-hills" },
+            { name: "Kompally", href: "/location/kompally" },
+        ],
+        []
+    );
+
+    const navItems: NavItem[] = useMemo(
+        () => [
+            { type: "link", name: "Home", href: "/" },
+            { type: "link", name: "About Us", href: "/about-us" },
+            { type: "dropdown", name: "Services", key: "services", href: "/services" }, // ✅ clickable
+            { type: "link", name: "Dental Tourism", href: "/dental-tourism" },
+            { type: "link", name: "Technology", href: "/technology" },
+            { type: "link", name: "Facilities", href: "/facilities" },
+            { type: "link", name: "Contact Us", href: "/contact-us" },
+            { type: "dropdown", name: "Locations", key: "locations" },
+        ],
+        []
+    );
 
     const isActive = (path: string) => pathname === path;
+
     const isServicesActive = pathname.startsWith("/services");
-    const isLocationsActive = pathname.startsWith("/locations");
+    const isLocationsActive = pathname.startsWith("/location"); // ✅ fix
 
     const isDropdownActive = (key: NavDropdownItem["key"]) => {
         if (key === "services") return isServicesActive;
@@ -144,31 +224,29 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* MAIN NAV */}
+
             <div className="w-full bg-white shadow-sm">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-4">
-                    {/* LOGO */}
                     <Link href="/" className="flex items-center relative z-50">
                         <Image
                             src="/White-Logo.webp"
                             alt="Eledent logo"
-                            className="h-10 sm:h-12 w-auto"
+                            className=" w-20 lg:w-40 sm:w-32 "
                             width={500}
                             height={500}
                             priority
                         />
                     </Link>
 
-                    {/* MOBILE MENU BUTTON */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         className="lg:hidden relative z-50 p-2 text-gray-700 hover:text-[#E87733] transition-colors"
                         aria-label="Toggle menu"
+                        type="button"
                     >
                         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                     </button>
 
-                    {/* DESKTOP NAV (map based) */}
                     <nav className="hidden lg:flex items-center relative">
                         <div className="flex items-center gap-8 rounded-full bg-[#E8E5E6] pl-10 pr-40 py-3">
                             <div className="flex items-center gap-2 text-[15px] font-medium text-[#4A4A4A]">
@@ -196,7 +274,6 @@ export default function Navbar() {
                                         );
                                     }
 
-                                    // dropdown
                                     if (item.key === "services") {
                                         return (
                                             <span key={item.key} className="flex items-center">
@@ -205,29 +282,47 @@ export default function Navbar() {
                                                     onMouseEnter={() => setServicesOpen(true)}
                                                     onMouseLeave={() => setServicesOpen(false)}
                                                 >
-                                                    <button
+                                                    <Link
+                                                        href={item.href || "/services"}
                                                         className={`flex items-center gap-1 hover:text-[#E87733] whitespace-nowrap transition-colors ${isDropdownActive("services") ? "text-[#E87733]" : ""
                                                             }`}
                                                     >
                                                         {item.name}
                                                         <ChevronDown className="h-3 w-3" />
-                                                    </button>
+                                                    </Link>
 
                                                     {servicesOpen && (
-                                                        <div className="absolute top-full left-0 mt-2 w-[35rem] rounded-lg bg-white shadow-xl py-3 z-50 border border-gray-100">
+                                                        <div className="absolute top-6 left-0 mt-0 w-[38.5rem] rounded-lg bg-white shadow-xl py-1 z-50 border border-gray-100">
                                                             <div className="grid grid-cols-2 gap-1">
-                                                                {servicesItems.map((s) => (
-                                                                    <Link
-                                                                        key={s.href}
-                                                                        href={s.href}
-                                                                        className={`block px-4 py-2 text-[13px] hover:bg-gray-50 hover:text-[#E87733] transition-colors ${isActive(s.href)
-                                                                            ? "text-[#E87733] bg-gray-50"
-                                                                            : "text-gray-700"
-                                                                            }`}
-                                                                    >
-                                                                        {s.name}
-                                                                    </Link>
-                                                                ))}
+                                                                {servicesLoading ? (
+                                                                    <>
+                                                                        {Array.from({ length: 8 }).map((_, i) => (
+                                                                            <span
+                                                                                key={i}
+                                                                                className="block px-4 py-2 text-[13px] text-gray-400"
+                                                                            >
+                                                                                Loading...
+                                                                            </span>
+                                                                        ))}
+                                                                    </>
+                                                                ) : servicesItems.length ? (
+                                                                    servicesItems.map((s) => (
+                                                                        <Link
+                                                                            key={s.href}
+                                                                            href={s.href}
+                                                                            className={`block px-4 py-2 text-[13px] hover:bg-gray-50 hover:text-[#E87733] transition-colors ${isActive(s.href)
+                                                                                ? "text-[#E87733] bg-gray-50"
+                                                                                : "text-gray-700"
+                                                                                }`}
+                                                                        >
+                                                                            {s.name}
+                                                                        </Link>
+                                                                    ))
+                                                                ) : (
+                                                                    <div className="col-span-2 px-4 py-2 text-[13px] text-gray-600">
+                                                                        Services abhi load nahi ho paaye.
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         </div>
                                                     )}
@@ -237,7 +332,6 @@ export default function Navbar() {
                                         );
                                     }
 
-                                    // locations dropdown
                                     return (
                                         <span key={item.key} className="flex items-center">
                                             <div
@@ -248,20 +342,19 @@ export default function Navbar() {
                                                 <button
                                                     className={`flex items-center gap-1 hover:text-[#E87733] whitespace-nowrap transition-colors ${isDropdownActive("locations") ? "text-[#E87733]" : ""
                                                         }`}
+                                                    type="button"
                                                 >
                                                     {item.name}
                                                     <ChevronDown className="h-3 w-3" />
                                                 </button>
 
                                                 {locationsOpen && (
-                                                    <div className="absolute top-full -right-10 mt-2 w-32 rounded-lg bg-white shadow-xl py-2 z-50 border border-gray-100">
+                                                    <div className="absolute top-full -right-10 mt-0 w-40 rounded-lg bg-white shadow-xl py-2 z-50 border border-gray-100">
                                                         {locationsItems.map((l) => (
                                                             <Link
                                                                 key={l.href}
                                                                 href={l.href}
-                                                                className={`block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-[#E87733] transition-colors ${isActive(l.href)
-                                                                    ? "text-[#E87733] bg-gray-50"
-                                                                    : "text-gray-700"
+                                                                className={`block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-[#E87733] transition-colors ${isActive(l.href) ? "text-[#E87733] bg-gray-50" : "text-gray-700"
                                                                     }`}
                                                             >
                                                                 {l.name}
@@ -288,7 +381,6 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* MOBILE DRAWER (map based for main links, dropdowns stay same) */}
             {mobileMenuOpen && (
                 <>
                     <div
@@ -306,6 +398,7 @@ export default function Navbar() {
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
                                 aria-label="Close menu"
+                                type="button"
                             >
                                 <X className="h-6 w-6 text-gray-700" />
                             </button>
@@ -313,7 +406,6 @@ export default function Navbar() {
 
                         <div className="overflow-y-auto h-[calc(100%-73px)] p-4">
                             <div className="flex flex-col space-y-1">
-                                {/* map only for normal links (non dropdown) */}
                                 {navItems
                                     .filter((i) => i.type === "link")
                                     .map((i) => {
@@ -333,42 +425,68 @@ export default function Navbar() {
                                         );
                                     })}
 
-                                {/* Services dropdown */}
                                 <div>
-                                    <button
-                                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                                        className={`w-full flex items-center justify-between py-3 px-4 text-base font-medium rounded-lg transition-colors ${isServicesActive
-                                            ? "text-[#E87733] bg-orange-50"
-                                            : "text-gray-700 hover:text-[#E87733] hover:bg-gray-50"
-                                            }`}
-                                    >
-                                        Services
-                                        <ChevronDown
-                                            className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""
+                                    <div className="flex items-center gap-2">
+                                        <Link
+                                            href="/services"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className={`flex-1 py-3 px-4 text-base font-medium rounded-lg transition-colors ${isServicesActive
+                                                ? "text-[#E87733] bg-orange-50"
+                                                : "text-gray-700 hover:text-[#E87733] hover:bg-gray-50"
                                                 }`}
-                                        />
-                                    </button>
+                                        >
+                                            Services
+                                        </Link>
+
+                                        <button
+                                            onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                                            className="shrink-0 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                                            aria-label="Toggle services"
+                                            type="button"
+                                        >
+                                            <ChevronDown
+                                                className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""
+                                                    }`}
+                                            />
+                                        </button>
+                                    </div>
 
                                     {mobileServicesOpen && (
                                         <div className="mt-1 ml-4 space-y-1">
-                                            {servicesItems.map((s) => (
-                                                <Link
-                                                    key={s.href}
-                                                    href={s.href}
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                    className={`block py-2 px-4 text-sm rounded-lg transition-colors ${isActive(s.href)
-                                                        ? "text-[#E87733] bg-orange-50"
-                                                        : "text-gray-600 hover:text-[#E87733] hover:bg-gray-50"
-                                                        }`}
-                                                >
-                                                    {s.name}
-                                                </Link>
-                                            ))}
+                                            {servicesLoading ? (
+                                                <>
+                                                    {Array.from({ length: 6 }).map((_, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="block py-2 px-4 text-sm rounded-lg text-gray-400"
+                                                        >
+                                                            Loading...
+                                                        </span>
+                                                    ))}
+                                                </>
+                                            ) : servicesItems.length ? (
+                                                servicesItems.map((s) => (
+                                                    <Link
+                                                        key={s.href}
+                                                        href={s.href}
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                        className={`block py-2 px-4 text-sm rounded-lg transition-colors ${isActive(s.href)
+                                                            ? "text-[#E87733] bg-orange-50"
+                                                            : "text-gray-600 hover:text-[#E87733] hover:bg-gray-50"
+                                                            }`}
+                                                    >
+                                                        {s.name}
+                                                    </Link>
+                                                ))
+                                            ) : (
+                                                <div className="py-2 px-4 text-sm text-gray-600">
+                                                    Services abhi load nahi ho paaye.
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>
 
-                                {/* Locations dropdown */}
                                 <div>
                                     <button
                                         onClick={() => setMobileLocationsOpen(!mobileLocationsOpen)}
@@ -376,6 +494,7 @@ export default function Navbar() {
                                             ? "text-[#E87733] bg-orange-50"
                                             : "text-gray-700 hover:text-[#E87733] hover:bg-gray-50"
                                             }`}
+                                        type="button"
                                     >
                                         Locations
                                         <ChevronDown

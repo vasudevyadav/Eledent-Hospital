@@ -5,16 +5,16 @@ import type { FC } from "react";
 
 const BookingAportment: FC = () => {
   return (
-    <section className="lg:py-20 py-0 px-0 lg:px-20 bg-[#f4f4f4]">
-      <div className="lg:max-w-[1200px] mx-auto relative">
+    <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
+      <div className="lg:max-w-7xl mx-auto relative">
         {/* ORANGE CONTAINER */}
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center px-10 overflow-visible">
           {/* LEFT CONTENT */}
-          <div className="flex justify-center lg:w-[56%] py-16 relative z-10">
+          <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
               <p className="text-base mb-3">Booking</p>
 
-              <h2 className="text-4xl font-bold leading-tight mb-4">
+              <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
                 Book Your Dental Care <br /> Appointment Now!
               </h2>
 

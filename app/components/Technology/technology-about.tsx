@@ -9,27 +9,25 @@ type TechSection = {
   body: string[];
   imageSrc: string;
   imageAlt: string;
-  // true = text left, image right (like CEREC row)
-  // false = image left, text right (like CBCT row)
   textFirst?: boolean;
   imageFit?: "contain" | "cover";
 };
 
 const SECTIONS: TechSection[] = [
   {
-    id: "cerec",
+    id: "cerec-1",
     title: "CEREC – Single Visit Dentistry",
     body: [
       "Now with the updated technology of CAD & CAM, CEREC has made everything easy, right from the scanning to the designing and structuring of your tooth restoration. The CEREC Omnicam fits in your hand easily and can scan your dentition to give a clearer picture in order to start treatment immediately. Chairside scanning is done and the whole scanning is analysed and the best results are given by the CEREC software.",
       "We have CEREC milling and grinding units as well which helps in making it more involved with website to design the restoration and give the restoration the required smooth look. With CEREC, we will make sure that your dental issue are fixed in one go without much need to visit the clinic several times.",
     ],
-    imageSrc: "/technology/technology.png", // <-- use your image path
+    imageSrc: "/technology/technology.png",
     imageAlt: "CEREC single visit dentistry machine",
     textFirst: true,
     imageFit: "cover",
   },
   {
-    id: "cbct",
+    id: "cbct-1",
     title: "CBCT – OPG & CEPH",
     body: [
       "We have the updated technology when it comes to CBCT (Cone beam computed tomography) that is a CBCT scan orthodontics where the scanning is done easily and gives 3D images with clear visualisation making things easier for our experts.",
@@ -40,19 +38,19 @@ const SECTIONS: TechSection[] = [
     imageFit: "cover",
   },
   {
-    id: "cerec",
+    id: "cerec-2",
     title: "CEREC – Single Visit Dentistry",
     body: [
       "Now with the updated technology of CAD & CAM, CEREC has made everything easy, right from the scanning to the designing and structuring of your tooth restoration. The CEREC Omnicam fits in your hand easily and can scan your dentition to give a clearer picture in order to start treatment immediately. Chairside scanning is done and the whole scanning is analysed and the best results are given by the CEREC software.",
       "We have CEREC milling and grinding units as well which helps in making it more involved with website to design the restoration and give the restoration the required smooth look. With CEREC, we will make sure that your dental issue are fixed in one go without much need to visit the clinic several times.",
     ],
-    imageSrc: "/technology/technology-2.png", // <-- use your image path
+    imageSrc: "/technology/technology-2.png",
     imageAlt: "CEREC single visit dentistry machine",
     textFirst: true,
     imageFit: "cover",
   },
   {
-    id: "cbct",
+    id: "cbct-2",
     title: "CBCT – OPG & CEPH",
     body: [
       "We have the updated technology when it comes to CBCT (Cone beam computed tomography) that is a CBCT scan orthodontics where the scanning is done easily and gives 3D images with clear visualisation making things easier for our experts.",
@@ -62,21 +60,20 @@ const SECTIONS: TechSection[] = [
     textFirst: false,
     imageFit: "cover",
   },
-
   {
-    id: "cerec",
+    id: "cerec-3",
     title: "CEREC – Single Visit Dentistry",
     body: [
       "Now with the updated technology of CAD & CAM, CEREC has made everything easy, right from the scanning to the designing and structuring of your tooth restoration. The CEREC Omnicam fits in your hand easily and can scan your dentition to give a clearer picture in order to start treatment immediately. Chairside scanning is done and the whole scanning is analysed and the best results are given by the CEREC software.",
       "We have CEREC milling and grinding units as well which helps in making it more involved with website to design the restoration and give the restoration the required smooth look. With CEREC, we will make sure that your dental issue are fixed in one go without much need to visit the clinic several times.",
     ],
-    imageSrc: "/technology/technology-5.png", // <-- use your image path
+    imageSrc: "/technology/technology-5.png",
     imageAlt: "CEREC single visit dentistry machine",
     textFirst: true,
     imageFit: "cover",
   },
   {
-    id: "cbct",
+    id: "cbct-3",
     title: "CBCT – OPG & CEPH",
     body: [
       "We have the updated technology when it comes to CBCT (Cone beam computed tomography) that is a CBCT scan orthodontics where the scanning is done easily and gives 3D images with clear visualisation making things easier for our experts.",
@@ -87,13 +84,13 @@ const SECTIONS: TechSection[] = [
     imageFit: "cover",
   },
   {
-    id: "cerec",
+    id: "cerec-4",
     title: "CEREC – Single Visit Dentistry",
     body: [
       "Now with the updated technology of CAD & CAM, CEREC has made everything easy, right from the scanning to the designing and structuring of your tooth restoration. The CEREC Omnicam fits in your hand easily and can scan your dentition to give a clearer picture in order to start treatment immediately. Chairside scanning is done and the whole scanning is analysed and the best results are given by the CEREC software.",
       "We have CEREC milling and grinding units as well which helps in making it more involved with website to design the restoration and give the restoration the required smooth look. With CEREC, we will make sure that your dental issue are fixed in one go without much need to visit the clinic several times.",
     ],
-    imageSrc: "/technology/technology-7.png", // <-- use your image path
+    imageSrc: "/technology/technology-7.png",
     imageAlt: "CEREC single visit dentistry machine",
     textFirst: true,
     imageFit: "cover",
@@ -114,7 +111,7 @@ const TechnologyAbout: FC = () => {
 
                 <div className="mt-4 space-y-4 text-sm sm:text-base leading-7 text-gray-700 max-w-xl">
                   {sec.body.map((p, i) => (
-                    <p key={i}>{p}</p>
+                    <p key={`${sec.id}-p-${i}`}>{p}</p>
                   ))}
                 </div>
               </div>

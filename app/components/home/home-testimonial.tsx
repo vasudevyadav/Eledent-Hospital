@@ -89,7 +89,7 @@ export default function HomeTestimonial() {
     const safeIndex = currentIndex >= max ? 0 : currentIndex;
 
     return (
-        <section className="w-full bg-white pt-16 pb-6">
+        <section className="w-full bg-white lg:pt-12 pt-6 pb-6">
             <div className="mx-auto max-w-6xl px-6">
                 {/* Header */}
                 <div className="text-center">
@@ -107,7 +107,7 @@ export default function HomeTestimonial() {
                                 setActiveTab("text");
                                 setCurrentIndex(0);
                             }}
-                            className={`rounded-full px-6 py-2 lg:text-[15px]  font-semibold transition ${activeTab === "text"
+                            className={`rounded-full px-6 py-2 lg:text-[15px] text-xs font-semibold transition ${activeTab === "text"
                                 ? "bg-orange-500 text-white shadow-sm"
                                 : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
                                 }`}
@@ -120,7 +120,7 @@ export default function HomeTestimonial() {
                                 setActiveTab("video");
                                 setCurrentIndex(0);
                             }}
-                            className={`rounded-full px-6 py-2 text-[15px] font-semibold transition ${activeTab === "video"
+                            className={`rounded-full px-6 py-2 lg:text-[15px] text-xs font-semibold transition ${activeTab === "video"
                                 ? "bg-orange-500 text-white shadow-sm"
                                 : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
                                 }`}
