@@ -28,7 +28,7 @@ type TourismSection = {
 
 const SECTIONS: TourismSection[] = [
   {
-    id: "hyderabad-top",
+    id: "hyderabad-top-1",
     titleLine1: "Dental Tourism in India,",
     titleLine2: "Hyderabad",
     intro: [
@@ -39,7 +39,7 @@ const SECTIONS: TourismSection[] = [
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
-    id: "hyderabad-points",
+    id: "hyderabad-points-1",
     titleLine1: "Dental Tourism in India",
     imageSrc: "/dental-tourism/tourism-about-1.png",
     imageAlt: "Dental Tourism in Hyderabad",
@@ -49,20 +49,19 @@ const SECTIONS: TourismSection[] = [
       "India offers the most advanced and developed technology for dental treatments, that deals explicitly with complex procedures of dental implants, cosmetic dentistry, and dentures at affordable and reasonable prices compared to other countries.",
     flip: true,
   },
-
   {
-    id: "hyderabad-top",
+    id: "hyderabad-top-2",
     titleLine1: "Dental Tourism in India,",
     titleLine2: "Hyderabad",
     intro: [
-      "India has transformed itself into a hub of dental tourism wherein travellers from all over the world can visit this country and get dental treatments at affordable prices and also experience the rich legacy in terms of cuisines, history, nature, and multicultural getaways. ",
+      "India has transformed itself into a hub of dental tourism wherein travellers from all over the world can visit this country and get dental treatments at affordable prices and also experience the rich legacy in terms of cuisines, history, nature, and multicultural getaways.",
       "Hyderabad, in particular, is one of the highly preferred choices for tourists. Considering the amalgamation of the old and new, the city paints a vivid picture of culture and commerce.",
     ],
     imageSrc: "/dental-tourism/tourism-about.png",
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
-    id: "hyderabad-points",
+    id: "hyderabad-points-2",
     titleLine1: "Dental Tourism in India",
     imageSrc: "/dental-tourism/tourism-about-2.png",
     imageAlt: "Dental Tourism in Hyderabad",
@@ -72,7 +71,6 @@ const SECTIONS: TourismSection[] = [
       "India offers the most advanced and developed technology for dental treatments, that deals explicitly with complex procedures of dental implants, cosmetic dentistry, and dentures at affordable and reasonable prices compared to other countries.",
     flip: true,
   },
-
 ];
 
 const TourismAbout: FC = () => {
@@ -101,16 +99,18 @@ const TourismAbout: FC = () => {
                         ) : null}
                       </h2>
 
-                      <div className="mt-5 space-y-4 text-sm  lg:text-base  leading-8 text-gray-700 max-w-xl">
+                      <div className="mt-5 space-y-4 text-sm lg:text-base leading-8 text-gray-700 max-w-xl">
                         {sec.intro!.map((p, i) => (
-                          <p key={i}>{p}</p>
+                          <p key={`${sec.id}-intro-${i}`}>{p}</p>
                         ))}
                       </div>
                     </div>
 
                     {/* Image */}
                     <div
-                      className={`flex justify-center ${sec.flip ? "order-1 lg:order-1 lg:justify-start" : "lg:justify-end"
+                      className={`flex justify-center ${sec.flip
+                          ? "order-1 lg:order-1 lg:justify-start"
+                          : "lg:justify-end"
                         }`}
                     >
                       <div className="relative z-10 rounded-2xl overflow-hidden">
@@ -127,6 +127,7 @@ const TourismAbout: FC = () => {
                   </div>
                 )}
 
+                {/* Block 2: Points + Image */}
                 {hasPoints && (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
                     <div className="relative z-10 rounded-2xl overflow-hidden">
@@ -147,7 +148,10 @@ const TourismAbout: FC = () => {
 
                       <ul className="mt-5 space-y-3 text-sm lg:text-base leading-6 text-gray-700">
                         {sec.points!.map((point, index) => (
-                          <li key={index} className="flex items-start gap-3">
+                          <li
+                            key={`${sec.id}-point-${index}`}
+                            className="flex items-start gap-3"
+                          >
                             <span className="mt-[8px] h-1.5 w-1.5 rounded-full bg-gray-500 shrink-0" />
                             <span>{point}</span>
                           </li>

@@ -14,21 +14,21 @@ type BlogCard = {
 export default function BlogMain(): JSX.Element {
     const cards: BlogCard[] = [
         {
-            img: "/home/blog-1.jpg",
+            img: "/home/home-blog.png",
             date: "Sep 19, 2020",
             title: "What is The Success rate of a root canal?",
             desc: "Nullam mauris vitae tortor sodales efficitur. Quisque orci ante. Proin amet turpis",
             author: "Admin Rose",
         },
         {
-            img: "/home/blog-2.jpg",
+            img: "/home/home-blog.png",
             date: "Sep 19, 2020",
             title: "How to handle your kids’ mystery ailments?",
             desc: "Nullam mauris vitae tortor sodales efficitur. Quisque orci ante. Proin amet turpis",
             author: "Admin Rose",
         },
         {
-            img: "/home/blog-3.jpg",
+            img: "/home/home-blog.png",
             date: "Sep 19, 2020",
             title: "How to help the cardiology department",
             desc: "Nullam mauris vitae tortor sodales efficitur. Quisque orci ante. Proin amet turpis",
@@ -37,60 +37,56 @@ export default function BlogMain(): JSX.Element {
     ];
 
     return (
-        <section className="w-full bg-white py-24">
+        <section className="w-full bg-white py-8">
             <div className="mx-auto max-w-[1120px] px-6">
                 {/* Heading */}
                 <div className="text-center">
-                    <span className="inline-flex items-center justify-center rounded-[2px] bg-[#f47200] px-[10px] py-[3px] text-[11px] font-semibold leading-none text-white">
+                    <span className="inline-flex items-center justify-center bg-[#f47200] px-[10px] py-[6px] text-sm font-semibold leading-none text-white">
                         Our
                     </span>
-                    <h2 className="mt-3 text-[30px] font-semibold leading-none text-slate-700">Blog</h2>
+                    <h2 className="mt-3 text-[30px] font-semibold leading-none text-slate-700 mb-6">Blog</h2>
                 </div>
 
                 {/* Cards */}
-                <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
                     {cards.map((c, idx) => (
                         <article
                             key={idx}
                             className="rounded-[10px] bg-white shadow-[0_18px_50px_-34px_rgba(15,23,42,0.35)]"
                         >
                             {/* Image block (with inner padding like screenshot) */}
-                            <div className="px-6 pt-6">
+                            <div>
                                 <div className="relative overflow-hidden rounded-[10px]">
-                                    <div className="relative h-[180px] w-full">
+                                    <div className="relative h-[220px] w-full">
                                         <Image
                                             src={c.img}
                                             alt={c.title}
                                             fill
-                                            sizes="(max-width: 1024px) 100vw, 360px"
                                             className="object-cover"
                                             priority={idx === 0}
                                         />
                                     </div>
 
                                     {/* Date badge */}
-                                    <div className="absolute bottom-0 right-0 rounded-tl-[6px] bg-[#f47200] px-4 py-2 text-[11px] font-medium text-white">
+                                    <div className="absolute bottom-0 right-0 rounded-tl-[6px] bg-[#f47200] px-4 py-1.5 text-xs font-medium text-white">
                                         {c.date}
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Content */}
                             <div className="px-6 pb-5 pt-5">
-                                <h3 className="text-[14px] font-semibold leading-snug text-[#f47200]">{c.title}</h3>
-                                <p className="mt-3 text-[12.5px] leading-relaxed text-slate-500">{c.desc}</p>
+                                <h3 className="text-lg font-semibold leading-snug text-[#f47200]">{c.title}</h3>
+                                <p className="mt-2 text-sm leading-relaxed text-black">{c.desc}</p>
 
-                                {/* Divider like screenshot */}
-                                <div className="mt-6 border-t border-slate-200/70" />
+                                <div className="mt-4 border-t border-slate-200/70" />
 
-                                {/* Footer */}
-                                <div className="mt-4 flex items-center justify-between text-[11px] text-slate-500">
+                                <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
                                     <span>
                                         By <span className="text-slate-600">{c.author}</span>
                                     </span>
 
                                     <div className="flex items-center gap-4 text-[#f47200]">
-                                        {/* heart */}
+
                                         <div className="flex items-center gap-1">
                                             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
                                                 <path

@@ -41,3 +41,17 @@ body {
 .bg-main {
   background: #484848;
 }
+
+.home-about-bg {
+  background: url("../public/home/home-about-bg.png") no-repeat;
+  background-size: contain;
+  background-position: left;
+}
+
+.home-servic-bg {
+  background-color: #f7f9fc;
+  background-image: url("../public/home/home-servic-bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top right;
+}
