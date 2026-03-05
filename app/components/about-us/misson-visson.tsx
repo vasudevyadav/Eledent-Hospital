@@ -28,14 +28,14 @@ const MissionVision: FC = () => {
     ];
 
     return (
-        <section className="pt-20 pb-10 px-4 sm:px-8 lg:px-20">
+        <section className="lg:pt-20 pt-12 pb-10 px-4 sm:px-8 lg:px-20">
             <div className="max-w-[1240px] mx-auto">
 
                 <div className="relative overflow-visible">
 
-                    <div className="relative h-[320px] sm:h-[270px] rounded-[18px] bg-[#E67735] overflow-visible">
+                    <div className="relative h-[320px] sm:h-[270px] rounded-[18px] lg:bg-[#E67735] overflow-visible">
 
-                        <div className="h-full w-full px-10 sm:px-36 py-12 sm:py-10 flex flex-col justify-center">
+                        <div className="h-full w-full px-6 sm:px-36 py-12 sm:py-10 lg:flex flex-col justify-center">
                             <p className="text-white/85 text-xs sm:text-sm mb-4">Lorem ipsum</p>
 
                             <h3 className="text-white font-extrabold leading-tight text-2xl sm:text-3xl max-w-[420px]">

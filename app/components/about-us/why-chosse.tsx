@@ -22,7 +22,6 @@ type ValueItem = {
 };
 
 export default function WhyChoose(): JSX.Element {
-    // ✅ LEFT ITEMS (icons are images)
     const leftItems: FeatureItem[] = [
         {
             title: "Consistent, High-Quality Care",
@@ -44,7 +43,6 @@ export default function WhyChoose(): JSX.Element {
         },
     ];
 
-    // ✅ RIGHT ITEMS (icons are images)
     const rightItems: FeatureItem[] = [
         {
             title: "We Use State-Of-The-Art Dental Technology & High-Quality Materials",
@@ -66,7 +64,6 @@ export default function WhyChoose(): JSX.Element {
         },
     ];
 
-    // ✅ OUR VALUE cards
     const valueItems: ValueItem[] = [
         {
             title: "Care For The Whole Teeth",
@@ -95,31 +92,45 @@ export default function WhyChoose(): JSX.Element {
     ];
 
     return (
-        <section className="w-full bg-white pt-10">
-            <div className="mx-auto max-w-7xl px-6">
+        <section className="w-full bg-white py-10 sm:py-12">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6">
                 {/* ================= WHY CHOOSE CARD SECTION ================= */}
-                <div className="rounded-t-[22px] bg-[#e9eaeb] px-6 py-12 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.35)] sm:px-10">
+                <div className="rounded-t-[22px] bg-[#e9eaeb] px-4 py-10 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.35)] sm:px-8 sm:py-12">
                     {/* heading */}
                     <div className="text-center">
                         <span className="inline-flex bg-[#f47200] px-3 py-1.5 text-sm font-semibold tracking-[0.14em] text-white">
                             WHY CHOOSE US
                         </span>
-                        <h2 className="mt-4 text-2xl font-semibold text-slate-900 sm:text-4xl">
+
+                        <h2 className="mt-4 text-xl font-semibold text-slate-900 sm:text-3xl lg:text-4xl">
                             The Dental Health Partner You&apos;ve Been Looking For
                         </h2>
                     </div>
 
-                    <div className="mt-20 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
+                    {/* MOBILE/TABLET CENTER IMAGE */}
+                    <div className="mt-8 flex justify-center lg:hidden">
+                        <div className="relative h-[320px] w-[240px] sm:h-[380px] sm:w-[300px]">
+                            <Image
+                                src="/about-us/why-chose-doctor.png"
+                                alt="Doctor"
+                                fill
+                                priority
+                                className="object-contain"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-20 lg:grid-cols-3 lg:items-center">
                         {/* LEFT */}
-                        <div className="space-y-9">
+                        <div className="space-y-8 sm:space-y-9">
                             {leftItems.map((it, idx) => (
                                 <FeatureRow key={`l-${idx}`} {...it} align="right" />
                             ))}
                         </div>
 
-                        {/* CENTER IMAGE */}
-                        <div className="relative mx-auto w-full max-w-[420px] h-full">
-                            <div className="absolute -bottom-12 mx-auto h-[340px] w-[260px] sm:h-[380px] sm:w-[300px] lg:h-[480px] lg:w-[330px]">
+                        {/* DESKTOP CENTER IMAGE */}
+                        <div className="relative mx-auto hidden w-full max-w-[420px] lg:block">
+                            <div className="relative mx-auto h-[480px] w-[330px]">
                                 <Image
                                     src="/about-us/why-chose-doctor.png"
                                     alt="Doctor"
@@ -131,7 +142,7 @@ export default function WhyChoose(): JSX.Element {
                         </div>
 
                         {/* RIGHT */}
-                        <div className="space-y-9">
+                        <div className="space-y-8 sm:space-y-9">
                             {rightItems.map((it, idx) => (
                                 <FeatureRow key={`r-${idx}`} {...it} align="left" />
                             ))}
@@ -141,24 +152,28 @@ export default function WhyChoose(): JSX.Element {
 
                 {/* ================= UNIQUE VALUE SECTION ================= */}
                 <div className="mt-0 overflow-hidden rounded-b-[22px] shadow-[0_18px_45px_-30px_rgba(15,23,42,0.35)]">
-                    <div className="grid lg:grid-cols-2">
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
                         {/* LEFT DARK CONTENT */}
-                        <div className="bg-[#2a2a2a] px-10 py-4 text-white h-full flex items-center justify-center">
-                            <div>
-                                <p className="mb-2 text-xl text-orange-500">Our Value</p>
-                                <h3 className="text-3xl font-semibold leading-light">
-                                    We Have A Unique Value <br />
-                                    This Sets Us Apart From <br />
+                        <div className="flex h-full items-center justify-center bg-[#2a2a2a] px-5 py-10 text-white sm:px-8 lg:px-10 lg:py-4">
+                            <div className="text-center lg:text-left">
+                                <p className="mb-2 text-lg text-orange-500 sm:text-xl">Our Value</p>
+                                <h3 className="text-2xl font-semibold leading-snug sm:text-3xl">
+                                    We Have A Unique Value
+                                    <br className="hidden sm:block" />
+                                    This Sets Us Apart From
+                                    <br className="hidden sm:block" />
                                     Others
                                 </h3>
-                                <p className="mt-4 max-w-md text-base leading-relaxed text-white">
+
+                                <p className="mt-4 max-w-md text-sm leading-relaxed text-white sm:text-base">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua. Quis ipsum suscipit
                                 </p>
                             </div>
                         </div>
 
-                        <div className="relative min-h-[520px] bg-black overflow-visible">
+                        {/* RIGHT IMAGE + CARDS (FIXED: NO CUT-OFF) */}
+                        <div className="relative bg-black">
                             <Image
                                 src="/about-us/why-chose-right.jpg"
                                 alt="Dental Background"
@@ -166,8 +181,9 @@ export default function WhyChoose(): JSX.Element {
                                 className="object-cover opacity-60"
                             />
 
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="grid grid-cols-2 gap-6 p-10 lg:-translate-x-20">
+                            {/* Cards container in normal flow */}
+                            <div className="relative z-10 px-5 py-10 sm:px-8 sm:py-12">
+                                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:-translate-x-20">
                                     {valueItems.map((item, idx) => (
                                         <ValueCard key={idx} {...item} />
                                     ))}
@@ -193,7 +209,7 @@ function FeatureRow({
 
     return (
         <div className={`flex items-start gap-4 ${isRight ? "lg:flex-row-reverse lg:text-right" : ""}`}>
-            {/* ORANGE ICON CIRCLE (image inside) */}
+            {/* ORANGE ICON CIRCLE */}
             <div className="mt-1 grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#f47200] text-white shadow-[0_12px_26px_-18px_rgba(244,114,0,0.95)]">
                 <div className="relative h-7 w-7">
                     <Image
@@ -201,14 +217,14 @@ function FeatureRow({
                         alt={iconAlt || title}
                         fill
                         sizes="20px"
-                        className="object-contain brightness-0 invert" // ✅ makes icon white
+                        className="object-contain brightness-0 invert"
                     />
                 </div>
             </div>
 
             <div className={isRight ? "lg:pr-1" : "lg:pl-1"}>
                 <h3 className="text-base font-semibold leading-snug text-slate-900">{title}</h3>
-                <p className="mt-2 max-w-[320px] text-[13px] font-medium leading-relaxed text-slate-600">
+                <p className="mt-2 max-w-[520px] text-[13px] font-medium leading-relaxed text-slate-600 sm:text-sm">
                     {desc}
                 </p>
             </div>
@@ -218,30 +234,22 @@ function FeatureRow({
 
 function ValueCard({ title, desc, iconSrc, iconAlt }: ValueItem) {
     return (
-        <div
-            className="group rounded-xl p-6 shadow-lg backdrop-blur-sm transition-all duration-300
-      bg-[#e9eaeb] text-black hover:text-white hover:bg-[#f47200] hover:text-white"
-        >
+        <div className="group w-full rounded-xl bg-[#e9eaeb] p-5 text-black shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-[#f47200] hover:text-white sm:p-6">
             <div className="flex items-center gap-3">
-                {/* ICON CIRCLE */}
-                <div
-                    className="relative transition-all duration-300"
-                >
-                    <div className="relative h-9 w-9">
-                        <Image
-                            src={iconSrc}
-                            alt={iconAlt || title}
-                            fill
-                            sizes="35px"
-                            className="object-contain"
-                        />
-                    </div>
+                <div className="relative h-9 w-9">
+                    <Image
+                        src={iconSrc}
+                        alt={iconAlt || title}
+                        fill
+                        sizes="35px"
+                        className="object-contain"
+                    />
                 </div>
 
                 <h4 className="text-[15px] font-semibold">{title}</h4>
             </div>
 
-            <p className="mt-4 text-sm font-medium transition-all duration-300">
+            <p className="mt-3 text-sm font-medium transition-all duration-300 sm:mt-4">
                 {desc}
             </p>
         </div>

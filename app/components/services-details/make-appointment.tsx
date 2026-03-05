@@ -45,11 +45,24 @@ function StatIconCircle({ iconSrc, iconAlt }: StatIconCircleProps) {
   );
 }
 
+type NumericLike = number | string;
+
 interface AnimatedCountProps {
-  value: number;
-  decimals?: number;
+  value: NumericLike;
+  decimals?: NumericLike;
   suffix?: string;
   duration?: number;
+}
+
+function toNumberSafe(input: NumericLike, fallback = 0) {
+  if (typeof input === "number") return Number.isFinite(input) ? input : fallback;
+  const n = Number(String(input).replace(/,/g, "").trim());
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function toIntSafe(input: NumericLike, fallback = 0) {
+  const n = Math.trunc(toNumberSafe(input, fallback));
+  return Number.isFinite(n) ? n : fallback;
 }
 
 function AnimatedCount({
@@ -58,6 +71,9 @@ function AnimatedCount({
   suffix = "",
   duration = 1400,
 }: AnimatedCountProps) {
+  const safeValue = toNumberSafe(value, 0);
+  const safeDecimals = Math.max(0, toIntSafe(decimals, 0));
+
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLSpanElement | null>(null);
@@ -98,7 +114,7 @@ function AnimatedCount({
       const progress = Math.min((timestamp - startTime) / duration, 1);
 
       const eased = 1 - Math.pow(1 - progress, 3);
-      const nextValue = value * eased;
+      const nextValue = safeValue * eased;
 
       setCount(nextValue);
 
@@ -112,14 +128,20 @@ function AnimatedCount({
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [started, value, duration]);
+  }, [started, safeValue, duration]);
 
-  const formatted = useMemo(() => `${count.toFixed(decimals)}${suffix}`, [count, decimals, suffix]);
-  const finalFormatted = `${value.toFixed(decimals)}${suffix}`;
+  const formatted = useMemo(
+    () => `${count.toFixed(safeDecimals)}${suffix}`,
+    [count, safeDecimals, suffix]
+  );
+
+  const finalFormatted = `${safeValue.toFixed(safeDecimals)}${suffix}`;
 
   return (
     <span ref={ref} aria-label={finalFormatted}>
-      {started ? formatted : `0${decimals > 0 ? "." + "0".repeat(decimals) : ""}${suffix}`}
+      {started
+        ? formatted
+        : `0${safeDecimals > 0 ? "." + "0".repeat(safeDecimals) : ""}${suffix}`}
     </span>
   );
 }
@@ -131,7 +153,6 @@ export default function CommanTopRated({ data }: Props) {
 
   return (
     <section className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
       <div className="relative w-full overflow-hidden bg-white">
         <div
           className="absolute left-0 top-0 h-[140px] w-full opacity-60 sm:h-[160px]"
@@ -212,8 +233,8 @@ export default function CommanTopRated({ data }: Props) {
 
                     <div className="mt-2 text-lg font-bold leading-none text-[#f47920] sm:mt-3 mb-3 sm:text-2xl lg:text-[28px] ">
                       <AnimatedCount
-                        value={stat.value}
-                        decimals={stat.decimals}
+                        value={stat.value as any}
+                        decimals={stat.decimals as any}
                         suffix={stat.suffix}
                       />
                     </div>

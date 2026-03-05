@@ -1,133 +1,172 @@
 "use client";
 
-import Image from "next/image";
-import { Phone } from "lucide-react";
+import React, { useState } from "react";
+import Link from "next/link";
 import {
-    Smile,
     Sparkles,
     Braces,
-    ShieldPlus,
     ScanFace,
     Baby,
     Stethoscope,
     Crown,
     Replace,
     Pill,
+    type LucideIcon,
 } from "lucide-react";
 
-const stats = [
-    { count: "10+", label: "Years\nExperience", icon: <ShieldPlus className="w-5 h-5" /> },
-    { count: "25K+", label: "Happy\nPatients", icon: <Smile className="w-5 h-5" /> },
-    { count: "15+", label: "Specialists\nTeam", icon: <Stethoscope className="w-5 h-5" /> },
-    { count: "24/7", label: "Emergency\nSupport", icon: <Phone className="w-5 h-5" /> },
-];
+const ICONS = {
+    Sparkles,
+    Braces,
+    ScanFace,
+    Baby,
+    Stethoscope,
+    Crown,
+    Replace,
+    Pill,
+} as const;
 
-const services = [
-    { label: "DENTAL IMPLANTS", icon: <Replace className="w-6 h-6" /> },
-    { label: "FULL TEETH REPLACEMENT", icon: <Replace className="w-6 h-6" /> },
-    { label: "ROOT CANAL TREATMENT", icon: <Pill className="w-6 h-6" /> },
-    { label: "DIGITAL SMILE DESIGNING", icon: <ScanFace className="w-6 h-6" /> },
-    { label: "LASER GUM TREATMENT", icon: <Sparkles className="w-6 h-6" /> },
-    { label: "ONE VISIT DENTISTRY", icon: <Stethoscope className="w-6 h-6" /> },
-    { label: "ZIRCONIUM CROWNS", icon: <Crown className="w-6 h-6" /> },
-    { label: "DENTAL BRACES", icon: <Braces className="w-6 h-6" /> },
-    { label: "INVISIBLE ALIGNERS", icon: <Smile className="w-6 h-6" /> },
-    { label: "DIMPLEPLASTY", icon: <Sparkles className="w-6 h-6" /> },
-    { label: "TEETH WHITENING", icon: <Sparkles className="w-6 h-6" /> },
-    { label: "PAEDIATRIC DENTISTRY", icon: <Baby className="w-6 h-6" /> },
-    { label: "GENERAL DENTISTRY", icon: <Replace className="w-6 h-6" /> },
-    { label: "TOOTH JEWELLERY", icon: <Sparkles className="w-6 h-6" /> },
-];
+type ServiceItem = {
+    label: string;
+    href: string;
+    icon: keyof typeof ICONS;
+};
 
+// ✅ STATIC
+const SERVICES: ServiceItem[] = [
+    { label: "DENTAL IMPLANTS", href: "/services/dental-implants", icon: "Replace" },
+    { label: "ROOT CANAL", href: "/services/rct", icon: "Pill" },
+    { label: "DIGITAL SMILE DESIGN", href: "/services/dsd", icon: "ScanFace" },
+    { label: "BRACES", href: "/services/braces", icon: "Braces" },
+    { label: "TEETH WHITENING", href: "/services/teeth-whitening", icon: "Sparkles" },
+    { label: "KIDS DENTISTRY", href: "/services/kids-dentistry", icon: "Baby" },
+    { label: "GENERAL DENTISTRY", href: "/services/general", icon: "Stethoscope" },
+    { label: "CROWNS", href: "/services/crowns", icon: "Crown" },
+];
 
 function ServiceCard({
     label,
-    icon,
+    Icon,
+    href,
     active,
+    onActive,
 }: {
     label: string;
-    icon: React.ReactNode;
+    Icon: LucideIcon;
+    href: string;
     active?: boolean;
+    onActive?: () => void;
 }) {
     return (
-        <button
-            type="button"
+        <Link
+            href={href}
+            onClick={onActive}
             className={[
-                "group w-full rounded-[14px] border transition-all",
-                "px-4 py-5 text-center",
+                // base
+                "group w-full rounded-[14px] transition-all duration-300 ease-out",
+                "h-[112px] sm:h-[150px]",
+                "flex flex-col items-center justify-center gap-3",
+                "bg-transparent border border-transparent",
+
+                // hover (your original)
+                "hover:bg-[#f36d00] hover:border-[#1f1f1f] hover:shadow-[0_10px_22px_rgba(243,109,0,0.25)]",
+
+                // motion on hover
+                "hover:-translate-y-[1px] hover:scale-[1.01]",
+
+                // active (selected)
                 active
-                    ? "bg-[#f47200] border-[#f47200] shadow-[0_12px_26px_rgba(244,114,0,0.25)]"
-                    : "bg-white border-slate-200/70 hover:shadow-md hover:-translate-y-[1px]",
+                    ? "bg-[#f36d00] border-[#1f1f1f]  -translate-y-[1px] scale-[1.01]"
+                    : "",
+
+                // focus
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f36d00]/40",
             ].join(" ")}
             aria-label={label}
+            aria-current={active ? "page" : undefined}
+            title={label}
         >
+            {/* icon wrapper */}
             <div
                 className={[
-                    "mx-auto w-12 h-12 rounded-full flex items-center justify-center",
-                    active
-                        ? "bg-white/18 text-white ring-1 ring-white/30"
-                        : "bg-[#f47200] text-white",
+                    "w-14 h-14 flex items-center justify-center text-white transition-all duration-300 ease-out mb-2",
+                    "rounded-full bg-[#f36d00]",
+                    // hover behavior (your original)
+                    "group-hover:bg-white group-hover:rounded-[10px]",
+                    // active behavior
+                    active ? "bg-[#f36d00] rounded-[10px]" : "",
                 ].join(" ")}
             >
-                {icon}
+                <Icon
+                    className={[
+                        "w-6 h-6 transition-all duration-300 ease-out",
+                        // hover icon color
+                        "group-hover:text-[#f36d00]",
+                        // subtle animation
+                        "group-hover:scale-110",
+                        // active icon color + keep scaled
+                        active ? "text-white scale-110" : "",
+                    ].join(" ")}
+                />
             </div>
 
+            {/* label */}
             <div
                 className={[
-                    "mt-3 text-[10px] font-extrabold tracking-[0.12em] leading-tight",
-                    active ? "text-white" : "text-slate-700",
+                    "text-xs lg:text-sm font-semibold text-center transition-colors duration-300",
+                    "text-slate-700",
+                    "group-hover:text-white",
+                    active ? "text-black" : "",
                 ].join(" ")}
             >
                 {label}
             </div>
-        </button>
+        </Link>
     );
 }
 
-export default function HomeServices() {
-    return (
-        <section className="relative w-full bg-white overflow-hidden">
-            <div className="relative h-[50px] bg-white">
-                <div className="absolute inset-0 opacity-[0.08] hex-pattern" />
-            </div>
+export default function HomeServicesStatic() {
+    const [activeIndex, setActiveIndex] = useState(0);
 
-            <div className="pb-16">
-                <div className="mx-auto max-w-6xl px-6">
-                    <div className="relative rounded-[22px] bg-[#f6f8fb] border border-slate-200/60 overflow-hidden">
+    return (
+        <section className="relative w-full bg-white overflow-hidden lg:pt-14 pt-4">
+            <div className="lg:pb-6 pb-2">
+                <div className="mx-auto max-w-7xl px-6">
+                    <div className="relative rounded-[22px] bg-[#f7f9fc] home-servic-bg border border-slate-200/60 overflow-hidden">
                         <div className="absolute inset-0 opacity-[0.08] hex-pattern" />
 
-                        <div className="relative px-6 md:px-10 py-10">
+                        <div className="relative px-2 md:px-10 lg:py-10 py-6">
                             <div className="text-center">
-                                <div className="inline-flex flex-col items-center">
-                                    <span className="inline-flex items-center justify-center h-5 px-3 rounded-full bg-[#f47200] text-white text-[11px] font-bold">
-                                        Our
-                                    </span>
-                                    <h2 className="mt-2 text-[28px] md:text-[32px] font-extrabold text-slate-800">
-                                        Services
-                                    </h2>
-                                </div>
+                                <span className="inline-flex items-center justify-center px-5 py-1 text-sm bg-[#f36d00] text-white font-bold">
+                                    Our
+                                </span>
+                                <h2 className="mt-2 text-[28px] md:text-[32px] font-bold text-slate-800">
+                                    Services
+                                </h2>
                             </div>
 
-                            {/* Grid */}
-                            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
-                                {services.map((s, idx) => (
-                                    <ServiceCard
-                                        key={s.label}
-                                        label={s.label}
-                                        icon={s.icon}
-                                        active={idx === 0}
-                                    />
-                                ))}
+                            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+                                {SERVICES.map((s, idx) => {
+                                    const Icon = ICONS[s.icon];
+                                    return (
+                                        <ServiceCard
+                                            key={s.label}
+                                            label={s.label}
+                                            Icon={Icon}
+                                            href={s.href}
+                                            active={idx === activeIndex}
+                                            onActive={() => setActiveIndex(idx)}
+                                        />
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Inline CSS for the faint hex background */}
             <style jsx>{`
         .hex-pattern {
-          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTYwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOTRhM2I4JyBzdHJva2Utb3BhY2l0eT0nMC4yMicgc3Ryb2tlLXdpZHRoPScxJz48cGF0aCBkPSdNMzAgMTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTgwIDEwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE4LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMzAgMTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTU1IDUwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE4LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMDUgNTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PC9nPjwvc3ZnPg==");
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTYwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOTRhM2I4JyBzdHJva2Utb3BhY2l0eT0nMC4yMicgc3Ryb2tlLXdpZHRoPScxJz48cGF0aCBkPSdNMzAgMTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTgwIDEwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE18LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMzAgMTAgbDE4IDEwIHYyMCBsLTE18IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTU1IDUwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE18LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMDUgNTAgbDE4IDEwIHYyMCBsLTE18IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PC9nPjwvc3ZnPg==");
           background-size: 260px 200px;
           background-repeat: repeat;
           background-position: center;

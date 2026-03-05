@@ -83,11 +83,11 @@ const StatCard: FC<StatCardProps> = ({ icon: Icon, value, line1, line2, variant 
 
 const AboutDetails: FC = () => {
   return (
-    <section className="mt-24 mx-4 sm:mx-8 lg:mx-24">
+    <section className="lg:mt-24 mt-8 mx-6 sm:mx-8 lg:mx-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
         {/* LEFT */}
         <div className="relative">
-          <div className="relative overflow-hidden rounded-[28px] shadow-2xl bg-white">
+          <div className="relative overflow-hidden lg:rounded-[28px] rounded-xl shadow-2xl bg-white">
             <Image
               src="/about-us/about-2.png"
               alt="About Eledent"

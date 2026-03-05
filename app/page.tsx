@@ -6,10 +6,10 @@ import MakeAppointment from "./components/home/make-appointment";
 import HomeServices from "./components/home/home-services";
 import HomeTestimonial from "./components/home/home-testimonial";
 import HealthPatner from "./components/home/health-patner";
-import HomeCareAppointment from "./components/home/home-care-appointment";
 import BlogMain from "./components/home/blog";
 import HomeFaq from "./components/home/home-faq";
 import Footer from "./components/Footer";
+import BookingAportment from "./components/comman/booking-aportment";
 
 export default function Home() {
   return (
@@ -23,7 +23,9 @@ export default function Home() {
         <HomeServices />
         <HomeTestimonial />
         <HealthPatner />
-        <HomeCareAppointment />
+        <div>
+          <BookingAportment />
+        </div>
         <BlogMain />
         <HomeFaq />
         <Footer />
