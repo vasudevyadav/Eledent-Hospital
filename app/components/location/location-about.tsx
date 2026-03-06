@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { FC } from "react";
-import type { LocationData } from "../../data/locations"; // path apne hisaab se set karo
+import type { LocationData } from "../../../data/locations";
 
 type Props = {
   location: LocationData;
