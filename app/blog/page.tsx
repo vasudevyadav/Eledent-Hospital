@@ -5,19 +5,61 @@ import BlogListingSection from "../components/blog/blog-about";
 import BookingAportment from "../components/comman/booking-aportment";
 import BlogFaq from "../components/blog/blog-faq";
 
-export default function Blog() {
+async function getBlogPageData() {
+  try {
+    const res = await fetch(
+      "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/blogs",
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch blog page data");
+    }
+
+    const result = await res.json();
+    return result?.data || null;
+  } catch (error) {
+    console.error("Blog API Error:", error);
+    return null;
+  }
+}
+
+export default async function Blog() {
+  const blogData = await getBlogPageData();
+
+  const hero = blogData?.hero;
+  const listingSection = blogData?.listingSection;
+  const faqSection = blogData?.faqSection;
+
   return (
     <div>
       <Navbar />
       <main>
-        <BlogHero />
-        <BlogListingSection />
-        <div className="mt-28">
+        <BlogHero title={hero?.title} subtitle={hero?.subtitle} />
+
+        <BlogListingSection
+          blogsPerPage={listingSection?.blogsPerPage}
+          posts={listingSection?.posts || []}
+          categories={listingSection?.categories || []}
+          recentPosts={listingSection?.recentPosts || []}
+        />
+
+        <div className="lg:mt-28 mt-10">
           <BookingAportment />
         </div>
-        <BlogFaq />
+
+        <BlogFaq
+          tag={faqSection?.tag}
+          heading={faqSection?.heading}
+          description={faqSection?.description}
+          backgroundImage={faqSection?.backgroundImage}
+          items={faqSection?.items || []}
+        />
+
         <Footer />
       </main>
     </div>
-  );  
+  );
 }

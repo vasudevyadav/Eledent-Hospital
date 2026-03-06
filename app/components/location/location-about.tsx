@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { FC } from "react";
-import type { LocationData } from "../../../data/locations";
+import type { LocationData } from "@/lib/location-api";
 
 type Props = {
   location: LocationData;

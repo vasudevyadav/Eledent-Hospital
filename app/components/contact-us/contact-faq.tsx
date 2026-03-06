@@ -37,7 +37,7 @@ export default function ContactFaq(): JSX.Element {
     const toggleFaq = (id: number) => setOpenId((p) => (p === id ? null : id));
 
     return (
-        <section className="relative w-full overflow-hidden bg-white lg:py-24 py-6">
+        <section className="relative w-full overflow-hidden bg-white lg:py-16 py-6">
             {/* bottom thin orange line */}
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#f47200]" />
 
