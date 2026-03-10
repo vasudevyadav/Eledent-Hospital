@@ -17,7 +17,12 @@ type LocationsApiResponse = {
   data: LocationCard[];
 };
 
-function LocationMapCard({ city, addressLines, mapEmbedSrc, href }: LocationCard) {
+function LocationMapCard({
+  city,
+  addressLines,
+  mapEmbedSrc,
+  href,
+}: LocationCard) {
   return (
     <Link
       href={href}
@@ -66,7 +71,7 @@ function LocationMapCard({ city, addressLines, mapEmbedSrc, href }: LocationCard
           <div className="relative h-[210px] w-full md:h-[260px] lg:h-[300px]">
             <iframe
               src={mapEmbedSrc}
-              className="absolute inset-0 h-full w-full pointer-events-none"
+              className="pointer-events-none absolute inset-0 h-full w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
@@ -87,23 +92,21 @@ export default function LocationMapsSection() {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-        if (!baseUrl) {
-          throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
-        }
+        const baseUrl =
+          process.env.NEXT_PUBLIC_API_BASE_URL ||
+          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1";
 
         const response = await fetch(`${baseUrl}/locations`, {
           cache: "no-store",
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch locations");
+          throw new Error(`Failed to fetch locations: ${response.status}`);
         }
 
         const result: LocationsApiResponse = await response.json();
 
-        if (result.success && Array.isArray(result.data)) {
+        if (result?.success && Array.isArray(result?.data)) {
           setLocations(result.data);
         } else {
           setLocations([]);
@@ -123,7 +126,9 @@ export default function LocationMapsSection() {
     return (
       <section className="bg-white px-4 py-2 sm:px-6 sm:py-4 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <p className="text-center text-sm text-slate-600">Loading locations...</p>
+          <p className="text-center text-sm text-slate-600">
+            Loading locations...
+          </p>
         </div>
       </section>
     );
@@ -143,7 +148,9 @@ export default function LocationMapsSection() {
     return (
       <section className="bg-white px-4 py-2 sm:px-6 sm:py-4 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <p className="text-center text-sm text-slate-600">No locations found.</p>
+          <p className="text-center text-sm text-slate-600">
+            No locations found.
+          </p>
         </div>
       </section>
     );
