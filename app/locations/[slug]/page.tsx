@@ -11,19 +11,23 @@ import { getLocationBySlug } from "@/lib/location-api";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export default async function LocationPage({ params }: Props) {
-  const location = await getLocationBySlug(params.slug);
+  const { slug } = await params;
+  const location = await getLocationBySlug(slug);
 
-  if (!location) notFound();
+  if (!location) {
+    notFound();
+  }
 
   return (
     <div>
       <Navbar />
+
       <main>
         <LocationHero
           city={location.heroTitle}
@@ -38,18 +42,20 @@ export default async function LocationPage({ params }: Props) {
         <LocationTrust
           city={location.city}
           trustHeading={location.trustHeading}
-          trustCards={location.trustCards.map((c) => ({ ...c, variant: c.variant as any }))}
+          trustCards={location.trustCards}
         />
-
-        <BookingAportment />
 
         <LocationGallery gallery={location.gallery} />
 
-        <LocationFaq
-          faqs={location.faqs}
-          introText={location.faqIntroText}
-        />
+        <div className="lg:mt-12 mt-4">
+          <BookingAportment />
+        </div>
+
+        <LocationFaq faqs={location.faqs} />
+
+
       </main>
+
       <Footer />
     </div>
   );

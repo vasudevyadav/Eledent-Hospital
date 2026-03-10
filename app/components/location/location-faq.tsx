@@ -32,7 +32,7 @@ export default function LocationFaq({
 
   return (
     <section className="relative w-full overflow-hidden bg-white lg:py-24 py-6">
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#f47200]" />
+
 
       <div className="absolute inset-0 z-0">
         <div className="relative h-full w-[58%]">
@@ -78,8 +78,8 @@ export default function LocationFaq({
                     type="button"
                     onClick={() => toggleFaq(faq.id)}
                     className={`flex w-full items-center justify-between px-6 py-[18px] text-left text-[13px] font-semibold transition ${isOpen
-                        ? "bg-[#f47200] text-white"
-                        : "bg-white text-[#374151]"
+                      ? "bg-[#f47200] text-white"
+                      : "bg-white text-[#374151]"
                       }`}
                   >
                     <span className="flex items-center gap-2">
@@ -93,8 +93,8 @@ export default function LocationFaq({
 
                     <span
                       className={`grid h-7 w-7 place-items-center rounded-[6px] text-[14px] leading-none ${isOpen
-                          ? "bg-[#111827] text-white"
-                          : "bg-[#f47200] text-white"
+                        ? "bg-[#111827] text-white"
+                        : "bg-[#f47200] text-white"
                         }`}
                     >
                       {isOpen ? "−" : "+"}
