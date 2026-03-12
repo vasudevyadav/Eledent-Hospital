@@ -24,15 +24,15 @@ const highlights = [
     },
     {
         icon: Users,
-        text: "A comprehensive team of highly experienced and qualified dentists with specialization in different types of treatment including implantology, cosmetic dentistry, orthodontics, maxillofacial surgeries and more.",
+        text: "A comprehensive team of highly experienced and qualified dentists with specialization in different types of treatment including implantology, cosmetic dentistry, orthodontics, Maxillofacial surgeries and more.",
     },
     {
         icon: Building2,
-        text: "World-class infrastructure including cutting edge technologies in comparison to the best of clinics in the USA or UK (best quality), internationally approved, CE certified (European) material is only put to use at our clinic.",
+        text: "World-class infrastructure including cutting edge technologies in comparison to the best of clinics in the USA or UK Best quality, internationally approved, CE certified (European) material is only put to use at our clinic",
     },
     {
         icon: Sparkles,
-        text: "The highest standards of sterilization protocol are followed along with extensive use of disposables, ensuring a hygienic and completely safe environment around.",
+        text: "The highest standards of sterilization protocol are followed along with extensive use of disposables, ensures a hygienic and completely safe environment around.",
     },
     {
         icon: Smile,
@@ -86,27 +86,19 @@ const TourismWhy: FC = () => {
 
                                 <div className="mt-5 space-y-4 lg:text-base text-sm leading-relaxed text-gray-600">
                                     <p>
-                                        Eledent Dental Hospital has been at the vanguard of dental
-                                        healthcare, providing world-class dental care for all age
-                                        groups with advanced facilities under one roof.
+                                        Eledent Dental Hospital has been at the vanguard of dental healthcare and has been a prominent brand that provides world-class dental care for all ages with state of the art facilities under one roof.
                                     </p>
 
                                     <p>
-                                        The foundation of Eledent was built after years of clinical
-                                        experience by specialists who understood the challenges faced
-                                        by international patients travelling abroad for treatment.
+                                        The best part about the treatments is that they are entirely secure and affordable for all.The inception story behind the Eledent Hospital is based on the major finding by four enthusiastic doctors.
                                     </p>
 
                                     <p>
-                                        Through extensive research and innovation, Eledent Digital
-                                        Dentistry was established to deliver predictable,
-                                        technology-driven dental solutions worldwide.
+                                        They have been working at different hospitals for the past 13 years and have found the problems faced by international patients who fly so far just for their dental treatments.After a significant quantum of research and studies regarding the problems faced by international patients,
                                     </p>
 
                                     <p>
-                                        We understand concerns related to travelling for dental care.
-                                        Our team focuses on ensuring a safe, comfortable and seamless
-                                        treatment journey before, during and after procedures.
+                                        Eledent digital dentistry was founded to serve the patients worldwide flawlessly.At Eledent we understand the concerns associated with travelling to a different country for dental treatment and we strive hard for your safe secure and happy experience before and after treatment.
                                     </p>
                                 </div>
                             </div>

@@ -146,7 +146,7 @@ const AboutDetails: FC = () => {
           </div>
 
           <h2 className="text-2xl lg:text-[40px] font-bold text-orange-600 leading-tight">
-            Who &amp; Where we are
+            Who & Where we are
           </h2>
 
           <p className="text-gray-800 lg:text-lg text-sm font-semibold mt-2">
@@ -154,10 +154,7 @@ const AboutDetails: FC = () => {
           </p>
 
           <p className="text-gray-500 lg:text-base text-sm leading-relaxed mt-4 max-w-xl">
-            Located in the core of Kondapur and Kukatpally – Hyderabad, Eledent Dental Hospital is the one-stop
-            solution for all your dental needs. Our primary goal is always to offer you comprehensive dental
-            treatment in relaxed and stylish surroundings. You will notice the difference the moment you enter
-            the clinic.
+            Located in the core of Kondapur and Kukatpally – Hyderabad, Eledent Dental Hospital is the one-stop solution for all your dental needs. Our primary goal is always to offer you comprehensive dental treatment in relaxed and stylish surroundings. You will notice the difference the moment you enter the clinic.
           </p>
 
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">

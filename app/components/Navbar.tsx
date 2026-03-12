@@ -180,14 +180,14 @@ export default function Navbar() {
                     <div className="flex items-center gap-x-4 sm:gap-x-8 text-[11px] sm:text-[13px] flex-wrap">
                         <span className="inline-flex items-center gap-1.5 sm:gap-2">
                             <PhoneCall className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                            <a href="tel:+917799719994" className="hover:underline">
-                                +91 77997 19994
+                            <a href="tel:+91 99838 68366" className="hover:underline">
+                                +91 99838 68366
                             </a>
                         </span>
 
                         <span className="hidden sm:inline-flex items-center gap-2">
                             <Mail className="h-4 w-4 flex-shrink-0" />
-                            <a href="mailto:contact@eledenthospitals.com" className="hover:underline">
+                            <a href="mailto:contact@eledenthospitals.com " className="hover:underline">
                                 contact@eledenthospitals.com
                             </a>
                         </span>
@@ -200,23 +200,26 @@ export default function Navbar() {
 
                     <div className="flex items-center gap-2">
                         <a
-                            href="#"
+                            href="https://www.instagram.com/eledenthospitals/"
                             aria-label="Instagram"
                             className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-sm bg-white transition hover:opacity-90"
+                            target="_blank"
                         >
                             <Instagram className="h-3 w-3 sm:h-4 sm:w-4 text-[#E87733]" />
                         </a>
                         <a
-                            href="#"
+                            href="https://www.facebook.com/EledentHospitals/"
                             aria-label="Facebook"
                             className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-sm bg-white transition hover:opacity-90"
+                            target="_blank"
                         >
                             <Facebook className="h-3 w-3 sm:h-4 sm:w-4 text-[#E87733]" />
                         </a>
                         <a
-                            href="#"
+                            href="https://www.youtube.com/channel/UCONaCM78ATu5rcNx_DLQxBg"
                             aria-label="YouTube"
                             className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-sm bg-white transition hover:opacity-90"
+                            target="_blank"
                         >
                             <Youtube className="h-3 w-3 sm:h-4 sm:w-4 text-[#E87733]" />
                         </a>

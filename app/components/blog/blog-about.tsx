@@ -8,11 +8,13 @@ import { useMemo, useState } from "react";
 type BlogPost = {
   id: string;
   title: string;
-  shortTitle: string;
+  shortTitle?: string;
   date: string;
   description?: string;
   image: string;
-  href: string;
+  href?: string;
+  slug?: string;
+  content?: string;
   category?: {
     id: string;
     label: string;
@@ -30,10 +32,11 @@ type CategoryItem = {
 type RecentPost = {
   id: string;
   title: string;
-  shortTitle: string;
+  shortTitle?: string;
   date: string;
   image: string;
-  href: string;
+  href?: string;
+  slug?: string;
 };
 
 type BlogListingSectionProps = {
@@ -59,41 +62,61 @@ const formatDate = (dateString: string) => {
   });
 };
 
+const getSlugFromHref = (href?: string) => {
+  if (!href) return "";
+  return href.split("/").filter(Boolean).pop() || "";
+};
+
+const getBlogHref = (post: BlogPost) => {
+  if (post.href) return post.href;
+
+  const slug = post.slug || getSlugFromHref(post.href);
+  return slug ? `/blog/${slug}` : "#";
+};
+
+const getRecentPostHref = (post: RecentPost) => {
+  if (post.href) return post.href;
+
+  const slug = post.slug || getSlugFromHref(post.href);
+  return slug ? `/blog/${slug}` : "#";
+};
+
 const BlogCard: FC<{ post: BlogPost }> = ({ post }) => {
+  const blogHref = getBlogHref(post);
+
   return (
-    <div className="rounded-[20px] border border-[#8d8d8d] bg-[#efefef] p-4 md:p-5">
-      <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-[1.05fr_1.3fr]">
-        <div>
-          <div className="relative h-[230px] w-full overflow-hidden rounded-[18px]">
-            <Image
-              src={post.image || "/blog/blog-image.png"}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
+    <Link href={blogHref} className="block">
+      <div className="rounded-[20px] border border-[#8d8d8d] bg-[#efefef] p-4 transition hover:shadow-md md:p-5">
+        <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-[1.05fr_1.3fr]">
+          <div>
+            <div className="relative h-[230px] w-full overflow-hidden rounded-[18px]">
+              <Image
+                src={post.image || "/blog/blog-image.png"}
+                alt={post.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div>
+            <p className="text-sm text-black">{formatDate(post.date)}</p>
+
+            <h3 className="mt-2 max-w-[420px] text-xl font-semibold leading-[1.1] text-[#f47c20] lg:text-[26px]">
+              {post.title}
+            </h3>
+
+            <p className="mt-3 max-w-[430px] text-sm leading-[1.5] text-[#555]">
+              {post.description || "Read the full blog to know more."}
+            </p>
+
+            <span className="mt-4 inline-flex items-center gap-2 rounded-[4px] bg-[#3c3c3c] px-4 py-2 text-sm font-semibold text-white transition hover:bg-black">
+              Find Out More
+            </span>
           </div>
         </div>
-
-        <div>
-          <p className="text-sm text-black">{formatDate(post.date)}</p>
-
-          <h3 className="mt-2 max-w-[420px] text-xl leading-[1.1] text-[#f47c20] lg:text-[26px] font-semibold">
-            {post.title}
-          </h3>
-
-          <p className="mt-3 max-w-[430px] text-sm leading-[1.5] text-[#555]">
-            {post.description || "Read the full blog to know more."}
-          </p>
-
-          <Link
-            href={post.href}
-            className="mt-4 inline-flex items-center gap-2 rounded-[4px] bg-[#3c3c3c] px-4 py-2 text-sm font-semibold text-white transition hover:bg-black"
-          >
-            Find Out More
-          </Link>
-        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -191,7 +214,7 @@ const RecentPostsList: FC<{ recentPosts: RecentPost[] }> = ({ recentPosts }) => 
               className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
             >
               <Link
-                href={post.href}
+                href={getRecentPostHref(post)}
                 className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
               >
                 <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />

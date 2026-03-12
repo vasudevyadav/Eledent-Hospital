@@ -140,7 +140,7 @@ export default function MakeAppointmentStatic() {
         { id: "eyebrow", type: "eyebrow" as const, text: "NEED A DOCTOR FOR CHECK-UP?" },
         { id: "title", type: "title" as const, text: "Just Make an Appointment and You’re Done" },
         { id: "phoneLabel", type: "phoneLabel" as const, text: "GET YOUR QUOTE OR CALL:" },
-        { id: "phone", type: "phone" as const, text: "+91 7799719994" },
+        { id: "phone", type: "phone" as const, text: "+91 77997 69994" },
     ];
 
     // ✅ CTA

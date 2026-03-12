@@ -1,54 +1,51 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type TextTestimonial = {
     text: string;
     author: string;
     role: string;
     rating: number;
-    image: string; // left image (local or remote)
+    image: string;
 };
 
 type VideoTestimonial = {
     title: string;
     author: string;
     role: string;
-    youtubeId: string; // only id (not full url)
-    image: string; // left image (local or remote) - (kept, but not shown on video tab as per requirement)
+    youtubeId: string;
+    image: string;
 };
 
 export default function HomeTestimonial() {
-    const [activeTab, setActiveTab] = useState<"text" | "video">("text");
-    const [currentIndex, setCurrentIndex] = useState(0);
-
     const textTestimonials = useMemo<TextTestimonial[]>(
         () => [
-            {
-                text:
-                    "No pain no hospital was very neat n hygienic overall treatment was Good n well covid precautions maintained here I will definitely suggest tmb madhapur for painless treatment.",
-                author: "Prasanna Smily",
-                role: "Hyderabad",
-                rating: 4.9,
-                image: "/about-us/testimonial-image.png",
-            },
-            {
-                text:
-                    "Very clean clinic and polite staff. Everything was explained properly and the procedure felt comfortable.",
-                author: "Rajesh Kumar",
-                role: "Mumbai",
-                rating: 5.0,
-                image: "/about-us/testimonial-image.png",
-            },
-            {
-                text:
-                    "Good experience overall. Modern setup, quick appointment, and the treatment was smooth.",
-                author: "Priya Sharma",
-                role: "Delhi",
-                rating: 4.8,
-                image: "/about-us/testimonial-image.png",
-            },
+            // {
+            //     text:
+            //         "No pain no hospital was very neat n hygienic overall treatment was Good n well covid precautions maintained here I will definitely suggest tmb madhapur for painless treatment.",
+            //     author: "Prasanna Smily",
+            //     role: "Hyderabad",
+            //     rating: 4.9,
+            //     image: "/about-us/testimonial-image.png",
+            // },
+            // {
+            //     text:
+            //         "Very clean clinic and polite staff. Everything was explained properly and the procedure felt comfortable.",
+            //     author: "Rajesh Kumar",
+            //     role: "Mumbai",
+            //     rating: 5.0,
+            //     image: "/about-us/testimonial-image.png",
+            // },
+            // {
+            //     text:
+            //         "Good experience overall. Modern setup, quick appointment, and the treatment was smooth.",
+            //     author: "Priya Sharma",
+            //     role: "Delhi",
+            //     rating: 4.8,
+            //     image: "/about-us/testimonial-image.png",
+            // },
         ],
         []
     );
@@ -59,34 +56,73 @@ export default function HomeTestimonial() {
                 title: "Comfortable treatment experience",
                 author: "Ananya Verma",
                 role: "Hyderabad",
-                youtubeId: "dQw4w9WgXcQ",
+                youtubeId: "piyFy6CCCao",
                 image: "/testimonials/testimonial-video-1.jpg",
             },
             {
                 title: "Quick appointment, great staff",
                 author: "Sahil Mehta",
                 role: "Bangalore",
-                youtubeId: "ysz5S6PUM-U",
+                youtubeId: "T-UamPDSZ7w?si",
                 image: "/testimonials/testimonial-video-2.jpg",
             },
             {
                 title: "Clean clinic, smooth process",
                 author: "Neha Kapoor",
                 role: "Delhi",
-                youtubeId: "jNQXAC9IVRw",
+                youtubeId: "Cyp5ko7v1Kc?si",
                 image: "/testimonials/testimonial-video-3.jpg",
             },
         ],
         []
     );
 
+    const hasTextTestimonials = textTestimonials.length > 0;
+    const hasVideoTestimonials = videoTestimonials.length > 0;
+
+    const getDefaultTab = (): "text" | "video" => {
+        if (hasTextTestimonials) return "text";
+        return "video";
+    };
+
+    const [activeTab, setActiveTab] = useState<"text" | "video">(getDefaultTab());
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (activeTab === "text" && !hasTextTestimonials && hasVideoTestimonials) {
+            setActiveTab("video");
+            setCurrentIndex(0);
+        }
+
+        if (activeTab === "video" && !hasVideoTestimonials && hasTextTestimonials) {
+            setActiveTab("text");
+            setCurrentIndex(0);
+        }
+    }, [activeTab, hasTextTestimonials, hasVideoTestimonials]);
+
     const activeList = activeTab === "text" ? textTestimonials : videoTestimonials;
     const max = activeList.length;
+    const safeIndex = max > 0 ? Math.min(currentIndex, max - 1) : 0;
 
-    const handlePrev = () => setCurrentIndex((p) => (p === 0 ? max - 1 : p - 1));
-    const handleNext = () => setCurrentIndex((p) => (p === max - 1 ? 0 : p + 1));
+    useEffect(() => {
+        if (currentIndex >= max && max > 0) {
+            setCurrentIndex(0);
+        }
+    }, [currentIndex, max]);
 
-    const safeIndex = currentIndex >= max ? 0 : currentIndex;
+    const handlePrev = () => {
+        if (max === 0) return;
+        setCurrentIndex((prev) => (prev === 0 ? max - 1 : prev - 1));
+    };
+
+    const handleNext = () => {
+        if (max === 0) return;
+        setCurrentIndex((prev) => (prev === max - 1 ? 0 : prev + 1));
+    };
+
+    if (!hasTextTestimonials && !hasVideoTestimonials) {
+        return null;
+    }
 
     return (
         <section className="w-full bg-white lg:pt-12 pt-6 pb-6">
@@ -101,33 +137,39 @@ export default function HomeTestimonial() {
                         Testimonials
                     </h2>
 
-                    <div className="mt-5 flex items-center justify-center gap-3">
-                        <button
-                            onClick={() => {
-                                setActiveTab("text");
-                                setCurrentIndex(0);
-                            }}
-                            className={`rounded-full px-6 py-2 lg:text-[15px] text-xs font-semibold transition ${activeTab === "text"
-                                ? "bg-orange-500 text-white shadow-sm"
-                                : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
-                                }`}
-                        >
-                            Text Testimonials
-                        </button>
+                    {(hasTextTestimonials || hasVideoTestimonials) && (
+                        <div className="mt-5 flex items-center justify-center gap-3">
+                            {hasTextTestimonials && (
+                                <button
+                                    onClick={() => {
+                                        setActiveTab("text");
+                                        setCurrentIndex(0);
+                                    }}
+                                    className={`rounded-full px-6 py-2 lg:text-[15px] text-xs font-semibold transition ${activeTab === "text"
+                                        ? "bg-orange-500 text-white shadow-sm"
+                                        : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
+                                        }`}
+                                >
+                                    Text Testimonials
+                                </button>
+                            )}
 
-                        <button
-                            onClick={() => {
-                                setActiveTab("video");
-                                setCurrentIndex(0);
-                            }}
-                            className={`rounded-full px-6 py-2 lg:text-[15px] text-xs font-semibold transition ${activeTab === "video"
-                                ? "bg-orange-500 text-white shadow-sm"
-                                : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
-                                }`}
-                        >
-                            Video Testimonials
-                        </button>
-                    </div>
+                            {hasVideoTestimonials && (
+                                <button
+                                    onClick={() => {
+                                        setActiveTab("video");
+                                        setCurrentIndex(0);
+                                    }}
+                                    className={`rounded-full px-6 py-2 lg:text-[15px] text-xs font-semibold transition ${activeTab === "video"
+                                        ? "bg-orange-500 text-white shadow-sm"
+                                        : "border border-orange-500 bg-white text-gray-700 hover:bg-orange-50"
+                                        }`}
+                                >
+                                    Video Testimonials
+                                </button>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* Content */}
@@ -137,9 +179,9 @@ export default function HomeTestimonial() {
                             className={`flex flex-col items-center justify-center gap-4 ${activeTab === "video" ? "" : "md:flex-row md:gap-12"
                                 }`}
                         >
-                            {activeTab === "text" && (
+                            {activeTab === "text" && hasTextTestimonials && (
                                 <div className="relative lg:w-[400px] w-full overflow-visible">
-                                    <div className="relative h-[240px] w-full ">
+                                    <div className="relative h-[240px] w-full">
                                         <Image
                                             src={textTestimonials[safeIndex].image}
                                             alt="Testimonial"
@@ -185,19 +227,15 @@ export default function HomeTestimonial() {
                                 </div>
                             )}
 
-                            {/* ✅ Divider ONLY FOR TEXT TAB */}
-                            {activeTab === "text" && (
+                            {activeTab === "text" && hasTextTestimonials && (
                                 <div className="hidden h-[190px] w-px bg-gray-200 md:block" />
                             )}
 
-                            {/* ✅ Right side: full width on video tab */}
                             <div
-                                className={`w-full ${activeTab === "video"
-                                    ? "max-w-3xl mx-auto"
-                                    : "max-w-[520px]"
+                                className={`w-full ${activeTab === "video" ? "max-w-3xl mx-auto" : "max-w-[520px]"
                                     }`}
                             >
-                                <div className={`mb-3 ${activeTab === "video" ? "flex justify-center" : ""}`}>
+                                <div className={`mb-3 ${activeTab === "video" ? "flex justify-center hidden" : ""}`}>
                                     <svg
                                         className="h-14 w-14 text-orange-100"
                                         viewBox="0 0 64 64"
@@ -208,7 +246,7 @@ export default function HomeTestimonial() {
                                     </svg>
                                 </div>
 
-                                {activeTab === "text" ? (
+                                {activeTab === "text" && hasTextTestimonials ? (
                                     <>
                                         <p className="text-[13px] leading-6 text-gray-500">
                                             {textTestimonials[safeIndex].text}
@@ -236,14 +274,10 @@ export default function HomeTestimonial() {
                                             </div>
                                         </div>
                                     </>
-                                ) : (
+                                ) : hasVideoTestimonials ? (
                                     <>
 
-                                        <p className="text-xl font-semibold text-gray-800">
-                                            {videoTestimonials[safeIndex].title}
-                                        </p>
-
-                                        <div className="mt-4 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_10px_25px_rgba(0,0,0,0.06)]">
+                                        <div className="mt-0 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_10px_25px_rgba(0,0,0,0.06)]">
                                             <div className="relative w-full pt-[50%]">
                                                 <iframe
                                                     className="absolute inset-0 h-full w-full"
@@ -277,65 +311,67 @@ export default function HomeTestimonial() {
                                             </div>
                                         </div>
                                     </>
+                                ) : null}
+
+                                {max > 1 && (
+                                    <div className="mt-2 flex items-center justify-center gap-6 text-gray-400">
+                                        <button
+                                            onClick={handlePrev}
+                                            className="transition hover:text-orange-500"
+                                            aria-label="Previous testimonial"
+                                        >
+                                            <svg
+                                                className="h-7 w-7"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M15 18l-6-6 6-6" />
+                                            </svg>
+                                        </button>
+
+                                        <button
+                                            onClick={handleNext}
+                                            className="transition hover:text-orange-500"
+                                            aria-label="Next testimonial"
+                                        >
+                                            <svg
+                                                className="h-7 w-7"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M9 6l6 6-6 6" />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 )}
-
-                                {/* Arrows */}
-                                <div className="mt-2 flex items-center justify-center gap-6 text-gray-400">
-                                    <button
-                                        onClick={handlePrev}
-                                        className="transition hover:text-orange-500"
-                                        aria-label="Previous testimonial"
-                                    >
-                                        <svg
-                                            className="h-7 w-7"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            aria-hidden="true"
-                                        >
-                                            <path d="M15 18l-6-6 6-6" />
-                                        </svg>
-                                    </button>
-
-                                    <button
-                                        onClick={handleNext}
-                                        className="transition hover:text-orange-500"
-                                        aria-label="Next testimonial"
-                                    >
-                                        <svg
-                                            className="h-7 w-7"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            aria-hidden="true"
-                                        >
-                                            <path d="M9 6l6 6-6 6" />
-                                        </svg>
-                                    </button>
-                                </div>
                             </div>
                         </div>
 
-                        {/* Dots */}
-                        <div className="mt-6 flex justify-center gap-2">
-                            {Array.from({ length: max }).map((_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => setCurrentIndex(i)}
-                                    className={`h-2.5 w-2.5 rounded-full transition ${i === safeIndex
-                                        ? "bg-orange-500"
-                                        : "bg-gray-200 hover:bg-gray-300"
-                                        }`}
-                                    aria-label={`Go to ${activeTab} testimonial ${i + 1}`}
-                                />
-                            ))}
-                        </div>
+                        {max > 1 && (
+                            <div className="mt-6 flex justify-center gap-2">
+                                {Array.from({ length: max }).map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCurrentIndex(i)}
+                                        className={`h-2.5 w-2.5 rounded-full transition ${i === safeIndex
+                                            ? "bg-orange-500"
+                                            : "bg-gray-200 hover:bg-gray-300"
+                                            }`}
+                                        aria-label={`Go to ${activeTab} testimonial ${i + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

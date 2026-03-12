@@ -109,8 +109,8 @@ const TourismAbout: FC = () => {
                     {/* Image */}
                     <div
                       className={`flex justify-center ${sec.flip
-                          ? "order-1 lg:order-1 lg:justify-start"
-                          : "lg:justify-end"
+                        ? "order-1 lg:order-1 lg:justify-start"
+                        : "lg:justify-end"
                         }`}
                     >
                       <div className="relative z-10 rounded-2xl overflow-hidden">

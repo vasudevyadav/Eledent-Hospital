@@ -132,7 +132,7 @@ export default function HealthPatner(): JSX.Element {
     ];
 
     return (
-        <section className="w-full bg-white lg:pt-16 pt-4">
+        <section className="w-full bg-white lg:pt-10 pt-4">
             <div className="mx-auto max-w-7xl lg:px-6 px-4">
                 <div className="relative overflow-hidden rounded-t-[22px] border border-slate-100 bg-[#f9fbff] pt-10 lg:pb-5 pb-0">
 
