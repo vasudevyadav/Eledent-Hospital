@@ -23,13 +23,13 @@ export default function AboutAppointment({
             <div className="flex min-h-[250px] items-center px-16 py-10">
               <div className="w-full lg:pl-[320px]">
                 <p className="text-[12px] font-semibold text-white/85">
-                  Lorem Ipsum
+                  Talk to Our Dental Team
                 </p>
 
                 <h2 className="mt-3 max-w-2xl text-[30px] font-extrabold leading-[1.15] text-white">
-                  Lorem ipsum dolor sit amet,
+                  Discuss Your Dental Concern
                   <br />
-                  consectetur adipiscing elit,
+                  With Our Specialists.
                 </h2>
 
                 <button className="mt-7 inline-flex items-center justify-center rounded-full bg-[#1F2937] px-8 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition hover:bg-[#111827]">
@@ -57,15 +57,13 @@ export default function AboutAppointment({
 
               <div className="relative p-7">
                 <h3 className="text-sm lg:text-2xl font-extrabold leading-[1.15] text-[#1F2937]">
-                  Is There Anything I Can
+                  Need Help Choosing the
                   <br />
-                  Do For You?
+                  Right Treatment?
                 </h3>
 
                 <p className="mt-3 lg:text-sm text-xs leading-relaxed text-[#6B7280]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum
+                  If you are unsure about a dental concern, our team can guide you through the next step.
                 </p>
 
                 <div className="my-6 h-[1px] w-full bg-[#282727]" />
@@ -89,13 +87,27 @@ export default function AboutAppointment({
 
                     <div className="min-w-0">
                       <p className="text-xs text-gray-400 mb-1">
-                        For Emergency Call
+                        Schedule Your Consultation
+
+
                       </p>
                       <a
-                        href="tel:+917799639994"
+                        href="tel:+919983868366"
+                        className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20] mr-2"
+                      >
+                        9983868366
+                      </a>
+                      <a
+                        className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20] mr-2"
+                      >
+                        |
+                      </a>
+                      <a
+                        href="tel:+917799769994"
                         className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20]"
                       >
-                        (+91) 7799639994
+                        7799769994
+
                       </a>
                     </div>
                   </div>
@@ -118,12 +130,12 @@ export default function AboutAppointment({
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-xs text-gray-400 mb-1">Send Us Email</p>
+                      <p className="text-xs text-gray-400 mb-1"> Email Us  </p>
                       <a
                         href="mailto:contact@eledenthospital.com"
                         className="text-sm lg:text-base font-extrabold text-[#1F2937] hover:text-[#F47A20]"
                       >
-                        contact@eledenthospital.com
+                        contact@eledenthospitals.com
                       </a>
                     </div>
 
