@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AboutHero() {
     return (
-        <div className="lg:my-12 my-6 lg:mx-24 mx-6">
+        <div className="lg:my-12 my-6 lg:mx-24 mx-6 lg:mt-40">
 
             <section className="relative z-0 lg:h-[500px] h-[350px] w-full overflow-hidden rounded-3xl">
                 <Image
