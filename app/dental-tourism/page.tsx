@@ -7,8 +7,8 @@ import TourismNeed from "../components/dental-tourism/tourism-need";
 import TourismWideRange from "../components/dental-tourism/tourism-wide-range";
 import VisaAccommodation from "../components/dental-tourism/visa-accommodation";
 import JourneyDigitalDentistry from "../components/dental-tourism/journey-digital-dentistry";
-import BookingAportment from "../components/comman/booking-aportment";
 import TourismFaq from "../components/dental-tourism/tourism-faq";
+import BookingTourism from "../components/comman/booking-tourism";
 
 export default function DentalTourism() {
   return (
@@ -22,7 +22,7 @@ export default function DentalTourism() {
         <TourismWideRange />
         <VisaAccommodation />
         <JourneyDigitalDentistry />
-        <BookingAportment />
+        <BookingTourism />
         <TourismFaq />
         <Footer />
       </main>

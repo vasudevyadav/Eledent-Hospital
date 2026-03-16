@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
 type LocationCard = {
@@ -23,6 +23,13 @@ function LocationMapCard({
   mapEmbedSrc,
   href,
 }: LocationCard) {
+  const googleMapsLink = useMemo(() => {
+    const fullAddress = [city, ...addressLines].filter(Boolean).join(", ");
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      fullAddress
+    )}`;
+  }, [city, addressLines]);
+
   return (
     <Link
       href={href}
@@ -63,8 +70,16 @@ function LocationMapCard({
       </div>
 
       <div className="p-4">
-        <div className="mb-1 inline-flex items-center rounded-md bg-slate-100 px-6 py-2.5 text-sm font-semibold text-slate-700">
-          View Location
+        <div className="mb-1">
+          <a
+            href={googleMapsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center rounded-md bg-slate-100 px-6 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
+          >
+            View Location
+          </a>
         </div>
 
         <div className="mt-3 overflow-hidden rounded-[12px] border border-slate-200 bg-slate-50">

@@ -5,6 +5,8 @@ import LocationFaq from "@/app/components/location/location-faq";
 import LocationGallery from "@/app/components/location/location-gallery";
 import LocationHero from "@/app/components/location/location-hero";
 import LocationServices from "@/app/components/location/location-services";
+import LocationTestimonial from "@/app/components/location/location-testimonial";
+import LocationTransport from "@/app/components/location/location-transport";
 import LocationTrust from "@/app/components/location/location-trust";
 import Navbar from "@/app/components/Navbar";
 import { getLocationBySlug } from "@/lib/location-api";
@@ -44,12 +46,16 @@ export default async function LocationPage({ params }: Props) {
           trustHeading={location.trustHeading}
           trustCards={location.trustCards}
         />
+        <LocationTransport location={location} />
+
+        <LocationTestimonial />
 
         <LocationGallery gallery={location.gallery} />
 
         <div className="lg:mt-12 mt-4">
           <BookingAportment />
         </div>
+
 
         <LocationFaq faqs={location.faqs} />
 

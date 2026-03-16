@@ -7,6 +7,7 @@ import WhyChosse from "../components/about-us/why-chosse";
 import MissionVision from "../components/about-us/misson-visson";
 import AboutAppointment from "../components/about-us/about-appointment";
 import AboutFaq from "../components/about-us/about-faq";
+import AboutTestimonial from "../components/about-us/about-testimonial";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
         <AboutDetails />
         <MissionVision />
         <WhyChosse />
-        <HomeTestimonial />
+        <AboutTestimonial />
         <AboutAppointment />
         <AboutFaq />
         <Footer />

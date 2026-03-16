@@ -21,13 +21,23 @@ type LocationApiResponse = {
 type FormDataType = {
   name: string;
   email: string;
+  countryCode: string;
   phone: string;
   date: string;
   locationId: string;
   message: string;
 };
 
-const BookingAportment: FC = () => {
+const countryCodes = [
+  { label: "IN (+91)", value: "+91" },
+  { label: "US (+1)", value: "+1" },
+  { label: "UK (+44)", value: "+44" },
+  { label: "AE (+971)", value: "+971" },
+  { label: "AU (+61)", value: "+61" },
+  { label: "CA (+1)", value: "+1" },
+];
+
+const BookingTourism: FC = () => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -35,6 +45,7 @@ const BookingAportment: FC = () => {
   const [formData, setFormData] = useState<FormDataType>({
     name: "",
     email: "",
+    countryCode: "+91",
     phone: "",
     date: "",
     locationId: "",
@@ -108,6 +119,8 @@ const BookingAportment: FC = () => {
     try {
       setSubmitting(true);
 
+      const fullPhone = `${formData.countryCode} ${formData.phone}`;
+
       const res = await fetch("/api/appointments", {
         method: "POST",
         headers: {
@@ -116,7 +129,9 @@ const BookingAportment: FC = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          countryCode: formData.countryCode,
           phone: formData.phone,
+          fullPhone,
           date: formData.date,
           locationId: formData.locationId,
           message: formData.message,
@@ -135,6 +150,7 @@ const BookingAportment: FC = () => {
       setFormData({
         name: "",
         email: "",
+        countryCode: "+91",
         phone: "",
         date: "",
         locationId: "",
@@ -204,13 +220,13 @@ const BookingAportment: FC = () => {
               className="relative rounded-[20px] shadow-2xl p-8 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
             >
               <div className="relative z-10">
-                <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+                <h3 className="text-2xl font-semibold mb-4 text-gray-800">
                   Book An Appointment
                 </h3>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-xs font-semibold text-gray-700 mb-2">
                       Name
                     </label>
                     <input
@@ -224,7 +240,7 @@ const BookingAportment: FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-xs font-semibold text-gray-700 mb-2">
                       Email
                     </label>
                     <input
@@ -237,24 +253,39 @@ const BookingAportment: FC = () => {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <div className="col-span-2">
+                    <label className="block text-xs font-semibold text-gray-700 mb-2">
                       Phone
                     </label>
-                    <input
-                      name="phone"
-                      type="tel"
-                      inputMode="numeric"
-                      maxLength={10}
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
-                    />
+                    <div className="flex gap-3">
+                      <select
+                        name="countryCode"
+                        value={formData.countryCode}
+                        onChange={handleChange}
+                        className="w-[120px] bg-white rounded-full px-4 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                      >
+                        {countryCodes.map((country) => (
+                          <option key={`${country.label}-${country.value}`} value={country.value}>
+                            {country.label}
+                          </option>
+                        ))}
+                      </select>
+
+                      <input
+                        name="phone"
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="flex-1 bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <div className="mt-4">
+                    <label className="block text-xs font-semibold text-gray-700 mb-2">
                       Date
                     </label>
                     <input
@@ -266,31 +297,30 @@ const BookingAportment: FC = () => {
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     />
                   </div>
-                </div>
-
-                <div className="mt-4">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Location
-                  </label>
-                  <select
-                    name="locationId"
-                    value={formData.locationId}
-                    onChange={handleChange}
-                    className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
-                  >
-                    <option value="" disabled>
-                      {loadingLocations ? "Loading locations..." : "Select Location"}
-                    </option>
-                    {locations.map((location) => (
-                      <option key={location.id} value={location.id}>
-                        {location.city}
+                  <div className="mt-4">
+                    <label className="block text-xs font-semibold text-gray-700 mb-2">
+                      Location
+                    </label>
+                    <select
+                      name="locationId"
+                      value={formData.locationId}
+                      onChange={handleChange}
+                      className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                    >
+                      <option value="" disabled>
+                        {loadingLocations ? "Loading locations..." : "Select Location"}
                       </option>
-                    ))}
-                  </select>
+                      {locations.map((location) => (
+                        <option key={location.id} value={location.id}>
+                          {location.city}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div className="mt-4">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs font-semibold text-gray-700 mb-2">
                     Message
                   </label>
                   <textarea
@@ -331,7 +361,7 @@ const BookingAportment: FC = () => {
 
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs font-semibold text-gray-700 mb-2">
                     Name
                   </label>
                   <input
@@ -345,7 +375,7 @@ const BookingAportment: FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs font-semibold text-gray-700 mb-2">
                     Email
                   </label>
                   <input
@@ -359,23 +389,38 @@ const BookingAportment: FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs font-semibold text-gray-700 mb-2">
                     Phone
                   </label>
-                  <input
-                    name="phone"
-                    type="tel"
-                    inputMode="numeric"
-                    maxLength={10}
-                    placeholder="Phone Number"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
-                  />
+                  <div className="flex gap-3">
+                    <select
+                      name="countryCode"
+                      value={formData.countryCode}
+                      onChange={handleChange}
+                      className="w-[120px] bg-white rounded-full px-4 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                    >
+                      {countryCodes.map((country) => (
+                        <option key={`${country.label}-${country.value}`} value={country.value}>
+                          {country.label}
+                        </option>
+                      ))}
+                    </select>
+
+                    <input
+                      name="phone"
+                      type="tel"
+                      inputMode="numeric"
+                      maxLength={10}
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="flex-1 bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs font-semibold text-gray-700 mb-2">
                     Date
                   </label>
                   <input
@@ -390,7 +435,7 @@ const BookingAportment: FC = () => {
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs font-semibold text-gray-700 mb-2">
                   Location
                 </label>
                 <select
@@ -411,7 +456,7 @@ const BookingAportment: FC = () => {
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs font-semibold text-gray-700 mb-2">
                   Message
                 </label>
                 <textarea
@@ -441,4 +486,4 @@ const BookingAportment: FC = () => {
   );
 };
 
-export default BookingAportment;
+export default BookingTourism;

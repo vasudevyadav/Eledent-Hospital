@@ -10,6 +10,8 @@ import BlogMain from "./components/home/blog";
 import HomeFaq from "./components/home/home-faq";
 import Footer from "./components/Footer";
 import BookingAportment from "./components/comman/booking-aportment";
+import Award from "./components/home/award";
+import AwardsSection from "./components/home/award";
 
 export default function Home() {
   return (
@@ -27,6 +29,7 @@ export default function Home() {
           <BookingAportment />
         </div>
         <BlogMain />
+        <AwardsSection />
         <HomeFaq />
         <Footer />
       </main>

@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function FacilitiesHero() {
     return (
-        <div className=" lg:my-12 my-6 lg:mx-24 mx-4">
+        <div className=" lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40">
 
-            <section className="relative z-0 lg:h-[500px] h-[350px] w-full overflow-hidden rounded-3xl">
+            <section className="relative z-0 lg:h-[450px] h-[350px] w-full overflow-hidden rounded-3xl">
                 <Image
                     src="/facilities/facilities-banner.png"
                     alt="Facilities banner"

@@ -10,10 +10,11 @@ import ServicesCount from "../../components/services-details/services-count";
 import PlacementProcedure from "@/app/components/services-details/placement-procedure";
 import OverValue from "@/app/components/services-details/value";
 import AfterBefore from "@/app/components/services-details/after-before";
-import ServicesTestimonial from "@/app/components/services-details/home-testimonial";
+
 import DentalImplantsSections from "@/app/components/services-details/dental-implant-plan";
 import CommanTopRated from "@/app/components/services-details/make-appointment";
 import ServicesFaq from "@/app/components/services-details/services-faq";
+import ServicesTestimonial from "@/app/components/services-details/services-testimonial";
 
 type PageProps = {
     params: Promise<{
@@ -87,9 +88,11 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
 
                 {service?.beforeAfter ? <AfterBefore data={service.beforeAfter} /> : null}
 
-                {service?.testimonials ? (
+                {/* {service?.testimonials ? (
                     <ServicesTestimonial data={service.testimonials} />
-                ) : null}
+                ) : null} */}
+
+                <ServicesTestimonial />
 
                 {service?.planSection ? (
                     <DentalImplantsSections data={service.planSection} />

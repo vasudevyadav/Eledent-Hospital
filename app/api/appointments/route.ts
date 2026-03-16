@@ -7,11 +7,18 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const { name, email, phone, date, doctorId, message } = body;
+    const { name, email, phone, date, locationId, message } = body;
 
-    if (!name || !phone || !date || !doctorId) {
+    if (!name || !phone || !date || !locationId) {
       return NextResponse.json(
-        { message: "Name, phone, date and doctor are required" },
+        { message: "Name, phone, date and location are required" },
+        { status: 400 }
+      );
+    }
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+      return NextResponse.json(
+        { message: "Please enter a valid 10 digit phone number" },
         { status: 400 }
       );
     }
@@ -26,7 +33,7 @@ export async function POST(req: NextRequest) {
         email,
         phone,
         date,
-        doctorId,
+        locationId,
         message,
       }),
       cache: "no-store",
@@ -43,13 +50,19 @@ export async function POST(req: NextRequest) {
 
     if (!wpResponse.ok) {
       return NextResponse.json(
-        { message: data?.message || "Failed to create appointment", error: data },
+        {
+          message: data?.message || "Failed to create appointment",
+          error: data,
+        },
         { status: wpResponse.status }
       );
     }
 
     return NextResponse.json(
-      { message: data?.message || "Appointment booked successfully", data },
+      {
+        message: data?.message || "Appointment booked successfully",
+        data,
+      },
       { status: 200 }
     );
   } catch (error) {

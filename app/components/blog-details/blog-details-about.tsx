@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import BookingBlog from "../comman/booking-blog";
 
 type RecentArticle = {
   id: number;
@@ -130,19 +131,41 @@ export default function BlogDetailsAbout({ content }: BlogDetailsAboutProps) {
             </div>
           </div>
 
-          <aside className="self-start lg:sticky lg:top-24">
-            <div className="rounded-[0_0_18px_18px] bg-[#ef6d2f] px-3 py-4">
+          <aside className="self-start lg:sticky lg:top-36">
+            <div className="rounded-[15px] bg-[#ef6d2f] px-3 py-4 mb-12">
               <h3 className="text-[16px] font-bold text-white">
                 Recent Article
               </h3>
 
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 space-y-3 max-h-[410px]  overflow-y-auto no-scrollbar">
                 {content.recentArticles?.map((article) => (
                   <RecentArticleCard key={article.id} article={article} />
                 ))}
+                {content.recentArticles?.map((article) => (
+                  <RecentArticleCard key={article.id} article={article} />
+                ))}
+                {content.recentArticles?.map((article) => (
+                  <RecentArticleCard key={article.id} article={article} />
+                ))}
+                {content.recentArticles?.map((article) => (
+                  <RecentArticleCard key={article.id} article={article} />
+                ))}
+                {content.recentArticles?.map((article) => (
+                  <RecentArticleCard key={article.id} article={article} />
+                ))}
+                {content.recentArticles?.map((article) => (
+                  <RecentArticleCard key={article.id} article={article} />
+                ))}
+
               </div>
             </div>
+
+            <div>
+              <BookingBlog />
+            </div>
+
           </aside>
+
         </div>
       </div>
     </section>

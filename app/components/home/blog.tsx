@@ -126,7 +126,7 @@ export default function BlogMain(): JSX.Element {
   }, []);
 
   return (
-    <section className="w-full bg-white pt-0 lg:py-8 lg:pt-8">
+    <section className="w-full bg-white pt-0 lg:py-16 lg:pt-10">
       <div className="mx-auto max-w-[1120px] px-4 lg:px-6">
         <div className="text-center">
           <span className="inline-flex items-center justify-center bg-[#f47200] px-[10px] py-[6px] text-sm font-semibold leading-none text-white">
@@ -171,7 +171,6 @@ export default function BlogMain(): JSX.Element {
                       src={c.img}
                       alt={c.title}
                       fill
-                      className="object-cover"
                       priority={idx === 0}
                       unoptimized
                     />
@@ -183,11 +182,20 @@ export default function BlogMain(): JSX.Element {
                 </div>
 
                 <div className="px-6 pb-5 pt-5">
-                  <h3 className="text-lg font-semibold leading-snug text-[#f47200]">
-                    {c.title}
-                  </h3>
 
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black">
+                  {c.href && c.href !== "#" && (
+                    <Link
+                      href={c.href}
+
+                    >
+                      <h3 className="text-lg font-semibold leading-snug text-[#f47200] line-clamp-2">
+                        {c.title}
+                      </h3>
+
+                    </Link>
+                  )}
+
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black !line-clamp-1">
                     {c.desc}
                   </p>
 

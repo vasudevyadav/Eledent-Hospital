@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FC, ReactNode } from "react";
 import { useMemo, useState } from "react";
+import BookingBlog from "../comman/booking-blog";
 
 type BlogPost = {
   id: string;
@@ -174,7 +175,7 @@ const SidebarCard: FC<{ title: string; children: ReactNode }> = ({
   children,
 }) => {
   return (
-    <div className="rounded-[10px] bg-[#f47c20] p-6 text-white">
+    <div className="rounded-[10px] bg-[#f47c20] p-6 text-white max-h-[380px]  overflow-y-auto no-scrollbar">
       <h3 className="text-xl font-bold">{title}</h3>
       <div className="mt-4">{children}</div>
     </div>
@@ -184,7 +185,7 @@ const SidebarCard: FC<{ title: string; children: ReactNode }> = ({
 const CategoriesList: FC<{ categories: CategoryItem[] }> = ({ categories }) => {
   return (
     <SidebarCard title="Categories">
-      <div className="max-h-[320px] overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div >
         <ul className="space-y-2">
           {categories.map((category) => (
             <li key={category.id}>
@@ -206,7 +207,62 @@ const CategoriesList: FC<{ categories: CategoryItem[] }> = ({ categories }) => {
 const RecentPostsList: FC<{ recentPosts: RecentPost[] }> = ({ recentPosts }) => {
   return (
     <SidebarCard title="Recent Posts">
-      <div className="max-h-[320px] overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="">
+        <ul className="space-y-3">
+          {recentPosts.map((post) => (
+            <li
+              key={post.id}
+              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
+            >
+              <Link
+                href={getRecentPostHref(post)}
+                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
+              >
+                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
+                <span>{post.shortTitle || post.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <ul className="space-y-3">
+          {recentPosts.map((post) => (
+            <li
+              key={post.id}
+              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
+            >
+              <Link
+                href={getRecentPostHref(post)}
+                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
+              >
+                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
+                <span>{post.shortTitle || post.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <ul className="space-y-3">
+          {recentPosts.map((post) => (
+            <li
+              key={post.id}
+              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
+            >
+              <Link
+                href={getRecentPostHref(post)}
+                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
+              >
+                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
+                <span>{post.shortTitle || post.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
         <ul className="space-y-3">
           {recentPosts.map((post) => (
             <li
@@ -281,11 +337,14 @@ const BlogListingSection: FC<BlogListingSectionProps> = ({
             </div>
           </div>
 
-          <aside className="space-y-5">
+          <aside className="space-y-5 ">
             {categories.length > 0 && <CategoriesList categories={categories} />}
             {recentPosts.length > 0 && (
               <RecentPostsList recentPosts={recentPosts} />
             )}
+
+            <BookingBlog />
+
           </aside>
         </div>
 

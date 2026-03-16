@@ -14,7 +14,7 @@ export default function AboutUs() {
                     <div className="relative">
                         <div className="relative rounded-xl overflow-hidden shadow-2xl group cursor-pointer">
                             <div>
-                                <iframe className="w-full h-[280px] lg:h-[480px]" src="https://www.youtube-nocookie.com/embed/JrqoTfgYkLE?si=zJBiKkx4xKdiWGz0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                                <iframe className="w-full h-[280px] lg:h-[400px]" src="https://www.youtube-nocookie.com/embed/JrqoTfgYkLE?si=zJBiKkx4xKdiWGz0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                             </div>
                         </div>
                     </div>

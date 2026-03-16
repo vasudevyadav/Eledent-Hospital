@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function HeroSection() {
     return (
-        <div className="my-6 lg:my-12 mx-4 lg:mx-24">
-            <section className="relative z-0 w-full rounded-4xl bg-gray-300 h-[350px] lg:h-[650px]">
+        <div className="my-6 lg:my-12 mx-4 lg:mx-24 lg:mt-40">
+            <section className="relative z-0 w-full rounded-4xl bg-gray-300 h-[350px] lg:h-[500px]">
                 <div className="absolute inset-0 z-10" />
 
                 <Link href="/" className="block h-full">
