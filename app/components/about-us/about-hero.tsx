@@ -7,7 +7,7 @@ export default function AboutHero() {
     return (
         <div className="lg:my-12 my-6 lg:mx-24 mx-6 lg:mt-40">
 
-            <section className="relative z-0 lg:h-[500px] h-[350px] w-full overflow-hidden rounded-3xl">
+            <section className="relative z-0 lg:h-[420px] h-[300px] w-full overflow-hidden rounded-3xl">
                 <Image
                     src="/about-us/about-us-hero.png"
                     alt="About Us banner"
@@ -23,7 +23,7 @@ export default function AboutHero() {
                         About Us
                     </h1>
                     <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl">
-                        Tincidunt suspendisse semper integer elementum maecenas.
+                        Multi-Speciality Dental Hospital Chain in Hyderabad
                     </p>
                 </div>
 

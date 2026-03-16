@@ -9,21 +9,18 @@ type MVItem = {
 };
 
 const MissionVision: FC = () => {
-    // ✅ White card BG image (public folder path)
-    // Example: /images/mission-bg.jpg
     const CARD_BG_IMAGE = "/about-us/vission.png";
 
-    // ✅ Single content only (no slider, no multiple services)
     const MV_ITEMS: MVItem[] = [
         {
             id: "vision",
             title: "Vision",
-            desc: "For a long time, pain and dentistry have been associated together and have made a great team, but the time has finally come for them to part ways.",
+            desc: "To create a dental care experience where every patient feels informed, comfortable, and confident about treatment through specialist expertise, modern technology, and patient-first care.",
         },
         {
             id: "mission",
             title: "Mission",
-            desc: "Welcome to the Modern World of Painless Dentistry at Eledent Dental Hospital. With new technology, updated equipment, and better techniques, we focus on comfortable treatment.",
+            desc: "To deliver multi-speciality dental care with clear diagnosis, precise treatment planning, and modern dentistry that supports healthier, long-lasting smiles.",
         },
     ];
 
@@ -36,10 +33,10 @@ const MissionVision: FC = () => {
                     <div className="relative h-[320px] sm:h-[270px] rounded-[18px] lg:bg-[#E67735] overflow-visible">
 
                         <div className="h-full w-full px-6 sm:px-36 py-12 sm:py-10 lg:flex flex-col justify-center">
-                            <p className="text-white/85 text-xs sm:text-sm mb-4">Lorem ipsum</p>
+                            <p className="text-white/85 text-xs sm:text-sm mb-4">Our Purpose </p>
 
                             <h3 className="text-white font-extrabold leading-tight text-2xl sm:text-3xl max-w-[420px]">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                Advanced Dental Care More Clearer, Comfortable & Easier in Hyderabad
                             </h3>
                         </div>
 

@@ -18,8 +18,8 @@ type FeatureRowProps = FeatureItem & {
 export default function HealthPatner(): JSX.Element {
     const leftItems: FeatureItem[] = [
         {
-            title: "Whole-Body, Whole-Family\nCare",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Expertise in Dental Implants",
+            desc: "Single-piece and two-piece implant solutions for faster, stronger, natural-looking tooth replacement. ",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -44,8 +44,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Door-to-Door Service\nOptions",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "5 Multi-Speciality Dental Hospitals ",
+            desc: "Kondapur, KPHB, Manikonda, Banjara Hills, and Kompally for easier access across Hyderabad.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path d="M7 10.5V20h10v-9.5" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
@@ -66,8 +66,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Transparent,\nWallet-Friendly Pricing",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Patient-Focused Care",
+            desc: "Clear diagnosis, personalised treatment planning, painless and comfortable dental care.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -84,8 +84,8 @@ export default function HealthPatner(): JSX.Element {
 
     const rightItems: FeatureItem[] = [
         {
-            title: "Hospital-Level Technology,\nBoutique Feel",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Experienced Dental Specialists",
+            desc: "Implantologists, orthodontists, endodontists, prosthodontists, pedodontists, periodontists, and oral surgeons under one roof.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -99,8 +99,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Rapid Results, Proven\nOutcomes",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Advanced Technology",
+            desc: "CBCT, intraoral scanners, CEREC CAD-CAM, Zoom whitening, and integrated implantology for precise treatment. ",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -115,8 +115,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Compassion Centred\nCulture",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Complete Dental Care",
+            desc: "Restorative, cosmetic, orthodontic, and children’s dental care in one place.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -141,11 +141,11 @@ export default function HealthPatner(): JSX.Element {
 
                             <p className=" w-fit mx-auto text-slate-400  lg:px-5 px-3 py-1 text-sm bg-[#f36d00] text-white font-semibold ">WHY CHOOSE US</p>
                             <h2 className="mt-3 text-xl font-semibold text-slate-900 sm:text-3xl">
-                                The Health Partner You&apos;ve Been Looking For
+                                Multi-Speciality Dental Hospital Backed by Specialists & Advanced Tech
                             </h2>
                         </div>
 
-                        <div className="lg:mt-12 mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
+                        <div className="lg:mt-10 mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
 
 
                             <div className="space-y-8 order-1">

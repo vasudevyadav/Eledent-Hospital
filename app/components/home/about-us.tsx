@@ -26,7 +26,7 @@ export default function AboutUs() {
                         </div>
 
                         <h2 className="text-2xl lg:text-[30px] font-bold text-primary leading-tight mb-2">
-                            ELEDENT DENTAL HOSPITAL
+                            Eledent Dental Hospital
                         </h2>
 
                         <p className="text-lg sm:text-xl text-gray-800 font-medium mb-4">
@@ -35,21 +35,15 @@ export default function AboutUs() {
 
                         <div className="space-y-4 text-gray-600 text-xs sm:text-sm leading-relaxed mb-7">
                             <p>
-
-                                At Eledent, we live by our motto, “Everyone has the right to smile,” and we ensure that by providing high-quality dental care and always staying on top of trends compared to other dentists in Hyderabad.
-
-                            </p>
-
-                            <p>
-                                Equipped with state-of-the-art facilities and skilled dental practitioners, the Eledent Dental Hospital provides complete dental care services from routine dental cleaning, aesthetics to advanced orthodontics and full mouth rehabilitation to cover preventative and restorative dental practices.
+                                At Eledent Dental Hospital, we bring advanced multi-speciality dental care closer to patients across Hyderabad. With 19+ years of experience, specialist-led treatment, and modern digital technology, we offer complete care for dental implants, full mouth rehabilitation, root canal treatment, braces, aligners, smile makeovers, and kids dentistry, and have restored 30,000+ smiles.
 
                             </p>
 
                             <p>
-                                For the past many years, we have been ensuring patients’ satisfaction and happiness with their smiles, and we will strive to do so in the coming years too.
-
-
+                                Our team brings implantologists, orthodontists, endodontists, prosthodontists, periodontists, pedodontists, oral and maxillofacial surgeons, cosmetic dental surgeons, and general dentists under one roof. With 5 locations in Hyderabad, including Kondapur, KPHB, Manikonda, Banjara Hills, and Kompally, we focus on clear treatment planning, patient-friendly care, and lasting results.
                             </p>
+
+
                         </div>
 
                         <Link href="/about-us" className="bg-primary text-white px-4 py-2 rounded-sm font-medium text-sm uppercase flex items-center gap-2 group w-fit justify-center sm:justify-start">

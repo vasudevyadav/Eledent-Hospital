@@ -31,17 +31,20 @@ type ApiResponse =
 const FALLBACK_SIDE_IMAGE = "/home/special-img.png";
 const FALLBACK_BG_IMAGE = "/home/specialties-image.png";
 const FALLBACK_SIDE_TEXT =
-    "We Are A Full Service Clinic With Modern Technology";
+    "Advanced Dental Treatments With Modern Dentistry By Experienced Specialists";
 
 export default function OurSpecialties() {
-    const [sectionTitle, setSectionTitle] = useState("Our Specialties");
+    const [sectionTitle, setSectionTitle] = useState("Our Specialities ");
     const [sideImage, setSideImage] = useState(FALLBACK_SIDE_IMAGE);
     const [sideText, setSideText] = useState(FALLBACK_SIDE_TEXT);
     const [bgImage, setBgImage] = useState(FALLBACK_BG_IMAGE);
     const [services, setServices] = useState<Service[]>([]);
     const [activeService, setActiveService] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+
+    const cardsPerSlide = 3;
 
     useEffect(() => {
         const fetchSpecialties = async () => {
@@ -64,7 +67,10 @@ export default function OurSpecialties() {
                 const result: ApiResponse = await res.json();
 
                 const rawPayload =
-                    typeof result === "object" && result !== null && "data" in result && result.data
+                    typeof result === "object" &&
+                        result !== null &&
+                        "data" in result &&
+                        result.data
                         ? result.data
                         : result;
 
@@ -77,7 +83,8 @@ export default function OurSpecialties() {
                         _id: item?._id || item?.id || item?.title,
                         title: item?.title || "",
                         image: item?.image || item?.cardImage || "",
-                        detailImage: item?.detailImage || item?.detail_image || item?.image || "",
+                        detailImage:
+                            item?.detailImage || item?.detail_image || item?.image || "",
                         description: Array.isArray(item?.description)
                             ? item.description
                             : typeof item?.description === "string"
@@ -86,12 +93,21 @@ export default function OurSpecialties() {
                     }))
                     : [];
 
-                setSectionTitle(rawPayload.sectionTitle || rawPayload.section_title || "Our Specialties");
-                setSideImage(rawPayload.sideImage || rawPayload.side_image || FALLBACK_SIDE_IMAGE);
-                setSideText(rawPayload.sideText || rawPayload.side_text || FALLBACK_SIDE_TEXT);
+                setSectionTitle(
+                    rawPayload.sectionTitle ||
+                    rawPayload.section_title ||
+                    "Our Specialties"
+                );
+                setSideImage(
+                    rawPayload.sideImage || rawPayload.side_image || FALLBACK_SIDE_IMAGE
+                );
+                setSideText(
+                    rawPayload.sideText || rawPayload.side_text || FALLBACK_SIDE_TEXT
+                );
                 setBgImage(rawPayload.bgImage || rawPayload.bg_image || FALLBACK_BG_IMAGE);
                 setServices(normalizedServices);
                 setActiveService(0);
+                setCurrentSlide(0);
             } catch (err) {
                 console.error(err);
                 setError("Unable to load specialties right now.");
@@ -103,22 +119,40 @@ export default function OurSpecialties() {
         fetchSpecialties();
     }, []);
 
+    const totalSlides = Math.ceil(services.length / cardsPerSlide);
+
+    const visibleServices = useMemo(() => {
+        const start = currentSlide * cardsPerSlide;
+        return services.slice(start, start + cardsPerSlide);
+    }, [services, currentSlide]);
+
     const active = useMemo(() => services[activeService], [services, activeService]);
+
+    const handleServiceClick = (index: number) => {
+        setActiveService(index);
+        setCurrentSlide(Math.floor(index / cardsPerSlide));
+    };
 
     const goPrev = () => {
         if (!services.length) return;
-        setActiveService((prev) => (prev - 1 + services.length) % services.length);
+
+        const prevIndex = (activeService - 1 + services.length) % services.length;
+        setActiveService(prevIndex);
+        setCurrentSlide(Math.floor(prevIndex / cardsPerSlide));
     };
 
     const goNext = () => {
         if (!services.length) return;
-        setActiveService((prev) => (prev + 1) % services.length);
+
+        const nextIndex = (activeService + 1) % services.length;
+        setActiveService(nextIndex);
+        setCurrentSlide(Math.floor(nextIndex / cardsPerSlide));
     };
 
     return (
         <section className="relative px-4 pb-4 pt-4 sm:px-6 md:px-8 lg:px-20 lg:pt-24">
             <div className="relative overflow-hidden rounded-3xl py-6 lg:bg-[#f9fbff] lg:px-6 lg:py-10">
-                <div className="pointer-events-none absolute right-0 -bottom-10 hidden h-full w-[75%] lg:block">
+                <div className="pointer-events-none absolute -bottom-10 right-0 hidden h-full w-[75%] lg:block">
                     <Image
                         src={bgImage}
                         alt=""
@@ -139,7 +173,7 @@ export default function OurSpecialties() {
                             />
 
                             <div className="absolute bottom-4 left-4 right-4 rounded-[16px] bg-[#e67735] px-4 py-3 text-white sm:bottom-5 sm:left-6 sm:right-6 sm:px-6 sm:py-4 lg:bottom-10 lg:py-5">
-                                <p className="text-center text-sm font-medium leading-snug sm:text-lg lg:text-2xl">
+                                <p className="text-center text-sm font-medium leading-snug sm:text-lg lg:text-[24px]">
                                     {sideText}
                                 </p>
                             </div>
@@ -150,17 +184,21 @@ export default function OurSpecialties() {
                                 {sectionTitle}
                             </h2>
 
-                            <div className="mt-3 mb-6 flex items-center gap-3 sm:mb-8">
+                            <div className="mb-6 mt-3 flex items-center gap-3 sm:mb-8">
                                 <div className="h-[3px] w-16 bg-[#FF8A3D] sm:w-20" />
                                 <div className="h-px flex-1 bg-gray-300" />
                             </div>
 
                             {loading ? (
-                                <div className="py-10 text-base text-gray-500">Loading specialties...</div>
+                                <div className="py-10 text-base text-gray-500">
+                                    Loading specialties...
+                                </div>
                             ) : error ? (
                                 <div className="py-10 text-base text-red-500">{error}</div>
                             ) : !services.length ? (
-                                <div className="py-10 text-base text-gray-500">No specialties found.</div>
+                                <div className="py-10 text-base text-gray-500">
+                                    No specialties found.
+                                </div>
                             ) : (
                                 <>
                                     <div className="grid items-start gap-6 lg:grid-cols-[1fr_340px] lg:gap-8">
@@ -191,8 +229,8 @@ export default function OurSpecialties() {
                                                 <Image
                                                     src={active.detailImage}
                                                     alt={active.title}
-                                                    width={340}
-                                                    height={320}
+                                                    width={1000}
+                                                    height={1000}
                                                     className="h-full w-full object-cover"
                                                 />
                                             ) : (
@@ -203,21 +241,24 @@ export default function OurSpecialties() {
                                         </div>
                                     </div>
 
-                                    <div className="mt-10 grid grid-cols-3 gap-2 lg
-                                    :mt-12 sm:gap-6 lg:grid-cols-3">
-                                        {services.map((service, index) => {
-                                            const isActive = activeService === index;
+                                    <div className="mt-10 grid grid-cols-3 gap-2 sm:gap-6 lg:mt-12 lg:grid-cols-3">
+                                        {visibleServices.map((service, index) => {
+                                            const realIndex =
+                                                currentSlide * cardsPerSlide + index;
+                                            const isActive = activeService === realIndex;
 
                                             return (
                                                 <button
-                                                    key={service._id || `${service.title}-${index}`}
+                                                    key={service._id || `${service.title}-${realIndex}`}
                                                     type="button"
-                                                    onClick={() => setActiveService(index)}
+                                                    onClick={() => handleServiceClick(realIndex)}
                                                     className="text-left"
                                                     aria-pressed={isActive}
                                                 >
                                                     <div
-                                                        className={`relative aspect-[4/3] overflow-hidden rounded-[14px] bg-white shadow-lg ${isActive ? "ring-2 ring-[#FF8A3D] ring-offset-2" : ""
+                                                        className={`relative aspect-[4/3] overflow-hidden rounded-[14px] bg-white shadow-lg ${isActive
+                                                            ? "ring-2 ring-[#FF8A3D] ring-offset-2"
+                                                            : ""
                                                             }`}
                                                     >
                                                         {service.image ? (
@@ -225,7 +266,7 @@ export default function OurSpecialties() {
                                                                 src={service.image}
                                                                 alt={service.title}
                                                                 fill
-                                                                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
+                                                                sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 33vw"
                                                                 className="object-cover"
                                                             />
                                                         ) : (
@@ -244,7 +285,9 @@ export default function OurSpecialties() {
                                                     </div>
 
                                                     <p
-                                                        className={`mt-3 text-center text-xs font-semibold sm:text-sm ${isActive ? "text-[#FF8A3D]" : "text-[#3D3D3D]"
+                                                        className={`mt-3 text-center text-xs font-semibold sm:text-sm ${isActive
+                                                            ? "text-[#FF8A3D]"
+                                                            : "text-[#3D3D3D]"
                                                             }`}
                                                     >
                                                         {service.title}
@@ -273,6 +316,26 @@ export default function OurSpecialties() {
                                             <ChevronRight size={16} />
                                         </button>
                                     </div>
+
+                                    {totalSlides > 1 && (
+                                        <div className="mt-4 flex justify-center gap-2">
+                                            {Array.from({ length: totalSlides }).map((_, i) => (
+                                                <button
+                                                    key={i}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setCurrentSlide(i);
+                                                        setActiveService(i * cardsPerSlide);
+                                                    }}
+                                                    className={`h-2.5 w-2.5 rounded-full ${currentSlide === i
+                                                        ? "bg-[#FF8A3D]"
+                                                        : "bg-gray-300"
+                                                        }`}
+                                                    aria-label={`Go to slide ${i + 1}`}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
                                 </>
                             )}
                         </div>

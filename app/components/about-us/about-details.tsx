@@ -20,9 +20,9 @@ const STATS: StatItem[] = [
   {
     id: "patients",
     icon: Users,
-    value: "8,200+",
-    line1: "Patients",
-    line2: "Recovered",
+    value: "30000+ ",
+    line1: "Smiles ",
+    line2: "Restored",
     variant: "primary",
   },
   {
@@ -37,7 +37,7 @@ const STATS: StatItem[] = [
     id: "rating",
     icon: HeartPulse,
     value: "4.9/5",
-    line1: "Satisfaction",
+    line1: " Average",
     line2: "Rating",
     variant: "neutral",
   },
@@ -127,10 +127,10 @@ const AboutDetails: FC = () => {
 
                   <div className="min-w-0">
                     <p className="lg:text-xl text-lg font-semibold text-orange-600 leading-tight">
-                      Quality Dental care
+                      Quality Dental Care
                     </p>
                     <p className="lg:text-[15px] text-sm text-black mt-1 leading-snug">
-                      Facilisis nulla lacus at ultrices us praesent fringilla scelerisque.
+                      Specialist-led treatments, modern technology & five multi-speciality dental hospitals across Hyderabad.
                     </p>
                   </div>
                 </div>
@@ -142,19 +142,19 @@ const AboutDetails: FC = () => {
 
         <div>
           <div className="inline-flex items-center bg-orange-500 text-white px-3 py-1 text-base font-semibold mb-5">
-            About us
+            About Us
           </div>
 
           <h2 className="text-2xl lg:text-[40px] font-bold text-orange-600 leading-tight">
-            Who & Where we are
+            Who & Where We Are?
           </h2>
 
           <p className="text-gray-800 lg:text-lg text-sm font-semibold mt-2">
-            World-Renowned Dentistry Right At Your Neighborhood!
+            World-Renowned Dentistry Right At Your Neighbourhood!
           </p>
 
           <p className="text-gray-500 lg:text-base text-sm leading-relaxed mt-4 max-w-xl">
-            Located in the core of Kondapur and Kukatpally – Hyderabad, Eledent Dental Hospital is the one-stop solution for all your dental needs. Our primary goal is always to offer you comprehensive dental treatment in relaxed and stylish surroundings. You will notice the difference the moment you enter the clinic.
+            Eledent Dental Hospital is a multi-speciality dental hospital in Hyderabad where specialist care, modern dentistry, and patient comfort come together under one roof. We have built our dental care model around one simple idea: patients should be able to access the right dental expert, the right diagnosis, and the right treatment plan without confusion or delay.
           </p>
 
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">

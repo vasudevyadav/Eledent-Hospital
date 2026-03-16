@@ -156,15 +156,14 @@ const BookingAportment: FC = () => {
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center px-10 overflow-visible">
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
-              <p className="text-base mb-3">Booking</p>
+              <p className="text-base mb-3">Don’t Delay! </p>
 
               <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
-                Book Your Dental Care <br /> Appointment Now!
+                Book Your Dental  <br /> Appointment Today!
               </h2>
 
               <p className="text-[15px] opacity-90 mb-10">
-                Book your appointment easily with our team and choose your preferred
-                location and date.
+                Tooth pain, missing teeth, or a smile concern should not wait. Our dental specialists help you understand the problem, explain the treatment clearly, and guide you toward the right solution.
               </p>
 
               <div className="flex items-center gap-3 mb-8">
@@ -178,21 +177,25 @@ const BookingAportment: FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium mb-1">Support</p>
-                  <p className="text-lg font-semibold">24/7 Emergency Call</p>
+                  <p className="text-lg font-semibold">Call Our Dental Team</p>
                 </div>
               </div>
 
               <div className="text-[15px] max-w-[300px]">
                 <div className="w-full flex justify-between">
-                  <p>Mon–Fri</p>
-                  <p>8:00am – 6:00pm</p>
+                  <p>+91 9983868366
+                  </p>
+                   <p> |
+                  </p>
+                  <p> +91 7799769994
+                  </p>
                 </div>
 
                 <hr className="h-[1px] bg-white/70 w-full my-2" />
 
                 <div className="w-full flex justify-between">
-                  <p>Sat–Sun</p>
-                  <p>9:00am – 4:00pm</p>
+                  <p>Mon–Sun</p>
+                  <p> 9:00am – 9:00pm</p>
                 </div>
               </div>
             </div>

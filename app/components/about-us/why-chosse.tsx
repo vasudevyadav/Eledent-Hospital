@@ -24,20 +24,20 @@ type ValueItem = {
 export default function WhyChoose(): JSX.Element {
     const leftItems: FeatureItem[] = [
         {
-            title: "Consistent, High-Quality Care",
-            desc: "Our dental professionals keep up with current research in order to offer the latest evidence-based treatment options.",
+            title: "Experienced Dental Specialists",
+            desc: "Implantologists, orthodontists, endodontists, prosthodontists, pedodontists, periodontists, and oral surgeons under one roof.",
             iconSrc: "/about-us/why-chose-1.png",
             iconAlt: "Consistent care icon",
         },
         {
-            title: "Whenever You Need An Expert Dentist, You Can:",
-            desc: "One of the most crucial factors in dentistry is the continuity and integrity of the treatment. We ensure the same dentist treats our patients year after year.",
+            title: "Advanced Technology",
+            desc: "CBCT, intraoral scanners, CEREC CAD-CAM, Zoom whitening, and integrated implantology for precise treatment. ",
             iconSrc: "/about-us/why-chose-2.png",
             iconAlt: "Expert dentist icon",
         },
         {
-            title: "We Offer Flexible Appointments To Fit Your Busy Schedule",
-            desc: "We know how difficult it can be to fit dental appointments into an already busy lifestyle, so we offer flexible hours to fit your schedule.",
+            title: "Complete Dental Care",
+            desc: "Restorative, cosmetic, orthodontic, and children’s dental care in one place.",
             iconSrc: "/about-us/why-chose-3.png",
             iconAlt: "Flexible appointments icon",
         },
@@ -45,20 +45,20 @@ export default function WhyChoose(): JSX.Element {
 
     const rightItems: FeatureItem[] = [
         {
-            title: "We Use State-Of-The-Art Dental Technology & High-Quality Materials",
-            desc: "Our dental centers and laboratories are highly equipped with materials that meet global standards which can help you to achieve teeth restoration in a single visit.",
+            title: "Expertise in Dental Implants",
+            desc: "Single-piece and two-piece implant solutions for faster, stronger, natural-looking tooth replacement. ",
             iconSrc: "/about-us/why-chose-4.png",
             iconAlt: "Technology icon",
         },
         {
-            title: "Same-Day Dental Emergency Treatment",
-            desc: "During a visit, you won’t have to wait long for a diagnosis. We provide same-day dentistry for dental emergencies, so you don’t have to wait.",
+            title: "5 Multi-Speciality Dental Hospitals ",
+            desc: "Kondapur, KPHB, Manikonda, Banjara Hills, and Kompally for easier access across Hyderabad.",
             iconSrc: "/about-us/why-chose-5.png",
             iconAlt: "Emergency icon",
         },
         {
-            title: "All Under One Roof",
-            desc: "We offer quality, affordable private dental care for every need, all under one roof, making the process easier and hassle-free.",
+            title: "Patient-Focused Care",
+            desc: "Clear diagnosis, personalised treatment planning, painless and comfortable dental care.",
             iconSrc: "/about-us/why-chose-6.png",
             iconAlt: "All under one roof icon",
         },
@@ -66,26 +66,26 @@ export default function WhyChoose(): JSX.Element {
 
     const valueItems: ValueItem[] = [
         {
-            title: "Care For The Whole Teeth",
-            desc: "Comprehensive dental care that supports long-term oral health and daily comfort.",
+            title: "Honest Guidance",
+            desc: "We recommend treatments based on your dental condition, not just to sell unnecessary procedures.",
             iconSrc: "/about-us/value-1.png",
             iconAlt: "Whole care icon",
         },
         {
-            title: "Advanced Equipment",
-            desc: "Modern tools and tech for accurate diagnosis and smoother, faster treatments.",
-            iconSrc: "/about-us/value-2.png",
+            title: "Thoughtful Planning",
+            desc: "Every dental treatment plan is explained clearly, step by step, before the process begins.",
+            iconSrc: "/about-us/value-3.png",
             iconAlt: "Advanced equipment icon",
         },
         {
-            title: "Experienced Doctors",
-            desc: "Skilled teams focused on precision, comfort, and predictable results.",
+            title: "Long-Term Focus",
+            desc: "We plan care to improve function, comfort, and oral health over time.",
             iconSrc: "/about-us/value-3.png",
             iconAlt: "Experienced doctors icon",
         },
         {
-            title: "Safe & Sterile Setup",
-            desc: "Strict hygiene and sterilization protocols followed at every step.",
+            title: "Consistent Experience",
+            desc: "Every Eledent Dental Hospital location follows the same patient-first approach to care.",
             iconSrc: "/about-us/value-4.png",
             iconAlt: "Sterile setup icon",
         },
@@ -94,20 +94,19 @@ export default function WhyChoose(): JSX.Element {
     return (
         <section className="w-full bg-white py-3 pt-4 lg:pt-10 sm:py-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-6">
-                {/* ================= WHY CHOOSE CARD SECTION ================= */}
-                <div className="rounded-t-[22px] bg-[#e9eaeb] px-4 py-10 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.35)] sm:px-8 sm:py-12">
-                    {/* heading */}
+
+                <div className="rounded-t-[22px] bg-[#e9eaeb] px-4 py-10 shadow-[0_18px_45px_-30px_rgba(15,23,42,0.35)] sm:px-8 lg:py-12 lg:pb-0">
+
                     <div className="text-center">
                         <span className="inline-flex bg-[#f47200] px-3 py-1.5 text-sm font-semibold tracking-[0.14em] text-white">
-                            WHY CHOOSE US
+                            Why Choose Us?
                         </span>
 
                         <h2 className="mt-4 text-xl font-semibold text-slate-900 sm:text-3xl lg:text-4xl">
-                            The Dental Health Partner You&apos;ve Been Looking For
+                            Multi-Speciality Dental Hospital Backed by Specialists & Advanced Tech
                         </h2>
                     </div>
 
-                    {/* MOBILE/TABLET CENTER IMAGE */}
                     <div className="mt-8 flex justify-center hidden">
                         <div className="relative h-[320px] w-[240px] sm:h-[380px] sm:w-[300px]">
                             <Image
@@ -120,7 +119,7 @@ export default function WhyChoose(): JSX.Element {
                         </div>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-20 lg:grid-cols-3 lg:items-center">
+                    <div className="mt-10 grid grid-cols-1 gap-10 lg:mt-16 lg:grid-cols-3 lg:items-center">
                         {/* LEFT */}
                         <div className="space-y-8 sm:space-y-9">
                             {leftItems.map((it, idx) => (
@@ -158,16 +157,13 @@ export default function WhyChoose(): JSX.Element {
                             <div className="text-center lg:text-left">
                                 <p className="mb-2 text-lg text-orange-500 sm:text-xl">Our Value</p>
                                 <h3 className="lg:text-2xl text-lg font-semibold leading-snug sm:text-3xl">
-                                    We Have A Unique Value
+                                    The Principles Behind
                                     <br className="hidden sm:block" />
-                                    This Sets Us Apart From
-                                    <br className="hidden sm:block" />
-                                    Others
+                                    Our Care
                                 </h3>
 
                                 <p className="mt-4 max-w-md text-xs leading-relaxed text-white sm:text-base">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suscipit
+                                    At Eledent Dental Hospital, we value trust, clarity, and responsibility in every patient interaction. We believe patients should understand their treatment, feel respected in the process, and receive care that is planned around their real dental needs, comfort, and long-term oral health.
                                 </p>
                             </div>
                         </div>
