@@ -27,21 +27,21 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
     id: "row-1",
     title: "Best World Class Facilities",
     subtitle:
-      "We help you get the best of the facilities to make sure that you are at ease. We assist you in terms of:",
+      "We help you give the best of the facilities to make sure that you are at ease. We assist you in terms of",
     bullets: [
       { id: "t1", text: "World class ambience with a comfortable and friendly environment." },
-      { id: "t2", text: "Ample reception area with skilled staff who proudly represent Eledent." },
+      { id: "t2", text: "Ample reception area with skilled staff who proudly represent Eledent who are available 24/7 to assist and welcome you." },
       {
         id: "t3",
-        text: "Accommodated with in-house pharmacy so that you can get all your medicines at a single go instead of searching for them at various medical stores.",
+        text: "Accommodated with a inhouse pharmacy, so that you can get all your medicines at a single go instead of searching for them at various medical stores.",
       },
       {
         id: "t4",
-        text: "We have well built and furnished hygienic cafeteria with some yummy food cooked for you to make sure that you don't skip your meals for the day during your treatment.",
+        text: "We have well built and furnished hygiene cafeteria with some yummy food cooked for you to make sure that you don’t skip your meals for the day during your treatment.",
       },
       {
         id: "t5",
-        text: "While our experts might be busy at times with other patients, with no intention to make your stay boring, we have also set up snooker tables only for you.",
+        text: "While our experts might be busy at times with other patients, with no intention to make your day boring, we have also set up snooker tables only for you.",
       },
     ],
     image: {
@@ -59,12 +59,12 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
     bullets: [
       {
         id: "r1",
-        text: "Well facilitated dress-up rooms and massage chairs for you to get freshen up after your treatment.",
+        text: "Well facilitated Dress-up rooms and massage chairs for you to get freshen up after your treatment.",
       },
       { id: "r2", text: "We have air purifiers accommodated in every room to make sure that you are taking in fresh air." },
       {
         id: "r3",
-        text: "We offer Aromatherapy to keep you refreshed and healthy. Dental conference rooms to give the doctors a forum to share the knowledge of the best case studies in order to improve our health care services. Check out our blogs downstairs.",
+        text: "We offer Aromatherapy to keep you refreshed and healthy. Dental conference room to give the doctors a forum to share the knowledge and dental case studies in order to improve our health care services. Check out san diego downtown.",
       },
       {
         id: "r4",
@@ -72,7 +72,7 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
       },
       {
         id: "r5",
-        text: "We have the latest technology and infrastructure to make things easier for you. We have CRO 1 room where we can get your digital dental x-ray within fraction of seconds and tell you know your dental condition.",
+        text: "We have the latest technology and Infrastructure to make things easier for you. We have CBCT room where we can get your digital x-rays done within fraction of seconds and let you know your dental condition.",
       },
     ],
     image: {
@@ -90,7 +90,7 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
     bullets: [
       {
         id: "b1",
-        text: "We have a operatory chambers to make sure that we don't keep you waiting for your turn. We are equipped with Microscopic endodontics for a painless root canal treatment with good and sterilised Carestrea operative apparatus along with the facilities to conduct dental diagnostics.",
+        text: "We have 6 operatory chambers to make sure that we don’t keep you waiting for your turn. We are equipped with Microscopic endodontics for a painless root canal treatment with good and sterilized Conscious sedation apparatus along with the facilities to conduct blood diagnostics.",
       },
       { id: "b2", text: "We Specialise vcare for all to is your tooth issues with Ceno technology. Check website here." },
       {

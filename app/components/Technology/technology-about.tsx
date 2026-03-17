@@ -21,15 +21,15 @@ type TechSection = {
 const SECTIONS: TechSection[] = [
   {
     id: "cerec-1",
-    title: "CEREC – Single Visit Dentistry",
+    title: "CEREC Single Visit Dentistry",
     body: [
       {
         type: "p",
-        text: "Now with the updated technology of CAD & CAM , CEREC has made everything easy right from the scanning to the designing and structuring of your tooth care restoration. The CEREC Omnicam fits in your hand easily and can scan your dental condition to give a clearer picture in order to align a treatment accordingly. Check rejuvenate medical group. The whole scanning is analyzed and the best results are given by the CEREC software.",
+        text: " Same Day Restorations With Digital Precision ",
       },
       {
         type: "p",
-        text: "We have CEREC milling and grinding units as well which helps in making it more involved with website to design the restoration and give the restoration the required smooth look. With CEREC, we will make sure that your dental issue are fixed in one go without the much need to visit the clinic several times.",
+        text: " CEREC technology helps our dentists scan, design, and prepare selected restorations in a single visit. With CEREC Omnicam and CAD-CAM support, we can create suitable crowns, inlays, onlays, veneers, and other restorations with greater speed, better fit, and fewer clinic visits. ",
       },
 
     ],
@@ -40,11 +40,15 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cbct-1",
-    title: "CBCT – OPG & CEPH",
+    title: " CBCT, OPG and CEPH ",
     body: [
       {
         type: "p",
-        text: "We have the updated technology when it comes to CBCT ( Cone beam computed tomography ) that is Cbct sirona orthophos where the scanning is done easily and gives 3D images with clear visualization making things easier for our experts.",
+        text: "3D Imaging For Clearer Diagnosis And Planning",
+      },
+      {
+        type: "p",
+        text: "CBCT, OPG, and CEPH scans help our specialists examine teeth, bone support, jaw structure, and surrounding areas in greater detail. This advanced dental imaging is especially useful for dental implants in Hyderabad, orthodontic treatment planning, oral surgery, and other complex dental concerns.",
       },
 
     ],
@@ -55,11 +59,15 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cerec-2",
-    title: "Digital Smile Designing",
+    title: "Intraoral Digital Scanners",
     body: [
       {
         type: "p",
-        text: "DSD is a software that helps in the process of restoration and assist in designing the perfect smile to the patients. The software makes the work much easy where the patient will have a complete picture of how the structural evaluation is done. Read more about it support san diego ca. This software makes it easy for the experts to show the tooth structure and they can also take inputs from the patient on various aspects.",
+        text: "Digital Scans Without Messy Impressions",
+      },
+      {
+        type: "p",
+        text: "Intraoral scanners capture precise digital images of your teeth and bite in a faster and more comfortable way. These scans help improve treatment planning for crowns, aligners, smile makeovers, implants, and restorative dentistry where accuracy matters from the beginning.",
       },
 
     ],
@@ -70,11 +78,15 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cbct-2",
-    title: "Advance Lasers Equipment",
+    title: "Digital Smile Design",
     body: [
       {
         type: "p",
-        text: "We are equipped with the finest and advanced laser technology to make the procedures free flowing. They assist in efficient invasive treatments that can be completed with minimal bleeding without causing noticeable pain.",
+        text: "Better Smile Planning Before Treatment Begins",
+      },
+      {
+        type: "p",
+        text: "Digital smile planning helps our dentists evaluate tooth shape, alignment, smile balance, and facial harmony before starting cosmetic treatment. This improves planning for veneers, crowns, aligners, whitening, and smile makeover procedures by making the expected result easier to understand.",
       },
 
     ],
@@ -85,12 +97,18 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cerec-3",
-    title: "Integrated Implantology",
+    title: "Microscopic Dentistry",
     body: [
       {
         type: "p",
-        text: "Integrated Implantology will enable us to improve our workflow while benefiting the patients who expect perfect solution from one source resources in the nearby future.",
+        text: "Magnified Precision For Detailed Dental Procedures",
       },
+      {
+        type: "p",
+        text: "  Microscopic dentistry allows our specialists to work with much higher visual precision during selected treatments. It is especially useful in root canal treatment in Hyderabad, restorative care, and delicate procedures where better visibility can help preserve more healthy tooth structure.",
+      },
+
+
 
     ],
     imageSrc: "/technology/technology-5.png",
@@ -100,32 +118,17 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cbct-3",
-    title: "Zoom Whitening",
+    title: " Guided Biofilm Therapy (GBT) ",
     body: [
       {
         type: "p",
-        text: "Do you often visit your Dentist to get a tooth whitening done? How often do you visit? Maybe twice in a month? we are sure that you should be tired of your tooth staining due to the foods & drinks that you consume every day?",
+        text: "Advanced Cleaning For Healthier Teeth And Gums",
       },
       {
         type: "p",
-        text: "We are here to make your lives easier with Zoom whitening. This is an advanced bleaching dental process that is far better and considerable compared to the traditional whitening. This evolved technology helps in cleaning out stains and discoloration perfectly.You will be able to redeem your white teeth over a long period of time now!",
+        text: "Guided Biofilm Therapy is a modern preventive dental technology that helps remove plaque and biofilm in a more targeted and comfortable way. It supports gum health, preventive care, and cleaner maintenance for patients with braces, implants, or long-term oral hygiene needs.",
       },
-      {
-        type: "li",
-        text: "Basic checkup and teeth cleaning is done as a part of the initial phase.",
-      },
-      {
-        type: "li",
-        text: "The gums portion is carefully covered with the help of a cap.",
-      },
-      {
-        type: "li",
-        text: "Our dentist then applies the patented zoom Hydrogen peroxide whitening gel to your teeth.",
-      },
-      {
-        type: "li",
-        text: "This Hydrogen Peroxide penetrates well in all the areas of teeth and breaks up the stains and discoloration, giving you healthy white teeth which can help you flaunt your perfect smile!",
-      },
+
     ],
     imageSrc: "/technology/technology-6.png",
     imageAlt: "Zoom teeth whitening treatment",
@@ -134,19 +137,15 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cerec-4",
-    title: "Dental Chair",
+    title: "Conscious Sedation",
     body: [
       {
         type: "p",
-        text: "The dental chair on which a patient lies and gets his or her tooth care treatment plays a crucial role both for the patient as well as the Dentist. The chair needs to be comfortable for the patient as the patient is going to spend a long time in the chair and also at the same time, the chair needs to be advanced with all the technology equipped so that it’s easy for the Dentist to handle things immediately then and there without the need for fetching the requirements every time.",
+        text: " More Comfortable Care For Anxious Dental Patients ",
       },
       {
         type: "p",
-        text: "At Eledent, patients comfort is our top most priority and that’s the reason we have the advanced technology in place with our Dental Chair.The chair is designed in a way that it keeps the patient relaxed over a long time and is equipped with additional facilities compared to a regular dental chair that you should have seen in many places.Dental Disinfection system",
-      },
-      {
-        type: "p",
-        text: "We have the best possible self disinfection system in place which is automated and makes sure that the dental equipment are properly sterilized before they can be used for another patient.",
+        text: "Conscious sedation helps patients feel more relaxed during dental treatment while staying awake and responsive. It can be especially helpful for anxious patients, longer procedures, or those who feel nervous about dental treatment in Hyderabad.",
       },
 
     ],
@@ -157,29 +156,42 @@ const SECTIONS: TechSection[] = [
   },
   {
     id: "cbct-5",
-    title: "Sterilization Techniques",
+    title: "Integrated Implantology",
     body: [
 
       {
-        type: "li",
-        text: "We follow the process of Fumigation wherein Formalin fumes is used to disinfect the room. The rooms are sealed and closed during the process to make the process effective!",
+        type: "p",
+        text: "Technology-Driven Planning For Implant Precision",
       },
       {
-        type: "li",
-        text: "We use Autoclave class b when it comes to sterilizing the dental tools and equipment be it hollow, porous or wrapped items. They are placed in the autoclave bags and a timer is set for the sterilization. This is a vacuum-based technology and helps in 100% disinfection..",
+        type: "p",
+        text: "Dental implants require careful evaluation of bone, bite, position, and long-term function. Our implant planning technology helps specialists assess the site more accurately, place implants with better precision, and support stronger natural-looking tooth replacement.",
       },
-      {
-        type: "li",
-        text: "We also use an Ultrasonic cleaner to remove the biological traces on the dental equipment used for the patient. A sterilization solution is prepared here with the help of the sound waves and water and the equipment are thoroughly cleaned through this process.",
-      },
-      {
-        type: "li",
-        text: "After all the equipment are sterilized, we use UV chambers to store the equipment so that they remain disinfected and can be used as per convenience.",
-      },
+
     ],
     imageSrc: "/technology/technology-6.png",
     imageAlt: "Zoom teeth whitening treatment",
     textFirst: false,
+    imageFit: "cover",
+  },
+  {
+    id: "cbct-6",
+    title: "Zoom Teeth Whitening",
+    body: [
+
+      {
+        type: "p",
+        text: "Professional Whitening For Brighter Smiles",
+      },
+      {
+        type: "p",
+        text: "Zoom teeth whitening is an advanced in-clinic whitening system designed to improve tooth shade safely and effectively. It is a suitable option for patients looking for faster, more noticeable whitening results under professional supervision.",
+      },
+
+    ],
+    imageSrc: "/technology/technology-7.png",
+    imageAlt: "Advanced dental chair",
+    textFirst: true,
     imageFit: "cover",
   },
 ];

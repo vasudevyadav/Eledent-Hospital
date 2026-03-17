@@ -13,26 +13,56 @@ type FaqItem = {
 export default function FacilitiesFaq(): JSX.Element {
     const [openId, setOpenId] = useState<number | null>(1);
 
-    const faqs: FaqItem[] = [
-        {
-            id: 1,
-            question: "Do I need to make an appointment before visiting?",
-            answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-        },
-        {
-            id: 2,
-            question: "Do I need to make an appointment before visiting?",
-            answer:
-                "Regular outpatient services are available Monday through Friday from 8:00 AM to 6:00 PM.",
-        },
-        {
-            id: 3,
-            question: "Do I need to make an appointment before visiting?",
-            answer:
-                "We offer a comprehensive range of medical services including cardiology, neurology, orthopedics and more.",
-        },
-    ];
+const faqs: FaqItem[] = [
+    {
+        id: 1,
+        question: "What facilities are available at Eledent Dental Hospital?",
+        answer:
+            "Eledent Dental Hospital offers patient-focused facilities such as a comfortable reception area, in-house pharmacy, hygienic cafeteria, spacious waiting area, executive lounges, dress-up rooms, massage chairs, valet parking, and digital dental diagnostics to support a smoother dental visit.",
+    },
+    {
+        id: 2,
+        question: "Does Eledent Dental Hospital provide advanced diagnostic facilities?",
+        answer:
+            "Yes. Eledent Dental Hospital provides advanced diagnostic support as part of its dental hospital facilities in Hyderabad. This includes digital dental X-rays and modern infrastructure that help dentists assess the problem quickly and plan treatment more clearly.",
+    },
+    {
+        id: 3,
+        question: "Is Eledent Dental Hospital designed for patient comfort during treatment?",
+        answer:
+            "Yes. Patient comfort is a key part of the facilities at Eledent Dental Hospital. The hospital includes a comfortable ambience, air purifiers, aromatherapy support, furnished waiting spaces, and other comfort-focused features to help patients feel more at ease during their visit.",
+    },
+    {
+        id: 4,
+        question: "Does Eledent Dental Hospital have an in-house pharmacy?",
+        answer:
+            "Yes. Eledent Dental Hospital has an in-house pharmacy so patients can access prescribed medicines more conveniently after consultation or treatment. This makes the overall treatment experience more organised and time-saving.",
+    },
+    {
+        id: 5,
+        question: "Are there waiting and lounge facilities for patients and attendants?",
+        answer:
+            "Yes. Eledent Dental Hospital provides a spacious waiting area, executive lounges, and patient-friendly sitting spaces. These facilities are designed to make waiting more comfortable for both patients and accompanying family members.",
+    },
+    {
+        id: 6,
+        question: "Does Eledent Dental Hospital offer parking for patients?",
+        answer:
+            "Yes. Eledent Dental Hospital offers valet parking support, making it easier for patients and visitors to access the hospital without added parking stress during their appointment.",
+    },
+    {
+        id: 7,
+        question: "Are safety and hygiene standards maintained at Eledent Dental Hospital?",
+        answer:
+            "Yes. Eledent Dental Hospital follows strong hygiene and sterilisation standards to support safe dental care. The hospital also maintains uninterrupted electricity backup and clinical infrastructure designed to support smooth treatment without avoidable interruptions.",
+    },
+    {
+        id: 8,
+        question: "Does Eledent Dental Hospital have facilities for international or long-visit patients?",
+        answer:
+            "Yes. Eledent Dental Hospital offers comfort-oriented facilities such as a cafeteria, freshening-up spaces, waiting lounges, and coordinated patient support, which can be especially useful for patients visiting for longer treatments or dental tourism in Hyderabad.",
+    },
+];
 
     const toggleFaq = (id: number) => setOpenId((p) => (p === id ? null : id));
 
@@ -66,14 +96,14 @@ export default function FacilitiesFaq(): JSX.Element {
                         </p>
 
                         <h2 className="mt-4 lg:text-[38px] text-2xl font-extrabold leading-[1.12] text-[#111827]">
-                            Need Answer? We’re
+                            Need Answers?
                             <br />
-                            Here to Help
+                            We’re Here to Help!
                         </h2>
 
-                        <p className="mt-6 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                        <p className="mt-6 max-w-[430px] text-base leading-6 text-[#6B7280]">
+
+                            Get quick answers to common dental concerns and next steps.
                         </p>
                     </div>
 

@@ -1,5 +1,4 @@
 import Navbar from "../components/Navbar";
-import HomeTestimonial from "../components/home/home-testimonial";
 import Footer from "../components/Footer";
 import AboutHero from "../components/about-us/about-hero";
 import AboutDetails from "../components/about-us/about-details";

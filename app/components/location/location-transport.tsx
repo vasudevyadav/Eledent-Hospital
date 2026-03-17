@@ -17,41 +17,51 @@ const defaultCards: InfoCard[] = [
   {
     title: "Transportation",
     icon: "https://admin.kgkrealty.com/wp-content/uploads/2025/06/Transport-scaled.png",
-    places: [
-      { name: "Jaipur Junction", distance: "2.2 Kms" },
-    ],
+    places: [{ name: "Jaipur Junction", distance: "2.2 Kms" }],
   },
   {
     title: "Hospital",
     icon: "https://admin.kgkrealty.com/wp-content/uploads/2025/06/Commercial-Hub-scaled.png",
     places: [{ name: "Jaipur International Airport", distance: "2 Km" }],
   },
-
 ];
 
 const LocationTransport: FC<Props> = ({ location }) => {
-  const data = location as any;
+  const root = location as any;
+
+  // Agar API response data array ke andar actual object bhej raha hai
+  const data = Array.isArray(root?.data) ? root.data[0] : root;
 
   const sectionLabel =
     data?.transportSectionLabel || "A Landmark Address for Refined Urban Living";
 
   const sectionTitle = data?.transportSectionTitle || "Location Excellence";
 
-  const mapEmbedUrl =
-    data?.mapEmbedUrl ||
-    "https://www.google.com/maps?q=Jaipur&z=14&output=embed";
+  const cards: InfoCard[] =
+    Array.isArray(data?.locationHighlights) && data.locationHighlights.length > 0
+      ? data.locationHighlights.map((item: any) => ({
+        title: item?.title || "",
+        icon: item?.icon || "",
+        places: Array.isArray(item?.places)
+          ? item.places.map((place: any) => ({
+            name: place?.name || "",
+            distance: place?.distance || "",
+          }))
+          : [],
+      }))
+      : defaultCards;
 
-  const cards: InfoCard[] = data?.locationHighlights?.length
-    ? data.locationHighlights
-    : defaultCards;
+  const mapEmbedSrc =
+    data?.mapEmbedSrc ||
+    "https://www.google.com/maps?q=Jaipur&z=14&output=embed";
 
   return (
     <section className="w-full bg-white px-4 py-10 lg:px-20 lg:py-16">
-      <div className="flex flex-col items-start gap-8 lg:flex-row lg:gap-16">
-        <div className="z-10 h-80 w-full overflow-hidden rounded-2xl border border-gray-200 shadow-sm lg:h-[30rem] lg:w-5/12">
+      <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-16">
+        <div className="z-10 h-56 w-full overflow-hidden rounded-2xl border border-gray-200 shadow-sm lg:h-[25rem] lg:w-5/12">
           <iframe
-            src={mapEmbedUrl}
-            title={`${data?.name || "Location"} map`}
+            src={mapEmbedSrc}
+            title={`${data?.heroTitle || data?.name || "Location"} map`}
             className="h-full w-full"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -59,11 +69,11 @@ const LocationTransport: FC<Props> = ({ location }) => {
         </div>
 
         <div className="mb-8 w-full lg:mb-0 lg:w-7/12">
-          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-black lg:mt-6">
+          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-black lg:mt-0">
             {sectionLabel}
           </p>
 
-          <h2 className="mb-6 text-2xl lg:text-3xl font-semibold text-[#f36d00]">
+          <h2 className="mb-6 text-2xl font-semibold text-[#f36d00] lg:text-3xl">
             {sectionTitle}
           </h2>
 
@@ -78,12 +88,14 @@ const LocationTransport: FC<Props> = ({ location }) => {
                     src={card.icon}
                     alt={card.title}
                     className="max-h-full max-w-full object-contain"
-                    loading="lazy"  
+                    loading="lazy"
                   />
                 </div>
 
                 <div className="w-full">
-
+                  <h3 className="mb-1 text-sm font-semibold text-gray-900">
+                    {card.title}
+                  </h3>
 
                   <div className="space-y-1">
                     {card.places.map((place, placeIndex) => (

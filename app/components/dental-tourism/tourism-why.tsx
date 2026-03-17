@@ -86,19 +86,19 @@ const TourismWhy: FC = () => {
 
                                 <div className="mt-5 space-y-4 lg:text-base text-sm leading-relaxed text-gray-600">
                                     <p>
-                                        Eledent Dental Hospital has been at the vanguard of dental healthcare and has been a prominent brand that provides world-class dental care for all ages with state of the art facilities under one roof.
+                                        Eledent Dental Hospital has been at the vanguard of dental healthcare and has been a prominent brand that provides world-class dental care for all ages with state of the art facilities under one roof. The best part about the treatments is that they are entirely secure and affordable for all.
                                     </p>
 
                                     <p>
-                                        The best part about the treatments is that they are entirely secure and affordable for all.The inception story behind the Eledent Hospital is based on the major finding by four enthusiastic doctors.
+                                        The inception story behind the Eledent Hospital is based on the major finding by four enthusiastic doctors. They have been working at different hospitals for the past 13 years and have found the problems faced by international patients who fly so far just for their dental treatments.
                                     </p>
 
                                     <p>
-                                        They have been working at different hospitals for the past 13 years and have found the problems faced by international patients who fly so far just for their dental treatments.After a significant quantum of research and studies regarding the problems faced by international patients,
+                                        After a significant quantum of research and studies regarding the problems faced by international patients, Eledent digital dentistry was founded to serve the patients worldwide flawlessly.
                                     </p>
 
                                     <p>
-                                        Eledent digital dentistry was founded to serve the patients worldwide flawlessly.At Eledent we understand the concerns associated with travelling to a different country for dental treatment and we strive hard for your safe secure and happy experience before and after treatment.
+                                        At Eledent we understand the concerns associated with travelling to a different country for dental treatment and we strive hard for your safe secure and happy experience before and after treatment.
                                     </p>
                                 </div>
                             </div>
@@ -117,9 +117,8 @@ const TourismWhy: FC = () => {
 
                     <div className="mt-10 md:mt-14 px-2 md:px-10 pb-6 md:pb-10">
                         <h3 className="text-center text-xl lg:text-3xl font-semibold text-[#f97316]">
-                            The key highlights of Eledent International
-                            <br className="hidden" />
-                            Digital Dentistry are
+                            The key highlights of Eledent International     Digital
+                            Dentistry are
                         </h3>
 
                         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
