@@ -23,8 +23,7 @@ export default function TechnologyHero() {
                         Technology
                     </h1>
                     <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl">
-                        Tincidunt suspendisse semper integer
-                        elementum maecenas.
+                        Advanced Digital Dentistry for Better Accuracy
                     </p>
                 </div>
 

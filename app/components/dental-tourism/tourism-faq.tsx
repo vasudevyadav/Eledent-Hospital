@@ -16,21 +16,63 @@ export default function TourismFaq(): JSX.Element {
     const faqs: FaqItem[] = [
         {
             id: 1,
-            question: "Do I need to make an appointment before visiting?",
+            question: "Why do international patients choose dental tourism in Hyderabad?",
             answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+                "International patients choose dental tourism in Hyderabad for affordable treatment, experienced dentists, advanced technology, and easier treatment planning without long waiting periods. Hyderabad also offers good travel connectivity, accommodation options, and access to modern dental care in one city.",
         },
         {
             id: 2,
-            question: "Do I need to make an appointment before visiting?",
+            question: "Why is India a popular destination for dental tourism?",
             answer:
-                "Regular outpatient services are available Monday through Friday from 8:00 AM to 6:00 PM.",
+                "Dental tourism in India is popular because patients can access advanced dental treatments at lower costs compared to many countries. India also offers qualified dentists, modern dental technology, favourable exchange value, and a wide range of restorative and cosmetic dental treatments.",
         },
         {
             id: 3,
-            question: "Do I need to make an appointment before visiting?",
+            question: "What treatments are available under dental tourism at Eledent Dental Hospital?",
             answer:
-                "We offer a comprehensive range of medical services including cardiology, neurology, orthopedics and more.",
+                "At Eledent Dental Hospital, international patients can plan treatments such as dental implants, root canal treated teeth, veneers, smile correction, fractured tooth restoration, gap closure, and cosmetic dental procedures. The treatment plan depends on the patient’s dental condition, goals, and travel schedule.",
+        },
+        {
+            id: 4,
+            question: "How does Eledent Dental Hospital help international dental patients before they travel?",
+            answer:
+                "Before travel, the team at Eledent Dental Hospital can arrange an e-consultation, review your dental X-rays or scans, and explain the overall treatment plan and expected cost. This helps international patients plan their visit with more clarity before coming to Hyderabad.",
+        },
+        {
+            id: 5,
+            question: "Can Eledent Dental Hospital help with visa, travel, and accommodation for dental tourism?",
+            answer:
+                "Yes. For dental tourism in Hyderabad, Eledent Dental Hospital can guide patients with visa-related information, travel planning, and accommodation support. The team can also assist with pre-treatment coordination and help patients manage their visit more smoothly.",
+        },
+        {
+            id: 6,
+            question: "Is Hyderabad a good city for dental tourism in India?",
+            answer:
+                "Yes. Hyderabad is one of the preferred cities for dental tourism in India because it combines advanced dental care, good infrastructure, airport connectivity, accommodation options, and a strong mix of modern convenience and cultural experience.",
+        },
+        {
+            id: 7,
+            question: "How do I start planning dental treatment in Hyderabad with Eledent Dental Hospital?",
+            answer:
+                "You can start by contacting Eledent Dental Hospital through WhatsApp, call, or enquiry form. After that, the team can schedule an e-consultation, review your reports, and help you plan the treatment timeline before you book your travel.",
+        },
+        {
+            id: 8,
+            question: "Can I get a treatment plan and cost estimate before travelling to India?",
+            answer:
+                "Yes. If you already have dental X-rays or scan copies, you can send them to Eledent Dental Hospital for evaluation. Based on the findings, the team can suggest the likely treatment plan, estimated cost, and the steps required during your dental tourism visit.",
+        },
+        {
+            id: 9,
+            question: "Is communication easy for international patients at Eledent Dental Hospital?",
+            answer:
+                "Yes. The page states that doctors and staff are proficient in English, and language translator support can also be arranged if required. This makes international dental treatment in Hyderabad easier to plan and understand.",
+        },
+        {
+            id: 10,
+            question: "Why choose Eledent Dental Hospital for dental tourism in Hyderabad?",
+            answer:
+                "Patients choose Eledent Dental Hospital for dental tourism in Hyderabad because it combines specialist-led treatment, digital dentistry, competitive pricing, accommodation support, and a smoother treatment journey for international patients from consultation to follow-up.",
         },
     ];
 
@@ -71,10 +113,10 @@ export default function TourismFaq(): JSX.Element {
                             Here to Help
                         </h2>
 
-                        <p className="lg:mt-6 mt-3 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
+                        {/* <p className="lg:mt-6 mt-3 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                        </p>
+                        </p> */}
                     </div>
 
                     {/* RIGHT ACCORDION */}
@@ -118,7 +160,7 @@ export default function TourismFaq(): JSX.Element {
 
                                     {/* BODY */}
                                     {isOpen && (
-                                        <div className="bg-[#E5E7EB] px-6 py-5 text-[11px] leading-5 text-[#6B7280]">
+                                        <div className="bg-[#E5E7EB] px-6 py-5 text-sm leading-5 text-[#6B7280]">
                                             {faq.answer}
                                         </div>
                                     )}

@@ -110,10 +110,10 @@ function ValueCard({
 
                 </div>
 
-                <h4 className="text-[15px] font-semibold leading-snug">{title}</h4>
+                <h4 className="text-sm font-semibold leading-snug">{title}</h4>
             </div>
 
-            <p className="mt-4 text-sm font-medium leading-relaxed transition-all duration-300">
+            <p className="mt-4 text-xs font-medium leading-relaxed transition-all duration-300 line-clamp-5">
                 {desc}
             </p>
         </div>
