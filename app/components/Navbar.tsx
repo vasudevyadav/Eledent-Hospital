@@ -219,7 +219,15 @@ export default function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Instagram className="h-3 w-3 text-[#E87733] sm:h-4 sm:w-4" />
+
+                                <Image
+                                    src="/home/instagram.png"
+                                    alt="Eledent logo"
+                                    className="h-3 w-3 sm:h-5 sm:w-5"
+                                    width={500}
+                                    height={500}
+                                    priority
+                                />
                             </a>
                             <a
                                 href="https://www.facebook.com/EledentHospitals/"
@@ -228,7 +236,14 @@ export default function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Facebook className="h-3 w-3 text-[#E87733] sm:h-4 sm:w-4" />
+                                <Image
+                                    src="/home/facebook.png"
+                                    alt="Eledent logo"
+                                    className="h-3 w-3 sm:h-5 sm:w-5"
+                                    width={500}
+                                    height={500}
+                                    priority
+                                />
                             </a>
                             <a
                                 href="https://www.youtube.com/channel/UCONaCM78ATu5rcNx_DLQxBg"
@@ -237,7 +252,14 @@ export default function Navbar() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Youtube className="h-3 w-3 text-[#E87733] sm:h-4 sm:w-4" />
+                                <Image
+                                    src="/home/youtube.png"
+                                    alt="Eledent logo"
+                                    className="h-3 w-3 sm:h-5 sm:w-5"
+                                    width={500}
+                                    height={500}
+                                    priority
+                                />
                             </a>
                         </div>
                     </div>
