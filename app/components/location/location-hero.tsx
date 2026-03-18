@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { PhoneCall, Clock } from "lucide-react";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 
 type LocationHeroProps = {
   city: string;
@@ -25,8 +25,10 @@ export default function LocationHero({
   hoursLabel = "Visiting Hours",
   visitingHours = "Mon - Sun 9 AM to 9 PM",
   ctaText = "Book An Appointment",
-  ctaHref = "/contact",
 }: LocationHeroProps) {
+
+  const { openModal } = useAppointmentModal();
+
   return (
     <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 rounded">
       <div className="mx-auto w-full max-w-7xl pb-24 lg:pb-16">
@@ -86,13 +88,13 @@ export default function LocationHero({
                 </div>
               </div>
 
-              <Link
-
-                href={ctaHref}
+              <button
+                type="button"
+                onClick={openModal}
                 className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white transition duration-300 hover:scale-105 hover:bg-orange-600"
               >
                 {ctaText}
-              </Link>
+              </button>
 
             </div>
           </div>

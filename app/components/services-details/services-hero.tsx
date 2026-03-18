@@ -1,15 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { PhoneCall, Clock } from "lucide-react";
 import type { ServicesHeroSection } from "@/data/serviceDetails";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
+
 
 type Props = {
   data: ServicesHeroSection;
 };
 
 export default function ServicesHero({ data }: Props) {
+  const { openModal } = useAppointmentModal();
+
   return (
     <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40">
       <div className="mx-auto w-full max-w-7xl pb-16">
@@ -20,7 +23,6 @@ export default function ServicesHero({ data }: Props) {
             fill
             priority
             className="rounded-3xl object-cover"
-
           />
 
           <div className="absolute inset-0 rounded-3xl bg-black/35" />
@@ -34,12 +36,6 @@ export default function ServicesHero({ data }: Props) {
               {data.subtitle}
             </p>
           </div>
-
-          <Link
-            href={data.overlayLinkHref || "#"}
-            aria-label="Open service"
-            className="absolute inset-0 z-10"
-          />
 
           <div className="absolute lg:-bottom-8 -bottom-20 left-1/2 z-30 w-full -translate-x-1/2 px-4">
             <div className="mx-auto lg:flex w-full max-w-4xl items-center justify-between gap-5 rounded-xl bg-[#484847]/95 px-10 py-6 shadow-2xl backdrop-blur">
@@ -69,12 +65,13 @@ export default function ServicesHero({ data }: Props) {
                 </div>
               </div>
 
-              <Link
-                href={data.ctaHref}
+              <button
+                type="button"
+                onClick={openModal}
                 className="rounded-md bg-orange-500 px-3 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
               >
                 {data.ctaText}
-              </Link>
+              </button>
             </div>
           </div>
         </section>

@@ -3,6 +3,7 @@
 import { PhoneCall, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 
 const heroData = {
     title: "Dental Tourism",
@@ -19,6 +20,8 @@ const heroData = {
 };
 
 export default function TourismHero() {
+    const { openModal } = useAppointmentModal();
+
     return (
         <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40">
             <div className="mx-auto w-full max-w-7xl pb-20 lg:pb-16">
@@ -86,17 +89,16 @@ export default function TourismHero() {
                                 </div>
                             </div>
 
-                            <Link
-                                href={heroData.ctaHref}
+                            <button
+                                type="button"
+                                onClick={openModal}
                                 className="rounded-md bg-orange-500 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
                             >
                                 {heroData.ctaText}
-                            </Link>
+                            </button>
                         </div>
                     </div>
-
                 </section>
-
             </div>
         </div>
     );

@@ -111,7 +111,7 @@ export default function Footer(): JSX.Element {
         { name: "Contact Us", href: "/contact-us" },
         { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms And Conditions", href: "/terms-and-conditions" },
-        { name: "Blogs", href: "/blogs" },
+        { name: "Blogs", href: "/blog" },
     ];
 
     const phoneNumber = "+919983868366";
