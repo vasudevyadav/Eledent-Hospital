@@ -34,7 +34,6 @@ export default function Home() {
         </div>
         <BlogMain />
         <AwardsSection />
-
         <HomeFaq />
         <Footer />
       </main>
