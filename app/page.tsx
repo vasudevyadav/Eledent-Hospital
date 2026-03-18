@@ -33,7 +33,7 @@ export default function Home() {
           <BookingAportment />
         </div>
         <BlogMain />
-        {/* <AwardsSection /> */}
+        <AwardsSection />
 
         <HomeFaq />
         <Footer />
