@@ -2,35 +2,114 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { JSX } from "react";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import { useEffect, useState, type JSX } from "react";
 
 type FooterLink = { name: string; href: string };
 
+type ApiItem =
+    | {
+        id?: number | string;
+        name?: string;
+        title?: string;
+        slug?: string;
+        link?: string;
+        url?: string;
+        href?: string;
+        post_name?: string;
+        post_title?: string;
+        service_name?: string;
+    }
+    | any;
+
+function toSlug(input: string) {
+    return input
+        .toLowerCase()
+        .trim()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+}
+
 export default function Footer(): JSX.Element {
-    const servicesItems: FooterLink[] = [
-        { name: "Advanced And Painless Dental Implants", href: "/services/dental-implants" },
-        { name: "Atraumatic Extraction", href: "/services/atraumatic-extraction" },
-        { name: "Braces & Aligners", href: "/services/braces-aligners" },
-        { name: "Dental Crowns", href: "/services/dental-crowns" },
-        { name: "Dental Fillings", href: "/services/dental-fillings" },
-        { name: "Root Canal Treatment", href: "/services/root-canal-treatment" },
-        { name: "Single Visit Dentistry", href: "/services/single-visit-dentistry" },
-        { name: "Teeth Whitening", href: "/services/teeth-whitening" },
-        { name: "Conseous Sedation", href: "/services/conseous-sedation" },
-        { name: "Guided Biofilm Therapy (GBT)", href: "/services/guided-biofilm-therapy" },
-        { name: "Microscopic Dentistry", href: "/services/microscopic-dentistry" },
-        { name: "KOMPALLY", href: "/locations/kompally" },
-        { name: "Best Dental Clinic in Kompally, Hyderabad", href: "/best-dental-clinic-in-kompally" },
-        { name: "Best Dentist in Kompally, Hyderabad", href: "/best-dentist-in-kompally" },
-    ];
+    const [servicesItems, setServicesItems] = useState<FooterLink[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        async function loadServices() {
+            try {
+                setLoading(true);
+
+                const res = await fetch(
+                    "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services",
+                    { cache: "no-store" }
+                );
+
+                const data: ApiItem[] = await res.json();
+
+                const list: ApiItem[] = Array.isArray(data)
+                    ? data
+                    : Array.isArray((data as any)?.data)
+                        ? (data as any).data
+                        : Array.isArray((data as any)?.services)
+                            ? (data as any).services
+                            : [];
+
+                const mapped = list
+                    .map((s) => {
+                        const label = String(
+                            s?.name || s?.title || s?.service_name || s?.post_title || ""
+                        ).trim();
+
+                        if (!label) return null;
+
+                        const direct =
+                            (typeof s?.href === "string" && s.href) ||
+                            (typeof s?.link === "string" && s.link) ||
+                            (typeof s?.url === "string" && s.url);
+
+                        let href = "";
+                        if (direct) {
+                            try {
+                                const u = new URL(direct);
+                                href = u.pathname || direct;
+                            } catch {
+                                href = direct;
+                            }
+                        } else {
+                            const slug = String(s?.slug || s?.post_name || toSlug(label)).trim();
+                            href = `/services/${slug}`;
+                        }
+
+                        return { name: label, href };
+                    })
+                    .filter(Boolean) as FooterLink[];
+
+                mapped.sort((a, b) => a.name.localeCompare(b.name));
+
+                if (!cancelled) setServicesItems(mapped);
+            } catch {
+                if (!cancelled) setServicesItems([]);
+            } finally {
+                if (!cancelled) setLoading(false);
+            }
+        }
+
+        loadServices();
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     const quickLinks: FooterLink[] = [
         { name: "Home", href: "/" },
-        { name: "About Us", href: "/about" },
+        { name: "About Us", href: "/about-us" },
         { name: "Dental Tourism", href: "/dental-tourism" },
-        { name: "Facility", href: "/facilities" },
-        { name: "Contact Us", href: "/contact" },
+        { name: "Technology", href: "/technology" },
+        { name: "Facilities", href: "/facilities" },
+        { name: "Contact Us", href: "/contact-us" },
         { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms And Conditions", href: "/terms-and-conditions" },
         { name: "Blogs", href: "/blogs" },
@@ -39,14 +118,13 @@ export default function Footer(): JSX.Element {
     return (
         <footer className="relative w-full">
             <div className="bg-gradient-to-b from-[#e46d2b] to-[#E87733] text-white">
-                {/* Responsive padding tuned, design same */}
-                <div className="mx-auto max-w-[1180px] px-4 py-10 sm:px-6">
+                <div className="mx-auto max-w-[1180px] px-4 py-8 sm:px-6">
                     <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
                         {/* LOGO */}
-                        <div className="md:col-span-3">
+                        <div className="md:col-span-3 mt-2">
                             <Link href="/" className="inline-flex items-start">
                                 <Image
-                                    src="/eledent-White-Logo.webp"
+                                    src="/home/White-Logo.webp"
                                     alt="Eledent"
                                     width={220}
                                     height={80}
@@ -60,24 +138,35 @@ export default function Footer(): JSX.Element {
                         <div className="md:col-span-4">
                             <h3 className="text-xl font-semibold opacity-90">Services</h3>
 
-                            {/* Same list style, just responsive text wrapping */}
                             <ul className="mt-4 space-y-3 text-[15px] leading-5">
-                                {servicesItems.map((item) => (
-                                    <li key={item.href + item.name} className="flex gap-2">
-                                        <span className="mt-[6px] inline-block h-[5px] w-[5px] shrink-0 rounded-full bg-white/85" />
-                                        <Link
-                                            href={item.href}
-                                            className="hover:underline hover:underline-offset-4 break-words"
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
+                                {loading ? (
+                                    <>
+                                        {Array.from({ length: 6 }).map((_, i) => (
+                                            <li key={i} className="text-white/70">
+                                                Loading...
+                                            </li>
+                                        ))}
+                                    </>
+                                ) : servicesItems.length ? (
+                                    servicesItems.map((item) => (
+                                        <li key={item.href + item.name} className="flex gap-2">
+                                            <span className="mt-[6px] inline-block h-[5px] w-[5px] shrink-0 rounded-full bg-white/85" />
+                                            <Link
+                                                href={item.href}
+                                                className="break-words hover:underline hover:underline-offset-4"
+                                            >
+                                                {item.name}
+                                            </Link>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li className="text-white/80">Services load nahi ho paaye.</li>
+                                )}
                             </ul>
                         </div>
 
                         {/* QUICK LINKS */}
-                        <div className="md:col-span-3">
+                        <div className="md:col-span-2">
                             <h3 className="text-xl font-semibold opacity-90">Quick Links</h3>
 
                             <ul className="mt-4 space-y-3 text-[15px] leading-5">
@@ -86,7 +175,7 @@ export default function Footer(): JSX.Element {
                                         <span className="mt-[6px] inline-block h-[5px] w-[5px] shrink-0 rounded-full bg-white/85" />
                                         <Link
                                             href={item.href}
-                                            className="hover:underline hover:underline-offset-4 break-words"
+                                            className="break-words hover:underline hover:underline-offset-4"
                                         >
                                             {item.name}
                                         </Link>
@@ -96,7 +185,7 @@ export default function Footer(): JSX.Element {
                         </div>
 
                         {/* CONTACT */}
-                        <div className="md:col-span-2">
+                        <div className="md:col-span-3">
                             <h3 className="text-xl font-semibold opacity-90">Contact Us</h3>
 
                             <div className="mt-4 space-y-2 text-[15px] leading-5">
@@ -104,41 +193,69 @@ export default function Footer(): JSX.Element {
 
                                 <a
                                     href="mailto:contact@eledenthospitals.com"
-                                    className="block opacity-95 hover:underline hover:underline-offset-4 break-words"
+                                    className="block break-words opacity-95 hover:underline hover:underline-offset-4"
                                 >
                                     contact@eledenthospitals.com
                                 </a>
 
                                 <a
-                                    href="tel:+917799719994"
+                                    href="tel:+919983868366"
                                     className="block opacity-95 hover:underline hover:underline-offset-4"
                                 >
-                                    77996 99994
+                                    +91 99838 68366
                                 </a>
                             </div>
 
-                            {/* Social icons same, just a bit better spacing on small screens */}
                             <div className="mt-4 flex items-center gap-2">
                                 <a
-                                    href="#"
+                                    href="https://www.facebook.com/EledentHospitals/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label="Facebook"
-                                    className="grid h-8 w-8 place-items-center rounded-[3px] bg-[#2d5fd3]"
+                                    className="grid h-8 w-8 place-items-center rounded-[5px] bg-white"
                                 >
-                                    <Facebook className="h-5 w-5 text-white" />
+                                    <Image
+                                        src="/home/facebook.png"
+                                        alt="Facebook"
+                                        className="h-3 w-3 sm:h-6 sm:w-6"
+                                        width={500}
+                                        height={500}
+                                        priority
+                                    />
                                 </a>
+
                                 <a
-                                    href="#"
+                                    href="https://www.instagram.com/eledenthospitals/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label="Instagram"
-                                    className="grid h-8 w-8 place-items-center rounded-[3px] bg-[#1b9bd7]"
+                                    className="grid h-8 w-8 place-items-center rounded-[5px] bg-white"
                                 >
-                                    <Instagram className="h-5 w-5 text-white" />
+                                    <Image
+                                        src="/home/instagram.png"
+                                        alt="Instagram"
+                                        className="h-3 w-3 sm:h-6 sm:w-6"
+                                        width={500}
+                                        height={500}
+                                        priority
+                                    />
                                 </a>
+
                                 <a
-                                    href="#"
+                                    href="https://www.youtube.com/channel/UCONaCM78ATu5rcNx_DLQxBg"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label="YouTube"
-                                    className="grid h-8 w-8 place-items-center rounded-[3px] bg-[#e53935]"
+                                    className="grid h-8 w-8 place-items-center rounded-[5px] bg-white"
                                 >
-                                    <Youtube className="h-5 w-5 text-white" />
+                                    <Image
+                                        src="/home/youtube.png"
+                                        alt="YouTube"
+                                        className="h-3 w-3 sm:h-6 sm:w-6"
+                                        width={500}
+                                        height={500}
+                                        priority
+                                    />
                                 </a>
                             </div>
                         </div>
@@ -147,6 +264,12 @@ export default function Footer(): JSX.Element {
 
                 <div className="h-[1px] w-full bg-white/20" />
             </div>
+
+            <div className="bg-gradient-to-b from-[#e46d2b] to-[#E87733] text-white py-4 text-center ">
+                <h3 className="text-base leading-snug  ">
+                    <a href="/">  © 2025 ELEDENT HOSPITALS LLP. </a>  All rights reserved.</h3>
+            </div>
+
         </footer>
     );
 }

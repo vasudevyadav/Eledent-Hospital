@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AboutHero from "../components/about-us/about-hero";
@@ -7,8 +8,11 @@ import MissionVision from "../components/about-us/misson-visson";
 import AboutAppointment from "../components/about-us/about-appointment";
 import AboutFaq from "../components/about-us/about-faq";
 import AboutTestimonial from "../components/about-us/about-testimonial";
+import { getMetadataByPath } from "@/lib/metadata";
 
-export default function Home() {
+export const metadata: Metadata = getMetadataByPath("/about-us");
+
+export default function AboutUs() {
   return (
     <div>
       <Navbar />

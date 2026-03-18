@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import TourismHero from "../components/dental-tourism/tourism-hero";
@@ -9,6 +10,9 @@ import VisaAccommodation from "../components/dental-tourism/visa-accommodation";
 import JourneyDigitalDentistry from "../components/dental-tourism/journey-digital-dentistry";
 import TourismFaq from "../components/dental-tourism/tourism-faq";
 import BookingTourism from "../components/comman/booking-tourism";
+import { getMetadataByPath } from "@/lib/metadata";
+
+export const metadata: Metadata = getMetadataByPath("/dental-tourism");
 
 export default function DentalTourism() {
   return (

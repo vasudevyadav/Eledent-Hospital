@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BlogHero from "../components/blog/blog-hero";
 import BlogListingSection from "../components/blog/blog-about";
 import BookingAportment from "../components/comman/booking-aportment";
 import BlogFaq from "../components/blog/blog-faq";
+import { getMetadataByPath } from "@/lib/metadata";
+
+export const metadata: Metadata = getMetadataByPath("/blogs");
 
 async function getBlogPageData() {
   try {

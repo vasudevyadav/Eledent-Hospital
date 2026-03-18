@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { getMetadataByPath } from "@/lib/metadata";
+
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/home/hero-section";
 import AboutUs from "./components/home/about-us";
@@ -10,8 +13,9 @@ import BlogMain from "./components/home/blog";
 import HomeFaq from "./components/home/home-faq";
 import Footer from "./components/Footer";
 import BookingAportment from "./components/comman/booking-aportment";
-import Award from "./components/home/award";
 import AwardsSection from "./components/home/award";
+
+export const metadata: Metadata = getMetadataByPath("/");
 
 export default function Home() {
   return (
