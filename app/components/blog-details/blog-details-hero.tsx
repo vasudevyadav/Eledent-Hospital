@@ -11,7 +11,7 @@ type BlogDetailsHeroProps = {
 
 export default function BlogDetailsHero({ hero }: BlogDetailsHeroProps) {
   return (
-    <div className="lg:my-12 my-6 lg:mx-24 mx-6 lg:mt-40">
+    <div className="lg:my-12 my-6 lg:mx-24 mx-6 lg:mt-40 mt-36">
       <section className="relative z-0 lg:h-[200px] h-[100px] w-full overflow-hidden rounded-3xl">
         <Image
           src={hero.image}

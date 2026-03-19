@@ -30,7 +30,7 @@ export default function LocationHero({
   const { openModal } = useAppointmentModal();
 
   return (
-    <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 rounded">
+    <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36 rounded">
       <div className="mx-auto w-full max-w-7xl pb-24 lg:pb-16">
         <section className="group relative z-0 lg:h-[440px] h-[330px] w-full overflow-visible ">
           <Image

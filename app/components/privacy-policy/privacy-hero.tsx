@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function PrivacyHero() {
     return (
-        <div className="lg:my-5 my-3 lg:mx-24 mx-6 lg:mt-40">
+        <div className="lg:my-5 my-3 lg:mx-24 mx-6 lg:mt-40 mt-36">
 
             <section className="relative z-0 lg:h-[420px] h-[300px] w-full overflow-hidden rounded-3xl">
                 <Image

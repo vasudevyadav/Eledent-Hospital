@@ -8,7 +8,7 @@ export default function AboutUs() {
     return (
         <section className="home-about-bg">
             {/* keep your desktop spacing same, but make mobile/tablet nicer */}
-            <div className="mt-24 sm:mt-32 lg:mt-40 mx-4 sm:mx-8 lg:mx-24">
+            <div className="mt-36 lg:mt-40 mx-4 sm:mx-8 lg:mx-24">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-7xl mx-auto">
                     {/* IMAGE */}
                     <div className="relative">
