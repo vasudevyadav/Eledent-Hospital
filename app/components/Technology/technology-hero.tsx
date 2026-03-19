@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function TechnologyHero() {
     return (
-        <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40">
+        <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36">
 
             <section className="relative z-0 lg:h-[440px] h-[350px] w-full overflow-hidden lg:rounded-3xl rounded-2xl">
                 <Image

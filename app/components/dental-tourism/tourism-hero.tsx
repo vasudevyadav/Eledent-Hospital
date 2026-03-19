@@ -23,7 +23,7 @@ export default function TourismHero() {
     const { openModal } = useAppointmentModal();
 
     return (
-        <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40">
+        <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36">
             <div className="mx-auto w-full max-w-7xl pb-20 lg:pb-16">
                 <section className="relative z-0 h-[350px] w-full overflow-visible rounded-2xl lg:h-[440px] lg:rounded-3xl">
                     <Image

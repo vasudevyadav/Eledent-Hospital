@@ -20,7 +20,7 @@ const heroData = {
 
 export default function BlogHero() {
   return (
-    <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 ">
+    <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36 ">
       <div className="mx-auto w-full max-w-7xl pb-16 ">
         <section className="relative lg:h-[400px] h-[270px] w-full overflow-visible rounded-3xl md:h-[420px] py-10 lg:py-0">
           <Image
