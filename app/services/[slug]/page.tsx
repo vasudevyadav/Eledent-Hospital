@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ServicesHero from "../../components/services-details/services-hero";
@@ -23,16 +21,10 @@ type PageProps = {
   }>;
 };
 
-type ServicesHeroSection = {
-  title: string;
-  description: string;
-  image: string;
-};
-
 type ServiceResponse = {
   slug: string;
-  hero: ServicesHeroSection;
-  overview?: any;
+  hero: any;
+  overview: any;
   appointment?: any;
   count?: any;
   procedure?: any;
@@ -43,15 +35,6 @@ type ServiceResponse = {
   ctaSection?: any;
   faq?: any;
 };
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "http://localhost:3000";
-
-function getAbsoluteImageUrl(image?: string) {
-  if (!image) return `${siteUrl}/og-image.jpg`;
-  if (image.startsWith("http://") || image.startsWith("https://")) return image;
-  return `${siteUrl}${image.startsWith("/") ? image : `/${image}`}`;
-}
 
 async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
   const url = `https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/service/${encodeURIComponent(
@@ -65,69 +48,17 @@ async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
 
     const data = (await res.json()) as ServiceResponse;
 
-    if (!data?.slug || !data?.hero) return null;
+    if (!data?.slug) return null;
 
     return data;
-  } catch {
+  } catch (err) {
     return null;
   }
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const service = await getServiceBySlug(slug);
-
-  if (!service) {
-    return {
-      title: "Service Not Found - Eledent Dental Hospitals",
-      description: "The requested service page could not be found.",
-    };
-  }
-
-  const title = service.hero.title || `${slug} - Eledent Dental Hospitals`;
-
-  const description =
-    service.hero.description ||
-    `Explore ${slug} treatment at Eledent Dental Hospitals with expert care and advanced technology.`;
-
-  const image = getAbsoluteImageUrl(service.hero.image);
-  const canonicalUrl = `${siteUrl}/services/${slug}`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title,
-      description,
-      url: canonicalUrl,
-      siteName: "Eledent Dental Hospitals",
-      type: "article",
-      locale: "en_IN",
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-    },
-  };
-}
-
 export default async function ServicesDetailsPage({ params }: PageProps) {
   const { slug } = await params;
+
   const service = await getServiceBySlug(slug);
 
   if (!service) notFound();
@@ -136,7 +67,7 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
     <div>
       <Navbar />
       <main>
-        <ServicesHero data={service.hero as any} />
+        <ServicesHero data={service.hero} />
 
         {/* @ts-ignore */}
         <DentalImplants data={service.overview} />
@@ -154,9 +85,11 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
 
         {service?.value ? <OverValue data={service.value} /> : null}
 
-        {service?.beforeAfter ? (
-          <AfterBefore data={service.beforeAfter} />
-        ) : null}
+        {service?.beforeAfter ? <AfterBefore data={service.beforeAfter} /> : null}
+
+        {/* {service?.testimonials ? (
+                    <ServicesTestimonial data={service.testimonials} />
+                ) : null} */}
 
         <ServicesTestimonial />
 
