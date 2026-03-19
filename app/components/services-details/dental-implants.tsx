@@ -20,7 +20,7 @@ export default function DentalImplantsSection({
               What
             </span>
 
-            <h2 className="mt-4 text-[28px] font-extrabold leading-[1.15] text-[#F47A20] md:text-[34px]">
+            <h2 className="mt-4 text-xl lg:font-extrabold font-semibold lg:leading-[1.15] text-[#F47A20] lg:text-[34px]">
               Exactly Are Dental Implants?
             </h2>
 

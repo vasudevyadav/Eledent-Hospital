@@ -32,7 +32,7 @@ function DentalImplantsPlan({
 
           <div className="absolute inset-0 bg-black/60" />
 
-          <div className="relative z-10 px-6 py-10 md:px-10 md:py-12">
+          <div className="relative z-10 px-6 md:px-10 lg:py-12 py-6">
             <div className="mb-9 text-center">
               <p className="text-xl font-bold leading-tight lg:text-4xl">
                 <span className="text-[#F47A20]">{headingLine1}</span>
@@ -82,7 +82,7 @@ function PlanCard({
 
       <div
         className={[
-          "absolute left-0 right-0 top-[45%] z-50 mx-auto w-48 line-clamp-2 lg:top-[49%]",
+          "absolute left-0 right-0 lg:top-[45%] top-[53%] z-50 mx-auto w-48 line-clamp-2 lg:top-[49%]",
           "rounded-lg px-3 py-2.5 text-center text-sm font-extrabold tracking-wide",
           "bg-[#484847] text-white transition-colors duration-300 group-hover:bg-[#e46713]",
         ].join(" ")}
@@ -90,8 +90,8 @@ function PlanCard({
         {title}
       </div>
 
-      <div className="px-5 pb-5 pt-12 lg:pt-11">
-        <p className="line-clamp-3 h-[75px] text-center text-[15px] leading-relaxed text-[#6B7280]">
+      <div className="px-5 pb-5 pt-8 lg:pt-11">
+        <p className="line-clamp-3 lg:h-[75px] text-center text-[15px] leading-relaxed text-[#6B7280]">
           {description}
         </p>
 
@@ -100,7 +100,7 @@ function PlanCard({
         <div className="flex justify-center">
           <Link
             href={href ?? "#"}
-            className="inline-flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-[#F47A20]"
+            className="inline-flex items-center gap-2 lg:text-base text-sm font-semibold uppercase tracking-wide text-[#F47A20]"
           >
             Know More
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F47A20] text-white transition-transform duration-300 group-hover:translate-x-0.5">

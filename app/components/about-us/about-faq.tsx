@@ -16,21 +16,51 @@ export default function AboutFaq(): JSX.Element {
     const faqs: FaqItem[] = [
         {
             id: 1,
-            question: "Do I need to make an appointment before visiting?",
+            question: " What kind of dental hospital is Eledent Dental Hospital?",
             answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+                "Eledent Dental Hospital is a multi-speciality dental hospital in Hyderabad offering specialist-led care under one roof. Patients can visit for advanced dental care in Hyderabad, including dental implants, root canal treatment, braces and aligners, smile makeovers, and kids dentistry.",
         },
         {
             id: 2,
-            question: "Do I need to make an appointment before visiting?",
+            question: "How many Eledent Dental Hospital branches are there in Hyderabad?",
             answer:
-                "Regular outpatient services are available Monday through Friday from 8:00 AM to 6:00 PM.",
+                "Eledent Dental Hospital is a growing dental hospital chain in Hyderabad with five locations, including Kondapur, KPHB, Manikonda, Banjara Hills, and Kompally. This helps patients access expert dental care closer to where they live or work.",
         },
         {
             id: 3,
-            question: "Do I need to make an appointment before visiting?",
+            question: " What makes Eledent Dental Hospital different from a regular dental clinic?",
             answer:
-                "We offer a comprehensive range of medical services including cardiology, neurology, orthopedics and more.",
+                "Unlike a single-doctor setup, Eledent Dental Hospital brings multiple dental specialists in Hyderabad under one roof. Patients get clearer diagnosis, better treatment planning, and access to both routine and advanced dental care in one place.",
+        },
+        {
+            id: 4,
+            question: " Do different dental specialists work together at Eledent Dental Hospital? ",
+            answer:
+                "Yes. Eledent Dental Hospital brings implantologists, orthodontists, endodontists, prosthodontists, pedodontists, periodontists, oral surgeons, cosmetic dental surgeons, and general dentists together. This makes it easier to access the right dental specialist in Hyderabad for your concern.",
+        },
+        {
+            id: 5,
+            question: " Is Eledent Dental Hospital suitable for both children and adults? ",
+            answer:
+                "Yes. Eledent Dental Hospital provides dental care for children, teenagers, adults, and senior patients. Families can visit for kids dentistry in Hyderabad, preventive dental care, smile correction, pain relief, and advanced treatments like dental implants in Hyderabad.",
+        },
+        {
+            id: 6,
+            question: " What technologies are used at Eledent Dental Hospital?",
+            answer:
+                "Unlike a single-doctor setup, Eledent Dental Hospital brings multiple dental specialists in Hyderabad under one roof. Patients get clearer diagnosis, better treatment planning, and access to both routine and advanced dental care in one place.",
+        },
+        {
+            id: 7,
+            question: " Can I visit Eledent Dental Hospital for both simple and advanced dental treatments?",
+            answer:
+                "Yes. Patients visit Eledent Dental Hospital for regular check-ups, preventive care, and pain relief, as well as root canal treatment in Hyderabad, braces and aligners in Hyderabad, smile makeovers, and full mouth rehabilitation.",
+        },
+        {
+            id: 8,
+            question: " How do I contact Eledent Dental Hospital for a consultation? ",
+            answer:
+                " You can contact Eledent Dental Hospital by calling 9983868366 or 7799769994. You can also email contact@eledenthospitals.com to book a consultation with one of our dental specialists in Hyderabad. ",
         },
     ];
 
@@ -65,15 +95,14 @@ export default function AboutFaq(): JSX.Element {
                             FAQ
                         </p>
 
-                        <h2 className="mt-4 text-[38px] font-extrabold leading-[1.12] text-[#111827]">
-                            Need Answer? We’re
+                        <h2 className="mt-4 lg:text-[38px] text-xl font-extrabold leading-[1.12] text-[#111827]">
+                            Need Answers? We’re
                             <br />
-                            Here to Help
+                            Here to Help!
                         </h2>
 
-                        <p className="mt-6 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                        <p className="lg:mt-6 mt-2 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
+                            Get quick answers to common dental concerns and next steps.
                         </p>
                     </div>
 

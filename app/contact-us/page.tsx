@@ -12,7 +12,9 @@ export default function ContactUs() {
       <main>
         <ContactHero />
         <ContactAbout />
-        <BookingAportment />
+        <div className="lg:mt-32 mt-14">
+          <BookingAportment />
+        </div>
         <ContactFaq />
         <Footer />
       </main>

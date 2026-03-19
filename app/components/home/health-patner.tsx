@@ -18,8 +18,8 @@ type FeatureRowProps = FeatureItem & {
 export default function HealthPatner(): JSX.Element {
     const leftItems: FeatureItem[] = [
         {
-            title: "Whole-Body, Whole-Family\nCare",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Expertise in Dental Implants",
+            desc: "Single-piece and two-piece implant solutions for faster, stronger, natural-looking tooth replacement. ",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -44,8 +44,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Door-to-Door Service\nOptions",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "5 Multi-Speciality Dental Hospitals ",
+            desc: "Kondapur, KPHB, Manikonda, Banjara Hills, and Kompally for easier access across Hyderabad.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path d="M7 10.5V20h10v-9.5" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
@@ -66,8 +66,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Transparent,\nWallet-Friendly Pricing",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Patient-Focused Care",
+            desc: "Clear diagnosis, personalised treatment planning, painless and comfortable dental care.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -84,8 +84,8 @@ export default function HealthPatner(): JSX.Element {
 
     const rightItems: FeatureItem[] = [
         {
-            title: "Hospital-Level Technology,\nBoutique Feel",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Experienced Dental Specialists",
+            desc: "Implantologists, orthodontists, endodontists, prosthodontists, pedodontists, periodontists, and oral surgeons under one roof.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -99,8 +99,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Rapid Results, Proven\nOutcomes",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Advanced Technology",
+            desc: "CBCT, intraoral scanners, CEREC CAD-CAM, Zoom whitening, and integrated implantology for precise treatment. ",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -115,8 +115,8 @@ export default function HealthPatner(): JSX.Element {
             ),
         },
         {
-            title: "Compassion Centred\nCulture",
-            desc: "Nec tristique sed rutrum fringilla, it fringilla condimentum purus.",
+            title: "Complete Dental Care",
+            desc: "Restorative, cosmetic, orthodontic, and children’s dental care in one place.",
             icon: (
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                     <path
@@ -132,28 +132,28 @@ export default function HealthPatner(): JSX.Element {
     ];
 
     return (
-        <section className="w-full bg-white lg:pt-16 pt-4">
+        <section className="w-full bg-white lg:pt-10 pt-4">
             <div className="mx-auto max-w-7xl lg:px-6 px-4">
-                <div className="relative overflow-hidden rounded-t-[22px] border border-slate-100 bg-[#f9fbff] pt-10 lg:pb-5 pb-12">
+                <div className="relative overflow-hidden rounded-t-[22px] border border-slate-100 bg-[#f9fbff] pt-10 lg:pb-5 pb-0">
 
                     <div className="relative px-6 py-0 sm:px-10">
                         <div className="text-center">
 
-                            <p className=" w-fit mx-auto text-slate-400  px-5 py-1 text-sm bg-[#f36d00] text-white font-semibold ">WHY CHOOSE US</p>
-                            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
-                                The Health Partner You&apos;ve Been Looking For
+                            <p className=" w-fit mx-auto text-slate-400  lg:px-5 px-3 py-1 text-sm bg-[#f36d00] text-white font-semibold ">WHY CHOOSE US</p>
+                            <h2 className="mt-3 text-lg font-semibold text-slate-900 sm:text-3xl">
+                                Multi-Speciality Dental Hospital Backed by Specialists & Advanced Tech
                             </h2>
                         </div>
 
-                        <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
+                        <div className="lg:mt-10 mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-3">
 
 
-                            <div className="space-y-8">
+                            <div className="space-y-8 order-1">
                                 {rightItems.map((it, idx) => (
                                     <FeatureRow key={`r-${idx}`} {...it} align="right" />
                                 ))}
                             </div>
-                            <div className="relative mx-auto w-full max-w-[360px]">
+                            <div className="relative mx-auto w-full max-w-[360px] lg:order-2 order-3">
                                 <div className="relative mx-auto aspect-[3/4] w-[260px] sm:w-[300px]">
                                     <Image
                                         src="/about-us/why-chose-doctor.png"
@@ -167,7 +167,7 @@ export default function HealthPatner(): JSX.Element {
 
                             </div>
 
-                            <div className="space-y-8">
+                            <div className="space-y-8 lg:order-3 order-2">
                                 {leftItems.map((it, idx) => (
                                     <FeatureRow key={`l-${idx}`} {...it} align="left" />
                                 ))}

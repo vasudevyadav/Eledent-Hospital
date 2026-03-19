@@ -137,10 +137,10 @@ function StatIconCircle({ iconSrc, iconAlt }: { iconSrc: string; iconAlt: string
 export default function MakeAppointmentStatic() {
     // ✅ IMAGE ME JO CONTENT HAI - SAB STATIC
     const heroItems = [
-        { id: "eyebrow", type: "eyebrow" as const, text: "NEED A DOCTOR FOR CHECK-UP?" },
-        { id: "title", type: "title" as const, text: "Just Make an Appointment and You’re Done" },
-        { id: "phoneLabel", type: "phoneLabel" as const, text: "GET YOUR QUOTE OR CALL:" },
-        { id: "phone", type: "phone" as const, text: "+91 7799719994" },
+        { id: "eyebrow", type: "eyebrow" as const, text: "Need Expert Dental Care or Check-Up? " },
+        { id: "title", type: "title" as const, text: "Book Your Appointment with Our Dental Specialists" },
+        { id: "phoneLabel", type: "phoneLabel" as const, text: "Get your Consultation or Call:" },
+        { id: "phone", type: "phone" as const, text: "+91 9983868366 | +91 7799769994" },
     ];
 
     // ✅ CTA
@@ -154,37 +154,37 @@ export default function MakeAppointmentStatic() {
             id: "rating",
             iconSrc: "/home/rating-icon.png",
             iconAlt: "Rating",
-            value: 4.9,
-            decimals: 1,
-            suffix: "/5★",
-            label: "Rating on Average by Patients",
+            value: 27000,
+            decimals: 0,
+            suffix: "+",
+            label: "Root Canals ",
         },
         {
             id: "awards",
             iconSrc: "/home/award-icon.png",
             iconAlt: "Awards",
-            value: 10,
+            value: 22000,
             decimals: 0,
             suffix: "+",
-            label: "Awards and Recognitions",
+            label: " Implants ",
         },
         {
             id: "experience",
             iconSrc: "/home/year-icon.png",
             iconAlt: "Experience",
-            value: 100,
+            value: 5000,
             decimals: 0,
             suffix: "+",
-            label: "Years of Collective Experience",
+            label: "  Digital Smile  ",
         },
         {
             id: "implants",
             iconSrc: "/home/implant-icon.png",
             iconAlt: "Implants",
-            value: 27000,
+            value: 9500,
             decimals: 0,
             suffix: "+",
-            label: "Implants",
+            label: " Braces Cases ",
         },
     ];
 
@@ -212,7 +212,7 @@ export default function MakeAppointmentStatic() {
                                             return (
                                                 <p
                                                     key={item.id}
-                                                    className="mb-2 text-[10px] font-semibold tracking-widest text-white/90 sm:text-sm"
+                                                    className="mb-2 text-[10px] font-semibold tracking-widest text-white/90 sm:text-base"
                                                 >
                                                     {item.text}
                                                 </p>
@@ -223,7 +223,7 @@ export default function MakeAppointmentStatic() {
                                             return (
                                                 <h2
                                                     key={item.id}
-                                                    className="mb-4 text-lg font-bold leading-tight text-white sm:mb-6 sm:text-2xl lg:text-4xl"
+                                                    className="mb-2 text-lg font-bold leading-tight text-white sm:mb-3 sm:text-2xl lg:text-4xl"
                                                 >
                                                     {item.text}
                                                 </h2>
@@ -234,7 +234,7 @@ export default function MakeAppointmentStatic() {
                                             return (
                                                 <p
                                                     key={item.id}
-                                                    className="text-[11px] font-semibold tracking-wide text-white/90 sm:text-sm"
+                                                    className="text-[11px] font-semibold tracking-wide text-white/90 sm:text-base mb-2"
                                                 >
                                                     {item.text}
                                                 </p>

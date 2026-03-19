@@ -334,7 +334,7 @@ function ServiceCard({
           )}
 
           {/* Heading clickable */}
-          <h3 className="text-base font-semibold leading-snug text-[#1a1a1a] sm:text-lg">
+          <h3 className="text-sm font-semibold leading-snug text-[#1a1a1a] lg:text-lg">
             <Link
               href={serviceHref}
               className="transition-colors hover:text-[#F47A20]"
@@ -353,7 +353,7 @@ function ServiceCard({
         {/* Know More clickable */}
         <Link
           href={serviceHref}
-          className="mt-auto mx-auto flex w-full items-center gap-1.5 rounded-md bg-[#F47A20] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-[#e46713] sm:w-fit sm:px-8 sm:text-sm"
+          className="mt-auto mx-auto flex items-center gap-1.5 rounded-md bg-[#F47A20] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-[#e46713] w-fit sm:px-8 sm:text-sm"
         >
           Know More
           <svg

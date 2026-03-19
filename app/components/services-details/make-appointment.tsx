@@ -166,13 +166,13 @@ export default function CommanTopRated({ data }: Props) {
         <div className="relative pt-[0px] sm:pt-[90px]">
           <div className="relative bg-[#f47920] rounded-2xl">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-              <div className="relative min-h-[390px] sm:min-h-[400px] lg:min-h-[380px]">
+              <div className="relative min-h-[330px] lg:min-h-[380px]">
                 <div className="relative z-10 max-w-xl pb-8 pr-0 pt-8 sm:pr-[34%] sm:pt-10 lg:pb-40 lg:pr-0 lg:pt-14">
-                  <h2 className="mb-4 text-lg font-semibold leading-tight text-white sm:mb-6 sm:text-2xl lg:text-4xl">
+                  <h2 className="mb-4 text-2xl font-semibold leading-tight text-white sm:mb-6 lg:text-4xl">
                     {data.heroTitle}
                   </h2>
 
-                  <p className="mb-5 text-xs leading-relaxed text-white/95 sm:mb-6 sm:text-base">
+                  <p className="mb-5 text-sm leading-relaxed text-white/95 sm:mb-6 sm:text-base">
                     {data.heroDescription}
                   </p>
 
@@ -239,7 +239,7 @@ export default function CommanTopRated({ data }: Props) {
                       />
                     </div>
 
-                    <div className="mt-1 mb-4 max-w-[130px] text-[11px] font-medium leading-tight text-gray-600 sm:max-w-[180px] sm:text-sm lg:text-base">
+                    <div className="mt-1 mb-4 max-w-[130px] text-xs font-medium leading-tight text-gray-600 sm:max-w-[180px] lg:text-base">
                       {stat.label}
                     </div>
                   </div>

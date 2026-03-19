@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function TechnologyHero() {
     return (
-        <div className="lg:my-12 my-9 lg:mx-24 mx-4">
+        <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36">
 
             <section className="relative z-0 lg:h-[440px] h-[350px] w-full overflow-hidden lg:rounded-3xl rounded-2xl">
                 <Image
@@ -23,8 +23,7 @@ export default function TechnologyHero() {
                         Technology
                     </h1>
                     <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl">
-                        Tincidunt suspendisse semper integer
-                        elementum maecenas.
+                        Advanced Digital Dentistry for Better Accuracy
                     </p>
                 </div>
 

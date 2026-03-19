@@ -26,15 +26,15 @@ const TourismWideRange: FC = () => {
         <section className="w-full ">
             <div className="mx-auto max-w-7xl mx-10 bg-[#e9eaeb] py-14 sm:py-12 px-4 lg:px-20 lg:rounded-2xl">
                 <div className="mx-auto max-w-3xl text-center">
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-black">
-                        The Wide Range of Treatments Provided Under Dental Tourism Are
+                    <h2 className="text-xl lg:text-4xl font-semibold text-black">
+                        The Wide Range of Treatments Provided Under
+                        Dental Tourism Are
                     </h2>
 
-                    <p className="mt-4 text-sm sm:text-base leading-relaxed text-gray-600">
-                        The services normally consist of done in other countries but Eledent Dental Hospital
-                        provides these treatments at reasonable prices. Worldwide, people travel for dental
-                        treatments as per their needs and requirements because the cost is much lower. All the
-                        treatments under dental tourism include check-ups of patients.
+                    <p className="lg:mt-4 text-xs sm:text-base leading-relaxed text-gray-600">
+                        The services normally cost a lot if done in other countries but Eledent Dental Hospital provides these treatments at a reasonable price that
+                        suits the budget so that travellers can get best-in-class services and can resume their travel without having to take care of the expenses list that might
+                        otherwise hinder their travel experience. Check maids of jacksonville.
                     </p>
                 </div>
 

@@ -11,6 +11,8 @@ import {
     Crown,
     Replace,
     Pill,
+    Clock3,
+    Gem,
     type LucideIcon,
 } from "lucide-react";
 
@@ -23,6 +25,8 @@ const ICONS = {
     Crown,
     Replace,
     Pill,
+    Clock3,
+    Gem,
 } as const;
 
 type ServiceItem = {
@@ -31,16 +35,22 @@ type ServiceItem = {
     icon: keyof typeof ICONS;
 };
 
-// ✅ STATIC
+
 const SERVICES: ServiceItem[] = [
     { label: "DENTAL IMPLANTS", href: "/services/dental-implants", icon: "Replace" },
-    { label: "ROOT CANAL", href: "/services/rct", icon: "Pill" },
-    { label: "DIGITAL SMILE DESIGN", href: "/services/dsd", icon: "ScanFace" },
-    { label: "BRACES", href: "/services/braces", icon: "Braces" },
+    { label: "FULL TEETH REPLACEMENT", href: "/services/full-teeth-replacement", icon: "Replace" },
+    { label: "ROOT CANAL TREATMENT", href: "/services/root-canal-treatment", icon: "Pill" },
+    { label: "DIGITAL SMILE DESIGNING", href: "/services/digital-smile-designing", icon: "ScanFace" },
+    { label: "ONE VISIT DENTISTRY", href: "/services/one-visit-dentistry", icon: "Clock3" },
+    { label: "ZIRCONIUM CROWNS", href: "/services/zirconium-crowns", icon: "Crown" },
+    { label: "DENTAL BRACES", href: "/services/dental-braces", icon: "Braces" },
+    { label: "INVISIBLE ALIGNERS", href: "/services/invisible-aligners", icon: "Braces" },
     { label: "TEETH WHITENING", href: "/services/teeth-whitening", icon: "Sparkles" },
-    { label: "KIDS DENTISTRY", href: "/services/kids-dentistry", icon: "Baby" },
-    { label: "GENERAL DENTISTRY", href: "/services/general", icon: "Stethoscope" },
-    { label: "CROWNS", href: "/services/crowns", icon: "Crown" },
+    { label: "PAEDIATRIC DENTISTRY", href: "/services/paediatric-dentistry", icon: "Baby" },
+    { label: "GENERAL DENTISTRY", href: "/services/general-dentistry", icon: "Stethoscope" },
+    { label: "TOOTH JEWELLERY", href: "/services/tooth-jewellery", icon: "Gem" },
+    { label: "LASER GUM TREATMENT", href: "/services/laser-gum-treatment", icon: "Pill" },
+    { label: "DIMPLEPLASTY", href: "/services/dimpleplasty", icon: "ScanFace" },
 ];
 
 function ServiceCard({
@@ -61,55 +71,39 @@ function ServiceCard({
             href={href}
             onClick={onActive}
             className={[
-                // base
                 "group w-full rounded-[14px] transition-all duration-300 ease-out",
                 "h-[112px] sm:h-[150px]",
                 "flex flex-col items-center justify-center gap-3",
                 "bg-transparent border border-transparent",
-
-                // hover (your original)
                 "hover:bg-[#f36d00] hover:border-[#1f1f1f] hover:shadow-[0_10px_22px_rgba(243,109,0,0.25)]",
-
-                // motion on hover
                 "hover:-translate-y-[1px] hover:scale-[1.01]",
-
-                // active (selected)
                 active
-                    ? "bg-[#f36d00] border-[#1f1f1f]  -translate-y-[1px] scale-[1.01]"
+                    ? "bg-[#f36d00] border-[#1f1f1f] -translate-y-[1px] scale-[1.01]"
                     : "",
-
-                // focus
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f36d00]/40",
             ].join(" ")}
             aria-label={label}
             aria-current={active ? "page" : undefined}
             title={label}
         >
-            {/* icon wrapper */}
             <div
                 className={[
                     "w-14 h-14 flex items-center justify-center text-white transition-all duration-300 ease-out mb-2",
                     "rounded-full bg-[#f36d00]",
-                    // hover behavior (your original)
                     "group-hover:bg-white group-hover:rounded-[10px]",
-                    // active behavior
                     active ? "bg-[#f36d00] rounded-[10px]" : "",
                 ].join(" ")}
             >
                 <Icon
                     className={[
                         "w-6 h-6 transition-all duration-300 ease-out",
-                        // hover icon color
                         "group-hover:text-[#f36d00]",
-                        // subtle animation
                         "group-hover:scale-110",
-                        // active icon color + keep scaled
                         active ? "text-white scale-110" : "",
                     ].join(" ")}
                 />
             </div>
 
-            {/* label */}
             <div
                 className={[
                     "text-xs lg:text-sm font-semibold text-center transition-colors duration-300",
@@ -130,7 +124,7 @@ export default function HomeServicesStatic() {
     return (
         <section className="relative w-full bg-white overflow-hidden lg:pt-14 pt-4">
             <div className="lg:pb-6 pb-2">
-                <div className="mx-auto max-w-7xl px-6">
+                <div className="mx-auto max-w-7xl lg:px-6 px-4">
                     <div className="relative rounded-[22px] bg-[#f7f9fc] home-servic-bg border border-slate-200/60 overflow-hidden">
                         <div className="absolute inset-0 opacity-[0.08] hex-pattern" />
 
@@ -166,7 +160,7 @@ export default function HomeServicesStatic() {
 
             <style jsx>{`
         .hex-pattern {
-          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTYwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOTRhM2I4JyBzdHJva2Utb3BhY2l0eT0nMC4yMicgc3Ryb2tlLXdpZHRoPScxJz48cGF0aCBkPSdNMzAgMTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTgwIDEwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE18LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMzAgMTAgbDE4IDEwIHYyMCBsLTE18IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTU1IDUwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE18LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMDUgNTAgbDE4IDEwIHYyMCBsLTE18IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PC9nPjwvc3ZnPg==");
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTIwJyB2aWV3Qm94PScwIDAgMTYwIDEyMCc+PGcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOTRhM2I4JyBzdHJva2Utb3BhY2l0eT0nMC4yMicgc3Ryb2tlLXdpZHRoPScxJz48cGF0aCBkPSdNMzAgMTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTgwIDEwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE4LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMzAgMTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PHBhdGggZD0nTTU1IDUwIGwxOCAxMCB2MjAgbC0xOCAxMCBsLTE4LTEwIHYtMjAgeicvPjxwYXRoIGQ9J00xMDUgNTAgbDE4IDEwIHYyMCBsLTE4IDEwIGwtMTgtMTAgdi0yMCB6Jy8+PC9nPjwvc3ZnPg==");
           background-size: 260px 200px;
           background-repeat: repeat;
           background-position: center;
