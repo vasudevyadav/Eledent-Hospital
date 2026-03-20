@@ -14,6 +14,7 @@ import DentalImplantsSections from "@/app/components/services-details/dental-imp
 import CommanTopRated from "@/app/components/services-details/make-appointment";
 import ServicesFaq from "@/app/components/services-details/services-faq";
 import ServicesTestimonial from "@/app/components/services-details/services-testimonial";
+import CommanTestimonial from "@/app/components/comman/comman-testimonial";
 
 type PageProps = {
   params: Promise<{
@@ -91,7 +92,8 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
                     <ServicesTestimonial data={service.testimonials} />
                 ) : null} */}
 
-        <ServicesTestimonial />
+        <CommanTestimonial />
+
 
         {service?.planSection ? (
           <DentalImplantsSections data={service.planSection} />

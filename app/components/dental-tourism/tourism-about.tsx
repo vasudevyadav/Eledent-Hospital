@@ -43,7 +43,7 @@ const SECTIONS: TourismSection[] = [
       "When we travel to another country to get surgery or a medical treatment owing to the specializations each country offers in medical procedures is called medical tourism. Dental Tourism is one of the major departments under medical tourism that is gaining popularity at an alarming rate. ",
       "People generally tend to travel abroad for affordable dental care, dental treatment, dental surgery or dental procedures which are expensive in one’s own country.",
     ],
-    imageSrc: "/dental-tourism/Dental-Tourism-in-India-Hyderabad",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India-Hyderabad.png",
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
