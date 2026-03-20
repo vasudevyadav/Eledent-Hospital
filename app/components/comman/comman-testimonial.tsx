@@ -96,12 +96,12 @@ export default function CommanTestimonial() {
                     >
                         {testimonialImages.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <div className="overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)]">
-                                    <div className="relative h-[280px] w-full">
+                                <div className="overflow-hidden rounded-2xl bg-white ">
+                                    <div className="relative lg:h-[200px] w-full">
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="h-full w-full object-cover"
+                                            className="h-full w-full object-contain"
                                             loading="lazy"
                                         />
                                     </div>
