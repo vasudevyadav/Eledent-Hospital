@@ -146,7 +146,7 @@ export default function MakeAppointmentStatic() {
     // ✅ CTA
     const ctaText = "Get an Appointment";
     const ctaHref = "/appointment";
-    const doctorImageSrc = "/home/home-nurse.png";
+    const doctorImageSrc = "/home/Book-Your-Appointment.png";
     const doctorImageAlt = "Doctor";
 
     const stats: StatItem[] = [

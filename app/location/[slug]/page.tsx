@@ -46,9 +46,10 @@ export default async function LocationPage({ params }: Props) {
           trustHeading={location.trustHeading}
           trustCards={location.trustCards}
         />
+
         <LocationTransport location={location} />
 
-        <LocationTestimonial />
+        <LocationTestimonial data={location.testimonials ?? []} />
 
         <LocationGallery gallery={location.gallery} />
 
@@ -56,10 +57,7 @@ export default async function LocationPage({ params }: Props) {
           <BookingAportment />
         </div>
 
-
         <LocationFaq faqs={location.faqs} />
-
-
       </main>
 
       <Footer />

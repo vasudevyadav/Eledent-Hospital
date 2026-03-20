@@ -56,7 +56,7 @@ const LocationTransport: FC<Props> = ({ location }) => {
     "https://www.google.com/maps?q=Jaipur&z=14&output=embed";
 
   return (
-    <section className="w-full bg-white px-4 py-10 lg:px-20 lg:py-16">
+    <section className="w-full bg-white px-4 py-2 lg:px-20 lg:py-16">
       <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-16">
         <div className="z-10 h-56 w-full overflow-hidden rounded-2xl border border-gray-200 shadow-sm lg:h-[25rem] lg:w-5/12">
           <iframe

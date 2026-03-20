@@ -91,7 +91,7 @@ export default function PlacementProcedure({
                       <li
                         key={`${feature}-${idx}`}
                         className={[
-                          "flex items-start gap-3 py-3 text-xs font-medium text-[#484847] lg:w-96 w-72 lg:text-base",
+                          "flex items-start gap-3 py-3 text-xs font-medium text-[#484847] lg:w-[35rem] w-72 lg:text-[15px]",
                           "border-b-2 border-[#D3D8D8]",
                           idx === features.length - 1 ? "border-b-0" : "",
                         ].join(" ")}

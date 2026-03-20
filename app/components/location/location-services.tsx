@@ -66,7 +66,11 @@ function ServiceCard({
   );
 }
 
-function getValidIcon(iconName: string): LucideIcon {
+function getValidIcon(iconName: string | null | undefined): LucideIcon {
+  if (!iconName) {
+    return Sparkles;
+  }
+
   if (iconName in ICONS) {
     return ICONS[iconName as IconName];
   }

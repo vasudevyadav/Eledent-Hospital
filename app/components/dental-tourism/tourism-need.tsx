@@ -5,13 +5,13 @@ import type { FC } from "react";
 
 const TourismNeed: FC = () => {
     // Update this path to your actual asset location
-    const NEED_IMAGE = "/dental-tourism/tourism-need.png";
+    const NEED_IMAGE = "/dental-tourism/Need-For-Dental-Tourism.jpg";
 
     return (
         <section className="w-full bg-white py-12 pt-0 lg:pt-16 sm:py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-6">
                 <div className="grid items-center gap-10 lg:grid-cols-2">
-                    {/* LEFT: Content */}
+
                     <div>
                         <h2 className="text-2xl lg:text-3xl font-semibold text-[#f97316]">
                             Need For Dental Tourism
