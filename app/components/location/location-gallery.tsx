@@ -92,7 +92,7 @@ export default function LocationGallery({ gallery }: { gallery: GalleryItem[] })
     <section className="relative w-full bg-white overflow-hidden">
       <div className="py-8 sm:py-10 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-center text-[20px] sm:text-[22px] md:text-[28px] font-semibold text-[#f36d00]">
+          <h2 className="text-center text-2xl lg:text-[28px] font-semibold text-[#f36d00]">
             See Our Gallery
           </h2>
 

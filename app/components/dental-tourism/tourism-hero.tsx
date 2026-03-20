@@ -8,7 +8,7 @@ import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 const heroData = {
     title: "Dental Tourism",
     subtitle: "Tincidunt suspendisse semper integer elementum maecenas.",
-    bannerImage: "/dental-tourism/dental-tourism-banner.png",
+    bannerImage: "/dental-tourism/home-banner.png",
     bannerImageAlt: "Dental Tourism banner",
     overlayLinkHref: "/",
     phoneLabel: "Need Dental Assistance?",

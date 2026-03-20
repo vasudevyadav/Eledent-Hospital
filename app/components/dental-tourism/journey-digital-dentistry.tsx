@@ -34,7 +34,7 @@ const JourneyDigitalDentistry: FC = () => {
                     <div className="relative w-full">
                         <div className="relative mx-auto w-full max-w-xl aspect-[16/11]">
                             <Image
-                                src="/dental-tourism/journey.png"
+                                src="/dental-tourism/Untitled-4.png"
                                 alt="Journey at Eledent International Digital Dentistry"
                                 fill
                                 className="object-contain"

@@ -9,7 +9,7 @@ export default function AboutHero() {
 
             <section className="relative z-0 lg:h-[420px] h-[300px] w-full overflow-hidden rounded-3xl">
                 <Image
-                    src="/about-us/about-us-hero.png"
+                    src="/about-us/about-us.jpg"
                     alt="About Us banner"
                     fill
                     priority

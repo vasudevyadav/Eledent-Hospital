@@ -9,7 +9,7 @@ export default function FacilitiesHero() {
 
             <section className="relative z-0 lg:h-[450px] h-[350px] w-full overflow-hidden rounded-3xl">
                 <Image
-                    src="/facilities/facilities-banner.png"
+                    src="/facilities/home-banner.png"
                     alt="Facilities banner"
                     fill
                     priority

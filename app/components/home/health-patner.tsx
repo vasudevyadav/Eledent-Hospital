@@ -156,7 +156,7 @@ export default function HealthPatner(): JSX.Element {
                             <div className="relative mx-auto w-full max-w-[360px] lg:order-2 order-3">
                                 <div className="relative mx-auto aspect-[3/4] w-[260px] sm:w-[300px]">
                                     <Image
-                                        src="/about-us/why-chose-doctor.png"
+                                        src="/about-us/why-choose-us.png"
                                         alt="Doctor"
                                         fill
                                         className="rounded-2xl object-contain"

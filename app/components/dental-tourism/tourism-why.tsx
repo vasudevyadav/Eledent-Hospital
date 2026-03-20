@@ -106,7 +106,7 @@ const TourismWhy: FC = () => {
                             {/* RIGHT IMAGE */}
                             <div className="relative h-[320px] md:h-full w-full overflow-hidden rounded-2xl">
                                 <Image
-                                    src="/dental-tourism/tourism-why.png"
+                                    src="/dental-tourism/Why-Eledent-International-Digital-Dentistry.jpg"
                                     alt="Digital Dentistry"
                                     fill
                                     className="object-cover"

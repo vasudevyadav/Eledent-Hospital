@@ -7,7 +7,7 @@ export type FaqItem = {
 export type LocationService = {
   label: string;
   href: string;
-  icon: string;
+  icon: string | null;
 };
 
 export type TrustVariant = "dashed-teal" | "blue-frame";
@@ -23,6 +23,22 @@ export type TrustCardType = {
 export type GalleryItem = {
   src: string;
   alt: string;
+};
+
+export type TestimonialItem = {
+  src: string;
+  alt: string;
+};
+
+export type LocationHighlightPlace = {
+  name: string;
+  distance: string;
+};
+
+export type LocationHighlight = {
+  title: string;
+  icon: string;
+  places: LocationHighlightPlace[];
 };
 
 export type LocationData = {
@@ -48,6 +64,9 @@ export type LocationData = {
   trustCards: TrustCardType[];
 
   gallery: GalleryItem[];
+  testimonials?: TestimonialItem[];
+
+  locationHighlights?: LocationHighlight[];
 
   faqIntroText: string;
   faqs: FaqItem[];
