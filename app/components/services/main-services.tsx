@@ -311,7 +311,7 @@ function ServiceCard({
 
       {/* Content */}
       <div className="flex flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pb-5">
-        <div className="mb-2 flex items-start gap-2 sm:gap-2.5">
+        <div className="mb-2 flex items-center gap-2 sm:gap-2.5">
           {iconSrc ? (
             <div className="relative mt-0.5 h-7 w-7 shrink-0 sm:h-8 sm:w-8">
               <Image
@@ -319,7 +319,7 @@ function ServiceCard({
                 alt=""
                 fill
                 sizes="32px"
-                className="object-contain"
+                className="object-contain invert"
               />
             </div>
           ) : (
