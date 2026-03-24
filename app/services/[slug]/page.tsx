@@ -5,16 +5,13 @@ import ServicesHero from "../../components/services-details/services-hero";
 import DentalImplants from "../../components/services-details/dental-implants";
 import ServicesAportment from "../../components/services-details/services-aportment";
 import ServicesCount from "../../components/services-details/services-count";
-
 import PlacementProcedure from "@/app/components/services-details/placement-procedure";
-import OverValue from "@/app/components/services-details/value";
 import AfterBefore from "@/app/components/services-details/after-before";
-
-import DentalImplantsSections from "@/app/components/services-details/dental-implant-plan";
 import CommanTopRated from "@/app/components/services-details/make-appointment";
 import ServicesFaq from "@/app/components/services-details/services-faq";
-import ServicesTestimonial from "@/app/components/services-details/services-testimonial";
 import CommanTestimonial from "@/app/components/comman/comman-testimonial";
+import RelatedBlogsSection from "@/app/components/services-details/dental-implant-plan";
+import OverValue from "@/app/components/services-details/value";
 
 type PageProps = {
   params: Promise<{
@@ -35,6 +32,11 @@ type ServiceResponse = {
   planSection?: any;
   ctaSection?: any;
   faq?: any;
+  category?: {
+    id?: string;
+    label?: string;
+    slug?: string;
+  };
 };
 
 async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
@@ -52,7 +54,7 @@ async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
     if (!data?.slug) return null;
 
     return data;
-  } catch (err) {
+  } catch {
     return null;
   }
 }
@@ -63,6 +65,8 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
   const service = await getServiceBySlug(slug);
 
   if (!service) notFound();
+
+  const currentCategorySlug = service?.category?.slug ?? "";
 
   return (
     <div>
@@ -88,15 +92,10 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
 
         {service?.beforeAfter ? <AfterBefore data={service.beforeAfter} /> : null}
 
-        {/* {service?.testimonials ? (
-                    <ServicesTestimonial data={service.testimonials} />
-                ) : null} */}
-
         <CommanTestimonial />
 
-
-        {service?.planSection ? (
-          <DentalImplantsSections data={service.planSection} />
+        {currentCategorySlug ? (
+          <RelatedBlogsSection currentCategorySlug={currentCategorySlug} />
         ) : null}
 
         {service?.ctaSection ? (

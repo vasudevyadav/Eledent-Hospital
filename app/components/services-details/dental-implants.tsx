@@ -21,6 +21,16 @@ type Props = {
   data?: OverviewData;
 };
 
+function extractTextFromHtml(html: string) {
+  if (!html) return "";
+  if (typeof window === "undefined") {
+    return html.replace(/<[^>]*>/g, "").trim();
+  }
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  return doc.body.textContent?.trim() || "";
+}
+
 export default function DentalImplantsSection({ data }: Props) {
   const {
     badge = "What",
@@ -33,6 +43,8 @@ export default function DentalImplantsSection({ data }: Props) {
     doctorImageAlt = "Service illustration",
   } = data || {};
 
+  const cleanHeading = extractTextFromHtml(heading);
+
   const imageAlt =
     typeof doctorImageAlt === "string" && doctorImageAlt.trim()
       ? doctorImageAlt
@@ -44,7 +56,7 @@ export default function DentalImplantsSection({ data }: Props) {
       : "/services/services-what.png";
 
   return (
-    <section className="w-full bg-white py-10 md:py-14 mb-10">
+    <section className="mb-10 w-full bg-white py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-4">
         <div className="grid items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -54,30 +66,36 @@ export default function DentalImplantsSection({ data }: Props) {
               </span>
             ) : null}
 
-            {heading ? (
+            {cleanHeading ? (
               <h2 className="mt-4 text-xl font-semibold text-[#F47A20] lg:text-[34px] lg:font-extrabold lg:leading-[1.15]">
-                {heading}
+                {cleanHeading}
               </h2>
             ) : null}
 
             {intro ? (
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#6B7280] md:text-base">
-                {intro}
-              </p>
+              <div
+                className="wp-body-content mt-4 max-w-2xl"
+                dangerouslySetInnerHTML={{ __html: intro }}
+              />
             ) : null}
 
             {(partsTitle || partsList.length > 0) && (
               <div className="mt-5">
                 {partsTitle ? (
-                  <p className="text-base font-semibold text-[#111827]">
-                    {partsTitle}
-                  </p>
+                  <div
+                    className="wp-parts-title"
+                    dangerouslySetInnerHTML={{ __html: partsTitle }}
+                  />
                 ) : null}
 
                 {partsList.length > 0 ? (
                   <ol className="mt-2 list-decimal space-y-2 pl-5 text-base leading-relaxed text-[#6B7280]">
                     {partsList.map((item, index) => (
-                      <li key={index}>{item.text}</li>
+                      <li
+                        key={index}
+                        className="wp-list-item"
+                        dangerouslySetInnerHTML={{ __html: item.text }}
+                      />
                     ))}
                   </ol>
                 ) : null}
@@ -85,9 +103,10 @@ export default function DentalImplantsSection({ data }: Props) {
             )}
 
             {conclusion ? (
-              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#6B7280] md:text-base">
-                {conclusion}
-              </p>
+              <div
+                className="wp-body-content mt-5 max-w-2xl"
+                dangerouslySetInnerHTML={{ __html: conclusion }}
+              />
             ) : null}
           </div>
 
