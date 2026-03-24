@@ -61,8 +61,8 @@ export default function CommanTestimonial() {
     );
 
     return (
-        <section className="w-full bg-white py-16">
-            <div className="mx-auto max-w-6xl px-6">
+        <section className="w-full bg-white py-16 lg:pb-0">
+            <div className="mx-auto max-w-7xl px-6">
                 <div className="text-center">
                     <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
                         Our
@@ -76,7 +76,7 @@ export default function CommanTestimonial() {
                 <div className="mt-10">
                     <Swiper
                         modules={[Autoplay]}
-                        spaceBetween={24}
+                        spaceBetween={10}
                         loop={true}
                         autoplay={{
                             delay: 2500,
@@ -96,8 +96,8 @@ export default function CommanTestimonial() {
                     >
                         {testimonialImages.map((item, index) => (
                             <SwiperSlide key={index}>
-                                <div className="overflow-hidden rounded-2xl bg-white ">
-                                    <div className="relative lg:h-[200px] w-full">
+                                <div className="overflow-hidden rounded-2xl bg-white border border-gray-400">
+                                    <div className="relative lg:h-[250px] w-full">
                                         <img
                                             src={item.image}
                                             alt={item.name}
