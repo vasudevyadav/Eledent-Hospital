@@ -154,18 +154,18 @@ export default function AboutAppointment({
             <div className="overflow-hidden rounded-[22px] bg-[#F47A20] shadow-[0_18px_45px_rgba(0,0,0,0.10)]">
               <div className="px-6 lg:py-10 py-6">
                 <p className="text-[12px] font-semibold text-white/85">
-                  Lorem Ipsum
+                  Our Purpose
                 </p>
 
-                <h2 className="mt-3 lg:text-[26px] text-xl lg:font-extrabold font-semibold leading-[1.15] text-white">
-                  Lorem ipsum dolor sit amet,
+                <h2 className="mt-3 lg:text-[26px] text-lg lg:font-extrabold font-semibold leading-[1.15] text-white">
+                  Advanced Dental Care More Clearer,
                   <br />
-                  consectetur adipiscing elit,
+                  Comfortable & Easier in Hyderabad
                 </h2>
 
-                <button className="mt-6 inline-flex items-center justify-center rounded-full bg-[#1F2937] px-7 py-2.5 text-[12px] font-semibold text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition hover:bg-[#111827]">
+                <a href="/contact-us" className="mt-6 inline-flex items-center justify-center rounded-full bg-[#1F2937] px-7 py-2.5 text-[12px] font-semibold text-white shadow-[0_10px_24px_rgba(0,0,0,0.25)] transition hover:bg-[#111827]">
                   Book Appointment
-                </button>
+                </a>
               </div>
             </div>
 

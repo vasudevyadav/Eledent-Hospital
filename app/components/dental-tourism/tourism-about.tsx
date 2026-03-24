@@ -98,7 +98,7 @@ const TourismAbout: FC = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
                     {/* Text */}
                     <div className={sec.flip ? "order-2 lg:order-2" : ""}>
-                      <h2 className="text-2xl lg:text-4xl font-semibold leading-tight text-[#f37021]">
+                      <h2 className="text-2xl lg:text-4xl font-semibold leading-tight text-[#f37021] mt-8 lg:mt-0">
                         {sec.titleLine1}
                         {sec.titleLine2 ? (
                           <>

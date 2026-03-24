@@ -51,7 +51,7 @@ const MissionVision: FC = () => {
 
                                 "lg:right-28 md:right-[-40px]",
 
-                                "right-0 sm:right-2",
+                                "-right-1.5 sm:right-2",
 
                                 "w-[340px] sm:w-[400px] md:w-[420px]",
                             ].join(" ")}

@@ -285,7 +285,7 @@ export default function OurSpecialties() {
                                                     </div>
 
                                                     <p
-                                                        className={`mt-3 text-center text-xs font-semibold sm:text-sm ${isActive
+                                                        className={`mt-3 text-center text-[8px] font-semibold lg:text-sm ${isActive
                                                             ? "text-[#FF8A3D]"
                                                             : "text-[#3D3D3D]"
                                                             }`}

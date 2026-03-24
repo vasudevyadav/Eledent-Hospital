@@ -278,7 +278,7 @@ export default function HomeTestimonial() {
                                     <>
 
                                         <div className="mt-0 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_10px_25px_rgba(0,0,0,0.06)]">
-                                            <div className="relative w-full pt-[50%]">
+                                            <div className="relative w-full pt-[50%] lg:h-full h-[200px]">
                                                 <iframe
                                                     className="absolute inset-0 h-full w-full"
                                                     src={`https://www.youtube-nocookie.com/embed/${videoTestimonials[safeIndex].youtubeId}?rel=0&modestbranding=1`}

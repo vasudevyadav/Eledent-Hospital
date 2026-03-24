@@ -61,7 +61,7 @@ export default function CommanTestimonial() {
     );
 
     return (
-        <section className="w-full bg-white py-16 lg:pb-0">
+        <section className="w-full bg-white py-16 lg:pb-0 pb-1">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="text-center">
                     <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">

@@ -52,7 +52,7 @@ export default function HeroSection() {
                     </div>
                 </Link>
 
-                <div className="absolute left-1/2 -translate-x-1/2 w-full px-4 z-[999] -bottom-14 lg:-bottom-13">
+                <div className="absolute left-1/2 -translate-x-1/2 w-full px-4 z-[999] -bottom-24 lg:-bottom-13">
                     <div className="bg-gray-800/95 backdrop-blur rounded-xl shadow-2xl w-full max-w-5xl mx-auto px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
                         <div className="hidden lg:flex items-center justify-between gap-8">
                             <div className="flex items-center gap-4">

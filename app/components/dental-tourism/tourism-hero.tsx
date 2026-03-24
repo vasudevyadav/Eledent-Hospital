@@ -36,7 +36,7 @@ export default function TourismHero() {
 
                     <div className="absolute inset-0 rounded-2xl bg-black/20 lg:rounded-3xl" />
 
-                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
+                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center mb-24 lg:mb-0">
                         <h1 className="text-4xl font-semibold text-white md:text-5xl">
                             {heroData.title}
                         </h1>

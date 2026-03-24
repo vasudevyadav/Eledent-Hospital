@@ -4,7 +4,7 @@ import type { FC } from "react";
 
 const PrivacyDetails: FC = () => {
   return (
-    <section className="mx-6 sm:mx-3 lg:mx-16 px-5 py-6 lg:px-8">
+    <section className="mx-1 sm:mx-3 lg:mx-16 px-5 py-6 lg:px-8">
       <h2 className="text-lg lg:text-xl font-medium text-orange-600 leading-tight mb-4">
         Privacy Policy
       </h2>
