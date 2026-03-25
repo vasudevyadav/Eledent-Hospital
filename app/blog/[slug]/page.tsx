@@ -6,13 +6,6 @@ import BlogDetailsAbout from "@/app/components/blog-details/blog-details-about";
 import BlogDetailsFaq from "@/app/components/blog-details/blog-details-faq";
 import { notFound } from "next/navigation";
 
-type BlogSection = {
-  id: number;
-  heading: string;
-  paragraphs: string[];
-  points: string[];
-};
-
 type RecentArticle = {
   id: number;
   title: string;
@@ -26,26 +19,22 @@ type FaqItem = {
   answer: string;
 };
 
-type BlogApiResponse = {
+type RawBlogApiResponse = {
   data: {
-    hero: {
-      title: string;
-      image: string;
-    };
-    content: {
-      heroImage: string;
-      centerImage: string;
-      introParagraphs: string[];
-      sections: BlogSection[];
-      recentArticles: RecentArticle[];
-    };
-    faqSection: {
-      tag: string;
-      heading: string;
-      description: string;
-      backgroundImage: string;
-      items: FaqItem[];
-    };
+    content: string;
+  };
+};
+
+type WpPost = {
+  id: number;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  _embedded?: {
+    ["wp:featuredmedia"]?: Array<{
+      source_url?: string;
+    }>;
   };
 };
 
@@ -58,7 +47,81 @@ function getAbsoluteImageUrl(image?: string) {
   return `${siteUrl}${image.startsWith("/") ? image : `/${image}`}`;
 }
 
-async function getBlogData(slug: string) {
+function stripHtml(html: string) {
+  return html
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function decodeHtml(html: string) {
+  return html
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/&#8217;/gi, "'")
+    .replace(/&#8211;/gi, "-")
+    .replace(/&#8212;/gi, "-");
+}
+
+function slugToTitle(slug: string) {
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function extractFirstImage(html: string) {
+  const match = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match?.[1] || "";
+}
+
+function extractFirstParagraph(html: string) {
+  const match = html.match(/<(p|span)[^>]*>(.*?)<\/(p|span)>/i);
+  return match?.[2] ? stripHtml(decodeHtml(match[2])) : "";
+}
+
+function extractFaqs(html: string): FaqItem[] {
+  const faqs: FaqItem[] = [];
+  const cleaned = html.replace(/\n/g, " ");
+
+  const regex =
+    /<strong>(.*?)<\/strong>\s*<strong>\s*Ans\.?\s*<\/strong>\s*<span[^>]*>(.*?)<\/span>/gi;
+
+  let match;
+  let id = 1;
+
+  while ((match = regex.exec(cleaned)) !== null) {
+    const question = stripHtml(decodeHtml(match[1])).replace(/[:\s]+$/, "");
+    const answer = stripHtml(decodeHtml(match[2]));
+
+    if (question && answer) {
+      faqs.push({
+        id,
+        question,
+        answer,
+      });
+      id += 1;
+    }
+  }
+
+  return faqs;
+}
+
+function removeFaqBlockFromHtml(html: string) {
+  const faqIndex = html.search(/<h3[^>]*>\s*(?:<span[^>]*>)?\s*FAQ/i);
+  if (faqIndex === -1) return html;
+  return html.slice(0, faqIndex);
+}
+
+async function getRawBlogData(slug: string) {
   try {
     const res = await fetch(
       `https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/${slug}`,
@@ -69,11 +132,39 @@ async function getBlogData(slug: string) {
 
     if (!res.ok) return null;
 
-    const json: BlogApiResponse = await res.json();
+    const json: RawBlogApiResponse = await res.json();
     return json.data;
   } catch (error) {
     console.error("Failed to fetch blog:", error);
     return null;
+  }
+}
+
+async function getRecentBlogs(currentSlug: string): Promise<RecentArticle[]> {
+  try {
+    const res = await fetch(
+      "https://reinventmedia.in/eledenthospitals/wp-json/wp/v2/posts?per_page=8&_embed",
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!res.ok) return [];
+
+    const posts: WpPost[] = await res.json();
+
+    return posts
+      .filter((post) => post.slug !== currentSlug)
+      .slice(0, 6)
+      .map((post) => ({
+        id: post.id,
+        title: stripHtml(post.title?.rendered || ""),
+        href: post.slug,
+        image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
+      }));
+  } catch (error) {
+    console.error("Failed to fetch recent blogs:", error);
+    return [];
   }
 }
 
@@ -83,26 +174,20 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const blogData = await getBlogData(slug);
+  const rawBlogData = await getRawBlogData(slug);
 
-  if (!blogData) {
+  if (!rawBlogData) {
     return {
       title: "Blog Not Found - Eledent Dental Hospitals",
       description: "The requested blog could not be found.",
     };
   }
 
-  const title = `${blogData.hero?.title || "Blog"} - Eledent Dental Hospitals`;
-
+  const title = `${slugToTitle(slug)} - Eledent Dental Hospitals`;
   const description =
-    blogData.faqSection?.description ||
-    blogData.content?.introParagraphs?.[0] ||
+    extractFirstParagraph(rawBlogData.content) ||
     "Read expert dental insights, treatment guidance, and oral health information from Eledent Dental Hospitals.";
-
-  const image = getAbsoluteImageUrl(
-    blogData.hero?.image || blogData.content?.heroImage
-  );
-
+  const image = getAbsoluteImageUrl(extractFirstImage(rawBlogData.content));
   const canonicalUrl = `${siteUrl}/blogs/${slug}`;
 
   return {
@@ -123,7 +208,7 @@ export async function generateMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: blogData.hero?.title || "Eledent Blog",
+          alt: slugToTitle(slug),
         },
       ],
     },
@@ -142,19 +227,43 @@ export default async function BlogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const blogData = await getBlogData(slug);
 
-  if (!blogData) {
+  const [rawBlogData, recentArticles] = await Promise.all([
+    getRawBlogData(slug),
+    getRecentBlogs(slug),
+  ]);
+
+  if (!rawBlogData) {
     notFound();
   }
+
+  const cleanedHtml = removeFaqBlockFromHtml(rawBlogData.content);
+  const faqItems = extractFaqs(rawBlogData.content);
+
+  const hero = {
+    title: slugToTitle(slug),
+    image: extractFirstImage(rawBlogData.content) || "/blog/blog-image.png",
+  };
+
+  const faqSection = {
+    tag: "FAQ",
+    heading: "Need Answer? We’re Here to Help",
+    description:
+      "Find quick answers to common questions about appointments, visits, and dental care.",
+    backgroundImage: "/about-us/faq-image.png",
+    items: faqItems,
+  };
 
   return (
     <div>
       <Navbar />
       <main>
-        <BlogDetailsHero hero={blogData.hero} />
-        <BlogDetailsAbout content={blogData.content} />
-        <BlogDetailsFaq faqSection={blogData.faqSection} />
+        <BlogDetailsHero hero={hero} />
+        <BlogDetailsAbout
+          htmlContent={cleanedHtml}
+          recentArticles={recentArticles}
+        />
+        {faqItems.length > 0 ? <BlogDetailsFaq faqSection={faqSection} /> : null}
       </main>
       <Footer />
     </div>

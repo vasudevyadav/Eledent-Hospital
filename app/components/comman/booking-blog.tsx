@@ -154,7 +154,7 @@ const BookingBlog: FC = () => {
       <div className="w-full max-w-[440px] z-20">
         <form
           onSubmit={handleSubmit}
-          className="relative rounded-[10px] shadow-2xl sm:p-4 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
+          className="relative rounded-[10px] shadow-2xl lg:p-4 p-4 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
         >
           <div className="relative z-10">
             <h3 className="text-xl font-semibold mb-7 text-gray-800">
