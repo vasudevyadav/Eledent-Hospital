@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -12,6 +13,8 @@ import ServicesFaq from "@/app/components/services-details/services-faq";
 import CommanTestimonial from "@/app/components/comman/comman-testimonial";
 import RelatedBlogsSection from "@/app/components/services-details/dental-implant-plan";
 import OverValue from "@/app/components/services-details/value";
+import { getMetadataByPath } from "@/lib/metadata";
+
 
 type PageProps = {
   params: Promise<{
@@ -57,6 +60,11 @@ async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
   } catch {
     return null;
   }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  return getMetadataByPath(`/services/${slug}`);
 }
 
 export default async function ServicesDetailsPage({ params }: PageProps) {
