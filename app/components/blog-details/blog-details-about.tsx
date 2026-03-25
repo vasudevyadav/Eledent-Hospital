@@ -46,13 +46,14 @@ export default function BlogDetailsAbout({
 }: BlogDetailsAboutProps) {
   return (
     <section className="bg-white px-4 py-5 lg:px-6 lg:py-8">
-      <div className="mx-auto max-w-[1280px]">
+      <div className="mx-auto max-w-[1240px]">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_250px] xl:grid-cols-[minmax(0,1fr)_270px]">
           <div className="mb-2 min-w-0">
             <div
               className="
                 blog-content
                 break-words
+                overflow-x-auto
                 [&>*]:max-w-full
 
                 [&_p]:mb-6
@@ -117,7 +118,7 @@ export default function BlogDetailsAbout({
                 [&_li]:list-item
 
                 [&_a]:font-semibold
-                [&_a]:text-[#f47c20]
+                [&_a]:text-[#db5e32]
                 [&_a]:underline
                 [&_a]:underline-offset-2
                 hover:[&_a]:opacity-80
@@ -129,6 +130,33 @@ export default function BlogDetailsAbout({
 
                 [&_.aligncenter]:mx-auto
                 [&_.size-full]:w-full
+
+                [&_table]:my-8
+                [&_table]:w-full
+                [&_table]:border-collapse
+                [&_table]:font-[Arial,sans-serif]
+
+                [&_thead_th]:border
+                [&_thead_th]:border-dashed
+                [&_thead_th]:border-[#ccc]
+                [&_thead_th]:p-[10px]
+                [&_thead_th]:text-left
+                [&_thead_th]:align-top
+                [&_thead_th]:text-[15px]
+                [&_thead_th]:font-semibold
+                [&_thead_th]:text-[#222222]
+
+                [&_tbody_td]:border
+                [&_tbody_td]:border-dashed
+                [&_tbody_td]:border-[#ccc]
+                [&_tbody_td]:p-[10px]
+                [&_tbody_td]:text-left
+                [&_tbody_td]:align-top
+                [&_tbody_td]:text-[15px]
+                [&_tbody_td]:leading-[1.7]
+                [&_tbody_td]:text-[#555555]
+
+                [&_tbody_tr]:align-top
               "
               dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
