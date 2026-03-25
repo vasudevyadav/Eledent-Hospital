@@ -125,6 +125,11 @@ export const metadataMap: Record<string, MetaEntry> = {
     description:
       "Get painless dental fillings in Hyderabad at Eledent Hospitals in Banjara Hills, Kukatpally, Kondapur, and Manikonda. Restore tooth decay with expert care today!",
   },
+    "/services/advanced-and-painless-dental-implants": {
+    title: "Advanced Dental Implants in Hyderabad | Dental Implants Near Me",
+    description:
+      "Dental implants in Hyderabad, India: We specialize in dental implant surgery to make the procedure pain-free and straight forward for our customers. Book an Appointment Now!",
+  },
 
   "/about-us": {
     title: "About Us - Eledent Dental Hospitals",
