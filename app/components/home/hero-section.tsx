@@ -10,9 +10,11 @@ import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 import "swiper/css";
 
 const heroImages = [
-    "/home/home-hero-image.png",
-    "/home/home-hero-image.png",
-    "/home/home-hero-image.png",
+    "/home/home-banner.jpg",
+    "/home/home-banner-1.jpg",
+    "/home/home-banner-2.jpg",
+    "/home/home-banner-3.jpg",
+    "/home/home-banner-4.jpg",
 ];
 
 export default function HeroSection() {
