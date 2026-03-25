@@ -30,6 +30,7 @@ type FaqSection = {
 type RawBlogApiResponse = {
   data: {
     content: string;
+    image: string;
     faqSection: FaqSection;
   };
 };
@@ -163,7 +164,7 @@ export async function generateMetadata({
   const description =
     extractFirstParagraph(rawBlogData.content) ||
     "Read expert dental insights, treatment guidance, and oral health information from Eledent Dental Hospitals.";
-  const image = getAbsoluteImageUrl(extractFirstImage(rawBlogData.content));
+  const image = getAbsoluteImageUrl(rawBlogData.image);
   const canonicalUrl = `${siteUrl}/blogs/${slug}`;
 
   return {
@@ -215,7 +216,7 @@ export default async function BlogDetailPage({
 
   const hero = {
     title: slugToTitle(slug),
-    image: extractFirstImage(rawBlogData.content) || "/blog/blog-image.png",
+    image: rawBlogData.image || "/blog/blog-image.png",
   };
 
   const faqSection = rawBlogData.faqSection;
