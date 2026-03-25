@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 
 type LocationCard = {
   id: string;
@@ -9,6 +8,7 @@ type LocationCard = {
   addressLines: string[];
   mapEmbedSrc: string;
   href: string;
+  map_redirect: string;
 };
 
 type LocationsApiResponse = {
@@ -22,6 +22,7 @@ function LocationMapCard({
   addressLines,
   mapEmbedSrc,
   href,
+  map_redirect,
 }: LocationCard) {
   const googleMapsLink = useMemo(() => {
     const fullAddress = [city, ...addressLines].filter(Boolean).join(", ");
@@ -30,9 +31,13 @@ function LocationMapCard({
     )}`;
   }, [city, addressLines]);
 
+  const redirectUrl = map_redirect || href || googleMapsLink;
+
   return (
-    <Link
-      href={href}
+    <a
+      href={redirectUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       className="block overflow-hidden rounded-[16px] border border-slate-200 bg-white shadow-[0_12px_26px_rgba(15,23,42,0.10)] transition hover:-translate-y-[1px] hover:shadow-[0_16px_34px_rgba(15,23,42,0.14)] focus:outline-none focus:ring-2 focus:ring-[#f36d00]/50"
       aria-label={`Go to ${city} location page`}
     >
@@ -71,15 +76,9 @@ function LocationMapCard({
 
       <div className="p-4">
         <div className="mb-1">
-          <a
-            href={googleMapsLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center rounded-md bg-slate-100 px-6 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
-          >
+          <span className="inline-flex items-center rounded-md bg-slate-100 px-6 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-200">
             View Location
-          </a>
+          </span>
         </div>
 
         <div className="mt-3 overflow-hidden rounded-[12px] border border-slate-200 bg-slate-50">
@@ -95,7 +94,7 @@ function LocationMapCard({
           </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
 
