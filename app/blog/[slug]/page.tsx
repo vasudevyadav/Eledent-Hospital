@@ -19,9 +19,18 @@ type FaqItem = {
   answer: string;
 };
 
+type FaqSection = {
+  tag: string;
+  heading: string;
+  description: string;
+  backgroundImage: string;
+  items: FaqItem[];
+};
+
 type RawBlogApiResponse = {
   data: {
     content: string;
+    faqSection: FaqSection;
   };
 };
 
@@ -86,39 +95,6 @@ function extractFirstImage(html: string) {
 function extractFirstParagraph(html: string) {
   const match = html.match(/<(p|span)[^>]*>(.*?)<\/(p|span)>/i);
   return match?.[2] ? stripHtml(decodeHtml(match[2])) : "";
-}
-
-function extractFaqs(html: string): FaqItem[] {
-  const faqs: FaqItem[] = [];
-  const cleaned = html.replace(/\n/g, " ");
-
-  const regex =
-    /<strong>(.*?)<\/strong>\s*<strong>\s*Ans\.?\s*<\/strong>\s*<span[^>]*>(.*?)<\/span>/gi;
-
-  let match;
-  let id = 1;
-
-  while ((match = regex.exec(cleaned)) !== null) {
-    const question = stripHtml(decodeHtml(match[1])).replace(/[:\s]+$/, "");
-    const answer = stripHtml(decodeHtml(match[2]));
-
-    if (question && answer) {
-      faqs.push({
-        id,
-        question,
-        answer,
-      });
-      id += 1;
-    }
-  }
-
-  return faqs;
-}
-
-function removeFaqBlockFromHtml(html: string) {
-  const faqIndex = html.search(/<h3[^>]*>\s*(?:<span[^>]*>)?\s*FAQ/i);
-  if (faqIndex === -1) return html;
-  return html.slice(0, faqIndex);
 }
 
 async function getRawBlogData(slug: string) {
@@ -237,22 +213,12 @@ export default async function BlogDetailPage({
     notFound();
   }
 
-  const cleanedHtml = removeFaqBlockFromHtml(rawBlogData.content);
-  const faqItems = extractFaqs(rawBlogData.content);
-
   const hero = {
     title: slugToTitle(slug),
     image: extractFirstImage(rawBlogData.content) || "/blog/blog-image.png",
   };
 
-  const faqSection = {
-    tag: "FAQ",
-    heading: "Need Answer? We’re Here to Help",
-    description:
-      "Find quick answers to common questions about appointments, visits, and dental care.",
-    backgroundImage: "/about-us/faq-image.png",
-    items: faqItems,
-  };
+  const faqSection = rawBlogData.faqSection;
 
   return (
     <div>
@@ -260,10 +226,12 @@ export default async function BlogDetailPage({
       <main>
         <BlogDetailsHero hero={hero} />
         <BlogDetailsAbout
-          htmlContent={cleanedHtml}
+          htmlContent={rawBlogData.content}
           recentArticles={recentArticles}
         />
-        {faqItems.length > 0 ? <BlogDetailsFaq faqSection={faqSection} /> : null}
+        {faqSection?.items?.length > 0 ? (
+          <BlogDetailsFaq faqSection={faqSection} />
+        ) : null}
       </main>
       <Footer />
     </div>

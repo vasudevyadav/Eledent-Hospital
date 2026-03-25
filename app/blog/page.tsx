@@ -44,13 +44,12 @@ export default async function Blog() {
         <BlogHero />
 
         <BlogListingSection
-          blogsPerPage={listingSection?.blogsPerPage}
           posts={listingSection?.posts || []}
           categories={listingSection?.categories || []}
           recentPosts={listingSection?.recentPosts || []}
         />
 
-        <div className="lg:mt-28 mt-10">
+        <div className="mt-10 lg:mt-28">
           <BookingAportment />
         </div>
 

@@ -41,11 +41,12 @@ type RecentPost = {
 };
 
 type BlogListingSectionProps = {
-  blogsPerPage?: number;
   posts?: BlogPost[];
   categories?: CategoryItem[];
   recentPosts?: RecentPost[];
 };
+
+const BLOGS_PER_PAGE = 6;
 
 const formatDate = (dateString: string) => {
   if (!dateString) return "";
@@ -134,9 +135,12 @@ const BlogPagination: FC<BlogPaginationProps> = ({
 }) => {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+  if (totalPages <= 1) return null;
+
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
       <button
+        type="button"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f47c20] text-xl font-semibold text-white transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
@@ -146,6 +150,7 @@ const BlogPagination: FC<BlogPaginationProps> = ({
 
       {pages.map((page) => (
         <button
+          type="button"
           key={page}
           onClick={() => onPageChange(page)}
           className={[
@@ -160,6 +165,7 @@ const BlogPagination: FC<BlogPaginationProps> = ({
       ))}
 
       <button
+        type="button"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f47c20] text-xl font-semibold text-white transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
@@ -175,7 +181,7 @@ const SidebarCard: FC<{ title: string; children: ReactNode }> = ({
   children,
 }) => {
   return (
-    <div className="rounded-[10px] bg-[#f47c20] p-6 text-white max-h-[380px]  overflow-y-auto no-scrollbar">
+    <div className="no-scrollbar max-h-[380px] overflow-y-auto rounded-[10px] bg-[#f47c20] p-6 text-white">
       <h3 className="text-xl font-bold">{title}</h3>
       <div className="mt-4">{children}</div>
     </div>
@@ -185,21 +191,19 @@ const SidebarCard: FC<{ title: string; children: ReactNode }> = ({
 const CategoriesList: FC<{ categories: CategoryItem[] }> = ({ categories }) => {
   return (
     <SidebarCard title="Categories">
-      <div >
-        <ul className="space-y-2">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link
-                href={category.href}
-                className="flex items-start gap-2 text-base leading-[1.4] text-white transition hover:opacity-85"
-              >
-                <span className="mt-[7px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
-                <span>{category.label}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="space-y-2">
+        {categories.map((category) => (
+          <li key={category.id}>
+            <Link
+              href={category.href}
+              className="flex items-start gap-2 text-base leading-[1.4] text-white transition hover:opacity-85"
+            >
+              <span className="mt-[7px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
+              <span>{category.label}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </SidebarCard>
   );
 };
@@ -207,108 +211,52 @@ const CategoriesList: FC<{ categories: CategoryItem[] }> = ({ categories }) => {
 const RecentPostsList: FC<{ recentPosts: RecentPost[] }> = ({ recentPosts }) => {
   return (
     <SidebarCard title="Recent Posts">
-      <div className="">
-        <ul className="space-y-3">
-          {recentPosts.map((post) => (
-            <li
-              key={post.id}
-              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
+      <ul className="space-y-3">
+        {recentPosts.map((post) => (
+          <li
+            key={post.id}
+            className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
+          >
+            <Link
+              href={getRecentPostHref(post)}
+              className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
             >
-              <Link
-                href={getRecentPostHref(post)}
-                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
-              >
-                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
-                <span>{post.shortTitle || post.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <ul className="space-y-3">
-          {recentPosts.map((post) => (
-            <li
-              key={post.id}
-              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
-            >
-              <Link
-                href={getRecentPostHref(post)}
-                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
-              >
-                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
-                <span>{post.shortTitle || post.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <ul className="space-y-3">
-          {recentPosts.map((post) => (
-            <li
-              key={post.id}
-              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
-            >
-              <Link
-                href={getRecentPostHref(post)}
-                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
-              >
-                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
-                <span>{post.shortTitle || post.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <ul className="space-y-3">
-          {recentPosts.map((post) => (
-            <li
-              key={post.id}
-              className="border-b border-white/20 pb-2 last:border-b-0 last:pb-0"
-            >
-              <Link
-                href={getRecentPostHref(post)}
-                className="flex items-start gap-2 text-sm leading-[1.45] text-white transition hover:opacity-85"
-              >
-                <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
-                <span>{post.shortTitle || post.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+              <span className="mt-[6px] block h-[4px] w-[4px] flex-shrink-0 rounded-full bg-white" />
+              <span>{post.shortTitle || post.title}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </SidebarCard>
   );
 };
 
 const BlogListingSection: FC<BlogListingSectionProps> = ({
-  blogsPerPage = 3,
   posts = [],
   categories = [],
   recentPosts = [],
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(posts.length / blogsPerPage);
+  const totalPages = Math.ceil(posts.length / BLOGS_PER_PAGE);
 
   const currentBlogs = useMemo(() => {
-    const startIndex = (currentPage - 1) * blogsPerPage;
-    const endIndex = startIndex + blogsPerPage;
+    const startIndex = (currentPage - 1) * BLOGS_PER_PAGE;
+    const endIndex = startIndex + BLOGS_PER_PAGE;
     return posts.slice(startIndex, endIndex);
-  }, [currentPage, posts, blogsPerPage]);
+  }, [currentPage, posts]);
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;
 
     setCurrentPage(page);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -337,14 +285,12 @@ const BlogListingSection: FC<BlogListingSectionProps> = ({
             </div>
           </div>
 
-          <aside className="space-y-5 ">
+          <aside className="space-y-5">
             {categories.length > 0 && <CategoriesList categories={categories} />}
             {recentPosts.length > 0 && (
               <RecentPostsList recentPosts={recentPosts} />
             )}
-
             <BookingBlog />
-
           </aside>
         </div>
 
