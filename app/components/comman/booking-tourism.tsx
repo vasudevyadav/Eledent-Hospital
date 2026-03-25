@@ -169,7 +169,7 @@ const BookingTourism: FC = () => {
   return (
     <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
       <div className="lg:max-w-7xl mx-auto relative">
-        <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center px-10 overflow-visible">
+        <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center lg:px-10 px-6 overflow-visible">
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
               <p className="text-base mb-3">Eledent Dental Hospitals </p>
@@ -353,7 +353,7 @@ const BookingTourism: FC = () => {
         <div className="z-20 lg:hidden block">
           <form
             onSubmit={handleSubmit}
-            className="relative shadow-2xl p-8 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
+            className="relative shadow-2xl lg:p-8 p-4 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
           >
             <div className="relative z-10">
               <h3 className="text-2xl font-semibold mb-7 text-gray-800">
@@ -398,7 +398,7 @@ const BookingTourism: FC = () => {
                       name="countryCode"
                       value={formData.countryCode}
                       onChange={handleChange}
-                      className="w-[120px] bg-white rounded-full px-4 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                      className="lg:w-[120px] w-[80px] bg-white rounded-full lg:px-4 px-2 py-3 lg:text-sm text-[10px] outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     >
                       {countryCodes.map((country) => (
                         <option key={`${country.label}-${country.value}`} value={country.value}>
@@ -415,7 +415,7 @@ const BookingTourism: FC = () => {
                       placeholder="Phone Number"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="flex-1 bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
+                      className="flex-1 bg-white lg:w-full w-[60%] rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     />
                   </div>
                 </div>

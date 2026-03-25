@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 
 import "swiper/css";
 
@@ -15,6 +16,8 @@ const heroImages = [
 ];
 
 export default function HeroSection() {
+    const { openModal } = useAppointmentModal();
+
     return (
         <div className="my-6 lg:my-12 mx-4 lg:mx-24 lg:mt-40 mt-36">
             <section className="relative z-0 w-full rounded-4xl bg-gray-300 h-[350px] lg:h-[500px] overflow-visible">
@@ -75,7 +78,10 @@ export default function HeroSection() {
                                 </div>
                             </div>
 
-                            <button className="bg-primary text-white px-8 py-3 rounded-sm font-semibold text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95">
+                            <button
+                                onClick={openModal}
+                                className="bg-primary text-white px-8 py-3 rounded-sm font-semibold text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95"
+                            >
                                 Book An Appointment
                             </button>
                         </div>
@@ -107,7 +113,10 @@ export default function HeroSection() {
                                 </div>
                             </div>
 
-                            <button className="mt-4 w-full bg-primary text-white px-6 py-3 rounded-sm font-semibold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95">
+                            <button
+                                onClick={openModal}
+                                className="mt-4 w-full bg-primary text-white px-6 py-3 rounded-sm font-semibold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95"
+                            >
                                 Book An Appointment
                             </button>
                         </div>

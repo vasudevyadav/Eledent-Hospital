@@ -49,9 +49,9 @@ function ServiceCard({
             <div
                 className={[
                     "relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center transition-all duration-300 ease-out mb-2",
-                    "rounded-full bg-white shadow-[0_18px_45px_rgba(0,0,0,0.18)] p-3",
-                    "group-hover:bg-white group-hover:rounded-[10px]",
-                    active ? "bg-white rounded-[10px]" : "",
+                    "rounded-full bg-[#f36d00] shadow-[0_18px_45px_rgba(0,0,0,0.18)] p-3",
+                    "group-hover:bg-[#000] group-hover:rounded-[10px] group-hover:invert",
+                    active ? "bg-[#f36d00] rounded-[10px]" : "",
                 ].join(" ")}
             >
                 <Image
