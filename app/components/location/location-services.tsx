@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Sparkles,
   Braces,
@@ -32,13 +33,43 @@ type Props = {
   services: LocationService[];
 };
 
+function isImageUrl(value: string | null | undefined) {
+  if (!value) return false;
+  return value.startsWith("http://") || value.startsWith("https://");
+}
+
+function ServiceIcon({
+  icon,
+  label,
+}: {
+  icon: string | null | undefined;
+  label: string;
+}) {
+  if (isImageUrl(icon)) {
+    return (
+      <Image
+        src={icon as string}
+        alt={label}
+        width={28}
+        height={28}
+        className="h-8 w-8 object-contain"
+      />
+    );
+  }
+
+  const Icon =
+    icon && icon in ICONS ? ICONS[icon as IconName] : Sparkles;
+
+  return <Icon className="h-6 w-6 transition-all group-hover:text-[#f36d00]" />;
+}
+
 function ServiceCard({
   label,
-  Icon,
+  icon,
   href,
 }: {
   label: string;
-  Icon: LucideIcon;
+  icon: string | null | undefined;
   href: string;
 }) {
   return (
@@ -55,8 +86,8 @@ function ServiceCard({
       aria-label={label}
       title={label}
     >
-      <div className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-[#f36d00] text-white transition-all group-hover:rounded-[10px] group-hover:bg-white">
-        <Icon className="h-6 w-6 transition-all group-hover:text-[#f36d00]" />
+      <div className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-[#f36d00] text-white transition-all group-hover:rounded-[10px] group-hover:bg-black">
+        <ServiceIcon icon={icon} label={label} />
       </div>
 
       <div className="text-center text-xs font-semibold text-slate-700 transition-colors group-hover:text-white lg:text-sm">
@@ -64,18 +95,6 @@ function ServiceCard({
       </div>
     </Link>
   );
-}
-
-function getValidIcon(iconName: string | null | undefined): LucideIcon {
-  if (!iconName) {
-    return Sparkles;
-  }
-
-  if (iconName in ICONS) {
-    return ICONS[iconName as IconName];
-  }
-
-  return Sparkles;
 }
 
 export default function LocationServices({ services }: Props) {
@@ -98,13 +117,11 @@ export default function LocationServices({ services }: Props) {
 
               <div className="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {services.map((service, index) => {
-                  const Icon = getValidIcon(service.icon);
-
                   return (
                     <ServiceCard
                       key={`${service.label}-${index}`}
                       label={service.label}
-                      Icon={Icon}
+                      icon={service.icon}
                       href={service.href}
                     />
                   );
