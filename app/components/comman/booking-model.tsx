@@ -26,7 +26,11 @@ type FormDataType = {
   message: string;
 };
 
-const BookingModel: FC = () => {
+type BookingModelProps = {
+  closeModal: () => void;
+};
+
+const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -139,6 +143,8 @@ const BookingModel: FC = () => {
         locationId: "",
         message: "",
       });
+
+      closeModal();
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
@@ -150,7 +156,16 @@ const BookingModel: FC = () => {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
+    <section className="relative lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
+      <button
+        type="button"
+        onClick={closeModal}
+        aria-label="Close modal"
+        className="absolute -top-2 right-22 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-md transition hover:scale-105"
+      >
+        ✕
+      </button>
+
       <div className="w-full max-w-[440px] z-20">
         <form
           onSubmit={handleSubmit}

@@ -40,9 +40,9 @@ export default function TourismHero() {
                         <h1 className="text-4xl font-semibold text-white md:text-5xl">
                             {heroData.title}
                         </h1>
-                        <p className="mt-3 max-w-xl text-sm text-white/80 md:text-base">
+                        {/* <p className="mt-3 max-w-xl text-sm text-white/80 md:text-base">
                             {heroData.subtitle}
-                        </p>
+                        </p> */}
                     </div>
 
                     <Link

@@ -61,7 +61,7 @@ export default function ContactFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-center lg:gap-16 gap-6 lg:grid-cols-2">
                     {/* LEFT CONTENT */}
                     <div className="max-w-[520px]">
-                        <p className="text-[11px] font-semibold tracking-[0.28em] text-[#f47200]">
+                        <p className="text-sm lg:text-2xl font-semibold tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 
@@ -71,10 +71,10 @@ export default function ContactFaq(): JSX.Element {
                             Here to Help
                         </h2>
 
-                        <p className="lg:mt-6 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
+                        {/* <p className="lg:mt-6 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                        </p>
+                        </p> */}
                     </div>
 
                     {/* RIGHT ACCORDION */}
