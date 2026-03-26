@@ -200,10 +200,7 @@ const BookingTourism: FC = () => {
               </div>
 
               <div className="text-[15px] max-w-[300px]">
-                <div className="w-full flex justify-between">
-                  <p>+91 9983868366 </p>
-                  <p>  +91 7799769994 </p>
-                </div>
+                <div className="w-full flex justify-between"><a href="tel:+919983868366" className="hover:underline transition">+91 9983868366</a><p>|</p><a href="tel:+917799769994" className="hover:underline transition">+91 7799769994</a></div>
 
                 <hr className="h-[1px] bg-white/70 w-full my-2" />
 

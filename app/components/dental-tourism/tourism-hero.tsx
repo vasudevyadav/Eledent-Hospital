@@ -64,9 +64,7 @@ export default function TourismHero() {
                                     <p className="mb-1.5 text-sm text-white/70">
                                         {heroData.phoneLabel}
                                     </p>
-                                    <p className="text-sm font-semibold text-white md:text-lg">
-                                        {heroData.phoneNumber}
-                                    </p>
+                                    <a href="tel:+919983868366" className="text-sm font-semibold text-white transition md:text-lg">+91 99838 68366</a>
                                 </div>
                             </div>
 
@@ -94,7 +92,7 @@ export default function TourismHero() {
                                 onClick={openModal}
                                 className="rounded-md bg-orange-500 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
                             >
-                            Book Appointment
+                                Book Appointment
                             </button>
                         </div>
                     </div>
