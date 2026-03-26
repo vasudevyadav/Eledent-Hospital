@@ -269,9 +269,9 @@ export default function Footer(): JSX.Element {
                     <div className="h-[1px] w-full bg-white/20" />
                 </div>
 
-                <div className="bg-gradient-to-b from-[#e46d2b] to-[#E87733] py-4 text-center text-white">
+                <div className="bg-gradient-to-b from-[#e46d2b] to-[#E87733] py-4 text-center text-white lg:mb-0 mb-16">
                     <h3 className="text-base leading-snug">
-                        <a href="/">© 2025 ELEDENT HOSPITALS LLP.</a> All rights reserved.
+                        <a href="/">© 2026 ELEDENT HOSPITALS LLP.</a> All rights reserved.
                     </h3>
                 </div>
             </footer>

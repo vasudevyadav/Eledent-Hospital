@@ -7,8 +7,8 @@ import WhyChosse from "../components/about-us/why-chosse";
 import MissionVision from "../components/about-us/misson-visson";
 import AboutAppointment from "../components/about-us/about-appointment";
 import AboutFaq from "../components/about-us/about-faq";
-import AboutTestimonial from "../components/about-us/about-testimonial";
 import { getMetadataByPath } from "@/lib/metadata";
+import CommanTestimonial from "../components/comman/comman-testimonial";
 
 export const metadata: Metadata = getMetadataByPath("/about-us");
 
@@ -21,7 +21,7 @@ export default function AboutUs() {
         <AboutDetails />
         <MissionVision />
         <WhyChosse />
-        <AboutTestimonial />
+        <CommanTestimonial />
         <AboutAppointment />
         <AboutFaq />
         <Footer />

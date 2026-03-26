@@ -45,9 +45,7 @@ export default function ServicesHero({ data }: Props) {
                 </div>
                 <div className="leading-tight">
                   <p className="mb-1.5 text-sm text-white/70">{data.phoneLabel}</p>
-                  <p className="text-sm font-semibold text-white md:text-lg">
-                    {data.phoneNumber}
-                  </p>
+                  <a href="tel:+919983868366" className="text-sm font-semibold text-white transition md:text-lg">+91 99838 68366</a>
                 </div>
               </div>
 

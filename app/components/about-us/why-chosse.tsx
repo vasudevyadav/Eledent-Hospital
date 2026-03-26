@@ -68,25 +68,25 @@ export default function WhyChoose(): JSX.Element {
         {
             title: "Honest Guidance",
             desc: "We recommend treatments based on your dental condition, not just to sell unnecessary procedures.",
-            iconSrc: "/about-us/value-1.png",
+            iconSrc: "/about-us/guidence.png",
             iconAlt: "Whole care icon",
         },
         {
             title: "Thoughtful Planning",
             desc: "Every dental treatment plan is explained clearly, step by step, before the process begins.",
-            iconSrc: "/about-us/value-3.png",
+            iconSrc: "/about-us/Thoughtful-Planning.png",
             iconAlt: "Advanced equipment icon",
         },
         {
             title: "Long-Term Focus",
             desc: "We plan care to improve function, comfort, and oral health over time.",
-            iconSrc: "/about-us/value-3.png",
+            iconSrc: "/about-us/long-term-focus.png",
             iconAlt: "Experienced doctors icon",
         },
         {
             title: "Consistent Experience",
             desc: "Every Eledent Dental Hospital location follows the same patient-first approach to care.",
-            iconSrc: "/about-us/value-4.png",
+            iconSrc: "/about-us/Consistent-Experience.png",
             iconAlt: "Sterile setup icon",
         },
     ];
@@ -110,7 +110,7 @@ export default function WhyChoose(): JSX.Element {
                     <div className="mt-8 flex justify-center hidden">
                         <div className="relative h-[320px] w-[240px] sm:h-[380px] sm:w-[300px]">
                             <Image
-                                src="/about-us/why-chose-doctor.png"
+                                src="/about-us/why-choose-us.png"
                                 alt="Doctor"
                                 fill
                                 priority
@@ -131,7 +131,7 @@ export default function WhyChoose(): JSX.Element {
                         <div className="relative mx-auto hidden w-full max-w-[420px] lg:block">
                             <div className="relative mx-auto h-[480px] w-[330px]">
                                 <Image
-                                    src="/about-us/why-chose-doctor.png"
+                                    src="/about-us/why-choose-us.png"
                                     alt="Doctor"
                                     fill
                                     priority
@@ -169,12 +169,12 @@ export default function WhyChoose(): JSX.Element {
                         </div>
 
                         {/* RIGHT IMAGE + CARDS (FIXED: NO CUT-OFF) */}
-                        <div className="relative bg-black">
+                        <div className="relative bg-black/50">
                             <Image
-                                src="/about-us/why-chose-right.jpg"
+                                src="/about-us/Our-Value.png"
                                 alt="Dental Background"
                                 fill
-                                className="object-cover opacity-60"
+                                className="object-cover"
                             />
 
                             {/* Cards container in normal flow */}

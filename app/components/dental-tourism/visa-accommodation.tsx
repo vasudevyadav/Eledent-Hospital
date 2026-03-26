@@ -56,7 +56,7 @@ const VisaAccommodation: FC = () => {
                         <div className="relative w-full">
                             <div className="relative w-full mx-auto aspect-[16/14]">
                                 <Image
-                                    src="/dental-tourism/visa-travel.png"
+                                    src="/dental-tourism/Visa-Travel-and-Accommodation.jpg"
                                     alt="Visa Travel and Accommodation"
                                     fill
                                     className="object-contain"

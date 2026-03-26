@@ -1,67 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-    Sparkles,
-    Braces,
-    ScanFace,
-    Baby,
-    Stethoscope,
-    Crown,
-    Replace,
-    Pill,
-    Clock3,
-    Gem,
-    type LucideIcon,
-} from "lucide-react";
-
-const ICONS = {
-    Sparkles,
-    Braces,
-    ScanFace,
-    Baby,
-    Stethoscope,
-    Crown,
-    Replace,
-    Pill,
-    Clock3,
-    Gem,
-} as const;
+import Image from "next/image";
 
 type ServiceItem = {
-    label: string;
-    href: string;
-    icon: keyof typeof ICONS;
+    imageSrc: string;
+    imageAlt: string;
+    iconSrc: string;
+    title: string;
+    description: string;
+    slug: string;
 };
-
-
-const SERVICES: ServiceItem[] = [
-    { label: "DENTAL IMPLANTS", href: "/services/dental-implants", icon: "Replace" },
-    { label: "FULL TEETH REPLACEMENT", href: "/services/full-teeth-replacement", icon: "Replace" },
-    { label: "ROOT CANAL TREATMENT", href: "/services/root-canal-treatment", icon: "Pill" },
-    { label: "DIGITAL SMILE DESIGNING", href: "/services/digital-smile-designing", icon: "ScanFace" },
-    { label: "ONE VISIT DENTISTRY", href: "/services/one-visit-dentistry", icon: "Clock3" },
-    { label: "ZIRCONIUM CROWNS", href: "/services/zirconium-crowns", icon: "Crown" },
-    { label: "DENTAL BRACES", href: "/services/dental-braces", icon: "Braces" },
-    { label: "INVISIBLE ALIGNERS", href: "/services/invisible-aligners", icon: "Braces" },
-    { label: "TEETH WHITENING", href: "/services/teeth-whitening", icon: "Sparkles" },
-    { label: "PAEDIATRIC DENTISTRY", href: "/services/paediatric-dentistry", icon: "Baby" },
-    { label: "GENERAL DENTISTRY", href: "/services/general-dentistry", icon: "Stethoscope" },
-    { label: "TOOTH JEWELLERY", href: "/services/tooth-jewellery", icon: "Gem" },
-    { label: "LASER GUM TREATMENT", href: "/services/laser-gum-treatment", icon: "Pill" },
-    { label: "DIMPLEPLASTY", href: "/services/dimpleplasty", icon: "ScanFace" },
-];
 
 function ServiceCard({
     label,
-    Icon,
+    image,
     href,
     active,
     onActive,
 }: {
     label: string;
-    Icon: LucideIcon;
+    image: string;
     href: string;
     active?: boolean;
     onActive?: () => void;
@@ -88,19 +48,18 @@ function ServiceCard({
         >
             <div
                 className={[
-                    "w-14 h-14 flex items-center justify-center text-white transition-all duration-300 ease-out mb-2",
-                    "rounded-full bg-[#f36d00]",
-                    "group-hover:bg-white group-hover:rounded-[10px]",
+                    "relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center transition-all duration-300 ease-out mb-2",
+                    "rounded-full bg-[#f36d00] shadow-[0_18px_45px_rgba(0,0,0,0.18)] p-3",
+                    "group-hover:bg-[#000] group-hover:rounded-[10px] group-hover:invert",
                     active ? "bg-[#f36d00] rounded-[10px]" : "",
                 ].join(" ")}
             >
-                <Icon
-                    className={[
-                        "w-6 h-6 transition-all duration-300 ease-out",
-                        "group-hover:text-[#f36d00]",
-                        "group-hover:scale-110",
-                        active ? "text-white scale-110" : "",
-                    ].join(" ")}
+                <Image
+                    src={image}
+                    alt={label}
+                    fill
+                    className="object-contain p-3 transition-all duration-300 ease-out group-hover:scale-110"
+                    unoptimized
                 />
             </div>
 
@@ -119,7 +78,27 @@ function ServiceCard({
 }
 
 export default function HomeServicesStatic() {
+    const [services, setServices] = useState<ServiceItem[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const res = await fetch(
+                    "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services"
+                );
+                const data = await res.json();
+                setServices(data?.data || []);
+            } catch (error) {
+                console.error("Failed to fetch services:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchServices();
+    }, []);
 
     return (
         <section className="relative w-full bg-white overflow-hidden lg:pt-14 pt-4">
@@ -138,21 +117,22 @@ export default function HomeServicesStatic() {
                                 </h2>
                             </div>
 
-                            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                                {SERVICES.map((s, idx) => {
-                                    const Icon = ICONS[s.icon];
-                                    return (
+                            {loading ? (
+                                <div className="mt-6 text-center text-slate-500">Loading...</div>
+                            ) : (
+                                <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+                                    {services.map((service, idx) => (
                                         <ServiceCard
-                                            key={s.label}
-                                            label={s.label}
-                                            Icon={Icon}
-                                            href={s.href}
+                                            key={service.slug}
+                                            label={service.title}
+                                            image={service.iconSrc}
+                                            href={`/services/${service.slug}`}
                                             active={idx === activeIndex}
                                             onActive={() => setActiveIndex(idx)}
                                         />
-                                    );
-                                })}
-                            </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

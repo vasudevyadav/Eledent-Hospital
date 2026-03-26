@@ -33,7 +33,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology.png",
+    imageSrc: "/technology/technology.webp",
     imageAlt: "CEREC single visit dentistry machine",
     textFirst: true,
     imageFit: "cover",
@@ -52,7 +52,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-1.png",
+    imageSrc: "/technology/Intraoral-Digital-Scanners.jpg",
     imageAlt: "CBCT OPG and CEPH dental scan",
     textFirst: false,
     imageFit: "cover",
@@ -71,7 +71,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-2.png",
+    imageSrc: "/technology/technology-1.png",
     imageAlt: "Digital smile designing technology",
     textFirst: true,
     imageFit: "cover",
@@ -90,7 +90,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-4.png",
+    imageSrc: "/technology/Digital-Smile-Design.jpg",
     imageAlt: "Advanced dental laser equipment",
     textFirst: false,
     imageFit: "cover",
@@ -111,7 +111,7 @@ const SECTIONS: TechSection[] = [
 
 
     ],
-    imageSrc: "/technology/technology-5.png",
+    imageSrc: "/technology/Microscopic-Dentistry.jpg",
     imageAlt: "Integrated implantology system",
     textFirst: true,
     imageFit: "cover",
@@ -130,7 +130,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-6.png",
+    imageSrc: "/technology/Guided-Biofilm-Therapy-(GBT).jpg",
     imageAlt: "Zoom teeth whitening treatment",
     textFirst: false,
     imageFit: "cover",
@@ -149,7 +149,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-7.png",
+    imageSrc: "/technology/Conscious-Sedation.jpg",
     imageAlt: "Advanced dental chair",
     textFirst: true,
     imageFit: "cover",
@@ -169,7 +169,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-6.png",
+    imageSrc: "/technology/Integrated-Implantology.jpg",
     imageAlt: "Zoom teeth whitening treatment",
     textFirst: false,
     imageFit: "cover",
@@ -189,7 +189,7 @@ const SECTIONS: TechSection[] = [
       },
 
     ],
-    imageSrc: "/technology/technology-7.png",
+    imageSrc: "/technology/Zoom-Teeth-Whitening.jpg",
     imageAlt: "Advanced dental chair",
     textFirst: true,
     imageFit: "cover",

@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import type { FC } from "react";
 
 type MVItem = {
     id: "vision" | "mission";
     title: string;
     desc: string;
+    image: string;
 };
 
 const MissionVision: FC = () => {
@@ -16,11 +18,13 @@ const MissionVision: FC = () => {
             id: "vision",
             title: "Vision",
             desc: "To create a dental care experience where every patient feels informed, comfortable, and confident about treatment through specialist expertise, modern technology, and patient-first care.",
+            image: "/about-us/vision.png",
         },
         {
             id: "mission",
             title: "Mission",
             desc: "To deliver multi-speciality dental care with clear diagnosis, precise treatment planning, and modern dentistry that supports healthier, long-lasting smiles.",
+            image: "/about-us/mission.png",
         },
     ];
 
@@ -47,7 +51,7 @@ const MissionVision: FC = () => {
 
                                 "lg:right-28 md:right-[-40px]",
 
-                                "right-0 sm:right-2",
+                                "-right-1.5 sm:right-2",
 
                                 "w-[340px] sm:w-[400px] md:w-[420px]",
                             ].join(" ")}
@@ -65,7 +69,15 @@ const MissionVision: FC = () => {
                                         <div key={item.id}>
                                             <div className="flex gap-4 items-start">
                                                 <div className="w-10 h-10 rounded-full bg-[#2F2F2F] flex items-center justify-center shrink-0">
-                                                    <span className="w-2.5 h-2.5 rounded-full bg-[#E67735]" />
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={item.title}
+                                                        width={900}
+                                                        height={900}
+                                                        priority
+                                                        className="w-5 "
+                                                    />
+
                                                 </div>
 
                                                 <div>

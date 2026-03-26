@@ -12,6 +12,7 @@ const tourismPoints = [
   "No waiting list for patients, if planned properly in advance in comparison to a developed country.",
   "The Indian government has expanded its e-tourism VISA regime to include medical visa.",
 ];
+
 const tourismPoints2 = [
   "The Chowmahalla palace, which has rightfully earned the place as an Asia Pacific Heritage Site of UNESCO.",
   "The great Wall Street was once called ‘Golconda’, the former name of the city of Hyderabad which exactly depicts the popularity of the city.",
@@ -40,16 +41,16 @@ const SECTIONS: TourismSection[] = [
     titleLine1: "Dental Tourism in India",
     titleLine2: "Hyderabad",
     intro: [
-      "When we travel to another country to get surgery or a medical treatment owing to the specializations each country offers in medical procedures is called medical tourism. Dental Tourism is one of the major departments under medical tourism that is gaining popularity at an alarming rate. ",
+      "When we travel to another country to get surgery or a medical treatment owing to the specializations each country offers in medical procedures is called medical tourism. Dental Tourism is one of the major departments under medical tourism that is gaining popularity at an alarming rate.",
       "People generally tend to travel abroad for affordable dental care, dental treatment, dental surgery or dental procedures which are expensive in one’s own country.",
     ],
-    imageSrc: "/dental-tourism/tourism-about.png",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India-Hyderabad.png",
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
     id: "hyderabad-points-1",
     titleLine1: "Dental Tourism in India",
-    imageSrc: "/dental-tourism/tourism-about-1.png",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India,-Hyderabad.jpg",
     imageAlt: "Dental Tourism in Hyderabad",
     pointsTitle: "Dental Tourism in India",
     points: tourismPoints,
@@ -65,13 +66,13 @@ const SECTIONS: TourismSection[] = [
       "India has transformed itself into a hub of dental tourism wherein travellers from all over the world can visit this country and get dental treatments at affordable prices and also experience the rich legacy in terms of cuisines, history, nature, and multicultural getaways.",
       "Hyderabad, in particular, is one of the highly preferred choices for tourists. Considering the amalgamation of the old and new, the city paints a vivid picture of culture and commerce.",
     ],
-    imageSrc: "/dental-tourism/tourism-about.png",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India.jpg",
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
     id: "hyderabad-points-2",
     titleLine1: "Dental Tourism in India",
-    imageSrc: "/dental-tourism/tourism-about-2.png",
+    imageSrc: "/dental-tourism/tourism-about-2.webp",
     imageAlt: "Dental Tourism in Hyderabad",
     pointsTitle: "Dental Tourism in India",
     points: tourismPoints2,
@@ -97,7 +98,7 @@ const TourismAbout: FC = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
                     {/* Text */}
                     <div className={sec.flip ? "order-2 lg:order-2" : ""}>
-                      <h2 className="text-2xl lg:text-4xl font-semibold leading-tight text-[#f37021]">
+                      <h2 className="text-2xl lg:text-4xl font-semibold leading-tight text-[#f37021] mt-8 lg:mt-0">
                         {sec.titleLine1}
                         {sec.titleLine2 ? (
                           <>
@@ -138,7 +139,10 @@ const TourismAbout: FC = () => {
                 {/* Block 2: Points + Image */}
                 {hasPoints && (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
-                    <div className="relative z-10 rounded-2xl overflow-hidden">
+                    <div
+                      className={`relative z-10 rounded-2xl overflow-hidden ${sec.flip ? "order-1 lg:order-1" : "order-1"
+                        }`}
+                    >
                       <Image
                         src={sec.imageSrc}
                         alt={sec.imageAlt}
@@ -149,7 +153,10 @@ const TourismAbout: FC = () => {
                       />
                     </div>
 
-                    <div className="mt-6 lg:mt-0">
+                    <div
+                      className={`mt-6 lg:mt-0 ${sec.flip ? "order-2 lg:order-2" : "order-2"
+                        }`}
+                    >
                       <h3 className="text-2xl lg:text-4xl font-bold text-gray-800">
                         {sec.pointsTitle ?? sec.titleLine1}
                       </h3>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import BookingAportment from "@/app/components/comman/booking-aportment";
 import Footer from "@/app/components/Footer";
 import LocationAbout from "@/app/components/location/location-about";
@@ -10,6 +11,7 @@ import LocationTransport from "@/app/components/location/location-transport";
 import LocationTrust from "@/app/components/location/location-trust";
 import Navbar from "@/app/components/Navbar";
 import { getLocationBySlug } from "@/lib/location-api";
+import { getMetadataByPath } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -17,6 +19,11 @@ type Props = {
     slug: string;
   }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  return getMetadataByPath(`/location/${slug}`);
+}
 
 export default async function LocationPage({ params }: Props) {
   const { slug } = await params;
@@ -46,9 +53,10 @@ export default async function LocationPage({ params }: Props) {
           trustHeading={location.trustHeading}
           trustCards={location.trustCards}
         />
+
         <LocationTransport location={location} />
 
-        <LocationTestimonial />
+        <LocationTestimonial data={location.testimonials ?? []} />
 
         <LocationGallery gallery={location.gallery} />
 
@@ -56,10 +64,7 @@ export default async function LocationPage({ params }: Props) {
           <BookingAportment />
         </div>
 
-
         <LocationFaq faqs={location.faqs} />
-
-
       </main>
 
       <Footer />

@@ -1,87 +1,100 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export default function LocationTestimonial() {
+type TestimonialItem = {
+    src?: string;
+    alt?: string;
+};
+
+type Props = {
+    data?: TestimonialItem[];
+};
+
+export default function LocationTestimonial({ data = [] }: Props) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [itemsPerSlide, setItemsPerSlide] = useState(3);
 
-    const testimonialImages = useMemo(
-        () => [
-            {
-                image:
-                    "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=70",
-                name: "Patient Review 1",
-            },
-            {
-                image:
-                    "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=70",
-                name: "Patient Review 2",
-            },
-            {
-                image:
-                    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=70",
-                name: "Patient Review 3",
-            },
-            {
-                image:
-                    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=70",
-                name: "Patient Review 4",
-            },
-            {
-                image:
-                    "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=70",
-                name: "Patient Review 5",
-            },
-            {
-                image:
-                    "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1200&q=70",
-                name: "Patient Review 6",
-            },
-        ],
-        []
-    );
+    const testimonialImages = useMemo(() => {
+        return Array.isArray(data) ? data.filter((item) => item?.src) : [];
+    }, [data]);
 
-    const imagesPerSlide = 3;
-    const totalSlides = Math.ceil(testimonialImages.length / imagesPerSlide);
+    useEffect(() => {
+        const updateItemsPerSlide = () => {
+            if (window.innerWidth >= 1024) {
+                setItemsPerSlide(3);
+            } else if (window.innerWidth >= 768) {
+                setItemsPerSlide(2);
+            } else {
+                setItemsPerSlide(1);
+            }
+        };
+
+        updateItemsPerSlide();
+        window.addEventListener("resize", updateItemsPerSlide);
+
+        return () => window.removeEventListener("resize", updateItemsPerSlide);
+    }, []);
+
+    const totalSlides = Math.ceil(testimonialImages.length / itemsPerSlide);
+
+    useEffect(() => {
+        if (currentSlide >= totalSlides && totalSlides > 0) {
+            setCurrentSlide(0);
+        }
+    }, [currentSlide, totalSlides]);
 
     const handlePrev = () => {
+        if (!totalSlides) return;
         setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
     };
 
     const handleNext = () => {
+        if (!totalSlides) return;
         setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
     };
 
-    const visibleImages = testimonialImages.slice(
-        currentSlide * imagesPerSlide,
-        currentSlide * imagesPerSlide + imagesPerSlide
-    );
+    const visibleImages = useMemo(() => {
+        if (!testimonialImages.length) return [];
+
+        const start = currentSlide * itemsPerSlide;
+        const result: TestimonialItem[] = [];
+
+        for (let i = 0; i < itemsPerSlide; i++) {
+            const index = (start + i) % testimonialImages.length;
+            result.push(testimonialImages[index]);
+        }
+
+        return result;
+    }, [testimonialImages, currentSlide, itemsPerSlide]);
+
+    if (!testimonialImages.length) return null;
 
     return (
-        <section className="w-full bg-white pt-10">
-            <div className="mx-auto max-w-6xl px-6">
+        <section className="w-full bg-white lg:pt-10">
+            <div className="mx-auto max-w-7xl px-6 lg:px-0">
                 <div className="text-center">
-                    <span className="inline-flex items-center justify-center  bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
+                    <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
                         Our
                     </span>
 
-                    <h2 className="mt-1 text-[34px] font-bold text-gray-800 md:text-[40px]">
+                    <h2 className="mt-1 text-[25px] lg:font-bold font-semibold text-gray-800 md:text-[40px]">
                         Testimonials
                     </h2>
                 </div>
 
-                <div className="mt-10">
+                <div className="lg:mt-10 mt-4">
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {visibleImages.map((item, index) => (
                             <div
-                                key={index}
+                                key={`${item.src}-${index}`}
                                 className="overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
                             >
-                                <div className="relative h-[280px] w-full">
+                                <div className="relative lg:h-[220px] h-[180px] w-full">
                                     <img
-                                        src={item.image}
-                                        alt={item.name}
-                                        className="h-full w-full object-cover shadow-2xl"
+                                        src={item.src || "/images/placeholder.jpg"}
+                                        alt={item.alt || "Patient testimonial"}
+                                        className="h-full w-full object-contain shadow-2xl"
                                         loading="lazy"
                                     />
                                 </div>
@@ -89,7 +102,7 @@ export default function LocationTestimonial() {
                         ))}
                     </div>
 
-                    {testimonialImages.length > imagesPerSlide && (
+                    {testimonialImages.length > itemsPerSlide && (
                         <div className="mt-8 flex items-center justify-center gap-6 text-gray-400">
                             <button
                                 onClick={handlePrev}
@@ -113,9 +126,7 @@ export default function LocationTestimonial() {
                                 {Array.from({ length: totalSlides }).map((_, i) => (
                                     <span
                                         key={i}
-                                        className={`h-2.5 w-2.5 rounded-full ${currentSlide === i
-                                            ? "bg-orange-500"
-                                            : "bg-gray-300"
+                                        className={`h-2.5 w-2.5 rounded-full ${currentSlide === i ? "bg-orange-500" : "bg-gray-300"
                                             }`}
                                     />
                                 ))}

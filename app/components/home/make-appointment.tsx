@@ -146,7 +146,7 @@ export default function MakeAppointmentStatic() {
     // ✅ CTA
     const ctaText = "Get an Appointment";
     const ctaHref = "/appointment";
-    const doctorImageSrc = "/home/home-nurse.png";
+    const doctorImageSrc = "/home/Book-Your-Appointment.png";
     const doctorImageAlt = "Doctor";
 
     const stats: StatItem[] = [
@@ -243,7 +243,7 @@ export default function MakeAppointmentStatic() {
 
                                         if (item.type === "phone") {
                                             return (
-                                                <p key={item.id} className="mb-6 mt-1 text-lg font-bold text-white sm:text-2xl">
+                                                <p key={item.id} className="mb-6 mt-1 text-sm font-bold text-white sm:text-2xl">
                                                     {item.text}
                                                 </p>
                                             );
@@ -255,7 +255,7 @@ export default function MakeAppointmentStatic() {
                                     <div>
                                         <Link
                                             href={ctaHref}
-                                            className="inline-block whitespace-nowrap rounded-md bg-black px-5 py-2.5 text-sm font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base"
+                                            className="inline-block whitespace-nowrap rounded-md bg-black lg:px-5 px-3 py-2.5 lg:text-sm text-xs font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base"
                                         >
                                             {ctaText}
                                         </Link>

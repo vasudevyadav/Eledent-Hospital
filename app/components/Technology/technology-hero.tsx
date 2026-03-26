@@ -9,7 +9,7 @@ export default function TechnologyHero() {
 
             <section className="relative z-0 lg:h-[440px] h-[350px] w-full overflow-hidden lg:rounded-3xl rounded-2xl">
                 <Image
-                    src="/technology/technogy-banner.png"
+                    src="/technology/home-banner.png"
                     alt="Dental Tourism banner"
                     fill
                     priority
