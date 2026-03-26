@@ -17,13 +17,12 @@ export default function DentalImplantsSection({
           <div className="lg:col-span-6 py-0">
 
             <h2 className="mt-4 text-2xl font-semibold lg:leading-[1.15] text-[#F47A20] lg:text-[34px]">
-              Comprehensive
-              Dental Treatments for a Radiant, Healthy Smile
+              15+ Dental Treatments Under One Roof 
             </h2>
 
             <p className="lg:mt-4 mt-2 max-w-2xl max-w-lg text-sm text-[#6B7280] md:text-base">
-              At National Dental Care, we strive to provide personalized dental solutions tailored to your needs. Let us help you
-              achieve optimal oral health and a radiant smile!
+           Eledent Dental provides complete dental care for pain relief, missing teeth, damaged teeth, and smile improvement. With MDS-certified dentists, advanced dental technology, and 5 Hyderabad branches, we offer safe, comfortable, and well-planned treatment for children and adults.
+
             </p>
 
 

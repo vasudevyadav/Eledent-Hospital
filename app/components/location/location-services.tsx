@@ -57,6 +57,8 @@ function ServiceIcon({
     );
   }
 
+
+
   const Icon =
     icon && icon in ICONS ? ICONS[icon as IconName] : Sparkles;
 
