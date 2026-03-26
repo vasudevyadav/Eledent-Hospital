@@ -91,7 +91,7 @@ export default function AboutFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-center lg:gap-16 gap-10 lg:grid-cols-2">
                     {/* LEFT CONTENT */}
                     <div className="max-w-[520px]">
-                        <p className="lg:text-[11px] text-sm font-semibold tracking-[0.28em] text-[#f47200]">
+                        <p className="lg:text-2xl text-sm font-semibold tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 

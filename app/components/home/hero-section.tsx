@@ -84,7 +84,7 @@ export default function HeroSection() {
                                 onClick={openModal}
                                 className="bg-primary text-white px-8 py-3 rounded-sm font-semibold text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95"
                             >
-                                Book An Appointment
+                           Book Appointment
                             </button>
                         </div>
 
@@ -119,7 +119,7 @@ export default function HeroSection() {
                                 onClick={openModal}
                                 className="mt-4 w-full bg-primary text-white px-6 py-3 rounded-sm font-semibold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95"
                             >
-                                Book An Appointment
+                        Book Appointment
                             </button>
                         </div>
                     </div>

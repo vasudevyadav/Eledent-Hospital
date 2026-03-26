@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 
 /** Subtle hex background as inline SVG (data-uri) */
 const HEX_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%23e5e7eb' stroke-width='1'%3E%3Cpath opacity='0.55' d='M30 15l15-9 15 9v18l-15 9-15-9V15z'/%3E%3Cpath opacity='0.35' d='M90 15l15-9 15 9v18l-15 9-15-9V15z'/%3E%3Cpath opacity='0.25' d='M150 15l15-9 15 9v18l-15 9-15-9V15z'/%3E%3Cpath opacity='0.25' d='M60 60l15-9 15 9v18l-15 9-15-9V60z'/%3E%3Cpath opacity='0.18' d='M120 60l15-9 15 9v18l-15 9-15-9V60z'/%3E%3C/g%3E%3C/svg%3E")`;
@@ -135,17 +135,20 @@ function StatIconCircle({ iconSrc, iconAlt }: { iconSrc: string; iconAlt: string
 }
 
 export default function MakeAppointmentStatic() {
-    // ✅ IMAGE ME JO CONTENT HAI - SAB STATIC
+    const { openModal } = useAppointmentModal();
+
     const heroItems = [
         { id: "eyebrow", type: "eyebrow" as const, text: "Need Expert Dental Care or Check-Up? " },
         { id: "title", type: "title" as const, text: "Book Your Appointment with Our Dental Specialists" },
         { id: "phoneLabel", type: "phoneLabel" as const, text: "Get your Consultation or Call:" },
-        { id: "phone", type: "phone" as const, text: "+91 9983868366 | +91 7799769994" },
     ];
 
-    // ✅ CTA
+    const phoneNumbers = [
+        { label: "+91 9983868366", href: "tel:+919983868366" },
+        { label: "+91 7799769994", href: "tel:+917799769994" },
+    ];
+
     const ctaText = "Get an Appointment";
-    const ctaHref = "/appointment";
     const doctorImageSrc = "/home/Book-Your-Appointment.png";
     const doctorImageAlt = "Doctor";
 
@@ -175,7 +178,7 @@ export default function MakeAppointmentStatic() {
             value: 5000,
             decimals: 0,
             suffix: "+",
-            label: "  Digital Smile  ",
+            label: "Digital Smile",
         },
         {
             id: "implants",
@@ -184,7 +187,7 @@ export default function MakeAppointmentStatic() {
             value: 9500,
             decimals: 0,
             suffix: "+",
-            label: " Braces Cases ",
+            label: "Braces Cases",
         },
     ];
 
@@ -206,7 +209,7 @@ export default function MakeAppointmentStatic() {
                     <div className="relative rounded-2xl bg-[#f47920]">
                         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
                             <div className="relative min-h-[390px] sm:min-h-[400px] lg:min-h-[380px]">
-                                <div className="relative z-10 max-w-xl pb-8 pr-0 pt-8  lg:pb-36 lg:pt-22">
+                                <div className="relative z-10 max-w-xl pb-8 pr-0 pt-8 lg:pb-36 lg:pt-22">
                                     {heroItems.map((item) => {
                                         if (item.type === "eyebrow") {
                                             return (
@@ -234,16 +237,8 @@ export default function MakeAppointmentStatic() {
                                             return (
                                                 <p
                                                     key={item.id}
-                                                    className="text-[11px] font-semibold tracking-wide text-white/90 sm:text-base mb-2"
+                                                    className="mb-2 text-[11px] font-semibold tracking-wide text-white/90 sm:text-base"
                                                 >
-                                                    {item.text}
-                                                </p>
-                                            );
-                                        }
-
-                                        if (item.type === "phone") {
-                                            return (
-                                                <p key={item.id} className="mb-6 mt-1 text-sm font-bold text-white sm:text-2xl">
                                                     {item.text}
                                                 </p>
                                             );
@@ -252,13 +247,28 @@ export default function MakeAppointmentStatic() {
                                         return null;
                                     })}
 
+                                    <div className="mb-6 mt-1 flex flex-wrap items-center gap-2 text-sm font-bold text-white sm:text-2xl">
+                                        {phoneNumbers.map((phone, index) => (
+                                            <span key={phone.href} className="flex items-center">
+                                                <a
+                                                    href={phone.href}
+                                                    className="underline-offset-4 transition hover:underline"
+                                                >
+                                                    {phone.label}
+                                                </a>
+                                                {index < phoneNumbers.length - 1 && <span className="mx-2">|</span>}
+                                            </span>
+                                        ))}
+                                    </div>
+
                                     <div>
-                                        <Link
-                                            href={ctaHref}
-                                            className="inline-block whitespace-nowrap rounded-md bg-black lg:px-5 px-3 py-2.5 lg:text-sm text-xs font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base"
+                                        <button
+                                            type="button"
+                                            onClick={openModal}
+                                            className="inline-block whitespace-nowrap rounded-md bg-black px-3 py-2.5 text-xs font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base lg:px-5 lg:text-sm"
                                         >
                                             {ctaText}
-                                        </Link>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -269,13 +279,13 @@ export default function MakeAppointmentStatic() {
                                             alt={doctorImageAlt}
                                             fill
                                             priority
-                                            className="object-contain "
+                                            className="object-contain"
                                             style={{ filter: "drop-shadow(0 12px 18px rgba(0,0,0,0.12))" }}
                                         />
                                     </div>
                                 </div>
 
-                                <div className="absolute lg:bottom-0 bottom-26 right-0 lg:right-0 block h-[130px] w-[130px] sm:h-[260px] sm:w-[260px] lg:hidden">
+                                <div className="absolute bottom-26 right-0 block h-[130px] w-[130px] sm:h-[260px] sm:w-[260px] lg:bottom-0 lg:right-0 lg:hidden">
                                     <div className="relative h-full w-full">
                                         <Image
                                             src={doctorImageSrc}
@@ -291,7 +301,6 @@ export default function MakeAppointmentStatic() {
                     </div>
                 </div>
 
-                {/* STATS CARD */}
                 <div className="relative -mt-[110px] pb-8 lg:-mt-[70px] lg:pb-8">
                     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-16">
                         <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl lg:rounded-3xl">
@@ -310,11 +319,15 @@ export default function MakeAppointmentStatic() {
                                     <div key={stat.id} className="flex flex-col items-center text-center">
                                         <StatIconCircle iconSrc={stat.iconSrc} iconAlt={stat.iconAlt} />
 
-                                        <div className="mt-2 mb-3 text-lg font-bold leading-none text-[#f47920] sm:mt-3 lg:text-[25px]">
-                                            <AnimatedCount value={stat.value} decimals={stat.decimals ?? 0} suffix={stat.suffix ?? ""} />
+                                        <div className="mb-3 mt-2 text-lg font-bold leading-none text-[#f47920] sm:mt-3 lg:text-[25px]">
+                                            <AnimatedCount
+                                                value={stat.value}
+                                                decimals={stat.decimals ?? 0}
+                                                suffix={stat.suffix ?? ""}
+                                            />
                                         </div>
 
-                                        <div className="mt-1 mb-4 max-w-[130px] text-[11px] font-medium leading-tight text-gray-600 sm:max-w-[180px] sm:text-sm lg:text-sm">
+                                        <div className="mb-4 mt-1 max-w-[130px] text-[11px] font-medium leading-tight text-gray-600 sm:max-w-[180px] sm:text-sm lg:text-sm">
                                             {stat.label}
                                         </div>
                                     </div>
