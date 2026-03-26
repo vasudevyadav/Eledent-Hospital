@@ -94,7 +94,7 @@ export default function TourismHero() {
                                 onClick={openModal}
                                 className="rounded-md bg-orange-500 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
                             >
-                                {heroData.ctaText}
+                            Book Appointment
                             </button>
                         </div>
                     </div>

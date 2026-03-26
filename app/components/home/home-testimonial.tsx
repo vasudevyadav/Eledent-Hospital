@@ -289,7 +289,7 @@ export default function HomeTestimonial() {
                                             </div>
                                         </div>
 
-                                        <div className="mt-6 flex items-center gap-3">
+                                        {/* <div className="mt-6 flex items-center gap-3">
                                             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-white">
                                                 <svg
                                                     className="h-6 w-6"
@@ -309,12 +309,12 @@ export default function HomeTestimonial() {
                                                     {videoTestimonials[safeIndex].role}
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </>
                                 ) : null}
 
                                 {max > 1 && (
-                                    <div className="mt-2 flex items-center justify-center gap-6 text-gray-400">
+                                    <div className="mt-8 flex items-center justify-center gap-6 text-gray-400">
                                         <button
                                             onClick={handlePrev}
                                             className="transition hover:text-orange-500"

@@ -112,13 +112,13 @@ export default function DentalImplantsSection({ data }: Props) {
 
           <div className="lg:col-span-5">
             <div className="relative mx-auto hidden w-full max-w-[420px] items-center justify-center lg:flex">
-              <div className="absolute left-1/2 top-1/2 w-[250px] -translate-x-1/2 -translate-y-1/2 md:w-[400px]">
+              <div className="absolute left-1/2 top-1/2 w-[250px] lg:h-[400px]  -translate-x-1/2 -translate-y-1/2 lg:w-full">
                 <Image
                   src={imageSrc}
                   alt={imageAlt}
                   width={900}
                   height={900}
-                  className="h-auto w-full object-contain"
+                  className="h-auto lg:h-[480px] w-full object-cover"
                   priority
                 />
               </div>

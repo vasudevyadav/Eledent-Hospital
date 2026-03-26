@@ -50,7 +50,7 @@ export default function ServicesFaq({ data }: Props): JSX.Element | null {
           {/* LEFT CONTENT */}
           <div className="max-w-[520px]">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#f47200] sm:text-base sm:tracking-[0.24em] lg:text-xl lg:tracking-[0.28em]">
-              {data.badge}
+            FAQ
             </p>
 
             <h2 className="mt-3 whitespace-pre-line text-2xl font-bold leading-tight text-[#111827] sm:mt-4 sm:text-3xl lg:text-4xl">
