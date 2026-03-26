@@ -101,7 +101,7 @@ export default function TechnologyFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-center lg:gap-16 gap-8 lg:grid-cols-2">
 
                     <div className="max-w-[520px]">
-                        <p className="text-[11px] font-semibold tracking-[0.28em] text-[#f47200]">
+                        <p className="text-sm lg:text-2xl font-semibold tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 

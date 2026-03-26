@@ -103,7 +103,7 @@ export default function TourismFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
                     {/* LEFT CONTENT */}
                     <div className="max-w-[520px]">
-                        <p className="text-[11px] font-semibold tracking-[0.28em] text-[#f47200]">
+                        <p className="text-sm lg:text-2xl font-semibold tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 

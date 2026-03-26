@@ -63,6 +63,8 @@ export default function Navbar() {
     const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
     const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
+    const closeModal = () => setAppointmentModalOpen(false);
+
     const [servicesItems, setServicesItems] = useState<{ name: string; href: string }[]>([]);
     const [servicesLoading, setServicesLoading] = useState(true);
 
@@ -694,7 +696,7 @@ export default function Navbar() {
                         onClick={() => setAppointmentModalOpen(false)}
                     />
 
-                    <BookingModel />
+                    <BookingModel closeModal={closeModal} />
 
                 </div>
             )

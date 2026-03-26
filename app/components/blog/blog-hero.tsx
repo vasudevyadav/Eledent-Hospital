@@ -45,9 +45,9 @@ export default function BlogHero({
             <h1 className="text-white text-4xl md:text-5xl font-semibold transition duration-300 group-hover:-translate-y-1">
               {title}
             </h1>
-            <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl transition duration-300 group-hover:text-white">
+            {/* <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl transition duration-300 group-hover:text-white">
               {subtitle}
-            </p>
+            </p> */}
           </div>
 
           <div className="absolute lg:-bottom-8 -bottom-36 left-1/2 z-30 w-full -translate-x-1/2 px-4">

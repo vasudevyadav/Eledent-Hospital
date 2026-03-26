@@ -26,7 +26,7 @@ export function AppointmentModalProvider({ children }: { children: ReactNode }) 
                         className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
                         onClick={closeModal}
                     />
-                    <BookingModel />
+                   <BookingModel closeModal={closeModal} />
                 </div>
             )}
         </AppointmentModalContext.Provider>

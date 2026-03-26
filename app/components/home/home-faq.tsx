@@ -76,7 +76,7 @@ export default function HomeFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-8">
                     {/* LEFT CONTENT */}
                     <div>
-                        <p className="text-sm sm:text-base lg:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.24em] lg:tracking-[0.28em] text-[#f47200]">
+                        <p className="text-sm sm:text-base lg:text-2xl font-semibold tracking-[0.2em] sm:tracking-[0.24em] lg:tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 

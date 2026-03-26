@@ -45,7 +45,7 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
       },
     ],
     image: {
-      src: "/facilities/Best-World-Class-Facilities",
+      src: "/facilities/Best-World-Class-Facilities.png",
       alt: "Facilities",
       width: 1200,
       height: 600,

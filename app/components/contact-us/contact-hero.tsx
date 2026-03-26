@@ -22,10 +22,10 @@ export default function ContactHero() {
                     <h1 className="text-white text-4xl md:text-5xl font-semibold">
                         Contact Us
                     </h1>
-                    <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl">
+                    {/* <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl">
                         Tincidunt suspendisse semper integer
                         elementum maecenas.
-                    </p>
+                    </p> */}
                 </div>
 
 
