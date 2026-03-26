@@ -1,14 +1,15 @@
+import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesHero from "../components/services/services-hero";
 import DentalImplants from "../components/services/dental-implants";
-import CommanTopRated from "../components/services/make-appointment";
 import ServicesFaq from "../components/services/services-faq";
 import DentalServices from "../components/services/main-services";
 import ServiceAppointment from "../components/services/service-appointment";
+import { getMetadataByPath } from "@/lib/metadata";
+import CommanTestimonial from "../components/comman/comman-testimonial";
 
-
-
+export const metadata: Metadata = getMetadataByPath("/services");
 
 export default function Services() {
   return (
@@ -19,6 +20,7 @@ export default function Services() {
         <DentalImplants />
         <DentalServices />
         <ServiceAppointment />
+        <CommanTestimonial />
         <ServicesFaq />
         <Footer />
       </main>

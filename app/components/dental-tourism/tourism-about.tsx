@@ -4,13 +4,22 @@ import Image from "next/image";
 import type { FC } from "react";
 
 const tourismPoints = [
-  "Low cost of affordable dental treatment in India.",
+  "Low cost or affordable dental treatment in India",
   "Affordable international airfare and favourable exchange rates.",
   "Quality dental care in accordance with international standards in India.",
   "Highly qualified doctors with enormous experience in dental treatment.",
   "Rigorous infection control systems which are at par with Western standards.",
   "No waiting list for patients, if planned properly in advance in comparison to a developed country.",
   "The Indian government has expanded its e-tourism VISA regime to include medical visa.",
+];
+
+const tourismPoints2 = [
+  "The Chowmahalla palace, which has rightfully earned the place as an Asia Pacific Heritage Site of UNESCO.",
+  "The great Wall Street was once called ‘Golconda’, the former name of the city of Hyderabad which exactly depicts the popularity of the city.",
+  "Hyderabad has some largest shopping malls, international food joints apart from its traditional mouth-watering cuisines and its flavorful biryanis.",
+  "It has emerged as one of the biggest IT Hub being the headquarters of GOOGLE, Microsoft and many more.",
+  "Well connected with major countries and cities through airways as it has one of the best international airport facilities in India.",
+  "Being a cosmopolitan city, language is not a barrier and English is majorly understood by most of the population.",
 ];
 
 type TourismSection = {
@@ -29,19 +38,19 @@ type TourismSection = {
 const SECTIONS: TourismSection[] = [
   {
     id: "hyderabad-top-1",
-    titleLine1: "Dental Tourism in India,",
+    titleLine1: "Dental Tourism in India",
     titleLine2: "Hyderabad",
     intro: [
-      "When we travel to another country to get surgery or a medical treatment owing to the specialisations each country offers in medical procedures is called medical tourism. Dental tourism is one of the major departments under medical tourism that is gaining popularity at an alarming rate.",
-      "People generally tend to travel abroad for affordable dental care, dental treatment, dental surgery or dental check procedures which are expensive in one's own country.",
+      "When we travel to another country to get surgery or a medical treatment owing to the specializations each country offers in medical procedures is called medical tourism. Dental Tourism is one of the major departments under medical tourism that is gaining popularity at an alarming rate.",
+      "People generally tend to travel abroad for affordable dental care, dental treatment, dental surgery or dental procedures which are expensive in one’s own country.",
     ],
-    imageSrc: "/dental-tourism/tourism-about.png",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India-Hyderabad.png",
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
     id: "hyderabad-points-1",
     titleLine1: "Dental Tourism in India",
-    imageSrc: "/dental-tourism/tourism-about-1.png",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India,-Hyderabad.jpg",
     imageAlt: "Dental Tourism in Hyderabad",
     pointsTitle: "Dental Tourism in India",
     points: tourismPoints,
@@ -57,18 +66,18 @@ const SECTIONS: TourismSection[] = [
       "India has transformed itself into a hub of dental tourism wherein travellers from all over the world can visit this country and get dental treatments at affordable prices and also experience the rich legacy in terms of cuisines, history, nature, and multicultural getaways.",
       "Hyderabad, in particular, is one of the highly preferred choices for tourists. Considering the amalgamation of the old and new, the city paints a vivid picture of culture and commerce.",
     ],
-    imageSrc: "/dental-tourism/tourism-about.png",
+    imageSrc: "/dental-tourism/Dental-Tourism-in-India.jpg",
     imageAlt: "Dental Tourism in Hyderabad",
   },
   {
     id: "hyderabad-points-2",
     titleLine1: "Dental Tourism in India",
-    imageSrc: "/dental-tourism/tourism-about-2.png",
+    imageSrc: "/dental-tourism/tourism-about-2.webp",
     imageAlt: "Dental Tourism in Hyderabad",
     pointsTitle: "Dental Tourism in India",
-    points: tourismPoints,
+    points: tourismPoints2,
     bottomText:
-      "India offers the most advanced and developed technology for dental treatments, that deals explicitly with complex procedures of dental implants, cosmetic dentistry, and dentures at affordable and reasonable prices compared to other countries.",
+      "Dental treatments in Hyderabad not only comes at an incredibly affordable price but also with superior quality in terms of treatments and technological advancements for treatments containing intricate surgeries.",
     flip: true,
   },
 ];
@@ -86,10 +95,10 @@ const TourismAbout: FC = () => {
               <div key={sec.id} className="space-y-0 lg:space-y-8">
                 {/* Block 1: Title + Intro + Image */}
                 {hasIntro && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
                     {/* Text */}
                     <div className={sec.flip ? "order-2 lg:order-2" : ""}>
-                      <h2 className="text-2xl lg:text-4xl font-semibold leading-tight text-[#f37021]">
+                      <h2 className="text-2xl lg:text-4xl font-semibold leading-tight text-[#f37021] mt-8 lg:mt-0">
                         {sec.titleLine1}
                         {sec.titleLine2 ? (
                           <>
@@ -109,8 +118,8 @@ const TourismAbout: FC = () => {
                     {/* Image */}
                     <div
                       className={`flex justify-center ${sec.flip
-                          ? "order-1 lg:order-1 lg:justify-start"
-                          : "lg:justify-end"
+                        ? "order-1 lg:order-1 lg:justify-start"
+                        : "lg:justify-end"
                         }`}
                     >
                       <div className="relative z-10 rounded-2xl overflow-hidden">
@@ -130,7 +139,10 @@ const TourismAbout: FC = () => {
                 {/* Block 2: Points + Image */}
                 {hasPoints && (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-10 items-center">
-                    <div className="relative z-10 rounded-2xl overflow-hidden">
+                    <div
+                      className={`relative z-10 rounded-2xl overflow-hidden ${sec.flip ? "order-1 lg:order-1" : "order-1"
+                        }`}
+                    >
                       <Image
                         src={sec.imageSrc}
                         alt={sec.imageAlt}
@@ -141,7 +153,10 @@ const TourismAbout: FC = () => {
                       />
                     </div>
 
-                    <div className="mt-10 lg:mt-0">
+                    <div
+                      className={`mt-6 lg:mt-0 ${sec.flip ? "order-2 lg:order-2" : "order-2"
+                        }`}
+                    >
                       <h3 className="text-2xl lg:text-4xl font-bold text-gray-800">
                         {sec.pointsTitle ?? sec.titleLine1}
                       </h3>

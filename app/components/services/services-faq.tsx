@@ -37,11 +37,9 @@ export default function ServicesFaq(): JSX.Element {
   const toggleFaq = (id: number) => setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-12 sm:py-16 lg:py-24">
-      {/* bottom thin orange line */}
+    <section className="relative w-full overflow-hidden bg-white py-10 lg:py-16 lg:pt-4">
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#f47200]" />
 
-      {/* LEFT BACKGROUND IMAGE + FADE (desktop only) */}
       <div className="absolute inset-0 z-0 hidden lg:block">
         <div className="relative h-full w-[58%] xl:w-[54%]">
           <Image
@@ -51,7 +49,6 @@ export default function ServicesFaq(): JSX.Element {
             priority
             className="object-cover object-left"
           />
-          {/* subtle fade into white */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/25 to-white" />
         </div>
       </div>

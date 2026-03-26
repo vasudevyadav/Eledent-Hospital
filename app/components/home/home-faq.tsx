@@ -16,21 +16,39 @@ export default function HomeFaq(): JSX.Element {
     const faqs: FaqItem[] = [
         {
             id: 1,
-            question: "Do I need to make an appointment before visiting?",
+            question: "How do I know which dental treatment I need?",
             answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+                "The right treatment depends on the cause of the problem, your tooth condition, gum health, and overall dental needs. Visit Eledent Dental Hospital for a consultation so our specialists can examine the issue, take scans if needed, and guide you to the right treatment plan.",
         },
         {
             id: 2,
-            question: "Do I need to make an appointment before visiting?",
+            question: "Do I need an appointment before visiting Eledent Dental Hospital branches in Hyderabad?",
             answer:
-                "Regular outpatient services are available Monday through Friday from 8:00 AM to 6:00 PM.",
+                "Booking an appointment before visiting Eledent Dental Hospital is recommended because it helps reduce waiting time and connects you with the right specialist faster. Call +91 9983868366 or +91 7799769994 to book your appointment at any of the 5 Hyderabad branches most convenient for you.",
         },
         {
             id: 3,
-            question: "Do I need to make an appointment before visiting?",
+            question: "Do dental specialists at Eledent Dental Hospital treat both children and adults?",
             answer:
-                "We offer a comprehensive range of medical services including cardiology, neurology, orthopedics and more.",
+                "Yes. Our expert dentists in Hyderabad at Eledent Dental Hospital provide dental care for children, teenagers, adults, and senior patients. You can book an appointment for child dental care, braces, smile correction, pain treatment, or missing teeth solutions based on your family’s needs.",
+        },
+        {
+            id: 4,
+            question: "What should I expect during my first visit to Eledent Dental Hospital?",
+            answer:
+                "Your first visit at the best dental clinic in Hyderabad usually includes a discussion about your concern, a dental examination, and scans or X-rays if required. After that, our team explains the diagnosis, treatment options, expected timeline, and the next step, so you can move forward with clarity. ",
+        },
+        {
+            id: 5,
+            question: "Can I visit Eledent Dental Hospital for tooth pain or a dental emergency?",
+            answer:
+                "Yes. If you have tooth pain, swelling, a broken tooth, gum infection, or sudden discomfort, visit Eledent Dental Hospital as early as possible for prompt evaluation. Our specialists will identify the cause and help you start the right treatment without unnecessary delay.",
+        },
+        {
+            id: 6,
+            question: "Do you offer smile correction and cosmetic dental treatments at Eledent Dental Hospital?",
+            answer:
+                "Yes. Eledent Dental Hospital offers smile-focused treatments such as teeth whitening, veneers, crowns, aligners, and smile makeovers based on your dental condition and cosmetic goals. Book a consultation to understand which option suits your smile best.",
         },
     ];
 
@@ -54,24 +72,23 @@ export default function HomeFaq(): JSX.Element {
                 </div>
             </div>
 
-            <div className="relative z-10 mx-auto max-w-[1120px] px-4 sm:px-6 lg:px-6">
-                <div className="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-6">
+                <div className="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-8">
                     {/* LEFT CONTENT */}
-                    <div className="max-w-[520px]">
+                    <div>
                         <p className="text-sm sm:text-base lg:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.24em] lg:tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 
                         <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#111827]">
-                            Need Answer? We’re
+                            Need Answers? We’re
                             <br className="hidden sm:block" />
                             <span className="sm:hidden"> </span>
-                            Here to Help
+                            Here to Help!
                         </h2>
 
                         <p className="mt-3 max-w-[430px] text-sm sm:text-[15px] leading-6 text-[#6B7280]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                            Get quick answers to common dental concerns and next steps.
                         </p>
                     </div>
 
@@ -108,7 +125,7 @@ export default function HomeFaq(): JSX.Element {
                                                 {faq.id}.
                                             </span>
                                             <span
-                                                className={`leading-5 break-words ${isOpen ? "text-white" : "text-[#374151]"
+                                                className={`leading-5 break-words text-[13px] ${isOpen ? "text-white" : "text-[#374151]"
                                                     }`}
                                             >
                                                 {faq.question}
@@ -142,6 +159,7 @@ export default function HomeFaq(): JSX.Element {
                             );
                         })}
                     </div>
+
                 </div>
             </div>
         </section>

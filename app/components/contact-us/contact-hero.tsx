@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function ContactHero() {
     return (
-        <div className="lg:my-12 my-6 lg:mx-24 mx-4">
+        <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36">
 
-            <section className="relative z-0 lg:h-[440px] h-[350px] w-full overflow-hidden lg:rounded-3xl rounded-2xl">
+            <section className="relative z-0 lg:h-[440px] h-[320px] w-full overflow-hidden lg:rounded-3xl rounded-2xl">
                 <Image
                     src="/contact-us/contact-banner.png"
                     alt="Dental Tourism banner"

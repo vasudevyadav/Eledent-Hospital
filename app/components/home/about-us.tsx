@@ -2,29 +2,19 @@
 
 import Image from "next/image";
 import { ChevronRight, Play } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutUs() {
     return (
         <section className="home-about-bg">
             {/* keep your desktop spacing same, but make mobile/tablet nicer */}
-            <div className="mt-24 sm:mt-32 lg:mt-40 mx-4 sm:mx-8 lg:mx-24">
+            <div className="mt-36 lg:mt-40 mx-4 sm:mx-8 lg:mx-24">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center max-w-7xl mx-auto">
                     {/* IMAGE */}
                     <div className="relative">
                         <div className="relative rounded-xl overflow-hidden shadow-2xl group cursor-pointer">
-                            <Image
-                                src="/home/home-about.png"
-                                alt="Dental treatment"
-                                width={700}
-                                height={900}
-                                priority
-                                className="w-full h-[280px] sm:h-[340px] lg:h-[400px] object-cover"
-                            />
-
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-all duration-300">
-                                <div className="bg-primary rounded-full p-4 sm:p-5 lg:p-6 shadow-2xl transform group-hover:scale-110 transition-all duration-300">
-                                    <Play className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white fill-white ml-1" />
-                                </div>
+                            <div>
+                                <iframe className="w-full h-[280px] lg:h-[400px]" src="https://www.youtube-nocookie.com/embed/JrqoTfgYkLE?si=zJBiKkx4xKdiWGz0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -43,33 +33,23 @@ export default function AboutUs() {
                             Best Dental Clinic in Hyderabad
                         </p>
 
-                        <div className="space-y-4 text-gray-600 text-sm sm:text-base leading-relaxed mb-7">
+                        <div className="space-y-4 text-gray-600 text-xs sm:text-sm leading-relaxed mb-7">
                             <p>
-                                At Eledent, we live by our motto, &quot;Everyone has the right to
-                                smile,&quot; and we ensure that by providing high-quality dental
-                                care and always staying on top of trends compared to other
-                                dentists in Hyderabad.
+                                At Eledent Dental Hospital, we bring advanced multi-speciality dental care closer to patients across Hyderabad. With 19+ years of experience, specialist-led treatment, and modern digital technology, we offer complete care for dental implants, full mouth rehabilitation, root canal treatment, braces, aligners, smile makeovers, and kids dentistry, and have restored 30,000+ smiles.
+
                             </p>
 
                             <p>
-                                Equipped with state-of-the-art facilities and skilled dental
-                                practitioners, the Eledent Dental Hospital provides complete
-                                dental care services from routine dental cleaning, aesthetics to
-                                advanced orthodontics and full mouth rehabilitation to cover
-                                preventative and restorative dental practices.
+                                Our team brings implantologists, orthodontists, endodontists, prosthodontists, periodontists, pedodontists, oral and maxillofacial surgeons, cosmetic dental surgeons, and general dentists under one roof. With 5 locations in Hyderabad, including Kondapur, KPHB, Manikonda, Banjara Hills, and Kompally, we focus on clear treatment planning, patient-friendly care, and lasting results.
                             </p>
 
-                            <p>
-                                For the past many years, we have been ensuring patients&apos;
-                                satisfaction and happiness with their smiles, and we will strive
-                                to do so in the coming years too.
-                            </p>
+
                         </div>
 
-                        <button className="bg-primary text-white px-4 py-2 rounded-sm font-medium text-sm uppercase flex items-center gap-2 group w-full sm:w-fit justify-center sm:justify-start">
+                        <Link href="/about-us" className="bg-primary text-white px-4 py-2 rounded-sm font-medium text-sm uppercase flex items-center gap-2 group w-fit justify-center sm:justify-start">
                             Know More
                             <ChevronRight className="w-6 h-6 bg-white text-primary p-[1px] rounded-full group-hover:translate-x-1 transition-transform" />
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

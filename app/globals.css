@@ -20,6 +20,84 @@
   }
 }
 
+.wp-heading-content h1,
+.wp-heading-content h2,
+.wp-heading-content h3,
+.wp-heading-content h4,
+.wp-heading-content h5,
+.wp-heading-content h6,
+.wp-heading-content p {
+  margin: 0 !important;
+  color: #f47a20 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+@media (min-width: 1024px) {
+  .wp-heading-content h1,
+  .wp-heading-content h2,
+  .wp-heading-content h3,
+  .wp-heading-content h4,
+  .wp-heading-content h5,
+  .wp-heading-content h6,
+  .wp-heading-content p {
+    font-size: 34px !important;
+    font-weight: 800 !important;
+    line-height: 1.15 !important;
+  }
+}
+
+.wp-body-content p,
+.wp-body-content div,
+.wp-body-content li {
+  margin: 0 0 12px 0 !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+}
+
+@media (min-width: 768px) {
+  .wp-body-content p,
+  .wp-body-content div,
+  .wp-body-content li {
+    font-size: 16px !important;
+  }
+}
+
+.wp-body-content strong,
+.wp-list-item strong {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+.wp-body-content a {
+  color: #f47a20 !important;
+  text-decoration: underline !important;
+}
+
+.wp-parts-title h1,
+.wp-parts-title h2,
+.wp-parts-title h3,
+.wp-parts-title h4,
+.wp-parts-title h5,
+.wp-parts-title h6,
+.wp-parts-title p {
+  margin: 0 !important;
+  color: #111827 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+}
+
+.wp-list-item p {
+  display: inline !important;
+  margin: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -54,4 +132,13 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top right;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

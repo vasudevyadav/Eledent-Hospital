@@ -16,7 +16,7 @@ export default function AfterBefore({ data }: Props): JSX.Element | null {
     <section className="w-full bg-white pb-10">
       <div className="mx-auto max-w-7xl lg:px-6 px-4">
         <div className="mt-10">
-          <div className="lg:rounded-[20px] rounded-2xl bg-[#f3f4f6] lg:px-8 px-4 lg:py-16 py-10 shadow-[0_8px_32px_-12px_rgba(15,23,42,0.15)]">
+          <div className="lg:rounded-[20px] rounded-2xl bg-[#f3f4f6] lg:px-8 px-4 lg:py-16 py-6 shadow-[0_8px_32px_-12px_rgba(15,23,42,0.15)]">
             <div className="mb-8 text-center">
               <h2 className="lg:text-3xl text-2xl font-bold text-primary">{data.heading}</h2>
               <p className="mt-1 lg:text-xl font-semibold text-black">{data.subheading}</p>

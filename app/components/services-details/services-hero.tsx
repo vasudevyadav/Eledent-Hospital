@@ -1,18 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { PhoneCall, Clock } from "lucide-react";
 import type { ServicesHeroSection } from "@/data/serviceDetails";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
+
 
 type Props = {
   data: ServicesHeroSection;
 };
 
 export default function ServicesHero({ data }: Props) {
+  const { openModal } = useAppointmentModal();
+
   return (
-    <div className="lg:my-12 my-6 px-4">
-      <div className="mx-auto w-full max-w-6xl pb-16">
+    <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36">
+      <div className="mx-auto w-full max-w-7xl pb-16">
         <section className="relative lg:h-[400px] h-[270px] w-full overflow-visible rounded-3xl md:h-[420px] py-10 lg:py-0">
           <Image
             src={data.bannerImage}
@@ -20,13 +23,12 @@ export default function ServicesHero({ data }: Props) {
             fill
             priority
             className="rounded-3xl object-cover"
-
           />
 
           <div className="absolute inset-0 rounded-3xl bg-black/35" />
 
           <div className="absolute lg:inset-0 z-20 flex flex-col items-center justify-center px-6 text-center lg:mb-10">
-            <h1 className="text-2xl font-semibold leading-tight text-white lg:text-5xl">
+            <h1 className="text-xl font-semibold leading-tight text-white lg:text-5xl">
               {data.title}
             </h1>
 
@@ -34,12 +36,6 @@ export default function ServicesHero({ data }: Props) {
               {data.subtitle}
             </p>
           </div>
-
-          <Link
-            href={data.overlayLinkHref || "#"}
-            aria-label="Open service"
-            className="absolute inset-0 z-10"
-          />
 
           <div className="absolute lg:-bottom-8 -bottom-20 left-1/2 z-30 w-full -translate-x-1/2 px-4">
             <div className="mx-auto lg:flex w-full max-w-4xl items-center justify-between gap-5 rounded-xl bg-[#484847]/95 px-10 py-6 shadow-2xl backdrop-blur">
@@ -49,9 +45,7 @@ export default function ServicesHero({ data }: Props) {
                 </div>
                 <div className="leading-tight">
                   <p className="mb-1.5 text-sm text-white/70">{data.phoneLabel}</p>
-                  <p className="text-sm font-semibold text-white md:text-lg">
-                    {data.phoneNumber}
-                  </p>
+                  <a href="tel:+919983868366" className="text-sm font-semibold text-white transition md:text-lg">+91 99838 68366</a>
                 </div>
               </div>
 
@@ -69,12 +63,13 @@ export default function ServicesHero({ data }: Props) {
                 </div>
               </div>
 
-              <Link
-                href={data.ctaHref}
+              <button
+                type="button"
+                onClick={openModal}
                 className="rounded-md bg-orange-500 px-3 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
               >
                 {data.ctaText}
-              </Link>
+              </button>
             </div>
           </div>
         </section>
