@@ -22,7 +22,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  return getMetadataByPath(`/location/${slug}`);
+  return getMetadataByPath(`/${slug}`);
 }
 
 export default async function LocationPage({ params }: Props) {

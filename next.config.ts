@@ -11,7 +11,17 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.reinventmedia.in",
       },
-    ],  
+    ],
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/location/:slug",
+        destination: "/:slug",
+        permanent: true,
+      },
+    ];
   },
 };
 
