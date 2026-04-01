@@ -45,7 +45,7 @@ const VisaAccommodation: FC = () => {
                             </div>
 
                             <a
-                                href="#"
+
                                 className="mt-6 inline-block text-sm sm:text-base font-semibold text-[#f97316] hover:opacity-80"
                             >
                                 You will find complete information about Visas here

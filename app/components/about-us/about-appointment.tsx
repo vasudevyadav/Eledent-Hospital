@@ -96,15 +96,7 @@ export default function AboutAppointment({
                       >
                         9983868366
                       </a>
-                      <a className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20] mr-2">
-                        |
-                      </a>
-                      <a
-                        href="tel:+917799769994"
-                        className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20]"
-                      >
-                        7799769994
-                      </a>
+                    
                     </div>
                   </div>
 

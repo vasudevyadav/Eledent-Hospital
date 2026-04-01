@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { PhoneCall, Clock } from "lucide-react";
+import { useParams } from "next/navigation";
 import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 
 type LocationHeroProps = {
@@ -9,11 +10,37 @@ type LocationHeroProps = {
   subtitle?: string;
   bannerSrc?: string;
   phoneLabel?: string;
-  phoneNumber?: string;
   hoursLabel?: string;
-  visitingHours?: string;
   ctaText?: string;
-  ctaHref?: string;
+};
+
+const locationDetails: Record<
+  string,
+  {
+    phoneNumber: string;
+    visitingHours: string;
+  }
+> = {
+  kondapur: {
+    phoneNumber: "077996 39994",
+    visitingHours: " Mon - Sun  9 AM to 8 PM",
+  },
+  kukatpally: {
+    phoneNumber: "090598 90578",
+    visitingHours: " Mon - Sun  9 AM to 9 PM",
+  },
+  manikonda: {
+    phoneNumber: "077996 59994",
+    visitingHours: " Mon - Sun  10 AM to 8 PM",
+  },
+  "banjara-hills": {
+    phoneNumber: "077996 49994",
+    visitingHours: " Mon - Sun  9:30 AM to 9 PM",
+  },
+  kompally: {
+    phoneNumber: "077997 69994",
+    visitingHours: " Mon - Sun  9 AM to 9 PM",
+  },
 };
 
 export default function LocationHero({
@@ -21,18 +48,24 @@ export default function LocationHero({
   subtitle = "Tincidunt suspendisse semper integer elementum maecenas.",
   bannerSrc = "/location/location-main.png",
   phoneLabel = "Need a Dental Service?",
-  phoneNumber = "+91 99838 68366",
   hoursLabel = "Visiting Hours",
-  visitingHours = "Mon - Sun 9 AM to 9 PM",
-  ctaText = "Book An Appointment",
+  ctaText = "Book Appointment",
 }: LocationHeroProps) {
-
   const { openModal } = useAppointmentModal();
+  const params = useParams();
+
+  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
+  const normalizedSlug = typeof slug === "string" ? slug.toLowerCase() : "";
+
+  const locationInfo = locationDetails[normalizedSlug] || {
+    phoneNumber: "+91 99838 68366",
+    visitingHours: "Mon - Sun 9 AM to 9 PM",
+  };
 
   return (
     <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36 rounded">
       <div className="mx-auto w-full max-w-7xl pb-24 lg:pb-16">
-        <section className="group relative z-0 lg:h-[440px] h-[330px] w-full overflow-visible ">
+        <section className="group relative z-0 lg:h-[440px] h-[330px] w-full overflow-visible">
           <Image
             src={bannerSrc}
             alt={`${city} banner`}
@@ -52,7 +85,6 @@ export default function LocationHero({
 
           <div className="absolute lg:-bottom-8 -bottom-36 left-1/2 z-30 w-full -translate-x-1/2 px-4">
             <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 rounded-xl bg-[#484847]/95 px-6 py-5 shadow-2xl backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)] lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-6">
-
               <div className="flex items-center gap-3">
                 <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-orange-500 transition duration-300 hover:scale-105">
                   <PhoneCall
@@ -63,10 +95,10 @@ export default function LocationHero({
                 <div className="leading-tight">
                   <p className="mb-1.5 text-sm text-white/70">{phoneLabel}</p>
                   <a
-                    href={`tel:${phoneNumber.replace(/\s+/g, "")}`}
+                    href={`tel:${locationInfo.phoneNumber.replace(/\s+/g, "")}`}
                     className="text-sm font-semibold text-white transition hover:text-orange-400 md:text-lg"
                   >
-                    {phoneNumber}
+                    {locationInfo.phoneNumber}
                   </a>
                 </div>
               </div>
@@ -83,7 +115,7 @@ export default function LocationHero({
                 <div className="leading-tight">
                   <p className="mb-1.5 text-sm text-white/70">{hoursLabel}</p>
                   <p className="text-sm font-semibold text-white md:text-lg">
-                    {visitingHours}
+                    {locationInfo.visitingHours}
                   </p>
                 </div>
               </div>
@@ -93,9 +125,8 @@ export default function LocationHero({
                 onClick={openModal}
                 className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white transition duration-300 hover:scale-105 hover:bg-orange-600"
               >
-             Book Appointment
+                {ctaText}
               </button>
-
             </div>
           </div>
         </section>
