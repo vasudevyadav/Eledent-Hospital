@@ -195,6 +195,10 @@ export default function Navbar() {
                                 <a href="tel:+919983868366" className="hover:underline">
                                     +91 99838 68366
                                 </a>
+                                 <a href="tel:+917799619994" className="hover:underline">
+                                    +91 7799619994
+                                    
+                                </a>
                             </span>
 
                             <span className="hidden items-center gap-2 sm:inline-flex">
