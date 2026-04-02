@@ -43,7 +43,7 @@ type ServiceResponse = {
 };
 
 async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
-  const url = `https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/service/${encodeURIComponent(
+  const url = `https://eledenthospitals.com/wp-json/custom/v1/service/${encodeURIComponent(
     slug
   )}`;
 

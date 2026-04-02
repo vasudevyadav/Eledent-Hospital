@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const APPOINTMENT_API =
-  "https://reinventmedia.in/eledenthospitals/wp-json/custom/V1/appointments/";
+  "https://eledenthospitals.com/wp-json/custom/v1/appointments/";
 
 export async function POST(req: NextRequest) {
   try {
