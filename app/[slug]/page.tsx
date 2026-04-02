@@ -33,6 +33,12 @@ export default async function LocationPage({ params }: Props) {
     notFound();
   }
 
+  const hasTransportData =
+    !!location?.city?.trim() &&
+    Array.isArray(location?.addressLines) &&
+    location.addressLines.length > 0 &&
+    !!location?.mapEmbedSrc?.trim();
+
   return (
     <div>
       <Navbar />
@@ -54,7 +60,7 @@ export default async function LocationPage({ params }: Props) {
           trustCards={location.trustCards}
         />
 
-        <LocationTransport location={location} />
+        {hasTransportData && <LocationTransport location={location} />}
 
         <LocationTestimonial data={location.testimonials ?? []} />
 
