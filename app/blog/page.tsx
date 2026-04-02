@@ -12,7 +12,7 @@ export const metadata: Metadata = getMetadataByPath("/blogs");
 async function getBlogPageData() {
   try {
     const res = await fetch(
-      "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/blogs",
+      "https://eledenthospitals.com/wp-json/custom/v1/blogs",
       {
         next: { revalidate: 60 },
       }

@@ -122,7 +122,7 @@ export default function LocationMapsSection() {
       try {
         const baseUrl =
           process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1";
+          "https://eledenthospitals.com/wp-json/custom/v1";
 
         const response = await fetch(`${baseUrl}/locations`, {
           cache: "no-store",
