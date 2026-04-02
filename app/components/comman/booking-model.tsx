@@ -171,12 +171,12 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <section className="relative lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
+    <section className="relative lg:pb-20 px-0 lg:px-24 lg:-mt-6">
       <button
         type="button"
         onClick={closeModal}
         aria-label="Close modal"
-        className="absolute -top-2 right-22 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-md transition hover:scale-105"
+        className="absolute -top-2 lg:right-22 right-0 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-md transition hover:scale-105"
       >
         ✕
       </button>
@@ -187,7 +187,7 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
           className="relative rounded-[20px] shadow-2xl p-6 sm:p-8 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
         >
           <div className="relative z-10">
-            <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+            <h3 className="lg:text-2xl font-semibold lg:mb-7 text-gray-800">
               Book An Appointment
             </h3>
 

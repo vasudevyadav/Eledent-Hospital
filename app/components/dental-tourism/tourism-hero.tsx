@@ -37,7 +37,7 @@ export default function TourismHero() {
                     <div className="absolute inset-0 rounded-2xl bg-black/20 lg:rounded-3xl" />
 
                     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center mb-24 lg:mb-0">
-                        <h1 className="text-4xl font-semibold text-white md:text-5xl">
+                        <h1 className="text-3xl font-semibold text-white md:text-5xl">
                             {heroData.title}
                         </h1>
                         {/* <p className="mt-3 max-w-xl text-sm text-white/80 md:text-base">
@@ -90,7 +90,7 @@ export default function TourismHero() {
                             <button
                                 type="button"
                                 onClick={openModal}
-                                className="rounded-md bg-orange-500 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
+                                className="rounded-md bg-orange-500 px-4 py-3 text-sm mx-auto font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
                             >
                                 Book Appointment
                             </button>

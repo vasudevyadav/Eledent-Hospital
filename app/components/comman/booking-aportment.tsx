@@ -230,7 +230,7 @@ const BookingAportment: FC = () => {
               className="relative rounded-[20px] shadow-2xl p-8 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
             >
               <div className="relative z-10">
-                <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+                <h3 className="lg:text-2xl font-semibold mb-7 text-gray-800">
                   Book An Appointment
                 </h3>
 
@@ -358,7 +358,7 @@ const BookingAportment: FC = () => {
             className="relative shadow-2xl p-8 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
           >
             <div className="relative z-10">
-              <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+              <h3 className="lg:text-2xl font-semibold mb-7 text-gray-800">
                 Book An Appointment
               </h3>
 
