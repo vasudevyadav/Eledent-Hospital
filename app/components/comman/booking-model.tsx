@@ -63,7 +63,17 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
           throw new Error("Failed to fetch locations");
         }
 
-        setLocations(Array.isArray(result.data) ? result.data : []);
+        const validLocations = Array.isArray(result.data)
+          ? result.data.filter(
+              (location) =>
+                typeof location?.id === "string" &&
+                location.id.trim() !== "" &&
+                typeof location?.city === "string" &&
+                location.city.trim() !== ""
+            )
+          : [];
+
+        setLocations(validLocations);
       } catch (error) {
         console.error("Location fetch error:", error);
         setLocations([]);
@@ -98,7 +108,12 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.date || !formData.locationId) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.date ||
+      !formData.locationId
+    ) {
       alert("Name, phone, date and location are required");
       return;
     }

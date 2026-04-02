@@ -60,7 +60,14 @@ const BookingAportment: FC = () => {
           throw new Error("Failed to fetch locations");
         }
 
-        setLocations(Array.isArray(result.data) ? result.data : []);
+        const validLocations = Array.isArray(result.data)
+          ? result.data.filter(
+              (location) =>
+                location?.id?.trim() && location?.city?.trim()
+            )
+          : [];
+
+        setLocations(validLocations);
       } catch (error) {
         console.error("Location fetch error:", error);
         setLocations([]);
@@ -95,7 +102,12 @@ const BookingAportment: FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.date || !formData.locationId) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.date ||
+      !formData.locationId
+    ) {
       alert("Name, phone, date and location are required");
       return;
     }
@@ -159,11 +171,13 @@ const BookingAportment: FC = () => {
               <p className="text-base mb-3">Don’t Delay! </p>
 
               <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
-                Book Your Dental  <br /> Appointment Today!
+                Book Your Dental <br /> Appointment Today!
               </h2>
 
               <p className="text-[15px] opacity-90 mb-10">
-                Tooth pain, missing teeth, or a smile concern should not wait. Our dental specialists help you understand the problem, explain the treatment clearly, and guide you toward the right solution.
+                Tooth pain, missing teeth, or a smile concern should not wait.
+                Our dental specialists help you understand the problem, explain
+                the treatment clearly, and guide you toward the right solution.
               </p>
 
               <div className="flex items-center gap-3 mb-8">
@@ -204,7 +218,7 @@ const BookingAportment: FC = () => {
 
                 <div className="w-full flex justify-between">
                   <p>Mon–Sun</p>
-                  <p> 9:00am – 9:00pm</p>
+                  <p>9:00am – 9:00pm</p>
                 </div>
               </div>
             </div>
@@ -291,13 +305,20 @@ const BookingAportment: FC = () => {
                     className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                   >
                     <option value="" disabled>
-                      {loadingLocations ? "Loading locations..." : "Select Location"}
+                      {loadingLocations
+                        ? "Loading locations..."
+                        : "Select Location"}
                     </option>
-                    {locations.map((location) => (
-                      <option key={location.id} value={location.id}>
-                        {location.city}
-                      </option>
-                    ))}
+                    {locations
+                      .filter(
+                        (location) =>
+                          location?.id?.trim() && location?.city?.trim()
+                      )
+                      .map((location) => (
+                        <option key={location.id} value={location.id}>
+                          {location.city}
+                        </option>
+                      ))}
                   </select>
                 </div>
 
@@ -412,13 +433,20 @@ const BookingAportment: FC = () => {
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                 >
                   <option value="" disabled>
-                    {loadingLocations ? "Loading locations..." : "Select Location"}
+                    {loadingLocations
+                      ? "Loading locations..."
+                      : "Select Location"}
                   </option>
-                  {locations.map((location) => (
-                    <option key={location.id} value={location.id}>
-                      {location.city}
-                    </option>
-                  ))}
+                  {locations
+                    .filter(
+                      (location) =>
+                        location?.id?.trim() && location?.city?.trim()
+                    )
+                    .map((location) => (
+                      <option key={location.id} value={location.id}>
+                        {location.city}
+                      </option>
+                    ))}
                 </select>
               </div>
 

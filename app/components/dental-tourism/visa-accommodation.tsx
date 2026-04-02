@@ -41,18 +41,11 @@ const VisaAccommodation: FC = () => {
                                     The combination of great locations and high-quality healthcare facilities
                                     makes India a strong choice for dental tourism. We can curate a package
                                     that includes both your medication planning and your vacation plan.
+
                                 </p>
-                            </div>
+                            </div>                        </div>
 
-                            <a
-
-                                className="mt-6 inline-block text-sm sm:text-base font-semibold text-[#f97316] hover:opacity-80"
-                            >
-                                You will find complete information about Visas here
-                            </a>
-                        </div>
-
-                        {/* Right Image */}
+                      
                         <div className="relative w-full">
                             <div className="relative w-full mx-auto aspect-[16/14]">
                                 <Image
