@@ -71,7 +71,17 @@ const BookingTourism: FC = () => {
           throw new Error("Failed to fetch locations");
         }
 
-        setLocations(Array.isArray(result.data) ? result.data : []);
+        const validLocations = Array.isArray(result.data)
+          ? result.data.filter(
+              (location) =>
+                typeof location?.id === "string" &&
+                location.id.trim() !== "" &&
+                typeof location?.city === "string" &&
+                location.city.trim() !== ""
+            )
+          : [];
+
+        setLocations(validLocations);
       } catch (error) {
         console.error("Location fetch error:", error);
         setLocations([]);
@@ -106,7 +116,12 @@ const BookingTourism: FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.date || !formData.locationId) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.date ||
+      !formData.locationId
+    ) {
       alert("Name, phone, date and location are required");
       return;
     }
@@ -172,15 +187,17 @@ const BookingTourism: FC = () => {
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center lg:px-10 px-6 overflow-visible">
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
-              <p className="text-base mb-3">Eledent Dental Hospitals </p>
+              <p className="text-base mb-3">Eledent Dental Hospitals</p>
 
               <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
-                Plan Your Dental  <br /> Trip With Confidence!
+                Plan Your Dental <br /> Trip With Confidence!
               </h2>
 
               <p className="text-sm opacity-90 mb-6">
-                Travelling for dental treatment should feel clear and well planned. Share your concern with our team, and we will help you understand the treatment process, expected timeline, and the next steps before your visit to Hyderabad.
-
+                Travelling for dental treatment should feel clear and well
+                planned. Share your concern with our team, and we will help you
+                understand the treatment process, expected timeline, and the
+                next steps before your visit to Hyderabad.
               </p>
 
               <div className="flex items-center gap-3 mb-8">
@@ -193,20 +210,33 @@ const BookingTourism: FC = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-1">Call Our </p>
-                  <p className="text-lg font-semibold">Patient Care Team
-                  </p>
+                  <p className="text-sm font-medium mb-1">Call Our</p>
+                  <p className="text-lg font-semibold">Patient Care Team</p>
                 </div>
               </div>
 
               <div className="text-[15px] max-w-[300px]">
-                <div className="w-full flex justify-between"><a href="tel:+919983868366" className="hover:underline transition">+91 9983868366</a><p>|</p><a href="tel:+917799769994" className="hover:underline transition">+91 7799769994</a></div>
+                <div className="w-full flex justify-between">
+                  <a
+                    href="tel:+919983868366"
+                    className="hover:underline transition"
+                  >
+                    +91 9983868366
+                  </a>
+                  <p>|</p>
+                  <a
+                    href="tel:+917799769994"
+                    className="hover:underline transition"
+                  >
+                    +91 7799769994
+                  </a>
+                </div>
 
                 <hr className="h-[1px] bg-white/70 w-full my-2" />
 
                 <div className="w-full flex justify-between">
-                  <p> Mon–Sun </p>
-                  <p> 9:00am – 9:00pm</p>
+                  <p>Mon–Sun</p>
+                  <p>9:00am – 9:00pm</p>
                 </div>
               </div>
             </div>
@@ -263,7 +293,10 @@ const BookingTourism: FC = () => {
                         className="w-[120px] bg-white rounded-full px-4 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                       >
                         {countryCodes.map((country) => (
-                          <option key={`${country.label}-${country.value}`} value={country.value}>
+                          <option
+                            key={`${country.label}-${country.value}`}
+                            value={country.value}
+                          >
                             {country.label}
                           </option>
                         ))}
@@ -295,6 +328,7 @@ const BookingTourism: FC = () => {
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     />
                   </div>
+
                   <div className="mt-4">
                     <label className="block text-xs font-semibold text-gray-700 mb-2">
                       Location
@@ -306,7 +340,9 @@ const BookingTourism: FC = () => {
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     >
                       <option value="" disabled>
-                        {loadingLocations ? "Loading locations..." : "Select Location"}
+                        {loadingLocations
+                          ? "Loading locations..."
+                          : "Select Location"}
                       </option>
                       {locations.map((location) => (
                         <option key={location.id} value={location.id}>
@@ -398,7 +434,10 @@ const BookingTourism: FC = () => {
                       className="lg:w-[120px] w-[80px] bg-white rounded-full lg:px-4 px-2 py-3 lg:text-sm text-[10px] outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     >
                       {countryCodes.map((country) => (
-                        <option key={`${country.label}-${country.value}`} value={country.value}>
+                        <option
+                          key={`${country.label}-${country.value}`}
+                          value={country.value}
+                        >
                           {country.label}
                         </option>
                       ))}
@@ -443,7 +482,9 @@ const BookingTourism: FC = () => {
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                 >
                   <option value="" disabled>
-                    {loadingLocations ? "Loading locations..." : "Select Location"}
+                    {loadingLocations
+                      ? "Loading locations..."
+                      : "Select Location"}
                   </option>
                   {locations.map((location) => (
                     <option key={location.id} value={location.id}>
