@@ -102,7 +102,7 @@ const BookingTourism: FC = () => {
 
         const baseUrl =
           process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://eledenthospitals.com/wp-json/custom/v1";
+          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1";
 
         const response = await fetch(`${baseUrl}/locations`, {
           cache: "no-store",

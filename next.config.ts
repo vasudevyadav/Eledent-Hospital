@@ -5,13 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "eledenthospitals.com",
-        pathname: "/wp-content/uploads/**",
+        hostname: "reinventmedia.in",
       },
       {
         protocol: "https",
-        hostname: "www.eledenthospitals.com",
-        pathname: "/wp-content/uploads/**",
+        hostname: "www.reinventmedia.in",
       },
     ],
   },

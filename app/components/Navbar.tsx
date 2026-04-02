@@ -75,8 +75,8 @@ export default function Navbar() {
             try {
                 setServicesLoading(true);
 
-                const res = await fetch(
-                    "https://eledenthospitals.com/wp-json/custom/v1/services",
+                          const res = await fetch(
+                    "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services",
                     { cache: "no-store" }
                 );
 

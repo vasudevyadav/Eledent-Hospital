@@ -38,7 +38,7 @@ const SERVICE_SECTION_META = {
 };
 
 const SERVICES_API_URL =
-  "https://eledenthospitals.com/wp-json/custom/v1/services";
+  "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services";
 
 export default function DentalServices(): JSX.Element {
   const [cards, setCards] = useState<ServiceCardItem[]>([]);
