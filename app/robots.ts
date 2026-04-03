@@ -1,15 +1,10 @@
 import type { MetadataRoute } from 'next'
 
+const baseUrl = 'https://www.eledenthospitals.com'
+
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/admin/', '/thank-you/', '/private/'],
-      },
-    ],
-    sitemap: 'https://www.eledenthospitals.com/sitemap.xml',
-    host: 'https://www.eledenthospitals.com',
+    rules: [{ userAgent: '*', allow: '/' }],
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }
