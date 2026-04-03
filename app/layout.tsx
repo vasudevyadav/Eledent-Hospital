@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppointmentModalProvider } from "@/app/context/AppointmentModalContext";
+import InitialLoader from "./components/InitialLoader";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -78,7 +79,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${geistMono.variable} antialiased`}
       >
         <AppointmentModalProvider>
-          {children}
+          <InitialLoader>{children}</InitialLoader>
         </AppointmentModalProvider>
       </body>
     </html>

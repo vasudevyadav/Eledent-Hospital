@@ -24,7 +24,7 @@ export default function HomeFaq(): JSX.Element {
             id: 2,
             question: "Do I need an appointment before visiting Eledent Dental Hospital branches in Hyderabad?",
             answer:
-                "Booking an appointment before visiting Eledent Dental Hospital is recommended because it helps reduce waiting time and connects you with the right specialist faster. Call +91 7799619994 or +91 7799619994 to book your appointment at any of the 5 Hyderabad branches most convenient for you.",
+                "Booking an appointment before visiting Eledent Dental Hospital is recommended because it helps reduce waiting time and connects you with the right specialist faster. Call +91 7799619994 to book your appointment at any of the 5 Hyderabad branches most convenient for you.",
         },
         {
             id: 3,
