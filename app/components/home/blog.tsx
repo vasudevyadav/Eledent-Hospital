@@ -60,6 +60,31 @@ function formatDate(dateString?: string): string {
   });
 }
 
+function normalizeBlogHref(href?: string): string {
+  if (!href || href === "#") return "#";
+
+  let finalHref = href.trim();
+
+  try {
+    if (finalHref.startsWith("http://") || finalHref.startsWith("https://")) {
+      const parsed = new URL(finalHref);
+      finalHref = parsed.pathname || "#";
+    }
+  } catch {
+    // keep original href if URL parsing fails
+  }
+
+  if (!finalHref.startsWith("/")) {
+    finalHref = `/${finalHref}`;
+  }
+
+  if (finalHref.startsWith("/blog/")) {
+    finalHref = finalHref.replace(/^\/blog\//, "/blogs/");
+  }
+
+  return finalHref;
+}
+
 export default function BlogMain(): JSX.Element {
   const [cards, setCards] = useState<BlogCard[]>([]);
   const [heading, setHeading] = useState("Our Blog");
@@ -96,7 +121,7 @@ export default function BlogMain(): JSX.Element {
         setHeading(hero?.title || "Our Blog");
         setSubtitle(hero?.subtitle || "");
 
-        const latestBlogs: BlogCard[] = posts
+        const latestBlogs: BlogCard[] = [...posts]
           .sort((a, b) => {
             const dateA = new Date(a.date || "").getTime();
             const dateB = new Date(b.date || "").getTime();
@@ -110,7 +135,7 @@ export default function BlogMain(): JSX.Element {
             title: item.title || "Untitled Blog",
             desc: item.description || "No description available.",
             author: "Admin Rose",
-            href: item.href || "#",
+            href: normalizeBlogHref(item.href),
           }));
 
         setCards(latestBlogs);
@@ -138,7 +163,7 @@ export default function BlogMain(): JSX.Element {
           </h2>
 
           {subtitle && (
-            <p className="mx-auto mt-3 mb-10 max-w-[700px] text-sm leading-relaxed text-slate-500">
+            <p className="mx-auto mb-10 mt-3 max-w-[700px] text-sm leading-relaxed text-slate-500">
               {subtitle}
             </p>
           )}
@@ -182,20 +207,15 @@ export default function BlogMain(): JSX.Element {
                 </div>
 
                 <div className="px-6 pb-5 pt-5">
-
                   {c.href && c.href !== "#" && (
-                    <Link
-                      href={c.href}
-
-                    >
-                      <h3 className="text-lg font-semibold leading-snug text-[#f47200] line-clamp-2">
+                    <Link href={c.href}>
+                      <h3 className="line-clamp-2 text-lg font-semibold leading-snug text-[#f47200]">
                         {c.title}
                       </h3>
-
                     </Link>
                   )}
 
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black !line-clamp-1">
+                  <p className="mt-2 !line-clamp-1 line-clamp-3 text-sm leading-relaxed text-black">
                     {c.desc}
                   </p>
 
@@ -208,7 +228,12 @@ export default function BlogMain(): JSX.Element {
 
                     <div className="flex items-center gap-4 text-[#f47200]">
                       <div className="flex items-center gap-1">
-                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4"
+                          fill="none"
+                          aria-hidden="true"
+                        >
                           <path
                             d="M12 20s-7-4.5-7-10.2C5 7.1 6.7 5.5 9 5.5c1.4 0 2.6.7 3 1.8.4-1.1 1.6-1.8 3-1.8 2.3 0 4 1.6 4 4.3C19 15.5 12 20 12 20Z"
                             stroke="currentColor"
@@ -221,7 +246,12 @@ export default function BlogMain(): JSX.Element {
                       </div>
 
                       <div className="flex items-center gap-1">
-                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4"
+                          fill="none"
+                          aria-hidden="true"
+                        >
                           <path
                             d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"
                             stroke="currentColor"
@@ -238,8 +268,18 @@ export default function BlogMain(): JSX.Element {
                         aria-label="Share"
                         className="inline-flex items-center justify-center"
                       >
-                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
-                          <path d="M12 5v12" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4"
+                          fill="none"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M12 5v12"
+                            stroke="currentColor"
+                            strokeWidth={1.6}
+                            strokeLinecap="round"
+                          />
                           <path
                             d="M8.5 8.5 12 5l3.5 3.5"
                             stroke="currentColor"
@@ -247,7 +287,12 @@ export default function BlogMain(): JSX.Element {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           />
-                          <path d="M6 19h12" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
+                          <path
+                            d="M6 19h12"
+                            stroke="currentColor"
+                            strokeWidth={1.6}
+                            strokeLinecap="round"
+                          />
                         </svg>
                       </button>
                     </div>
