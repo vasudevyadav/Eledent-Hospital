@@ -112,7 +112,7 @@ export default function Footer(): JSX.Element {
         { name: "Contact Us", href: "/contact-us" },
         { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms And Conditions", href: "/terms-and-conditions" },
-        { name: "Blogs", href: "/blog" },
+        { name: "Blogs", href: "/blogs" },
     ];
 
     const phoneNumber = "+917799619994";

@@ -31,6 +31,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  async rewrites() {
+    return [
+      {
+        source: "/dental-implant",
+        destination: "/dental-implant/index.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

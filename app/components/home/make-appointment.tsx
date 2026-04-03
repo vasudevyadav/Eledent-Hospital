@@ -145,7 +145,7 @@ export default function MakeAppointmentStatic() {
 
     const phoneNumbers = [
      
-        { label: "+91 7799769994", href: "tel:+917799769994" },
+        { label: "+91 7799619994", href: "tel:+917799619994" },
     ];
 
     const ctaText = "Get an Appointment";

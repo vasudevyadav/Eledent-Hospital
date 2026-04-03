@@ -323,10 +323,10 @@ const BookingTourism: FC = () => {
                   </a>
                  
                   <a
-                    href="tel:+917799769994"
+                    href="tel:+917799619994"
                     className="hover:underline transition"
                   >
-                    +91 7799769994
+                    +91 7799619994
                   </a>
                 </div>
 

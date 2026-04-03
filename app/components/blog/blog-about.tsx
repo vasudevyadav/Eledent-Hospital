@@ -73,14 +73,14 @@ const getBlogHref = (post: BlogPost) => {
   if (post.href) return post.href;
 
   const slug = post.slug || getSlugFromHref(post.href);
-  return slug ? `/blog/${slug}` : "#";
+  return slug ? `/blogs/${slug}` : "#";
 };
 
 const getRecentPostHref = (post: RecentPost) => {
   if (post.href) return post.href;
 
   const slug = post.slug || getSlugFromHref(post.href);
-  return slug ? `/blog/${slug}` : "#";
+  return slug ? `/blogs/${slug}` : "#";
 };
 
 const BlogCard: FC<{ post: BlogPost }> = ({ post }) => {
