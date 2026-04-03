@@ -18,7 +18,7 @@ export default function ContactFaq(): JSX.Element {
             id: 1,
             question: "How can I contact Eledent Dental Hospital for an appointment?",
             answer:
-                "You can contact Eledent Dental Hospital by calling +91 99838 68366 during working hours. You can also email contact@eledenthospitals.com to enquire about appointments, treatments, or the nearest branch.",
+                "You can contact Eledent Dental Hospital by calling +91 7799619994 during working hours. You can also email contact@eledenthospitals.com to enquire about appointments, treatments, or the nearest branch.",
         },
         {
             id: 2,
@@ -36,14 +36,14 @@ export default function ContactFaq(): JSX.Element {
             id: 4,
             question: " How can I choose the nearest Eledent Dental Hospital location? ",
             answer:
-                "You can choose the nearest Eledent Dental Hospital location based on your home, workplace, or travel convenience. We’re located at Kondapur, Kukatpally, Manikonda, Banjara Hills and Kompally. If you are unsure, call +91 99838 68366 and our team will guide you to the most suitable branch. ",
+                "You can choose the nearest Eledent Dental Hospital location based on your home, workplace, or travel convenience. We’re located at Kondapur, Kukatpally, Manikonda, Banjara Hills and Kompally. If you are unsure, call +91 7799619994 and our team will guide you to the most suitable branch. ",
         },
 
         {
             id: 5,
             question: " Can I contact Eledent Dental Hospital for dental emergencies? ",
             answer:
-                " Yes, you can contact Eledent Dental Hospital for urgent dental concerns such as tooth pain, swelling, broken teeth, or sudden discomfort. Call +91 99838 68366 so the team can guide you on the next step as early as possible. ",
+                " Yes, you can contact Eledent Dental Hospital for urgent dental concerns such as tooth pain, swelling, broken teeth, or sudden discomfort. Call +91 7799619994 so the team can guide you on the next step as early as possible. ",
         },
     ];
 

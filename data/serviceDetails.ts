@@ -260,7 +260,7 @@ export const SERVICE_DETAILS_DATA: Record<string, ServiceDetailsPageData> = {
             bannerImageAlt: "Dental implants banner",
             overlayLinkHref: "/services/dental-implants",
             phoneLabel: "Need a Dental Service?",
-            phoneNumber: "+91 99838 68366",
+            phoneNumber: "+91 7799619994",
             hoursLabel: "Visiting Hours",
             visitingHours: "Mon - Sun 9 AM to 9 PM",
             ctaText: "Book An Appointment",

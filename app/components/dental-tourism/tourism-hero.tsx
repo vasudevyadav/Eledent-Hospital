@@ -12,7 +12,7 @@ const heroData = {
     bannerImageAlt: "Dental Tourism banner",
     overlayLinkHref: "/",
     phoneLabel: "Need Dental Assistance?",
-    phoneNumber: "+91 99838 68366",
+    phoneNumber: "+91 7799619994",
     hoursLabel: "Visiting Hours",
     visitingHours: "Mon - Sun 9 AM to 9 PM",
     ctaText: "Book An Appointment",
@@ -64,7 +64,7 @@ export default function TourismHero() {
                                     <p className="mb-1.5 text-sm text-white/70">
                                         {heroData.phoneLabel}
                                     </p>
-                                    <a href="tel:+919983868366" className="text-sm font-semibold text-white transition md:text-lg">+91 99838 68366</a>
+                                    <a href="tel:+917799619994" className="text-sm font-semibold text-white transition md:text-lg">+91 77996 19994</a>
                                 </div>
                             </div>
 

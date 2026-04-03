@@ -58,7 +58,7 @@ export default function LocationHero({
   const normalizedSlug = typeof slug === "string" ? slug.toLowerCase() : "";
 
   const locationInfo = locationDetails[normalizedSlug] || {
-    phoneNumber: "+91 99838 68366",
+    phoneNumber: "+91 7799619994",
     visitingHours: "Mon - Sun 9 AM to 9 PM",
   };
 

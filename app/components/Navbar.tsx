@@ -76,7 +76,7 @@ export default function Navbar() {
                 setServicesLoading(true);
 
                           const res = await fetch(
-                    "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/services",
+                    "https://backend.eledenthospitals.com/wp-json/custom/v1/services",
                     { cache: "no-store" }
                 );
 
@@ -192,9 +192,9 @@ export default function Navbar() {
                         <div className="flex flex-wrap items-center gap-x-4 text-[11px] sm:gap-x-8 sm:text-[13px]">
                             <span className="inline-flex items-center gap-1.5 sm:gap-2">
                                 <PhoneCall className="h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4" />
-                                <a href="tel:+919983868366" className="hover:underline">
+                                {/* <a href="tel:+919983868366" className="hover:underline">
                                     +91 99838 68366
-                                </a>
+                                </a> */}
                                  <a href="tel:+917799619994" className="hover:underline">
                                     +91 7799619994
                                     

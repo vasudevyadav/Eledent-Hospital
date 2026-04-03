@@ -20,7 +20,7 @@ export default function BlogHero({
   subtitle = "Tincidunt suspendisse semper integer elementum maecenas.",
   bannerSrc = "/blog/blog-banner.png",
   phoneLabel = "Need a Dental Service?",
-  phoneNumber = "+91 99838 68366",
+  phoneNumber = "+91 7799619994",
   hoursLabel = "Visiting Hours",
   visitingHours = "Mon - Sun 9 AM to 9 PM",
   ctaText = "Book Appointment",

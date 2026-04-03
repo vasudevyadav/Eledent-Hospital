@@ -160,7 +160,7 @@ const FALLBACK_DATA: TopRatedSection = {
     {
       id: "1",
       iconSrc:
-        "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/rating-icon.png",
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/rating-icon.png",
       iconAlt: "Rating icon",
       value: 5,
       decimals: 0,
@@ -170,7 +170,7 @@ const FALLBACK_DATA: TopRatedSection = {
     {
       id: "2",
       iconSrc:
-        "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/year-icon.png",
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/year-icon.png",
       iconAlt: "Award icon",
       value: 5,
       decimals: 0,
@@ -180,7 +180,7 @@ const FALLBACK_DATA: TopRatedSection = {
     {
       id: "3",
       iconSrc:
-        "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/count-1.png",
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/count-1.png",
       iconAlt: "Experience icon",
       value: 100,
       decimals: 0,
@@ -190,7 +190,7 @@ const FALLBACK_DATA: TopRatedSection = {
     {
       id: "4",
       iconSrc:
-        "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/count-3.png",
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/count-3.png",
       iconAlt: "Implant icon",
       value: 27000,
       decimals: 0,

@@ -5,11 +5,19 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "reinventmedia.in",
+        hostname: "www.eledenthospitals.com",
       },
       {
         protocol: "https",
-        hostname: "www.reinventmedia.in",
+        hostname: "eledenthospitals.com",
+      },
+      {
+        protocol: "https",
+        hostname: "backend.eledenthospitals.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.backend.eledenthospitals.com",
       },
     ],
   },
