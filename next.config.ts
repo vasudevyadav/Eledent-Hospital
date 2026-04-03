@@ -38,6 +38,24 @@ const nextConfig: NextConfig = {
         source: "/dental-implant",
         destination: "/dental-implant/index.html",
       },
+       {
+        source: "/store-visit-generic",
+        destination: "/store-visit-generic/index.html",
+      },
+       {
+        source: "/kondapur-generic",
+        destination: "/kondapur-generic/index.html",
+      },
+       {
+        source: "/dental-generic",
+        destination: "/dental-generic/index.html",
+      },
+       {
+        source: "/invisalign",
+        destination: "/invisalign/index.html",
+      },
+
+
     ];
   },
 };
