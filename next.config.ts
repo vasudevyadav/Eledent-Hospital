@@ -54,7 +54,13 @@ const nextConfig: NextConfig = {
         source: "/invisalign",
         destination: "/invisalign/index.html",
       },
-     
+      {
+        source: "/kukatpally-generic",
+        destination: "/kukatpally-generic/index.html",
+      },
+
+
+
 
     ];
   },
