@@ -91,10 +91,10 @@ export default function AboutAppointment({
                         Schedule Your Consultation
                       </p>
                       <a
-                        href="tel:+919983868366"
+                        href="tel:+917799619994"
                         className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20] mr-2"
                       >
-                        9983868366
+                        7799619994
                       </a>
                     
                     </div>
@@ -203,10 +203,10 @@ export default function AboutAppointment({
                         For Emergency Call
                       </p>
                       <a
-                        href="tel:+91 9983868366"
+                        href="tel:+91 7799619994"
                         className="text-[14px] font-extrabold text-[#1F2937]"
                       >
-                        (+91)  9983868366
+                        (+91)  7799619994
                       </a>
                     </div>
                   </div>

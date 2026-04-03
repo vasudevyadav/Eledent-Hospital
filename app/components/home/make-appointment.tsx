@@ -144,7 +144,7 @@ export default function MakeAppointmentStatic() {
     ];
 
     const phoneNumbers = [
-        { label: "+91 9983868366", href: "tel:+919983868366" },
+     
         { label: "+91 7799769994", href: "tel:+917799769994" },
     ];
 

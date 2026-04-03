@@ -316,12 +316,12 @@ const BookingTourism: FC = () => {
               <div className="text-[15px] max-w-[300px]">
                 <div className="w-full flex justify-between">
                   <a
-                    href="tel:+919983868366"
+                    // href="tel:+917799619994"
                     className="hover:underline transition"
                   >
-                    +91 9983868366
+                Call
                   </a>
-                  <p>|</p>
+                 
                   <a
                     href="tel:+917799769994"
                     className="hover:underline transition"

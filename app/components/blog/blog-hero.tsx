@@ -93,7 +93,7 @@ export default function BlogHero({
                 onClick={openModal}
                 className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white transition duration-300 hover:scale-105 hover:bg-orange-600"
               >
-            Book Appointment
+                Book Appointment
               </button>
             </div>
           </div>

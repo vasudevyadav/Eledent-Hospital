@@ -192,7 +192,7 @@ export default function Navbar() {
                         <div className="flex flex-wrap items-center gap-x-4 text-[11px] sm:gap-x-8 sm:text-[13px]">
                             <span className="inline-flex items-center gap-1.5 sm:gap-2">
                                 <PhoneCall className="h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4" />
-                                {/* <a href="tel:+919983868366" className="hover:underline">
+                                {/* <a href="tel:+917799619994" className="hover:underline">
                                     +91 99838 68366
                                 </a> */}
                                  <a href="tel:+917799619994" className="hover:underline">
@@ -631,7 +631,7 @@ export default function Navbar() {
 
             <div className="fixed right-0 top-1/2 z-50 flex -translate-y-1/2 flex-col items-end gap-0 hidden sm:block lg:block ">
                 <a
-                    href="tel:+919983868366"
+                    href="tel:+917799619994"
                     aria-label="Call Now"
                     className="group mr-0 flex h-[56px] w-[52px] items-center justify-center rounded-tl-[14px] bg-[#e14b4b] shadow-lg transition hover:bg-[#cf3f3f]"
                 >
@@ -639,7 +639,7 @@ export default function Navbar() {
                 </a>
 
                 {/* <a
-                    href="https://wa.me/919983868366"
+                    href="https://wa.me/917799619994"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="WhatsApp"
@@ -663,7 +663,7 @@ export default function Navbar() {
             <div className="fixed inset-x-0 bottom-0 z-50 md:hidden overflow-hidden border-t border-gray-200 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
                 <div className="grid grid-cols-2 w-full">
                     <a
-                        href="tel:+919983868366"
+                        href="tel:+917799619994"
                         className="flex min-w-0 flex-col items-center justify-center gap-1 bg-[#25D366] px-2 py-2 text-center text-sm font-semibold text-white"
                     >
                         <span className="mb-1 flex items-center justify-center leading-none">

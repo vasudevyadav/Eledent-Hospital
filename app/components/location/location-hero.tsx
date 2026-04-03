@@ -22,23 +22,23 @@ const locationDetails: Record<
   }
 > = {
   kondapur: {
-    phoneNumber: "077996 39994",
+    phoneNumber: "77996 39994",
     visitingHours: " Mon - Sun  9 AM to 8 PM",
   },
   kukatpally: {
-    phoneNumber: "090598 90578",
+    phoneNumber: "90598 90578",
     visitingHours: " Mon - Sun  9 AM to 9 PM",
   },
   manikonda: {
-    phoneNumber: "077996 59994",
+    phoneNumber: "77996 59994",
     visitingHours: " Mon - Sun  10 AM to 8 PM",
   },
   "banjara-hills": {
-    phoneNumber: "077996 49994",
+    phoneNumber: "77996 49994",
     visitingHours: " Mon - Sun  9:30 AM to 9 PM",
   },
   kompally: {
-    phoneNumber: "077997 69994",
+    phoneNumber: "77997 69994",
     visitingHours: " Mon - Sun  9 AM to 9 PM",
   },
 };
