@@ -97,7 +97,7 @@ export default function HeroSection() {
                                     <div className="min-w-0">
                                         <p className="text-sm text-gray-300">Need a Dental Treatment?</p>
                                         <p className="text-lg font-medium text-white truncate">
-                                            Call: 7799619994, 7799619994
+                                            Call: 7799619994
                                         </p>
                                     </div>
                                 </div>
