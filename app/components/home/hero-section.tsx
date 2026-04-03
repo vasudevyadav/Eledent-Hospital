@@ -6,10 +6,11 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
+import { useEffect, useState } from "react";
 
 import "swiper/css";
 
-const heroImages = [
+const desktopHeroImages = [
     "/home/home-banner.jpg",
     "/home/home-banner-1.jpg",
     "/home/home-banner-2.jpg",
@@ -17,8 +18,31 @@ const heroImages = [
     "/home/home-banner-4.jpg",
 ];
 
+const mobileHeroImages = [
+    "/home/Eledent-Home-Mob-1.jpg",
+    "/home/Eledent-Home-Mob-2.jpg",
+    "/home/Eledent-Home-Mob-3.jpg",
+    "/home/Eledent-Home-Mob-4.jpg",
+    "/home/Eledent-Home-Mob-5.jpg",
+  
+];
+
 export default function HeroSection() {
     const { openModal } = useAppointmentModal();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreen = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
+    const heroImages = isMobile ? mobileHeroImages : desktopHeroImages;
 
     return (
         <div className="my-6 lg:my-12 mx-4 lg:mx-24 lg:mt-40 mt-36">
@@ -48,7 +72,7 @@ export default function HeroSection() {
                                             alt={`Hero slide ${index + 1}`}
                                             fill
                                             priority={index === 0}
-                                            className="object-cover rounded-2xl"
+                                            className="object-cover object-top rounded-2xl"
                                         />
                                     </div>
                                 </SwiperSlide>
@@ -66,7 +90,12 @@ export default function HeroSection() {
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-300 mb-1">Need a Dental Service?</p>
-                                    <a href="tel:+919983868366" className="text-sm font-semibold text-white transition md:text-lg">+91 99838 68366</a>
+                                    <a
+                                        href="tel:+917799619994"
+                                        className="text-sm font-semibold text-white transition md:text-lg"
+                                    >
+                                        +91 7799619994
+                                    </a>
                                 </div>
                             </div>
 
@@ -84,7 +113,7 @@ export default function HeroSection() {
                                 onClick={openModal}
                                 className="bg-primary text-white px-8 py-3 rounded-sm font-semibold text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95"
                             >
-                                Book An Appointment
+                                Book Appointment
                             </button>
                         </div>
 
@@ -96,9 +125,10 @@ export default function HeroSection() {
                                     </div>
                                     <div className="min-w-0">
                                         <p className="text-sm text-gray-300">Need a Dental Treatment?</p>
-                                        <p className="text-lg font-medium text-white truncate">
-                                            Call: 9983868366, 7799769994
-                                        </p>
+                                        <a
+                                            href="tel:+917799619994" className="text-lg font-medium text-white truncate">
+                                            Call: 7799619994
+                                        </a>
                                     </div>
                                 </div>
 
@@ -119,7 +149,7 @@ export default function HeroSection() {
                                 onClick={openModal}
                                 className="mt-4 w-full bg-primary text-white px-6 py-3 rounded-sm font-semibold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:opacity-95"
                             >
-                                Book An Appointment
+                                Book Appointment
                             </button>
                         </div>
                     </div>

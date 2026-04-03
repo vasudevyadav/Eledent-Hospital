@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Service = {
     _id?: string;
+    slug?: string;
     title: string;
     image: string;
     detailImage: string;
@@ -34,6 +36,8 @@ const FALLBACK_SIDE_TEXT =
     "Advanced Dental Treatments With Modern Dentistry By Experienced Specialists";
 
 export default function OurSpecialties() {
+    const router = useRouter();
+
     const [sectionTitle, setSectionTitle] = useState("Our Specialities ");
     const [sideImage, setSideImage] = useState(FALLBACK_SIDE_IMAGE);
     const [sideText, setSideText] = useState(FALLBACK_SIDE_TEXT);
@@ -53,7 +57,7 @@ export default function OurSpecialties() {
                 setError("");
 
                 const res = await fetch(
-                    "https://reinventmedia.in/eledenthospitals/wp-json/custom/v2/specialties",
+                    "https://backend.eledenthospitals.com/wp-json/custom/v2/specialties",
                     {
                         method: "GET",
                         cache: "no-store",
@@ -81,6 +85,7 @@ export default function OurSpecialties() {
                 const normalizedServices: Service[] = Array.isArray(rawPayload.services)
                     ? rawPayload.services.map((item: any) => ({
                         _id: item?._id || item?.id || item?.title,
+                        slug: item?.slug || item?.urlSlug || "",
                         title: item?.title || "",
                         image: item?.image || item?.cardImage || "",
                         detailImage:
@@ -131,6 +136,22 @@ export default function OurSpecialties() {
     const handleServiceClick = (index: number) => {
         setActiveService(index);
         setCurrentSlide(Math.floor(index / cardsPerSlide));
+    };
+
+    const handleReadMore = () => {
+        if (!active) return;
+
+        if (active.slug) {
+            router.push(`/specialties/${active.slug}`);
+            return;
+        }
+
+        if (active._id) {
+            router.push(`/specialties/${active._id}`);
+            return;
+        }
+
+        console.error("No slug or id found for this service");
     };
 
     const goPrev = () => {
@@ -212,16 +233,20 @@ export default function OurSpecialties() {
                                                     <p key={`${active.title}-${i}`}>{p}</p>
                                                 ))}
                                             </div>
+                                            <a href="/services">
+                                                <button
+                                                    type="button"
 
-                                            <button
-                                                type="button"
-                                                className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#2F2F2F] px-5 py-2.5 text-sm text-white sm:text-base"
-                                            >
-                                                Read More
-                                                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FF8A3D] text-black">
-                                                    <ChevronRight size={18} />
-                                                </span>
-                                            </button>
+                                                    className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#2F2F2F] px-5 py-2.5 text-sm text-white sm:text-base"
+                                                >
+
+                                                    Read More
+                                                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FF8A3D] text-black">
+                                                        <ChevronRight size={18} />
+                                                    </span>
+
+                                                </button>
+                                            </a>
                                         </div>
 
                                         <div className="h-[240px] overflow-hidden rounded-[16px] bg-white shadow-lg sm:h-[300px] lg:h-[320px]">

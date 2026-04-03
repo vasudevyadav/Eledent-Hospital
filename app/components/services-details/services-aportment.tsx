@@ -61,7 +61,7 @@ const ServicesAportment: FC = () => {
 
 
               <div className="relative z-10">
-                <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+                <h3 className="lg:text-2xl font-semibold mb-7 text-gray-800">
                   Book An Appointment
                 </h3>
 
@@ -158,7 +158,7 @@ const ServicesAportment: FC = () => {
 
 
             <div className="relative z-10">
-              <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+              <h3 className="lg:text-2xl font-semibold mb-7 text-gray-800">
                 Book An Appointment
               </h3>
 

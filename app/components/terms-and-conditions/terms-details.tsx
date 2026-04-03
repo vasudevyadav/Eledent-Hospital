@@ -198,7 +198,7 @@ const TermsDetails: FC = () => {
         <p>Eledent Hospitals LLP</p>
         <p>09:00 AM TO 9:00 PM</p>
         <p>contact@eledenthospitals.com</p>
-        <p>7799639994</p>
+        <p>  (+91) 7799619994</p>
       </div>
     </section>
   );

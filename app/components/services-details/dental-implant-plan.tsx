@@ -53,7 +53,7 @@ export default function RelatedBlogsSection({
         setLoading(true);
 
         const res = await fetch(
-          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1/blogs",
+          "https://backend.eledenthospitals.com/wp-json/custom/v1/blogs",
           {
             cache: "no-store",
           }

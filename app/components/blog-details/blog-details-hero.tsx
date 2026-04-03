@@ -12,13 +12,13 @@ type BlogDetailsHeroProps = {
 export default function BlogDetailsHero({ hero }: BlogDetailsHeroProps) {
   return (
     <div className="lg:my-12 my-6 lg:mx-24 mx-6 lg:mt-40 mt-36">
-      <section className="relative z-0 lg:h-[500px] object-cover h-[100px] w-full overflow-hidden rounded-3xl">
+      <section className="relative z-0 lg:h-[500px] object-cover h-[190px] w-full overflow-hidden rounded-3xl">
         <Image
           src={hero.image}
           alt={hero.title}
           fill
           priority
-          className="object-cover"
+          className="lg:object-cover object-fill"
         />
 
         <div className="absolute inset-0 bg-black/10" />

@@ -21,12 +21,12 @@ export function AppointmentModalProvider({ children }: { children: ReactNode }) 
             {children}
 
             {isOpen && (
-                <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-[999] flex items-center justify-center lg:p-4">
                     <div
                         className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
                         onClick={closeModal}
                     />
-                    <BookingModel />
+                    <BookingModel closeModal={closeModal} />
                 </div>
             )}
         </AppointmentModalContext.Provider>

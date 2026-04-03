@@ -6,8 +6,8 @@ import { PhoneCall, Clock } from "lucide-react";
 
 export default function ServicesHero() {
     return (
-        <div className=" lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36 ">
-            <div className="mx-auto w-full max-w-7xl lg:pb-16 pb-4">
+        <div className=" lg:my-4 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36 ">
+            <div className="mx-auto w-full max-w-7xl lg:pb-0 pb-4">
 
                 <section className="relative h-[330px] w-full overflow-visible rounded-3xl md:h-[420px]">
 
@@ -26,11 +26,10 @@ export default function ServicesHero() {
 
                     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
                         <h1 className="text-white text-3xl font-semibold leading-tight md:text-5xl">
-                            Our Services
+                            Our Specialities
                         </h1>
                         <p className="mt-3 max-w-xl text-xs text-white/80 md:text-sm">
-                            Tincidunt suspendisse semper integer
-                            elementum maecenas.
+                            Advanced Dental Treatments in Hyderabad for Healthier and Brighter Smiles
                         </p>
                     </div>
 

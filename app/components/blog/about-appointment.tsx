@@ -92,10 +92,10 @@ export default function AboutAppointment({
                         For Emergency Call
                       </p>
                       <a
-                        href="tel:+917799639994"
+                        href="tel:+91 7799619994"
                         className="text-sm lg:text-lg font-extrabold text-[#1F2937] hover:text-[#F47A20]"
                       >
-                        (+91) 7799639994
+                        (+91)  7799619994
                       </a>
                     </div>
                   </div>
@@ -204,10 +204,10 @@ export default function AboutAppointment({
                         For Emergency Call
                       </p>
                       <a
-                        href="tel:+917799639994"
+                        href="tel:+91 7799619994"
                         className="text-[14px] font-extrabold text-[#1F2937]"
                       >
-                        (+91) 7799639994
+                        (+91)  7799619994
                       </a>
                     </div>
                   </div>

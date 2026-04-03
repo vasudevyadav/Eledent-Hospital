@@ -119,18 +119,16 @@ export const metadataMap: Record<string, MetaEntry> = {
     description:
       "Close teeth gaps with expert treatment in Hyderabad at Eledent Hospitals. Advanced dental care for confident, aligned smiles.",
   },
-
   "/services/dental-fillings": {
     title: "Dental Filling in Hyderabad | Dental Filling Near Me",
     description:
       "Get painless dental fillings in Hyderabad at Eledent Hospitals in Banjara Hills, Kukatpally, Kondapur, and Manikonda. Restore tooth decay with expert care today!",
   },
-    "/services/advanced-and-painless-dental-implants": {
+  "/services/advanced-and-painless-dental-implants": {
     title: "Advanced Dental Implants in Hyderabad | Dental Implants Near Me",
     description:
       "Dental implants in Hyderabad, India: We specialize in dental implant surgery to make the procedure pain-free and straight forward for our customers. Book an Appointment Now!",
   },
-
   "/about-us": {
     title: "About Us - Eledent Dental Hospitals",
     description:
@@ -171,30 +169,111 @@ export const metadataMap: Record<string, MetaEntry> = {
     description:
       "Browse dental blogs from Eledent Dental Hospital featuring oral health tips, treatment guides, smile care advice, and expert insights.",
   },
-  "/location/kondapur": {
+  "/kondapur": {
     title: "Best Dental Hospital in Kondapur, Hyderabad - Eledent Hospitals",
     description:
       "Your trusted dental hospital in Kondapur. Eledent offers advanced treatments, expert care, and personalized smile solutions for the whole family.",
   },
-  "/location/manikonda": {
+  "/manikonda": {
     title: "Best Dental Hospital in Manikonda, Hyderabad - Eledent Hospitals",
     description:
       "Experience world-class dental care in Manikonda. Our experts at Eledent Hospital provide pain-free treatments and personalized smile makeovers for all.",
   },
-  "/location/kukatpally": {
+  "/kukatapally": {
     title: "Best Dental Hospital in Kukatpally, Hyderabad - Eledent Hospitals",
     description:
       "Best Dental Hospital in Kukatpally, Hyderabad – Eledent Hospitals offers expert dentists, advanced treatments, implants, Invisalign & complete dental care.",
   },
-  "/location/kompally": {
+  "/kompally": {
     title: "Best Dental Hospital in Kompally, Hyderabad - Eledent Hospitals",
     description:
       "Get expert dental care at Eledent Hospitals, the best dental hospital in Kompally, Hyderabad, with painless treatments and modern facilities.",
   },
-  "/location/banjara-hills": {
+  "/banjara-hills": {
     title: "Best Dental Hospital in Banjara Hills, Hyderabad - Eledent Hospitals",
     description:
       "Experience top-tier dental care at Eledent, the best dental hospital in Banjara Hills. We offer advanced treatments & personalized smile makeovers.",
+  },
+
+  "/dental-clinic-near-me": {
+    title: "Best Dental Clinics Near Me - Eledent Hospitals",
+    description:
+      "Looking for the best dental clinic near me? Eledent Hospitals offers trusted dentists & advanced dental treatments in Hyderabad.",
+  },
+  "/dental-clinic-in-kondapur": {
+    title: "Best Dental Clinic in Kondapur, Hyderabad - Eledent Hospitals",
+    description:
+      "Get treated at the best dental clinic in Kondapur, Hyderabad at Eledent Hospitals. Quality dental care by experts.",
+  },
+  "/best-dentist-in-kondapur": {
+    title: "Best Dentist in Kondapur, Hyderabad - Eledent Hospitals",
+    description:
+      "Visit the best dentist in Kondapur, Hyderabad at Eledent Hospitals for expert dental care, advanced treatments, painless procedures & healthy smiles.",
+  },
+  "/best-dental-clinic-in-kukatpally": {
+    title: "Best Dental Clinic in Kukatpally, Hyderabad - Eledent Hospitals",
+    description:
+      "Looking for the best dental clinic in Kukatpally? Eledent Hospitals offers painless treatments, expert care & same-day appointments.",
+  },
+  "/best-dentist-in-manikonda": {
+    title: "Best Dentist in Manikonda, Hyderabad - Eledent Hospitals",
+    description:
+      "Consult the best dentist in Manikonda, Hyderabad at Eledent Hospitals for expert dental care, modern treatments & healthy smiles.",
+  },
+  "/best-dental-clinic-in-manikonda": {
+    title: "Best Dental Clinic in Manikonda, Hyderabad - Eledent Hospitals",
+    description:
+      "Choose the best dental clinic in Manikonda, Hyderabad. Book your appointment today at Eledent Hospitals for expert care.",
+  },
+  "/best-dental-clinic-in-banjara-hills": {
+    title: "Best Dental Clinic in Banjara Hills, Hyderabad - Eledent Hospitals",
+    description:
+      "Choose the best dental clinic in Banjara Hills, Hyderabad. Book your appointment at Eledent Hospitals for expert care today.",
+  },
+  "/best-dentist-in-banjara-hills": {
+    title: "Best Dentist in Banjara Hills, Hyderabad - Eledent Hospitals",
+    description:
+      "Consult the best dentist in Banjara Hills, Hyderabad at Eledent Hospitals for expert dental care and advanced treatments.",
+  },
+  "/best-dental-hospital-in-hyderabad": {
+    title: "Best Dental Hospital in Hyderabad - Eledent Hospitals",
+    description:
+      "Visit Eledent Hospitals, the best dental hospital in Hyderabad, for expert dentists, advanced treatments, and complete oral care solutions.",
+  },
+  "/best-dentist-in-hyderabad": {
+    title: "Best Dentist in Hyderabad - Eledent Hospitals",
+    description:
+      "Eledent Hospitals is home to the best dentist in Hyderabad, offering expert dental care with advanced technology and painless treatments.",
+  },
+  "/best-dentist-near-me": {
+    title: "Best Dentist Near Me - Eledent Hospitals",
+    description:
+      "Searching for the best dentist near me? Eledent Hospitals provides trusted, painless dental treatments by expert specialists.",
+  },
+  "/best-dental-hospital-near-me": {
+    title: "Best Dental Hospital Near Me - Eledent Hospitals",
+    description:
+      "Book your appointment at the best dental hospital near me. Visit Eledent Hospitals for expert dental care today.",
+  },
+  "/best-dental-clinic-in-hyderabad": {
+    title: "Best Dental Clinic in Hyderabad - Eledent Hospitals",
+    description:
+      "Looking for the best dental clinic in Hyderabad? Eledent Hospitals provides painless, high-quality dental care by experts.",
+  },
+  "/dentist-in-kukatpally": {
+    title: "Best Dentist in Kukatpally, Hyderabad - Eledent Hospitals",
+    description:
+      "Your trusted dental hospital in Kukatpally. Eledent offers advanced treatments, expert care, and personalized smile solutions for the whole family.",
+  },
+  "/best-dental-clinic-in-kompally": {
+    title: "Best Dental Clinic in Kompally, Hyderabad - Eledent Hospitals",
+    description:
+      "Your trusted dental clinic in Kompally. Eledent offers advanced treatments, expert care, and personalized smile solutions for the whole family.",
+  },
+  "/best-dentist-in-kompally": {
+    title: "Best Dentist in Kompally, Hyderabad - Eledent Hospitals",
+    description:
+      "Get expert dental treatment at Eledent Hospitals, the best dentist in Kompally, Hyderabad for safe, modern, and patient-focused care.",
   },
 };
 

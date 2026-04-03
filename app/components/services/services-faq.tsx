@@ -16,21 +16,45 @@ export default function ServicesFaq(): JSX.Element {
   const faqs: FaqItem[] = [
     {
       id: 1,
-      question: "Do I need to make an appointment before visiting?",
+      question: "How do I know which dental treatment is right for me?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+        "The right dental treatment depends on your problem, the condition of your teeth and gums, and your treatment goal. At Eledent Dental, the dentist checks your symptoms, examines your mouth, and may suggest digital scans or X-rays before recommending the most suitable option.",
     },
     {
       id: 2,
-      question: "Do I need to make an appointment before visiting?",
+      question: " Can I get multiple dental treatments at one clinic?",
       answer:
-        "Regular outpatient services are available Monday through Friday from 8:00 AM to 6:00 PM.",
+        "Yes, Eledent Dental offers multiple treatments under one roof, including restorative, cosmetic, preventive, and orthodontic care. This makes it easier to manage everything from tooth pain and fillings to implants, braces, whitening, and smile correction in one place.",
     },
     {
       id: 3,
-      question: "Do I need to make an appointment before visiting?",
+      question: "Do all dental problems need immediate treatment?",
       answer:
-        "We offer a comprehensive range of medical services including cardiology, neurology, orthopedics and more.",
+        "No, not every dental problem is an emergency, but some should not be delayed. Tooth pain, swelling, bleeding gums, broken teeth, sensitivity that keeps returning, or signs of infection should be checked early to avoid more complex treatment later.",
+    },
+    {
+      id: 4,
+      question: " What happens during the first dental consultation?",
+      answer:
+        "The first consultation usually includes a discussion of your concern, a clinical examination, and, if needed, digital X-rays or scans. Based on this, the dentist explains the diagnosis, treatment options, expected visits, and the next step in a clear and practical way.",
+    },
+    {
+      id: 5,
+      question: "Are modern dental treatments more comfortable than before? ",
+      answer:
+        "Yes, modern dental treatments are generally more comfortable because they use better diagnostics, improved anaesthesia methods, and more precise tools. At Eledent Dental, advanced dental technology helps make treatment more controlled, efficient, and easier for patients to go through.",
+    },
+    {
+      id: 6,
+      question: " Can damaged or missing teeth be restored properly? ",
+      answer:
+        "Yes, many damaged or missing teeth can be restored with the right treatment plan. Depending on the case, options may include fillings, crowns, root canal treatment, veneers, implants, aligners, or full smile rehabilitation to improve function and appearance.",
+    },
+    {
+      id: 7,
+      question: "How often should I visit a dentist even if I have no pain? ",
+      answer:
+        "You should still visit a dentist regularly even if you do not have pain, because many dental problems begin quietly. Routine check-ups help detect cavities, gum issues, bite problems, and early wear before they become painful or costly to treat.",
     },
   ];
 
@@ -57,7 +81,7 @@ export default function ServicesFaq(): JSX.Element {
         <div className="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           {/* LEFT CONTENT */}
           <div className="max-w-[520px]">
-            <p className="text-sm sm:text-base lg:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.24em] lg:tracking-[0.28em] text-[#f47200]">
+            <p className="text-sm sm:text-base lg:text-2xl font-semibold tracking-[0.2em] sm:tracking-[0.24em] lg:tracking-[0.28em] text-[#f47200]">
               FAQ
             </p>
 
@@ -68,10 +92,10 @@ export default function ServicesFaq(): JSX.Element {
               Here to Help
             </h2>
 
-            <p className="mt-3 max-w-[430px] text-sm sm:text-[15px] leading-6 text-[#6B7280]">
+            {/* <p className="mt-3 max-w-[430px] text-sm sm:text-[15px] leading-6 text-[#6B7280]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-            </p>
+            </p> */}
           </div>
 
           {/* RIGHT FAQ LIST */}

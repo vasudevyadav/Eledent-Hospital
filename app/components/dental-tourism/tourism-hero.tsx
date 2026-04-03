@@ -12,7 +12,7 @@ const heroData = {
     bannerImageAlt: "Dental Tourism banner",
     overlayLinkHref: "/",
     phoneLabel: "Need Dental Assistance?",
-    phoneNumber: "+91 99838 68366",
+    phoneNumber: "+91 7799619994",
     hoursLabel: "Visiting Hours",
     visitingHours: "Mon - Sun 9 AM to 9 PM",
     ctaText: "Book An Appointment",
@@ -37,12 +37,12 @@ export default function TourismHero() {
                     <div className="absolute inset-0 rounded-2xl bg-black/20 lg:rounded-3xl" />
 
                     <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center mb-24 lg:mb-0">
-                        <h1 className="text-4xl font-semibold text-white md:text-5xl">
+                        <h1 className="text-3xl font-semibold text-white md:text-5xl">
                             {heroData.title}
                         </h1>
-                        <p className="mt-3 max-w-xl text-sm text-white/80 md:text-base">
+                        {/* <p className="mt-3 max-w-xl text-sm text-white/80 md:text-base">
                             {heroData.subtitle}
-                        </p>
+                        </p> */}
                     </div>
 
                     <Link
@@ -64,9 +64,7 @@ export default function TourismHero() {
                                     <p className="mb-1.5 text-sm text-white/70">
                                         {heroData.phoneLabel}
                                     </p>
-                                    <p className="text-sm font-semibold text-white md:text-lg">
-                                        {heroData.phoneNumber}
-                                    </p>
+                                    <a href="tel:+917799619994" className="text-sm font-semibold text-white transition md:text-lg">+91 77996 19994</a>
                                 </div>
                             </div>
 
@@ -92,9 +90,9 @@ export default function TourismHero() {
                             <button
                                 type="button"
                                 onClick={openModal}
-                                className="rounded-md bg-orange-500 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
+                                className="rounded-md bg-orange-500 px-4 py-3 text-sm mx-auto font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
                             >
-                                {heroData.ctaText}
+                                Book Appointment
                             </button>
                         </div>
                     </div>

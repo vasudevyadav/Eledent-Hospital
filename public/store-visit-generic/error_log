@@ -1,0 +1,61 @@
+[01-Dec-2025 06:15:24 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/parser/sqli.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/init.php:33
+Stack trace:
+#0 /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php(40): require_once()
+#1 /mnt/volume-sgp1-01-part1/eledent/public_html/wordfence-waf.php(6): include_once('/mnt/volume-sgp...')
+#2 {main}
+  thrown in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/init.php on line 33
+[20-Feb-2026 06:10:08 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/xmlrpc.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/init.php:21
+Stack trace:
+#0 /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php(40): require_once()
+#1 /mnt/volume-sgp1-01-part1/eledent/public_html/wordfence-waf.php(6): include_once('/mnt/volume-sgp...')
+#2 {main}
+  thrown in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/init.php on line 21
+[27-Feb-2026 05:39:34 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'xsl.so' (tried: /opt/cpanel/ea-php82/root/usr/lib64/php/modules/xsl.so (/lib64/libxslt.so.1: symbol xmlGenericErrorContext, version LIBXML2_2.4.30 not defined in file libxml2.so.2 with link time reference), /opt/cpanel/ea-php82/root/usr/lib64/php/modules/xsl.so.so (/opt/cpanel/ea-php82/root/usr/lib64/php/modules/xsl.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[27-Feb-2026 05:40:32 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'xsl.so' (tried: /opt/cpanel/ea-php82/root/usr/lib64/php/modules/xsl.so (/lib64/libxslt.so.1: symbol xmlGenericErrorContext, version LIBXML2_2.4.30 not defined in file libxml2.so.2 with link time reference), /opt/cpanel/ea-php82/root/usr/lib64/php/modules/xsl.so.so (/opt/cpanel/ea-php82/root/usr/lib64/php/modules/xsl.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[27-Feb-2026 06:07:16 UTC] PHP Notice:  include(): read of 284471 bytes failed with errno=14 Bad address in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/waf.php on line 336
+[27-Feb-2026 06:07:16 UTC] PHP Notice:  include(): read of 284471 bytes failed with errno=12 Cannot allocate memory in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/waf.php on line 336
+[27-Feb-2026 06:07:16 UTC] PHP Warning:  include(): Failed opening '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/wflogs/rules.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/waf.php on line 336
+[01-Mar-2026 05:37:06 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/shutdown.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/wfWAFIPBlocksController.php:4
+Stack trace:
+#0 /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php(39): require_once()
+#1 /mnt/volume-sgp1-01-part1/eledent/public_html/wordfence-waf.php(6): include_once('/mnt/volume-sgp...')
+#2 {main}
+  thrown in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/wfWAFIPBlocksController.php on line 4
+[04-Mar-2026 15:49:37 UTC] PHP Warning:  include(): Failed opening '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/lib/wfIPWhitelist.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 218
+[04-Mar-2026 15:49:39 UTC] PHP Warning:  Undefined variable $wfIPWhitelist in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 219
+[04-Mar-2026 15:49:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 219
+[04-Mar-2026 15:49:39 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 221
+[04-Mar-2026 15:49:37 UTC] PHP Warning:  include(): Failed opening '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/lib/wfIPWhitelist.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 218
+[04-Mar-2026 15:49:39 UTC] PHP Warning:  Undefined variable $wfIPWhitelist in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 219
+[04-Mar-2026 15:49:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 219
+[04-Mar-2026 15:49:39 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 221
+[04-Mar-2026 15:49:37 UTC] PHP Warning:  include(): Failed opening '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/lib/wfIPWhitelist.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 218
+[04-Mar-2026 15:49:44 UTC] PHP Warning:  Undefined variable $wfIPWhitelist in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 219
+[04-Mar-2026 15:49:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 219
+[04-Mar-2026 15:49:44 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php on line 221
+[09-Mar-2026 08:43:11 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/storage/mysql.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/init.php:26
+Stack trace:
+#0 /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/waf/bootstrap.php(40): require_once()
+#1 /mnt/volume-sgp1-01-part1/eledent/public_html/wordfence-waf.php(6): include_once('/mnt/volume-sgp...')
+#2 {main}
+  thrown in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/init.php on line 26
+[09-Mar-2026 12:01:02 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[12-Mar-2026 15:16:41 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[17-Mar-2026 02:49:46 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[17-Mar-2026 02:49:46 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[17-Mar-2026 13:02:03 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[25-Mar-2026 04:26:10 UTC] PHP Warning:  include(): Failed opening '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/wflogs/rules.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/waf.php on line 336
+[28-Mar-2026 08:51:31 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[29-Mar-2026 08:44:00 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[30-Mar-2026 11:25:34 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[30-Mar-2026 12:46:41 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[31-Mar-2026 08:42:29 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[31-Mar-2026 13:14:53 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[31-Mar-2026 13:35:20 UTC] Error reading Wordfence Firewall config data, configuration file could be corrupted or inaccessible. Path: /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/wflogs/config-livewaf.php
+[31-Mar-2026 13:35:22 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[31-Mar-2026 16:56:13 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[31-Mar-2026 17:02:52 UTC] PHP Warning:  include(): Failed opening '/mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/wflogs/rules.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/plugins/wordfence/vendor/wordfence/wf-waf/src/lib/waf.php on line 336
+[01-Apr-2026 04:03:02 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[01-Apr-2026 04:03:30 UTC] Error reading Wordfence Firewall config data, configuration file could be corrupted or inaccessible. Path: /mnt/volume-sgp1-01-part1/eledent/public_html/wp-content/wflogs/config-transient.php
+[01-Apr-2026 08:33:10 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1
+[02-Apr-2026 06:19:27 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /mnt/volume-sgp1-01-part1/eledent/public_html/store-visit-generic/index.php on line 1

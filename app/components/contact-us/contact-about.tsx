@@ -17,6 +17,20 @@ type LocationsApiResponse = {
   data: LocationCard[];
 };
 
+function isValidLocation(location: LocationCard) {
+  const hasCity = typeof location.city === "string" && location.city.trim() !== "";
+  const hasAddressLines =
+    Array.isArray(location.addressLines) &&
+    location.addressLines.some((line) => typeof line === "string" && line.trim() !== "");
+  const hasMapEmbed =
+    typeof location.mapEmbedSrc === "string" && location.mapEmbedSrc.trim() !== "";
+  const hasRedirect =
+    typeof location.map_redirect === "string" && location.map_redirect.trim() !== "";
+  const hasHref = typeof location.href === "string" && location.href.trim() !== "";
+
+  return hasCity && hasAddressLines && hasMapEmbed && (hasRedirect || hasHref);
+}
+
 function LocationMapCard({
   city,
   addressLines,
@@ -108,7 +122,7 @@ export default function LocationMapsSection() {
       try {
         const baseUrl =
           process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1";
+          "https://backend.eledenthospitals.com/wp-json/custom/v1";
 
         const response = await fetch(`${baseUrl}/locations`, {
           cache: "no-store",
@@ -121,7 +135,8 @@ export default function LocationMapsSection() {
         const result: LocationsApiResponse = await response.json();
 
         if (result?.success && Array.isArray(result?.data)) {
-          setLocations(result.data);
+          const filteredLocations = result.data.filter(isValidLocation);
+          setLocations(filteredLocations);
         } else {
           setLocations([]);
         }

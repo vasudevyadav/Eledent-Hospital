@@ -26,7 +26,11 @@ type FormDataType = {
   message: string;
 };
 
-const BookingModel: FC = () => {
+type BookingModelProps = {
+  closeModal: () => void;
+};
+
+const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -47,7 +51,7 @@ const BookingModel: FC = () => {
 
         const baseUrl =
           process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1";
+          "https://backend.eledenthospitals.com/wp-json/custom/v1";
 
         const response = await fetch(`${baseUrl}/locations`, {
           cache: "no-store",
@@ -59,7 +63,17 @@ const BookingModel: FC = () => {
           throw new Error("Failed to fetch locations");
         }
 
-        setLocations(Array.isArray(result.data) ? result.data : []);
+        const validLocations = Array.isArray(result.data)
+          ? result.data.filter(
+              (location) =>
+                typeof location?.id === "string" &&
+                location.id.trim() !== "" &&
+                typeof location?.city === "string" &&
+                location.city.trim() !== ""
+            )
+          : [];
+
+        setLocations(validLocations);
       } catch (error) {
         console.error("Location fetch error:", error);
         setLocations([]);
@@ -94,7 +108,12 @@ const BookingModel: FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.date || !formData.locationId) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.date ||
+      !formData.locationId
+    ) {
       alert("Name, phone, date and location are required");
       return;
     }
@@ -139,6 +158,8 @@ const BookingModel: FC = () => {
         locationId: "",
         message: "",
       });
+
+      closeModal();
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
@@ -150,14 +171,23 @@ const BookingModel: FC = () => {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
+    <section className="relative lg:pb-20 px-0 lg:px-24 lg:-mt-6">
+      <button
+        type="button"
+        onClick={closeModal}
+        aria-label="Close modal"
+        className="absolute -top-2 lg:right-22 right-0 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black shadow-md transition hover:scale-105"
+      >
+        ✕
+      </button>
+
       <div className="w-full max-w-[440px] z-20">
         <form
           onSubmit={handleSubmit}
           className="relative rounded-[20px] shadow-2xl p-6 sm:p-8 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
         >
           <div className="relative z-10">
-            <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+            <h3 className="lg:text-2xl font-semibold lg:mb-7 text-gray-800">
               Book An Appointment
             </h3>
 

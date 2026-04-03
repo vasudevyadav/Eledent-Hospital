@@ -16,21 +16,34 @@ export default function ContactFaq(): JSX.Element {
     const faqs: FaqItem[] = [
         {
             id: 1,
-            question: "Do I need to make an appointment before visiting?",
+            question: "How can I contact Eledent Dental Hospital for an appointment?",
             answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+                "You can contact Eledent Dental Hospital by calling +91 7799619994 during working hours. You can also email contact@eledenthospitals.com to enquire about appointments, treatments, or the nearest branch.",
         },
         {
             id: 2,
-            question: "Do I need to make an appointment before visiting?",
+            question: " What are the working hours of Eledent Dental Hospital in Hyderabad?",
             answer:
-                "Regular outpatient services are available Monday through Friday from 8:00 AM to 6:00 PM.",
+                " Eledent Dental Hospital is open Monday to Sunday, from 09:00 AM to 09:00 PM. You can contact the team, book an appointment, or plan your visit during these hours. ",
         },
         {
             id: 3,
-            question: "Do I need to make an appointment before visiting?",
+            question: " Do I need to book an appointment before visiting Eledent Dental Hospital? ",
             answer:
-                "We offer a comprehensive range of medical services including cardiology, neurology, orthopedics and more.",
+                "Yes, booking an appointment before visiting Eledent Dental Hospital is recommended. It helps reduce waiting time, improves coordination, and connects you with the right dental specialist more quickly.",
+        },
+        {
+            id: 4,
+            question: " How can I choose the nearest Eledent Dental Hospital location? ",
+            answer:
+                "You can choose the nearest Eledent Dental Hospital location based on your home, workplace, or travel convenience. We’re located at Kondapur, Kukatpally, Manikonda, Banjara Hills and Kompally. If you are unsure, call +91 7799619994 and our team will guide you to the most suitable branch. ",
+        },
+
+        {
+            id: 5,
+            question: " Can I contact Eledent Dental Hospital for dental emergencies? ",
+            answer:
+                " Yes, you can contact Eledent Dental Hospital for urgent dental concerns such as tooth pain, swelling, broken teeth, or sudden discomfort. Call +91 7799619994 so the team can guide you on the next step as early as possible. ",
         },
     ];
 
@@ -61,7 +74,7 @@ export default function ContactFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-center lg:gap-16 gap-6 lg:grid-cols-2">
                     {/* LEFT CONTENT */}
                     <div className="max-w-[520px]">
-                        <p className="text-[11px] font-semibold tracking-[0.28em] text-[#f47200]">
+                        <p className="text-sm lg:text-2xl font-semibold tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 
@@ -71,10 +84,10 @@ export default function ContactFaq(): JSX.Element {
                             Here to Help
                         </h2>
 
-                        <p className="lg:mt-6 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
+                        {/* <p className="lg:mt-6 max-w-[430px] text-[13px] leading-6 text-[#6B7280]">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                        </p>
+                        </p> */}
                     </div>
 
                     {/* RIGHT ACCORDION */}

@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { TopRatedSection, TopRatedStatItem } from "@/data/serviceDetails";
+import { useAppointmentModal } from "@/app/context/AppointmentModalContext";
 
 /** Subtle hex background as inline SVG (data-uri) */
 const HEX_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%23e5e7eb' stroke-width='1'%3E%3Cpath opacity='0.55' d='M30 15l15-9 15 9v18l-15 9-15-9V15z'/%3E%3Cpath opacity='0.35' d='M90 15l15-9 15 9v18l-15 9-15-9V15z'/%3E%3Cpath opacity='0.25' d='M150 15l15-9 15 9v18l-15 9-15-9V15z'/%3E%3Cpath opacity='0.25' d='M60 60l15-9 15 9v18l-15 9-15-9V60z'/%3E%3Cpath opacity='0.18' d='M120 60l15-9 15 9v18l-15 9-15-9V60z'/%3E%3C/g%3E%3C/svg%3E")`;
@@ -159,7 +159,8 @@ const FALLBACK_DATA: TopRatedSection = {
   stats: [
     {
       id: "1",
-      iconSrc: "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/rating-icon.png",
+      iconSrc:
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/rating-icon.png",
       iconAlt: "Rating icon",
       value: 5,
       decimals: 0,
@@ -168,7 +169,8 @@ const FALLBACK_DATA: TopRatedSection = {
     },
     {
       id: "2",
-      iconSrc: "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/year-icon.png",
+      iconSrc:
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/year-icon.png",
       iconAlt: "Award icon",
       value: 5,
       decimals: 0,
@@ -177,7 +179,8 @@ const FALLBACK_DATA: TopRatedSection = {
     },
     {
       id: "3",
-      iconSrc: "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/count-1.png",
+      iconSrc:
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/count-1.png",
       iconAlt: "Experience icon",
       value: 100,
       decimals: 0,
@@ -186,7 +189,8 @@ const FALLBACK_DATA: TopRatedSection = {
     },
     {
       id: "4",
-      iconSrc: "https://reinventmedia.in/eledenthospitals/wp-content/uploads/2026/02/count-3.png",
+      iconSrc:
+        "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/count-3.png",
       iconAlt: "Implant icon",
       value: 27000,
       decimals: 0,
@@ -198,7 +202,7 @@ const FALLBACK_DATA: TopRatedSection = {
 
 /** Merge API data with static fallback */
 function getMergedData(data?: Partial<TopRatedSection> | null): TopRatedSection {
-  const incomingStats = Array.isArray(data?.stats) ? data?.stats : [];
+  const incomingStats = Array.isArray(data?.stats) ? data.stats : [];
 
   const mergedStats: TopRatedStatItem[] =
     incomingStats.length > 0
@@ -220,6 +224,7 @@ function getMergedData(data?: Partial<TopRatedSection> | null): TopRatedSection 
 
 export default function CommanTopRated({ data }: Props) {
   const sectionData = getMergedData(data);
+  const { openModal } = useAppointmentModal();
 
   return (
     <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -247,25 +252,16 @@ export default function CommanTopRated({ data }: Props) {
                   </p>
 
                   <div>
-                    {sectionData.ctaHref ? (
-                      <Link
-                        href={sectionData.ctaHref}
-                        className="inline-block whitespace-nowrap rounded-md bg-black px-5 py-2.5 text-sm font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base"
-                      >
-                        {sectionData.ctaText}
-                      </Link>
-                    ) : (
-                      <button
-                        type="button"
-                        className="whitespace-nowrap rounded-md bg-black px-5 py-2.5 text-sm font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base"
-                      >
-                        {sectionData.ctaText}
-                      </button>
-                    )}
+                    <button
+                      type="button"
+                      onClick={openModal}
+                      className="inline-block whitespace-nowrap rounded-md bg-black px-5 py-2.5 text-sm font-medium tracking-wide text-white shadow-sm transition-colors hover:bg-neutral-900 sm:px-8 sm:py-3 sm:text-base"
+                    >
+                      Get an Appointment
+                    </button>
                   </div>
                 </div>
 
-                {/* Desktop doctor */}
                 <div className="absolute right-0 bottom-0 top-[-70px] hidden w-[46%] lg:block lg:w-[48%]">
                   <div className="relative h-full w-full">
                     <Image

@@ -20,7 +20,7 @@ export default function BlogHero({
   subtitle = "Tincidunt suspendisse semper integer elementum maecenas.",
   bannerSrc = "/blog/blog-banner.png",
   phoneLabel = "Need a Dental Service?",
-  phoneNumber = "+91 99838 68366",
+  phoneNumber = "+91 7799619994",
   hoursLabel = "Visiting Hours",
   visitingHours = "Mon - Sun 9 AM to 9 PM",
   ctaText = "Book Appointment",
@@ -45,9 +45,9 @@ export default function BlogHero({
             <h1 className="text-white text-4xl md:text-5xl font-semibold transition duration-300 group-hover:-translate-y-1">
               {title}
             </h1>
-            <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl transition duration-300 group-hover:text-white">
+            {/* <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl transition duration-300 group-hover:text-white">
               {subtitle}
-            </p>
+            </p> */}
           </div>
 
           <div className="absolute lg:-bottom-8 -bottom-36 left-1/2 z-30 w-full -translate-x-1/2 px-4">
@@ -93,7 +93,7 @@ export default function BlogHero({
                 onClick={openModal}
                 className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white transition duration-300 hover:scale-105 hover:bg-orange-600"
               >
-                {ctaText}
+                Book Appointment
               </button>
             </div>
           </div>

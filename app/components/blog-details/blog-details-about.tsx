@@ -18,7 +18,7 @@ type BlogDetailsAboutProps = {
 function RecentArticleCard({ article }: { article: RecentArticle }) {
   return (
     <Link
-      href={`/blog/${article.href}`}
+      href={`/blogs/${article.href}`}
       className="flex gap-3 rounded-[6px] bg-white p-2 transition hover:opacity-90 items-center"
     >
       <div className="relative h-[56px] w-[56px] flex-shrink-0 overflow-hidden rounded-[4px] bg-[#f3f3f3]">

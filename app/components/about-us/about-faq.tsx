@@ -60,7 +60,7 @@ export default function AboutFaq(): JSX.Element {
             id: 8,
             question: " How do I contact Eledent Dental Hospital for a consultation? ",
             answer:
-                " You can contact Eledent Dental Hospital by calling 9983868366 or 7799769994. You can also email contact@eledenthospitals.com to book a consultation with one of our dental specialists in Hyderabad. ",
+                " You can contact Eledent Dental Hospital by calling 7799619994. You can also email contact@eledenthospitals.com to book a consultation with one of our dental specialists in Hyderabad. ",
         },
     ];
 
@@ -91,7 +91,7 @@ export default function AboutFaq(): JSX.Element {
                 <div className="grid grid-cols-1 items-center lg:gap-16 gap-10 lg:grid-cols-2">
                     {/* LEFT CONTENT */}
                     <div className="max-w-[520px]">
-                        <p className="lg:text-[11px] text-sm font-semibold tracking-[0.28em] text-[#f47200]">
+                        <p className="lg:text-2xl text-sm font-semibold tracking-[0.28em] text-[#f47200]">
                             FAQ
                         </p>
 

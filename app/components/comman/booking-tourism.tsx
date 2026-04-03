@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import type { FC, ChangeEvent, FormEvent } from "react";
-import { useEffect, useState } from "react";
+import type {
+  FC,
+  ChangeEvent,
+  FormEvent,
+  MouseEvent as ReactMouseEvent,
+} from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { getCountries, getCountryCallingCode } from "libphonenumber-js";
 
 type Location = {
   id: string;
@@ -28,19 +34,19 @@ type FormDataType = {
   message: string;
 };
 
-const countryCodes = [
-  { label: "IN (+91)", value: "+91" },
-  { label: "US (+1)", value: "+1" },
-  { label: "UK (+44)", value: "+44" },
-  { label: "AE (+971)", value: "+971" },
-  { label: "AU (+61)", value: "+61" },
-  { label: "CA (+1)", value: "+1" },
-];
+type CountryCodeOption = {
+  label: string;
+  value: string;
+  country: string;
+};
 
 const BookingTourism: FC = () => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+
+  const countryDropdownRef = useRef<HTMLDivElement | null>(null);
 
   const [formData, setFormData] = useState<FormDataType>({
     name: "",
@@ -52,6 +58,43 @@ const BookingTourism: FC = () => {
     message: "",
   });
 
+  const countryCodes = useMemo<CountryCodeOption[]>(() => {
+    const countries = getCountries();
+
+    const formatted = countries.map((country) => ({
+      label: `${country} (+${getCountryCallingCode(country)})`,
+      value: `+${getCountryCallingCode(country)}`,
+      country,
+    }));
+
+    return formatted.sort((a, b) => {
+      if (a.country === "IN") return -1;
+      if (b.country === "IN") return 1;
+      return a.label.localeCompare(b.label);
+    });
+  }, []);
+
+  const selectedCountry =
+    countryCodes.find((item) => item.value === formData.countryCode) ||
+    countryCodes.find((item) => item.country === "IN") ||
+    { label: "IN (+91)", value: "+91", country: "IN" };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        countryDropdownRef.current &&
+        !countryDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsCountryDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     const fetchLocations = async () => {
       try {
@@ -59,7 +102,7 @@ const BookingTourism: FC = () => {
 
         const baseUrl =
           process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://reinventmedia.in/eledenthospitals/wp-json/custom/v1";
+          "https://backend.eledenthospitals.com/wp-json/custom/v1";
 
         const response = await fetch(`${baseUrl}/locations`, {
           cache: "no-store",
@@ -71,7 +114,17 @@ const BookingTourism: FC = () => {
           throw new Error("Failed to fetch locations");
         }
 
-        setLocations(Array.isArray(result.data) ? result.data : []);
+        const validLocations = Array.isArray(result.data)
+          ? result.data.filter(
+            (location) =>
+              typeof location?.id === "string" &&
+              location.id.trim() !== "" &&
+              typeof location?.city === "string" &&
+              location.city.trim() !== ""
+          )
+          : [];
+
+        setLocations(validLocations);
       } catch (error) {
         console.error("Location fetch error:", error);
         setLocations([]);
@@ -103,10 +156,27 @@ const BookingTourism: FC = () => {
     }));
   };
 
+  const handleCountryCodeSelect = (
+    e: ReactMouseEvent<HTMLButtonElement>,
+    value: string
+  ) => {
+    e.preventDefault();
+    setFormData((prev) => ({
+      ...prev,
+      countryCode: value,
+    }));
+    setIsCountryDropdownOpen(false);
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.phone || !formData.date || !formData.locationId) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.date ||
+      !formData.locationId
+    ) {
       alert("Name, phone, date and location are required");
       return;
     }
@@ -166,21 +236,66 @@ const BookingTourism: FC = () => {
 
   const today = new Date().toISOString().split("T")[0];
 
+  const CountryCodeDropdown = ({
+    mobile = false,
+  }: {
+    mobile?: boolean;
+  }) => (
+    <div
+      ref={countryDropdownRef}
+      className={`relative ${mobile ? "w-[90px]" : "w-[140px]"}`}
+    >
+      <button
+        type="button"
+        onClick={() => setIsCountryDropdownOpen((prev) => !prev)}
+        className={`w-full bg-white rounded-full ${mobile ? "px-2 text-[10px]" : "px-4 text-sm"
+          } py-3 outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)] text-left flex items-center justify-between gap-2`}
+      >
+        <span className="truncate">{selectedCountry.label}</span>
+        <span className="text-xs">▼</span>
+      </button>
+
+      {isCountryDropdownOpen && (
+        <div className="absolute left-0 top-full mt-2 w-[260px] bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.16)] border border-gray-100 z-50 overflow-hidden">
+          <div className="max-h-[360px] overflow-y-auto">
+            {countryCodes.map((country) => (
+              <button
+                key={country.country}
+                type="button"
+                onClick={(e) => handleCountryCodeSelect(e, country.value)}
+                className={`w-full px-4 py-3 text-sm text-left hover:bg-orange-50 transition ${formData.countryCode === country.value
+                    ? "bg-orange-50 text-[#F37021] font-medium"
+                    : "text-gray-700"
+                  }`}
+              >
+                {country.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  
+
   return (
     <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
       <div className="lg:max-w-7xl mx-auto relative">
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center lg:px-10 px-6 overflow-visible">
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
-              <p className="text-base mb-3">Eledent Dental Hospitals </p>
+              <p className="text-base mb-3">Eledent Dental Hospitals</p>
 
               <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
-                Plan Your Dental  <br /> Trip With Confidence!
+                Plan Your Dental <br /> Trip With Confidence!
               </h2>
 
               <p className="text-sm opacity-90 mb-6">
-                Travelling for dental treatment should feel clear and well planned. Share your concern with our team, and we will help you understand the treatment process, expected timeline, and the next steps before your visit to Hyderabad.
-
+                Travelling for dental treatment should feel clear and well
+                planned. Share your concern with our team, and we will help you
+                understand the treatment process, expected timeline, and the
+                next steps before your visit to Hyderabad.
               </p>
 
               <div className="flex items-center gap-3 mb-8">
@@ -193,23 +308,33 @@ const BookingTourism: FC = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-1">Call Our </p>
-                  <p className="text-lg font-semibold">Patient Care Team
-                  </p>
+                  <p className="text-sm font-medium mb-1">Call Our</p>
+                  <p className="text-lg font-semibold">Patient Care Team</p>
                 </div>
               </div>
 
               <div className="text-[15px] max-w-[300px]">
                 <div className="w-full flex justify-between">
-                  <p>+91 9983868366 </p>
-                  <p>  +91 7799769994 </p>
+                  <a
+                    // href="tel:+917799619994"
+                    className="hover:underline transition"
+                  >
+                Call
+                  </a>
+                 
+                  <a
+                    href="tel:+917799619994"
+                    className="hover:underline transition"
+                  >
+                    +91 7799619994
+                  </a>
                 </div>
 
                 <hr className="h-[1px] bg-white/70 w-full my-2" />
 
                 <div className="w-full flex justify-between">
-                  <p> Mon–Sun </p>
-                  <p> 9:00am – 9:00pm</p>
+                  <p>Mon–Sun</p>
+                  <p>9:00am – 9:00pm</p>
                 </div>
               </div>
             </div>
@@ -259,18 +384,7 @@ const BookingTourism: FC = () => {
                       Phone
                     </label>
                     <div className="flex gap-3">
-                      <select
-                        name="countryCode"
-                        value={formData.countryCode}
-                        onChange={handleChange}
-                        className="w-[120px] bg-white rounded-full px-4 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
-                      >
-                        {countryCodes.map((country) => (
-                          <option key={`${country.label}-${country.value}`} value={country.value}>
-                            {country.label}
-                          </option>
-                        ))}
-                      </select>
+                      <CountryCodeDropdown />
 
                       <input
                         name="phone"
@@ -298,6 +412,7 @@ const BookingTourism: FC = () => {
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     />
                   </div>
+
                   <div className="mt-4">
                     <label className="block text-xs font-semibold text-gray-700 mb-2">
                       Location
@@ -309,7 +424,9 @@ const BookingTourism: FC = () => {
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     >
                       <option value="" disabled>
-                        {loadingLocations ? "Loading locations..." : "Select Location"}
+                        {loadingLocations
+                          ? "Loading locations..."
+                          : "Select Location"}
                       </option>
                       {locations.map((location) => (
                         <option key={location.id} value={location.id}>
@@ -356,7 +473,7 @@ const BookingTourism: FC = () => {
             className="relative shadow-2xl lg:p-8 p-4 bg-white bg-[url('/about-us/aportment-details.png')] bg-cover bg-center bg-no-repeat"
           >
             <div className="relative z-10">
-              <h3 className="text-2xl font-semibold mb-7 text-gray-800">
+              <h3 className="lg:text-2xl font-semibold mb-7 text-gray-800">
                 Book An Appointment
               </h3>
 
@@ -394,18 +511,7 @@ const BookingTourism: FC = () => {
                     Phone
                   </label>
                   <div className="flex gap-3">
-                    <select
-                      name="countryCode"
-                      value={formData.countryCode}
-                      onChange={handleChange}
-                      className="lg:w-[120px] w-[80px] bg-white rounded-full lg:px-4 px-2 py-3 lg:text-sm text-[10px] outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
-                    >
-                      {countryCodes.map((country) => (
-                        <option key={`${country.label}-${country.value}`} value={country.value}>
-                          {country.label}
-                        </option>
-                      ))}
-                    </select>
+                    <CountryCodeDropdown mobile />
 
                     <input
                       name="phone"
@@ -446,7 +552,9 @@ const BookingTourism: FC = () => {
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                 >
                   <option value="" disabled>
-                    {loadingLocations ? "Loading locations..." : "Select Location"}
+                    {loadingLocations
+                      ? "Loading locations..."
+                      : "Select Location"}
                   </option>
                   {locations.map((location) => (
                     <option key={location.id} value={location.id}>
