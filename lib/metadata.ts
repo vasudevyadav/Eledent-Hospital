@@ -179,10 +179,10 @@ export const metadataMap: Record<string, MetaEntry> = {
     description:
       "Experience world-class dental care in Manikonda. Our experts at Eledent Hospital provide pain-free treatments and personalized smile makeovers for all.",
   },
-  "/kukatapally": {
-    title: "Best Dental Hospital in Kukatpally, Hyderabad - Eledent Hospitals",
+  "/kukatpally": {
+    title: "Best Dental Hospital in Kukatpally, Hyderabad – Eledent Hospitals",
     description:
-      "Best Dental Hospital in Kukatpally, Hyderabad – Eledent Hospitals offers expert dentists, advanced treatments, implants, Invisalign & complete dental care.",
+      "Looking for the best dental hospital in Kukatpally, Hyderabad? Eledent Hospitals offers advanced dental treatments including implants, braces, Invisalign, smile designing, and painless root canal treatments by experienced dentists. Book your appointment today!",
   },
   "/kompally": {
     title: "Best Dental Hospital in Kompally, Hyderabad - Eledent Hospitals",
