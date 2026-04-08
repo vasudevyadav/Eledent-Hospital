@@ -6,22 +6,18 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "www.eledenthospitals.com",
-        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "eledenthospitals.com",
-        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "backend.eledenthospitals.com",
-        pathname: "/wp-content/uploads/**",
       },
       {
         protocol: "https",
         hostname: "www.backend.eledenthospitals.com",
-        pathname: "/wp-content/uploads/**",
       },
     ],
   },
@@ -31,6 +27,117 @@ const nextConfig: NextConfig = {
       {
         source: "/location/:slug",
         destination: "/:slug",
+        permanent: true,
+      },
+
+      {
+        source: "/dental-implant-cost-in-hyderabad",
+        destination: "/blogs/dental-implant-cost-in-hyderabad",
+        permanent: true,
+      },
+      {
+        source: "/root-canal-treatment-cost-in-hyderabad",
+        destination: "/blogs/root-canal-treatment-cost-in-hyderabad",
+        permanent: true,
+      },
+      {
+        source: "/look-for-a-pediatric-dentist-for-your-infants-teeth",
+        destination: "/blogs/look-for-a-pediatric-dentist-for-your-infants-teeth",
+        permanent: true,
+      },
+      {
+        source: "/how-smile-makeovers-transform-facial-harmony",
+        destination: "/blogs/how-smile-makeovers-transform-facial-harmony",
+        permanent: true,
+      },
+      {
+        source: "/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
+        destination: "/blogs/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
+        permanent: true,
+      },
+      {
+        source: "/step-by-step-guide-to-the-dental-implant-procedure",
+        destination: "/blogs/step-by-step-guide-to-the-dental-implant-procedure",
+        permanent: true,
+      },
+      {
+        source: "/get-your-wisdom-tooth-removed-to-prevent-tooth-loss",
+        destination: "/blogs/get-your-wisdom-tooth-removed-to-prevent-tooth-loss",
+        permanent: true,
+      },
+      {
+        source: "/a-step-by-step-guide-how-to-get-invisalign-treatment",
+        destination: "/blogs/a-step-by-step-guide-how-to-get-invisalign-treatment",
+        permanent: true,
+      },
+      {
+        source: "/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
+        destination: "/blogs/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
+        permanent: true,
+      },
+      {
+        source: "/how-to-fix-teeth-gap-expert-solutions",
+        destination: "/blogs/how-to-fix-teeth-gap-expert-solutions",
+        permanent: true,
+      },
+      {
+        source: "/what-are-dental-veneers-and-how-do-they-work",
+        destination: "/blogs/what-are-dental-veneers-and-how-do-they-work",
+        permanent: true,
+      },
+      {
+        source: "/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        destination: "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        permanent: true,
+      },
+      {
+        source: "/common-causes-of-tooth-pain-and-how-to-address-them",
+        destination: "/blogs/common-causes-of-tooth-pain-and-how-to-address-them",
+        permanent: true,
+      },
+      {
+        source: "/how-safe-are-dental-implants-if-you-have-diabetes",
+        destination: "/blogs/how-safe-are-dental-implants-if-you-have-diabetes",
+        permanent: true,
+      },
+      {
+        source: "/benefits-of-invisalign-straighter-and-healthier-teeth",
+        destination: "/blogs/benefits-of-invisalign-straighter-and-healthier-teeth",
+        permanent: true,
+      },
+      {
+        source: "/teeth-whitening-process-achieve-a-brighter-smile-easily",
+        destination: "/blogs/teeth-whitening-process-achieve-a-brighter-smile-easily",
+        permanent: true,
+      },
+      {
+        source: "/dental-crowns-types-benefits-and-procedure",
+        destination: "/blogs/dental-crowns-types-benefits-and-procedure",
+        permanent: true,
+      },
+      {
+        source: "/best-reasons-to-have-your-teeth-professionally-whitened",
+        destination: "/blogs/best-reasons-to-have-your-teeth-professionally-whitened",
+        permanent: true,
+      },
+      {
+        source: "/advantages-of-laser-assisted-root-canal-treatment",
+        destination: "/blogs/advantages-of-laser-assisted-root-canal-treatment",
+        permanent: true,
+      },
+      {
+        source: "/why-dental-implants-are-the-best-solution-for-missing-teeth",
+        destination: "/blogs/why-dental-implants-are-the-best-solution-for-missing-teeth",
+        permanent: true,
+      },
+      {
+        source: "/what-is-smile-design-types-treatment-its-cost",
+        destination: "/blogs/what-is-smile-design-types-treatment-its-cost",
+        permanent: true,
+      },
+      {
+        source: "/types-of-dental-implants-and-which-one-is-best-for-you",
+        destination: "/blogs/types-of-dental-implants-and-which-one-is-best-for-you",
         permanent: true,
       },
     ];
@@ -62,6 +169,11 @@ const nextConfig: NextConfig = {
         source: "/kukatpally-generic",
         destination: "/kukatpally-generic/index.html",
       },
+
+
+
+
+
     ];
   },
 };
