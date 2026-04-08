@@ -10,14 +10,21 @@ type BlogDetailsHeroProps = {
 };
 
 export default function BlogDetailsHero({ hero }: BlogDetailsHeroProps) {
+  // Fallback if image is empty/undefined
+  const imageSrc =
+    hero.image && hero.image.trim() !== ""
+      ? hero.image
+      : "/blog/blog-image.png";
+
   return (
     <div className="lg:my-12 my-6 lg:mx-24 mx-6 lg:mt-40 mt-36">
       <section className="relative z-0 lg:h-[500px] object-cover h-[190px] w-full overflow-hidden rounded-3xl">
         <Image
-          src={hero.image}
-          alt={hero.title}
+          src={imageSrc}
+          alt={hero.title || "Blog Hero"}
           fill
           priority
+          unoptimized // ✅ Required for external URLs (backend.eledenthospitals.com)
           className="lg:object-cover object-fill"
         />
 
