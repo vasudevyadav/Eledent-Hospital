@@ -140,6 +140,70 @@ const nextConfig: NextConfig = {
         destination: "/blogs/types-of-dental-implants-and-which-one-is-best-for-you",
         permanent: true,
       },
+      {
+        source: "/services/invisalign-treatment-hyderabad",
+        destination: "/services/invisalign-treatment",
+        permanent: true,
+      },
+      {
+        source: "/services/laser-gum-treatment-hyderabad",
+        destination: "/services/laser-gum-treatment",
+        permanent: true,
+      },
+      {
+        source: "/services/smile-makeover-in-hyderabad",
+        destination: "/services/smile-makeover",
+        permanent: true,
+      },
+      {
+        source: "/services/wisdom-teeth-removal-hyderabad",
+        destination: "/services/wisdom-teeth-removal",
+        permanent: true,
+      },
+      {
+        source: "/services/braces-treatments",
+        destination: "/services/braces-aligners",
+        permanent: true,
+      },
+      {
+        source: "/services/dental-veneers-in-hyderabad",
+        destination: "/services/dental-veneers",
+        permanent: true,
+      },
+      {
+        source: "/services/orthodontist-in-hyderabad",
+        destination: "/services/orthodontic-treatment",
+        permanent: true,
+      },
+      {
+        source: "/services/tooth-pain-treatment-in-hyderabad",
+        destination: "/services/tooth-pain-treatment",
+        permanent: true,
+      },
+      {
+        source: "/microscopic-dentistry",
+        destination: "/services/microscopic-dentistry",
+        permanent: true,
+      },
+
+      {
+        source: "/services/conseous-sedation",
+        destination: "/services/conscious-sedation",
+        permanent: true,
+      },
+
+
+      {
+        source: "/dentist-in-kondapur",
+        destination: "/best-dentist-in-kondapur",
+        permanent: true,
+      },
+
+      {
+        source: "/services/advanced-dental-implants",
+        destination: "/services/advanced-and-painless-dental-implants",
+        permanent: true,
+      },
     ];
   },
 
