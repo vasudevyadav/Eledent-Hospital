@@ -88,11 +88,6 @@ function slugToTitle(slug: string) {
     .join(" ");
 }
 
-function extractFirstImage(html: string) {
-  const match = html.match(/<img[^>]+src=["']([^"']+)["']/i);
-  return match?.[1] || "";
-}
-
 function extractFirstParagraph(html: string) {
   const match = html.match(/<(p|span)[^>]*>(.*?)<\/(p|span)>/i);
   return match?.[2] ? stripHtml(decodeHtml(match[2])) : "";
@@ -136,7 +131,8 @@ async function getRecentBlogs(currentSlug: string): Promise<RecentArticle[]> {
       .map((post) => ({
         id: post.id,
         title: stripHtml(post.title?.rendered || ""),
-        href: post.slug,
+        // ✅ Fixed: full path so BlogDetailsAbout <Link> works correctly
+        href: `/blogs/${post.slug}`,
         image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
       }));
   } catch (error) {

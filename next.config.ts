@@ -6,18 +6,22 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "www.eledenthospitals.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "eledenthospitals.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "backend.eledenthospitals.com",
+        pathname: "/wp-content/uploads/**",
       },
       {
         protocol: "https",
         hostname: "www.backend.eledenthospitals.com",
+        pathname: "/wp-content/uploads/**",
       },
     ],
   },
@@ -58,10 +62,6 @@ const nextConfig: NextConfig = {
         source: "/kukatpally-generic",
         destination: "/kukatpally-generic/index.html",
       },
-
-
-
-
     ];
   },
 };
