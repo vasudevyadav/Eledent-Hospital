@@ -1,3 +1,4 @@
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -49,6 +50,7 @@ const nextConfig: NextConfig = {
         source: "/how-smile-makeovers-transform-facial-harmony",
         destination: "/blogs/how-smile-makeovers-transform-facial-harmony",
         permanent: true,
+
       },
       {
         source: "/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
@@ -150,11 +152,7 @@ const nextConfig: NextConfig = {
         destination: "/services/laser-gum-treatment",
         permanent: true,
       },
-      {
-        source: "/services/smile-makeover-in-hyderabad",
-        destination: "/services/smile-makeover",
-        permanent: true,
-      },
+
       {
         source: "/services/wisdom-teeth-removal-hyderabad",
         destination: "/services/wisdom-teeth-removal",
@@ -187,7 +185,7 @@ const nextConfig: NextConfig = {
       },
 
       {
-        source: "/services/conseous-sedation",
+        source: "/conscious-sedation",
         destination: "/services/conscious-sedation",
         permanent: true,
       },
@@ -200,10 +198,73 @@ const nextConfig: NextConfig = {
       },
 
       {
-        source: "/services/advanced-dental-implants",
-        destination: "/services/advanced-and-painless-dental-implants",
+        source: "/blog/category/dental-care",
+        destination: "/",
         permanent: true,
       },
+      {
+        source: "/blog/category/dental-crowns",
+        destination: "/blogs/dental-crowns-types-benefits-and-procedure",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/dental-filling",
+        destination: "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/dental-implant",
+        destination: "/blogs/dental-implant-cost-in-hyderabad",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/invisalign",
+        destination: "/blogs/a-step-by-step-guide-how-to-get-invisalign-treatment",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/pediatric",
+        destination: "/blogs/look-for-a-pediatric-dentist-for-your-infants-teeth",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/root-canal-treatment",
+        destination: "/blogs/root-canal-treatment-cost-in-hyderabad",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/smile-design",
+        destination: "/blogs/what-is-smile-design-types-treatment-its-cost",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/smile-makeover",
+        destination: "/blogs/how-smile-makeovers-transform-facial-harmony",
+        permanent: true,
+
+
+      },
+      {
+        source: "/blog/category/teeth-gap-treatment",
+        destination: "/blogs/how-to-fix-teeth-gap-expert-solutions",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/teeth-whitening",
+        destination: "/blogs/teeth-whitening-process-achieve-a-brighter-smile-easily",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/tooth-pain",
+        destination: "/blogs/common-causes-of-tooth-pain-and-how-to-address-them",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/wisdom-tooth",
+        destination: "/blogs/get-your-wisdom-tooth-removed-to-prevent-tooth-loss",
+        permanent: true,
+      },
+
     ];
   },
 

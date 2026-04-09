@@ -7,7 +7,6 @@ import FacilitiesFaq from "../components/facilities/facilities-faq";
 import BookingAportment from "../components/comman/booking-aportment";
 import { getMetadataByPath } from "@/lib/metadata";
 
-export const metadata: Metadata = getMetadataByPath("/facility");
 
 export default function Facilities() {
   return (

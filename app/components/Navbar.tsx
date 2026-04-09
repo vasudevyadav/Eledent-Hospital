@@ -195,7 +195,7 @@ export default function Navbar() {
       { type: "dropdown", name: "Services", key: "services", href: "/services" },
       { type: "link", name: "Dental Tourism", href: "/dental-tourism" },
       { type: "link", name: "Technology", href: "/technology" },
-      { type: "link", name: "Facilities", href: "/facilities" },
+      { type: "link", name: "Facilities", href: "/facility" },
       { type: "link", name: "Contact Us", href: "/contact-us" },
       { type: "dropdown", name: "Locations", key: "locations" },
     ],
