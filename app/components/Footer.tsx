@@ -108,7 +108,7 @@ export default function Footer(): JSX.Element {
         { name: "About Us", href: "/about-us" },
         { name: "Dental Tourism", href: "/dental-tourism" },
         { name: "Technology", href: "/technology" },
-        { name: "Facilities", href: "/facilities" },
+        { name: "Facilities", href: "/facility" },
         { name: "Contact Us", href: "/contact-us" },
         { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms And Conditions", href: "/terms-and-conditions" },
