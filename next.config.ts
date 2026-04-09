@@ -147,11 +147,11 @@ const nextConfig: NextConfig = {
         destination: "/services/invisalign-treatment",
         permanent: true,
       },
-      {
-        source: "/services/laser-gum-treatment-hyderabad",
-        destination: "/services/laser-gum-treatment",
-        permanent: true,
-      },
+      // {
+      //   source: "/services/laser-gum-treatment-hyderabad",
+      //   destination: "/services/laser-gum-treatment",
+      //   permanent: true,
+      // },
 
       {
         source: "/services/wisdom-teeth-removal-hyderabad",
