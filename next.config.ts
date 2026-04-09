@@ -147,11 +147,16 @@ const nextConfig: NextConfig = {
         destination: "/services/invisalign-treatment",
         permanent: true,
       },
-      // {
-      //   source: "/services/laser-gum-treatment-hyderabad",
-      //   destination: "/services/laser-gum-treatment",
-      //   permanent: true,
-      // },
+      {
+        source: "/conseous-sedation",
+        destination: "/services/conscious-sedation",
+        permanent: true,
+      },
+      {
+        source: "/conscious-sedation-hyderabad",
+        destination: "/services/conscious-sedation",
+        permanent: true,
+      },
 
       {
         source: "/services/wisdom-teeth-removal-hyderabad",
@@ -266,13 +271,13 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/smile-makeover",
-        destination: "/services/smile-makeover-Hyderabad",
+        destination: "/services/smile-makeover-hyderabad",
         permanent: true,
       },
 
       {
         source: "/services/smile-makeover",
-        destination: "/services/smile-makeover-Hyderabad",
+        destination: "/services/smile-makeover-hyderabad",
         permanent: true,
       },
     ];
