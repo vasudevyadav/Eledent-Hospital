@@ -1,0 +1,14 @@
+# Eledent Hospitals
+
+> Multi-speciality dental hospital website with treatment pages, location pages, and patient education blogs.
+
+## Important Pages
+- [Home](https://www.eledenthospitals.com/)
+- [About Us](https://www.eledenthospitals.com/about-us)
+- [Services](https://www.eledenthospitals.com/services)
+- [Contact Us](https://www.eledenthospitals.com/contact-us)
+- [Blogs](https://www.eledenthospitals.com/blogs)
+
+## Recent Blogs
+- [Dental Implants](https://www.eledenthospitals.com/blogs/dental-implants)
+- [Root Canal Treatment](https://www.eledenthospitals.com/blogs/root-canal-treatment)

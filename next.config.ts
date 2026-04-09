@@ -264,7 +264,17 @@ const nextConfig: NextConfig = {
         destination: "/blogs/get-your-wisdom-tooth-removed-to-prevent-tooth-loss",
         permanent: true,
       },
+      {
+        source: "/smile-makeover",
+        destination: "/services/smile-makeover-Hyderabad",
+        permanent: true,
+      },
 
+      {
+        source: "/services/smile-makeover",
+        destination: "/services/smile-makeover-Hyderabad",
+        permanent: true,
+      },
     ];
   },
 
