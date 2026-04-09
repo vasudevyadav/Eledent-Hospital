@@ -9,8 +9,10 @@ import ServiceAppointment from "../components/services/service-appointment";
 import { getMetadataByPath } from "@/lib/metadata";
 import CommanTestimonial from "../components/comman/comman-testimonial";
 
-export const metadata: Metadata = getMetadataByPath("/services");
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/services");
 
+}
 export default function Services() {
   return (
     <div>

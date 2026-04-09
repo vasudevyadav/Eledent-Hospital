@@ -7,8 +7,9 @@ import ContactAbout from "../components/contact-us/contact-about";
 import ContactFaq from "../components/contact-us/contact-faq";
 import { getMetadataByPath } from "@/lib/metadata";
 
-export const metadata: Metadata = getMetadataByPath("/contact-us");
-
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/contact-us");
+}
 export default function ContactUs() {
   return (
     <div>

@@ -5,8 +5,9 @@ import Footer from "../components/Footer";
 import { getMetadataByPath } from "@/lib/metadata";
 import Image from "next/image";
 
-export const metadata: Metadata = getMetadataByPath("/privacy-policy");
-
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/guided-biofilm-therapy-gb");
+}
 export default function GuidedBiofilmTherapyGb() {
   return (
     <div>
