@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRouter } from "next/navigation";
 import type { FC, ChangeEvent, FormEvent } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Location = {
   id: string;
@@ -27,10 +29,18 @@ type FormDataType = {
   message: string;
 };
 
+const RECAPTCHA_SITE_KEY = "6LdzRrAsAAAAO4_G7Zt6SAQkQsehvHRL_PEfPV2";
+
 const BookingAportment: FC = () => {
+  const router = useRouter();
+
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  const desktopRecaptchaRef = useRef<ReCAPTCHA>(null);
+  const mobileRecaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [formData, setFormData] = useState<FormDataType>({
     name: "",
@@ -86,17 +96,17 @@ const BookingAportment: FC = () => {
 
     if (name === "phone") {
       const onlyNumbers = value.replace(/\D/g, "").slice(0, 10);
-      setFormData((prev) => ({
-        ...prev,
-        [name]: onlyNumbers,
-      }));
+      setFormData((prev) => ({ ...prev, [name]: onlyNumbers }));
       return;
     }
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const resetCaptcha = () => {
+    desktopRecaptchaRef.current?.reset();
+    mobileRecaptchaRef.current?.reset();
+    setCaptchaToken(null);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -117,14 +127,17 @@ const BookingAportment: FC = () => {
       return;
     }
 
+    if (!captchaToken) {
+      alert("Please complete the reCAPTCHA verification");
+      return;
+    }
+
     try {
       setSubmitting(true);
 
       const res = await fetch("/api/appointments", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -132,6 +145,7 @@ const BookingAportment: FC = () => {
           date: formData.date,
           locationId: formData.locationId,
           message: formData.message,
+          captchaToken,
         }),
       });
 
@@ -139,11 +153,12 @@ const BookingAportment: FC = () => {
 
       if (!res.ok) {
         alert(data?.message || "Failed to submit appointment");
+        resetCaptcha();
         return;
       }
 
-      alert(data?.message || "Appointment booked successfully");
-
+      // ✅ Success - reset and redirect
+      resetCaptcha();
       setFormData({
         name: "",
         email: "",
@@ -152,9 +167,12 @@ const BookingAportment: FC = () => {
         locationId: "",
         message: "",
       });
+      router.push("/thankyou");
+
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
+      resetCaptcha();
     } finally {
       setSubmitting(false);
     }
@@ -166,9 +184,11 @@ const BookingAportment: FC = () => {
     <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
       <div className="lg:max-w-7xl mx-auto relative">
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center px-10 overflow-visible">
+
+          {/* ───────────── LEFT CONTENT ───────────── */}
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
-              <p className="text-base mb-3">Don’t Delay! </p>
+              <p className="text-base mb-3">Don't Delay!</p>
 
               <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
                 Book Your Dental <br /> Appointment Today!
@@ -197,24 +217,15 @@ const BookingAportment: FC = () => {
 
               <div className="text-[15px] max-w-[300px]">
                 <div className="w-full flex justify-between">
-                  <a
+                  <a className="hover:underline transition">Call</a>
 
-                    className="hover:underline transition"
-                  >
-                    Call
-                  </a>
-
-
-                  <a
-                    href="tel:+917799619994"
+                  <a href="tel:+917799619994"
                     className="hover:underline transition"
                   >
                     +91 7799619994
                   </a>
                 </div>
-
                 <hr className="h-[1px] bg-white/70 w-full my-2" />
-
                 <div className="w-full flex justify-between">
                   <p>Mon–Sun</p>
                   <p>9:00am – 9:00pm</p>
@@ -223,6 +234,7 @@ const BookingAportment: FC = () => {
             </div>
           </div>
 
+          {/* ───────────── DESKTOP FORM ───────────── */}
           <div className="lg:absolute right-10 top-1/2 lg:-translate-y-1/2 w-[440px] z-20 hidden lg:block">
             <form
               onSubmit={handleSubmit}
@@ -304,15 +316,10 @@ const BookingAportment: FC = () => {
                     className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                   >
                     <option value="" disabled>
-                      {loadingLocations
-                        ? "Loading locations..."
-                        : "Select Location"}
+                      {loadingLocations ? "Loading locations..." : "Select Location"}
                     </option>
                     {locations
-                      .filter(
-                        (location) =>
-                          location?.id?.trim() && location?.city?.trim()
-                      )
+                      .filter((l) => l?.id?.trim() && l?.city?.trim())
                       .map((location) => (
                         <option key={location.id} value={location.id}>
                           {location.city}
@@ -335,10 +342,20 @@ const BookingAportment: FC = () => {
                   />
                 </div>
 
-                <div className="flex justify-center mt-6">
+                {/* reCAPTCHA */}
+                <div className="mt-4 flex justify-center">
+                  <ReCAPTCHA
+                    ref={desktopRecaptchaRef}
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    onChange={(token) => setCaptchaToken(token)}
+                    onExpired={() => setCaptchaToken(null)}
+                  />
+                </div>
+
+                <div className="flex justify-center mt-4">
                   <button
                     type="submit"
-                    disabled={submitting}
+                    disabled={submitting || !captchaToken}
                     className="bg-[#F37021] text-white px-10 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {submitting ? "Submitting..." : "Book Appointment"}
@@ -351,6 +368,7 @@ const BookingAportment: FC = () => {
           <div className="absolute right-0 top-0 h-full w-[90px] rounded-r-[20px] bg-[#F37021] z-0 pointer-events-none" />
         </div>
 
+        {/* ───────────── MOBILE FORM ───────────── */}
         <div className="z-20 lg:hidden block">
           <form
             onSubmit={handleSubmit}
@@ -432,15 +450,10 @@ const BookingAportment: FC = () => {
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                 >
                   <option value="" disabled>
-                    {loadingLocations
-                      ? "Loading locations..."
-                      : "Select Location"}
+                    {loadingLocations ? "Loading locations..." : "Select Location"}
                   </option>
                   {locations
-                    .filter(
-                      (location) =>
-                        location?.id?.trim() && location?.city?.trim()
-                    )
+                    .filter((l) => l?.id?.trim() && l?.city?.trim())
                     .map((location) => (
                       <option key={location.id} value={location.id}>
                         {location.city}
@@ -463,10 +476,20 @@ const BookingAportment: FC = () => {
                 />
               </div>
 
-              <div className="flex justify-center mt-6">
+              {/* reCAPTCHA */}
+              <div className="mt-4 flex justify-center">
+                <ReCAPTCHA
+                  ref={mobileRecaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setCaptchaToken(token)}
+                  onExpired={() => setCaptchaToken(null)}
+                />
+              </div>
+
+              <div className="flex justify-center mt-4">
                 <button
                   type="submit"
-                  disabled={submitting}
+                  disabled={submitting || !captchaToken}
                   className="bg-[#F37021] text-white px-10 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitting ? "Submitting..." : "Book Appointment"}
