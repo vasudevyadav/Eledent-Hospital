@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.backend.eledenthospitals.com",
       },
+      {
+        protocol: "https",
+        hostname: "backend.eledenthospitals.com",
+        port: "",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 

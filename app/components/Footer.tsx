@@ -123,27 +123,39 @@ export default function Footer(): JSX.Element {
         <>
             <footer className="relative w-full">
                 <div className="bg-gradient-to-b from-[#e46d2b] to-[#E87733] text-white">
-                    <div className="mx-auto max-w-[1180px] px-4 py-8 sm:px-6">
-                        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-                            {/* LOGO */}
-                            <div className="mt-2 md:col-span-3">
+                    <div className="mx-auto max-w-[1300px] px-4 pt-8 sm:px-6">
+                        <div className="grid grid-cols-1 items-center gap-10 pb-6 sm:grid-cols-2">
+                            <div>
                                 <Link href="/" className="inline-flex items-start">
                                     <Image
                                         src="/home/White-Logo.webp"
                                         alt="Eledent"
                                         width={220}
                                         height={80}
-                                        className="h-auto w-[180px] sm:w-[200px]"
+                                        className="w-[150px] sm:w-[180px]"
                                         priority
                                     />
                                 </Link>
                             </div>
 
-                            {/* SERVICES */}
-                            <div className="md:col-span-4">
+                            <div className="text-right text-white">
+                                <h3 className="text-lg font-medium leading-snug">
+                                    <a href="/">© 2026 ELEDENT HOSPITALS LLP.</a> All rights reserved.
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div className="h-[1px] w-full bg-white" />
+                    </div>
+
+                    <div className="mx-auto max-w-[1180px] px-4 py-10 sm:px-6">
+                        <div className="grid grid-cols-1 gap-10 lg:grid-cols-4">
+
+
+                            <div className="md:col-span-2">
                                 <h3 className="text-xl font-semibold opacity-90">Services</h3>
 
-                                <ul className="mt-4 space-y-3 text-[15px] leading-5">
+                                <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 text-[15px] leading-5 sm:grid-cols-2">
                                     {loading ? (
                                         <>
                                             {Array.from({ length: 6 }).map((_, i) => (
@@ -158,7 +170,7 @@ export default function Footer(): JSX.Element {
                                                 <span className="mt-[6px] inline-block h-[5px] w-[5px] shrink-0 rounded-full bg-white/85" />
                                                 <Link
                                                     href={item.href}
-                                                    className="break-words hover:underline hover:underline-offset-4"
+                                                    className="break-words hover:underline hover:underline-offset-4 line-clamp-1"
                                                 >
                                                     {item.name}
                                                 </Link>
@@ -170,8 +182,7 @@ export default function Footer(): JSX.Element {
                                 </ul>
                             </div>
 
-                            {/* QUICK LINKS */}
-                            <div className="md:col-span-2">
+                            <div >
                                 <h3 className="text-xl font-semibold opacity-90">Quick Links</h3>
 
                                 <ul className="mt-4 space-y-3 text-[15px] leading-5">
@@ -189,8 +200,7 @@ export default function Footer(): JSX.Element {
                                 </ul>
                             </div>
 
-                            {/* CONTACT */}
-                            <div className="md:col-span-3">
+                            <div>
                                 <h3 className="text-xl font-semibold opacity-90">Contact Us</h3>
 
                                 <div className="mt-4 space-y-2 text-[15px] leading-5">
@@ -203,22 +213,12 @@ export default function Footer(): JSX.Element {
                                         contact@eledenthospitals.com
                                     </a>
 
-                                    {/* <span className="inline-flex items-center gap-1.5 sm:gap-2">
-                                        <PhoneCall className="h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4" />
-                                        <a href="tel:+917799619994" className="hover:underline">
-                                            +91 99838 68366
-                                        </a>
-
-                                    </span> */}
-
                                     <span className="inline-flex items-center gap-1.5 sm:gap-2">
                                         <PhoneCall className="h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4" />
-
-                                        <a href="tel:+917799619994" className="hover:underline">
+                                        <a href={`tel:${phoneNumber}`} className="hover:underline">
                                             +91 7799619994
                                         </a>
                                     </span>
-
                                 </div>
 
                                 <div className="mt-4 flex items-center gap-2">
@@ -276,18 +276,8 @@ export default function Footer(): JSX.Element {
                             </div>
                         </div>
                     </div>
-
-                    <div className="h-[1px] w-full bg-white/20" />
-                </div>
-
-                <div className="bg-gradient-to-b from-[#e46d2b] to-[#E87733] py-4 text-center text-white lg:mb-0 mb-16">
-                    <h3 className="text-base leading-snug">
-                        <a href="/">© 2026 ELEDENT HOSPITALS LLP.</a> All rights reserved.
-                    </h3>
                 </div>
             </footer>
-
-
         </>
     );
 }
