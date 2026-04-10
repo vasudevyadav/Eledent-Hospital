@@ -24,7 +24,7 @@ const mobileHeroImages = [
     "/home/Eledent-Home-Mob-3.jpg",
     "/home/Eledent-Home-Mob-4.jpg",
     "/home/Eledent-Home-Mob-5.jpg",
-  
+
 ];
 
 export default function HeroSection() {
