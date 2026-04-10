@@ -35,7 +35,7 @@ export default function AboutUs() {
 
                         <div className="space-y-4 text-gray-600 text-xs sm:text-sm leading-relaxed mb-7">
                             <p>
-                                At Eledent Dental Hospital, we bring advanced multi-speciality dental care closer to patients across Hyderabad. With 19+ years of experience, specialist-led treatment, and modern digital technology, we offer complete care for dental implants, full mouth rehabilitation, root canal treatment, braces, aligners, smile makeovers, and kids dentistry, and have restored 30,000+ smiles.
+                                At Eledent Dental Hospital, we bring advanced multi-speciality dental care closer to patients across Hyderabad. With 20+ years of experience, specialist-led treatment, and modern digital technology, we offer complete care for dental implants, full mouth rehabilitation, root canal treatment, braces, aligners, smile makeovers, and kids dentistry, and have restored 30,000+ smiles.
 
                             </p>
 

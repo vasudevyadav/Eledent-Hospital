@@ -129,9 +129,9 @@ export default function HomeTestimonial() {
             <div className="mx-auto max-w-6xl px-6">
                 {/* Header */}
                 <div className="text-center">
-                    <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-base font-semibold text-white">
+                    {/* <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-base font-semibold text-white">
                         Our
-                    </span>
+                    </span> */}
 
                     <h2 className="mt-4 lg:text-3xl text-2xl lg:font-extrabold font-semibold text-gray-800 md:text-[40px]">
                         Testimonials
