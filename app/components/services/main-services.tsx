@@ -29,7 +29,7 @@ type ServicesApiResponse = {
 };
 
 /* -----------------------------
-  2) PAGE DATA
+  2) PAGE DATA (STATIC SECTION META)
 ----------------------------- */
 const SERVICE_SECTION_META = {
   badge: "Our",
@@ -43,12 +43,6 @@ const FALLBACK_ICON = "/images/default-service-icon.png";
 
 function isExternalUrl(url?: string): boolean {
   return !!url && /^https?:\/\//i.test(url);
-}
-
-function getServiceHref(slug: string): string {
-  const cleanSlug = slug?.trim();
-  if (!cleanSlug || cleanSlug === "#") return "#";
-  return `/services/${cleanSlug}`;
 }
 
 export default function DentalServices(): JSX.Element {
@@ -296,36 +290,36 @@ function ServiceCard({
   description,
   slug,
 }: ServiceCardItem): JSX.Element {
-  const serviceHref = getServiceHref(slug);
-  const [cardImage, setCardImage] = useState(imageSrc || FALLBACK_IMAGE);
-  const [cardIcon, setCardIcon] = useState(iconSrc || FALLBACK_ICON);
+  const serviceHref = slug === "#" ? "#" : `/services/${slug}`;
+  const [currentImage, setCurrentImage] = useState(imageSrc || FALLBACK_IMAGE);
+  const [currentIcon, setCurrentIcon] = useState(iconSrc || FALLBACK_ICON);
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="relative h-[200px] w-full overflow-hidden sm:h-[220px] lg:h-[240px]">
         <Image
-          src={cardImage}
+          src={currentImage}
           alt={imageAlt || title}
           fill
-          unoptimized={isExternalUrl(cardImage)}
+          unoptimized={isExternalUrl(currentImage)}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="rounded-[18px] object-cover object-center p-2 transition-transform duration-500 group-hover:scale-105"
-          onError={() => setCardImage(FALLBACK_IMAGE)}
+          onError={() => setCurrentImage(FALLBACK_IMAGE)}
         />
       </div>
 
       <div className="flex flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pb-5">
         <div className="mb-2 flex items-center gap-2 sm:gap-2.5">
-          {cardIcon ? (
+          {currentIcon ? (
             <div className="relative mt-0.5 h-7 w-7 shrink-0 sm:h-8 sm:w-8">
               <Image
-                src={cardIcon}
+                src={currentIcon}
                 alt={`${title} icon`}
                 fill
-                unoptimized={isExternalUrl(cardIcon)}
+                unoptimized={isExternalUrl(currentIcon)}
                 sizes="32px"
                 className="object-contain"
-                onError={() => setCardIcon(FALLBACK_ICON)}
+                onError={() => setCurrentIcon(FALLBACK_ICON)}
               />
             </div>
           ) : (
