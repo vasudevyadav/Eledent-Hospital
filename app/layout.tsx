@@ -76,8 +76,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} ${geistMono.variable} antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      style={{ colorScheme: "light" }}
+    >
+      <body
+        className={`${poppins.variable} ${geistMono.variable} antialiased bg-white text-black`}
+        style={{ colorScheme: "light", backgroundColor: "#ffffff", color: "#171717" }}
+      >
         <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){
