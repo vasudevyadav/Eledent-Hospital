@@ -182,7 +182,7 @@ const FALLBACK_DATA: TopRatedSection = {
       iconSrc:
         "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/count-1.png",
       iconAlt: "Experience icon",
-      value: 100,
+      value: 20,
       decimals: 0,
       suffix: "+",
       label: "Years of Collective Experience",

@@ -29,7 +29,8 @@ type FormDataType = {
   message: string;
 };
 
-const RECAPTCHA_SITE_KEY = "6LdzRrAsAAAAO4_G7Zt6SAQkQsehvHRL_PEfPV2";
+const RECAPTCHA_SITE_KEY =
+  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 const BookingAportment: FC = () => {
   const router = useRouter();
@@ -72,8 +73,7 @@ const BookingAportment: FC = () => {
 
         const validLocations = Array.isArray(result.data)
           ? result.data.filter(
-            (location) =>
-              location?.id?.trim() && location?.city?.trim()
+            (location) => location?.id?.trim() && location?.city?.trim()
           )
           : [];
 
@@ -109,26 +109,37 @@ const BookingAportment: FC = () => {
     setCaptchaToken(null);
   };
 
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      date: "",
+      locationId: "",
+      message: "",
+    });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (
-      !formData.name ||
-      !formData.phone ||
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
       !formData.date ||
       !formData.locationId
     ) {
-      alert("Name, phone, date and location are required");
+      alert("Name, phone, date and location are required.");
       return;
     }
 
     if (!/^[0-9]{10}$/.test(formData.phone)) {
-      alert("Please enter a valid 10 digit phone number");
+      alert("Please enter a valid 10 digit phone number.");
       return;
     }
 
     if (!captchaToken) {
-      alert("Please complete the reCAPTCHA verification");
+      alert("Please complete the reCAPTCHA verification.");
       return;
     }
 
@@ -137,14 +148,16 @@ const BookingAportment: FC = () => {
 
       const res = await fetch("/api/appointments", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
           date: formData.date,
           locationId: formData.locationId,
-          message: formData.message,
+          message: formData.message.trim(),
           captchaToken,
         }),
       });
@@ -152,43 +165,37 @@ const BookingAportment: FC = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data?.message || "Failed to submit appointment");
+        alert(data?.message || "Failed to submit appointment.");
         resetCaptcha();
         return;
       }
 
-      // ✅ Success - reset and redirect
       resetCaptcha();
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        date: "",
-        locationId: "",
-        message: "",
-      });
+      resetForm();
       router.push("/thankyou");
-
     } catch (error) {
       console.error("Submit error:", error);
-      alert("Something went wrong while submitting");
+      alert("Something went wrong while submitting.");
       resetCaptcha();
     } finally {
       setSubmitting(false);
     }
   };
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date();
+  const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+  )
+    .toISOString()
+    .split("T")[0];
 
   return (
     <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
       <div className="lg:max-w-7xl mx-auto relative">
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center px-10 overflow-visible">
-
-          {/* ───────────── LEFT CONTENT ───────────── */}
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">
             <div className="text-white max-w-[420px]">
-              <p className="text-base mb-3">Don't Delay!</p>
+              <p className="text-base mb-3">Don&apos;t Delay!</p>
 
               <h2 className="lg:text-4xl text-2xl font-bold leading-tight mb-4">
                 Book Your Dental <br /> Appointment Today!
@@ -201,7 +208,7 @@ const BookingAportment: FC = () => {
               </p>
 
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white relative">
+                <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white relative overflow-hidden">
                   <Image
                     src="/services-main/support.png"
                     alt="Support"
@@ -216,16 +223,24 @@ const BookingAportment: FC = () => {
               </div>
 
               <div className="text-[15px] max-w-[300px]">
-                <div className="w-full flex justify-between">
-                  <a className="hover:underline transition">Call</a>
+                <div className="w-full flex justify-between items-center gap-4">
+                  <a
+                    href="tel:+917799619994"
+                    className="hover:underline transition"
+                  >
+                    Call
+                  </a>
 
-                  <a href="tel:+917799619994"
+                  <a
+                    href="tel:+917799619994"
                     className="hover:underline transition"
                   >
                     +91 7799619994
                   </a>
                 </div>
-                <hr className="h-[1px] bg-white/70 w-full my-2" />
+
+                <hr className="h-[1px] bg-white/70 w-full my-2 border-0" />
+
                 <div className="w-full flex justify-between">
                   <p>Mon–Sun</p>
                   <p>9:00am – 9:00pm</p>
@@ -234,7 +249,6 @@ const BookingAportment: FC = () => {
             </div>
           </div>
 
-          {/* ───────────── DESKTOP FORM ───────────── */}
           <div className="lg:absolute right-10 top-1/2 lg:-translate-y-1/2 w-[440px] z-20 hidden lg:block">
             <form
               onSubmit={handleSubmit}
@@ -247,10 +261,14 @@ const BookingAportment: FC = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="desktop-name"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Name
                     </label>
                     <input
+                      id="desktop-name"
                       name="name"
                       type="text"
                       placeholder="Full Name"
@@ -261,10 +279,14 @@ const BookingAportment: FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="desktop-email"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Email
                     </label>
                     <input
+                      id="desktop-email"
                       name="email"
                       type="email"
                       placeholder="Email Address"
@@ -275,10 +297,14 @@ const BookingAportment: FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="desktop-phone"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Phone
                     </label>
                     <input
+                      id="desktop-phone"
                       name="phone"
                       type="tel"
                       inputMode="numeric"
@@ -291,13 +317,17 @@ const BookingAportment: FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label
+                      htmlFor="desktop-date"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
                       Date
                     </label>
                     <input
+                      id="desktop-date"
                       name="date"
                       type="date"
-                      min={today}
+                      min={localToday}
                       value={formData.date}
                       onChange={handleChange}
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
@@ -306,33 +336,41 @@ const BookingAportment: FC = () => {
                 </div>
 
                 <div className="mt-4">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="desktop-location"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Location
                   </label>
                   <select
+                    id="desktop-location"
                     name="locationId"
                     value={formData.locationId}
                     onChange={handleChange}
                     className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                   >
                     <option value="" disabled>
-                      {loadingLocations ? "Loading locations..." : "Select Location"}
+                      {loadingLocations
+                        ? "Loading locations..."
+                        : "Select Location"}
                     </option>
-                    {locations
-                      .filter((l) => l?.id?.trim() && l?.city?.trim())
-                      .map((location) => (
-                        <option key={location.id} value={location.id}>
-                          {location.city}
-                        </option>
-                      ))}
+                    {locations.map((location) => (
+                      <option key={location.id} value={location.id}>
+                        {location.city}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="mt-4">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="desktop-message"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Message
                   </label>
                   <textarea
+                    id="desktop-message"
                     name="message"
                     placeholder="Your Message"
                     rows={3}
@@ -342,20 +380,25 @@ const BookingAportment: FC = () => {
                   />
                 </div>
 
-                {/* reCAPTCHA */}
                 <div className="mt-4 flex justify-center">
-                  <ReCAPTCHA
-                    ref={desktopRecaptchaRef}
-                    sitekey={RECAPTCHA_SITE_KEY}
-                    onChange={(token) => setCaptchaToken(token)}
-                    onExpired={() => setCaptchaToken(null)}
-                  />
+                  {RECAPTCHA_SITE_KEY ? (
+                    <ReCAPTCHA
+                      ref={desktopRecaptchaRef}
+                      sitekey={RECAPTCHA_SITE_KEY}
+                      onChange={(token) => setCaptchaToken(token)}
+                      onExpired={() => setCaptchaToken(null)}
+                    />
+                  ) : (
+                    <p className="text-sm text-red-500">
+                      reCAPTCHA site key is missing.
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex justify-center mt-4">
                   <button
                     type="submit"
-                    disabled={submitting || !captchaToken}
+                    disabled={submitting || !captchaToken || !RECAPTCHA_SITE_KEY}
                     className="bg-[#F37021] text-white px-10 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {submitting ? "Submitting..." : "Book Appointment"}
@@ -368,7 +411,6 @@ const BookingAportment: FC = () => {
           <div className="absolute right-0 top-0 h-full w-[90px] rounded-r-[20px] bg-[#F37021] z-0 pointer-events-none" />
         </div>
 
-        {/* ───────────── MOBILE FORM ───────────── */}
         <div className="z-20 lg:hidden block">
           <form
             onSubmit={handleSubmit}
@@ -381,10 +423,14 @@ const BookingAportment: FC = () => {
 
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="mobile-name"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Name
                   </label>
                   <input
+                    id="mobile-name"
                     name="name"
                     type="text"
                     placeholder="Full Name"
@@ -395,10 +441,14 @@ const BookingAportment: FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="mobile-email"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Email
                   </label>
                   <input
+                    id="mobile-email"
                     name="email"
                     type="email"
                     placeholder="Email Address"
@@ -409,10 +459,14 @@ const BookingAportment: FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="mobile-phone"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Phone
                   </label>
                   <input
+                    id="mobile-phone"
                     name="phone"
                     type="tel"
                     inputMode="numeric"
@@ -425,13 +479,17 @@ const BookingAportment: FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="mobile-date"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Date
                   </label>
                   <input
+                    id="mobile-date"
                     name="date"
                     type="date"
-                    min={today}
+                    min={localToday}
                     value={formData.date}
                     onChange={handleChange}
                     className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
@@ -440,33 +498,41 @@ const BookingAportment: FC = () => {
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="mobile-location"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Location
                 </label>
                 <select
+                  id="mobile-location"
                   name="locationId"
                   value={formData.locationId}
                   onChange={handleChange}
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                 >
                   <option value="" disabled>
-                    {loadingLocations ? "Loading locations..." : "Select Location"}
+                    {loadingLocations
+                      ? "Loading locations..."
+                      : "Select Location"}
                   </option>
-                  {locations
-                    .filter((l) => l?.id?.trim() && l?.city?.trim())
-                    .map((location) => (
-                      <option key={location.id} value={location.id}>
-                        {location.city}
-                      </option>
-                    ))}
+                  {locations.map((location) => (
+                    <option key={location.id} value={location.id}>
+                      {location.city}
+                    </option>
+                  ))}
                 </select>
               </div>
 
               <div className="mt-4">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="mobile-message"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Message
                 </label>
                 <textarea
+                  id="mobile-message"
                   name="message"
                   placeholder="Your Message"
                   rows={3}
@@ -476,20 +542,25 @@ const BookingAportment: FC = () => {
                 />
               </div>
 
-              {/* reCAPTCHA */}
               <div className="mt-4 flex justify-center">
-                <ReCAPTCHA
-                  ref={mobileRecaptchaRef}
-                  sitekey={RECAPTCHA_SITE_KEY}
-                  onChange={(token) => setCaptchaToken(token)}
-                  onExpired={() => setCaptchaToken(null)}
-                />
+                {RECAPTCHA_SITE_KEY ? (
+                  <ReCAPTCHA
+                    ref={mobileRecaptchaRef}
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    onChange={(token) => setCaptchaToken(token)}
+                    onExpired={() => setCaptchaToken(null)}
+                  />
+                ) : (
+                  <p className="text-sm text-red-500">
+                    reCAPTCHA site key is missing.
+                  </p>
+                )}
               </div>
 
               <div className="flex justify-center mt-4">
                 <button
                   type="submit"
-                  disabled={submitting || !captchaToken}
+                  disabled={submitting || !captchaToken || !RECAPTCHA_SITE_KEY}
                   className="bg-[#F37021] text-white px-10 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitting ? "Submitting..." : "Book Appointment"}

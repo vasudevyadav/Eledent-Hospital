@@ -1,7 +1,8 @@
 "use client";
 
+import ReCAPTCHA from "react-google-recaptcha";
 import type { FC, ChangeEvent, FormEvent } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Location = {
   id: string;
@@ -26,10 +27,16 @@ type FormDataType = {
   message: string;
 };
 
+const RECAPTCHA_SITE_KEY =
+  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+
 const BookingBlog: FC = () => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [formData, setFormData] = useState<FormDataType>({
     name: "",
@@ -101,12 +108,28 @@ const BookingBlog: FC = () => {
     }));
   };
 
+  const resetCaptcha = () => {
+    recaptchaRef.current?.reset();
+    setCaptchaToken(null);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      date: "",
+      locationId: "",
+      message: "",
+    });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (
-      !formData.name ||
-      !formData.phone ||
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
       !formData.date ||
       !formData.locationId
     ) {
@@ -119,6 +142,11 @@ const BookingBlog: FC = () => {
       return;
     }
 
+    if (!captchaToken) {
+      alert("Please complete the reCAPTCHA verification");
+      return;
+    }
+
     try {
       setSubmitting(true);
 
@@ -128,12 +156,13 @@ const BookingBlog: FC = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
           date: formData.date,
           locationId: formData.locationId,
-          message: formData.message,
+          message: formData.message.trim(),
+          captchaToken,
         }),
       });
 
@@ -141,28 +170,28 @@ const BookingBlog: FC = () => {
 
       if (!response.ok) {
         alert(data?.message || "Failed to submit appointment");
+        resetCaptcha();
         return;
       }
 
       alert(data?.message || "Appointment booked successfully");
-
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        date: "",
-        locationId: "",
-        message: "",
-      });
+      resetForm();
+      resetCaptcha();
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
+      resetCaptcha();
     } finally {
       setSubmitting(false);
     }
   };
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date();
+  const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+  )
+    .toISOString()
+    .split("T")[0];
 
   return (
     <section>
@@ -178,10 +207,14 @@ const BookingBlog: FC = () => {
 
             <div className="grid grid-cols-1 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="blog-name"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Name
                 </label>
                 <input
+                  id="blog-name"
                   name="name"
                   type="text"
                   placeholder="Full Name"
@@ -192,10 +225,14 @@ const BookingBlog: FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="blog-email"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Email
                 </label>
                 <input
+                  id="blog-email"
                   name="email"
                   type="email"
                   placeholder="Email Address"
@@ -206,10 +243,14 @@ const BookingBlog: FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="blog-phone"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Phone
                 </label>
                 <input
+                  id="blog-phone"
                   name="phone"
                   type="tel"
                   inputMode="numeric"
@@ -222,13 +263,17 @@ const BookingBlog: FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="blog-date"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Date
                 </label>
                 <input
+                  id="blog-date"
                   name="date"
                   type="date"
-                  min={today}
+                  min={localToday}
                   value={formData.date}
                   onChange={handleChange}
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
@@ -237,10 +282,14 @@ const BookingBlog: FC = () => {
             </div>
 
             <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="blog-location"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Location
               </label>
               <select
+                id="blog-location"
                 name="locationId"
                 value={formData.locationId}
                 onChange={handleChange}
@@ -259,10 +308,14 @@ const BookingBlog: FC = () => {
             </div>
 
             <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="blog-message"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Message
               </label>
               <textarea
+                id="blog-message"
                 name="message"
                 placeholder="Your Message"
                 rows={3}
@@ -272,10 +325,25 @@ const BookingBlog: FC = () => {
               />
             </div>
 
+            <div className="mt-4 flex justify-center">
+              {RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setCaptchaToken(token)}
+                  onExpired={() => setCaptchaToken(null)}
+                />
+              ) : (
+                <p className="text-sm text-red-500">
+                  reCAPTCHA site key is missing.
+                </p>
+              )}
+            </div>
+
             <div className="flex justify-center mt-6">
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || !captchaToken || !RECAPTCHA_SITE_KEY}
                 className="bg-[#F37021] text-white px-10 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {submitting ? "Submitting..." : "Book Appointment"}
