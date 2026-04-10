@@ -124,9 +124,9 @@ export default function DentalServices(): JSX.Element {
         <div className="w-full rounded-xl bg-[#F3F4F6] py-10 sm:py-8 lg:py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-6 text-center sm:mb-8 lg:mb-10">
-              <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+              {/* <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
                 {SERVICE_SECTION_META.badge}
-              </span>
+              </span> */}
               <h2 className="text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl lg:text-4xl">
                 {SERVICE_SECTION_META.heading}
               </h2>

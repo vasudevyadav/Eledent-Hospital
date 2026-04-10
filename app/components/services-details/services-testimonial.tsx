@@ -61,9 +61,9 @@ export default function ServicesTestimonial() {
     <section className="w-full bg-white py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <span className="inline-flex items-center justify-center  bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
+          {/* <span className="inline-flex items-center justify-center  bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
             Our
-          </span>
+          </span> */}
 
           <h2 className="mt-1 text-[34px] font-bold text-gray-800 md:text-[40px]">
             Testimonials

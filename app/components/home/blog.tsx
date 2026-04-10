@@ -102,7 +102,7 @@ function normalizeBlogHref(href?: string): string {
 
 export default function BlogMain(): JSX.Element {
   const [cards, setCards] = useState<BlogCard[]>([]);
-  const [heading, setHeading] = useState("Our Blog");
+  const [heading, setHeading] = useState(" Blog");
   const [subtitle, setSubtitle] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -171,9 +171,9 @@ export default function BlogMain(): JSX.Element {
       <div className="mx-auto max-w-[1120px] px-4 lg:px-6">
         {/* Heading */}
         <div className="text-center">
-          <span className="inline-flex items-center justify-center bg-[#f47200] px-[10px] py-[6px] text-sm font-semibold leading-none text-white">
+          {/* <span className="inline-flex items-center justify-center bg-[#f47200] px-[10px] py-[6px] text-sm font-semibold leading-none text-white">
             Our
-          </span>
+          </span> */}
 
           <h2 className="mt-3 text-[30px] font-semibold leading-none text-slate-700">
             {heading}

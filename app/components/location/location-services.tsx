@@ -109,9 +109,9 @@ export default function LocationServices({ services }: Props) {
 
             <div className="relative px-2 py-6 md:px-10 lg:py-10">
               <div className="text-center">
-                <span className="inline-flex items-center justify-center bg-[#f36d00] px-5 py-1 text-sm font-bold text-white">
+                {/* <span className="inline-flex items-center justify-center bg-[#f36d00] px-5 py-1 text-sm font-bold text-white">
                   Our
-                </span>
+                </span> */}
                 <h2 className="mt-2 text-[28px] font-bold text-slate-800 md:text-[32px]">
                   Services
                 </h2>

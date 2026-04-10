@@ -109,9 +109,9 @@ export default function HomeServicesStatic() {
 
                         <div className="relative px-2 md:px-10 lg:py-10 py-6">
                             <div className="text-center">
-                                <span className="inline-flex items-center justify-center px-5 py-1 text-sm bg-[#f36d00] text-white font-bold">
+                                {/* <span className="inline-flex items-center justify-center px-5 py-1 text-sm bg-[#f36d00] text-white font-bold">
                                     Our
-                                </span>
+                                </span> */}
                                 <h2 className="mt-2 text-[28px] md:text-[32px] font-bold text-slate-800">
                                     Services
                                 </h2>

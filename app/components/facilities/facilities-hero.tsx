@@ -20,7 +20,7 @@ export default function FacilitiesHero() {
 
                 <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
                     <h1 className="text-white text-4xl md:text-5xl font-semibold">
-                        Facility
+                        Facilities
                     </h1>
                     <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl">
                         Best World Class Facilities

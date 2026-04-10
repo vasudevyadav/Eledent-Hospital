@@ -55,9 +55,9 @@ export default function HomeTestimonial() {
             <div className="mx-auto max-w-6xl px-6">
                 {/* Header (matches screenshot) */}
                 <div className="text-center">
-                    <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-[12px] font-semibold text-white rounded-[4px]">
+                    {/* <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-[12px] font-semibold text-white rounded-[4px]">
                         Our
-                    </span>
+                    </span> */}
 
                     <h2 className="mt-2 text-[34px] md:text-[40px] font-extrabold text-gray-800">
                         Testimonials

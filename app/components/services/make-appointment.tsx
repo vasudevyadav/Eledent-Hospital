@@ -153,7 +153,7 @@ export default function CommanTopRated() {
         {
             iconSrc: "/services/year-icon.png",
             iconAlt: "Experience icon",
-            value: 100,
+            value: 20,
             suffix: "+",
             label: "Years of Collective Experience",
         },
