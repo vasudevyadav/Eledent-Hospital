@@ -318,7 +318,7 @@ function ServiceCard({
                 fill
                 unoptimized={isExternalUrl(currentIcon)}
                 sizes="32px"
-                className="object-contain"
+                className="object-contain invert"
                 onError={() => setCurrentIcon(FALLBACK_ICON)}
               />
             </div>
