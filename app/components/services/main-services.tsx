@@ -29,7 +29,7 @@ type ServicesApiResponse = {
 };
 
 /* -----------------------------
-  2) PAGE DATA (STATIC SECTION META)
+  2) PAGE DATA
 ----------------------------- */
 const SERVICE_SECTION_META = {
   badge: "Our",
@@ -37,8 +37,19 @@ const SERVICE_SECTION_META = {
   cardsPerPage: 6,
 };
 
-// Internal API route use karo, direct WP URL nahi
 const SERVICES_API_URL = "/api/services";
+const FALLBACK_IMAGE = "/images/placeholder-service.jpg";
+const FALLBACK_ICON = "/images/default-service-icon.png";
+
+function isExternalUrl(url?: string): boolean {
+  return !!url && /^https?:\/\//i.test(url);
+}
+
+function getServiceHref(slug: string): string {
+  const cleanSlug = slug?.trim();
+  if (!cleanSlug || cleanSlug === "#") return "#";
+  return `/services/${cleanSlug}`;
+}
 
 export default function DentalServices(): JSX.Element {
   const [cards, setCards] = useState<ServiceCardItem[]>([]);
@@ -66,13 +77,13 @@ export default function DentalServices(): JSX.Element {
         const safeData = Array.isArray(result?.data) ? result.data : [];
 
         const normalizedData: ServiceCardItem[] = safeData.map((item, index) => ({
-          imageSrc: item.imageSrc || "/images/placeholder-service.jpg",
-          imageAlt: item.imageAlt || item.title || `Service image ${index + 1}`,
-          iconSrc: item.iconSrc || "",
-          title: item.title || `Service ${index + 1}`,
+          imageSrc: item.imageSrc?.trim() || FALLBACK_IMAGE,
+          imageAlt: item.imageAlt?.trim() || item.title || `Service image ${index + 1}`,
+          iconSrc: item.iconSrc?.trim() || FALLBACK_ICON,
+          title: item.title?.trim() || `Service ${index + 1}`,
           description:
-            (item.description || "").trim() || "Service details will be updated soon.",
-          slug: (item.slug || "").trim() || "#",
+            item.description?.trim() || "Service details will be updated soon.",
+          slug: item.slug?.trim() || "#",
         }));
 
         if (isMounted) {
@@ -285,30 +296,36 @@ function ServiceCard({
   description,
   slug,
 }: ServiceCardItem): JSX.Element {
-  const serviceHref = slug === "#" ? "#" : `/services/${slug}`;
+  const serviceHref = getServiceHref(slug);
+  const [cardImage, setCardImage] = useState(imageSrc || FALLBACK_IMAGE);
+  const [cardIcon, setCardIcon] = useState(iconSrc || FALLBACK_ICON);
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="relative h-[200px] w-full overflow-hidden sm:h-[220px] lg:h-[240px]">
         <Image
-          src={imageSrc}
-          alt={imageAlt}
+          src={cardImage}
+          alt={imageAlt || title}
           fill
+          unoptimized={isExternalUrl(cardImage)}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="rounded-[18px] object-cover object-center p-2 transition-transform duration-500 group-hover:scale-105"
+          onError={() => setCardImage(FALLBACK_IMAGE)}
         />
       </div>
 
       <div className="flex flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pb-5">
         <div className="mb-2 flex items-center gap-2 sm:gap-2.5">
-          {iconSrc ? (
+          {cardIcon ? (
             <div className="relative mt-0.5 h-7 w-7 shrink-0 sm:h-8 sm:w-8">
               <Image
-                src={iconSrc}
-                alt=""
+                src={cardIcon}
+                alt={`${title} icon`}
                 fill
+                unoptimized={isExternalUrl(cardIcon)}
                 sizes="32px"
-                className="object-contain invert"
+                className="object-contain"
+                onError={() => setCardIcon(FALLBACK_ICON)}
               />
             </div>
           ) : (

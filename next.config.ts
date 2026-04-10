@@ -1,4 +1,3 @@
-
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -6,7 +5,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "www.eledenthospitals.com",
+        hostname: "backend.eledenthospitals.com",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.backend.eledenthospitals.com",
+        pathname: "/wp-content/uploads/**",
       },
       {
         protocol: "https",
@@ -14,17 +19,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "backend.eledenthospitals.com",
-      },
-      {
-        protocol: "https",
-        hostname: "www.backend.eledenthospitals.com",
-      },
-      {
-        protocol: "https",
-        hostname: "backend.eledenthospitals.com",
-        port: "",
-        pathname: "/wp-content/uploads/**",
+        hostname: "www.eledenthospitals.com",
       },
     ],
   },
@@ -36,7 +31,6 @@ const nextConfig: NextConfig = {
         destination: "/:slug",
         permanent: true,
       },
-
       {
         source: "/dental-implant-cost-in-hyderabad",
         destination: "/blogs/dental-implant-cost-in-hyderabad",
@@ -56,11 +50,11 @@ const nextConfig: NextConfig = {
         source: "/how-smile-makeovers-transform-facial-harmony",
         destination: "/blogs/how-smile-makeovers-transform-facial-harmony",
         permanent: true,
-
       },
       {
         source: "/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
-        destination: "/blogs/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
+        destination:
+          "/blogs/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
         permanent: true,
       },
       {
@@ -80,7 +74,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
-        destination: "/blogs/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
+        destination:
+          "/blogs/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
         permanent: true,
       },
       {
@@ -163,7 +158,6 @@ const nextConfig: NextConfig = {
         destination: "/services/conscious-sedation",
         permanent: true,
       },
-
       {
         source: "/services/wisdom-teeth-removal-hyderabad",
         destination: "/services/wisdom-teeth-removal",
@@ -194,20 +188,11 @@ const nextConfig: NextConfig = {
         destination: "/services/microscopic-dentistry",
         permanent: true,
       },
-
-      {
-        source: "/conscious-sedation",
-        destination: "/services/conscious-sedation",
-        permanent: true,
-      },
-
-
       {
         source: "/dentist-in-kondapur",
         destination: "/best-dentist-in-kondapur",
         permanent: true,
       },
-
       {
         source: "/blog/category/dental-care",
         destination: "/",
@@ -252,8 +237,6 @@ const nextConfig: NextConfig = {
         source: "/blog/category/smile-makeover",
         destination: "/blogs/how-smile-makeovers-transform-facial-harmony",
         permanent: true,
-
-
       },
       {
         source: "/blog/category/teeth-gap-treatment",
@@ -280,7 +263,6 @@ const nextConfig: NextConfig = {
         destination: "/services/smile-makeover-hyderabad",
         permanent: true,
       },
-
       {
         source: "/services/smile-makeover",
         destination: "/services/smile-makeover-hyderabad",
@@ -315,11 +297,6 @@ const nextConfig: NextConfig = {
         source: "/kukatpally-generic",
         destination: "/kukatpally-generic/index.html",
       },
-
-
-
-
-
     ];
   },
 };
