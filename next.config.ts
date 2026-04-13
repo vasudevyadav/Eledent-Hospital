@@ -16,10 +16,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "eledenthospitals.com",
+        pathname: "/wp-content/uploads/**",
       },
       {
         protocol: "https",
         hostname: "www.eledenthospitals.com",
+        pathname: "/wp-content/uploads/**",
       },
     ],
   },

@@ -94,6 +94,7 @@ const AboutDetails: FC = () => {
               width={900}
               height={900}
               priority
+                 unoptimized
               className="w-full h-[530px] object-cover"
             />
 
@@ -105,6 +106,7 @@ const AboutDetails: FC = () => {
                   src="/about-us/about-2bg.png"
                   alt="Background"
                   fill
+                     unoptimized
                   priority
                   className="object-cover"
                 />
@@ -120,6 +122,7 @@ const AboutDetails: FC = () => {
                       alt="Icon"
                       width={112}
                       height={112}
+                         unoptimized
                       priority
                       className="w-14 h-14 object-contain"
                     />

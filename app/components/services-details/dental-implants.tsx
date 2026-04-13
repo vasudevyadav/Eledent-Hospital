@@ -118,6 +118,7 @@ export default function DentalImplantsSection({ data }: Props) {
                   alt={imageAlt}
                   width={900}
                   height={900}
+                     unoptimized
                   className="h-auto lg:h-[480px] w-full object-cover"
                   priority
                 />
@@ -130,6 +131,7 @@ export default function DentalImplantsSection({ data }: Props) {
                 alt={imageAlt}
                 width={900}
                 height={900}
+                   unoptimized
                 className="h-auto w-full object-contain"
                 priority
               />

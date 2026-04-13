@@ -38,6 +38,7 @@ export default function DentalImplantPlacement({
                     src={clinicImageSrc}
                     alt="Dentist showing X-ray to patient at Eledent Dental Hospital"
                     fill
+                       unoptimized
                     priority
                     className="object-cover object-center"
                   />
@@ -71,6 +72,7 @@ export default function DentalImplantPlacement({
                         alt=""
                         width={18}
                         height={18}
+                           unoptimized
                         className="mt-[2px] flex-shrink-0"
                         priority
                       />

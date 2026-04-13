@@ -48,8 +48,11 @@ export default function AboutAppointment({
                   src={bgImageSrc}
                   alt=""
                   fill
+                     unoptimized
                   className="object-cover object-bottom opacity-90"
                   priority
+                  
+                  
                 />
                 {/* soft fade so top stays clean white */}
                 <div className="absolute inset-0 bg-gradient-to-t from-white/0 via-white/40 to-white" />
@@ -164,6 +167,7 @@ export default function AboutAppointment({
                   src={bgImageSrc}
                   alt=""
                   fill
+                     unoptimized
                   className="object-cover object-bottom opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/0 via-white/40 to-white" />

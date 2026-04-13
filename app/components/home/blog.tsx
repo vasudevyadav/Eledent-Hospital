@@ -214,6 +214,7 @@ export default function BlogMain(): JSX.Element {
                       src={c.img}
                       alt={c.title}
                       fill
+                      
                       priority={idx === 0}
                       unoptimized
                     />

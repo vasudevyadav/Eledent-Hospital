@@ -89,6 +89,7 @@ function BeforeAfterCard({
           src={item.beforeSrc}
           alt={item.alt ? `Before - ${item.alt}` : "Before"}
           fill
+             unoptimized
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
         />
@@ -104,6 +105,7 @@ function BeforeAfterCard({
           src={item.afterSrc}
           alt={item.alt ? `After - ${item.alt}` : "After"}
           fill
+             unoptimized
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
         />

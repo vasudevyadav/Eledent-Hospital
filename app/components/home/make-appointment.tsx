@@ -126,6 +126,7 @@ function StatIconCircle({ iconSrc, iconAlt }: { iconSrc: string; iconAlt: string
                         alt={iconAlt}
                         width={42}
                         height={42}
+                           unoptimized
                         className="h-6 w-6 object-contain lg:h-10 lg:w-10"
                     />
                 </div>
@@ -278,6 +279,7 @@ export default function MakeAppointmentStatic() {
                                             src={doctorImageSrc}
                                             alt={doctorImageAlt}
                                             fill
+                                               unoptimized
                                             priority
                                             className="object-contain"
                                             style={{ filter: "drop-shadow(0 12px 18px rgba(0,0,0,0.12))" }}
@@ -291,6 +293,7 @@ export default function MakeAppointmentStatic() {
                                             src={doctorImageSrc}
                                             alt={doctorImageAlt}
                                             fill
+                                               unoptimized
                                             className="object-contain object-bottom"
                                             style={{ filter: "drop-shadow(0 10px 14px rgba(0,0,0,0.12))" }}
                                         />

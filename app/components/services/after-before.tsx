@@ -100,6 +100,7 @@ function BeforeAfterCard({ beforeSrc, afterSrc, alt }: BeforeAfterItem): JSX.Ele
                     src={beforeSrc}
                     alt={alt ? `Before - ${alt}` : "Before"}
                     fill
+                       unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                 />
@@ -115,6 +116,7 @@ function BeforeAfterCard({ beforeSrc, afterSrc, alt }: BeforeAfterItem): JSX.Ele
                     src={afterSrc}
                     alt={alt ? `After - ${alt}` : "After"}
                     fill
+                       unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                 />

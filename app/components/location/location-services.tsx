@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -12,7 +12,6 @@ import {
   Crown,
   Replace,
   Pill,
-  type LucideIcon,
 } from "lucide-react";
 import type { LocationService } from "../../../lib/location-api";
 
@@ -34,8 +33,21 @@ type Props = {
 };
 
 function isImageUrl(value: string | null | undefined) {
-  if (!value) return false;
-  return value.startsWith("http://") || value.startsWith("https://");
+  if (!value || typeof value !== "string") return false;
+  const trimmed = value.trim();
+  return trimmed.startsWith("http://") || trimmed.startsWith("https://");
+}
+
+function getSafeHref(href: string | null | undefined) {
+  if (!href || typeof href !== "string" || href.trim() === "") {
+    return "#";
+  }
+  return href;
+}
+
+function getLucideIcon(icon: string | null | undefined) {
+  if (!icon || typeof icon !== "string") return Sparkles;
+  return icon in ICONS ? ICONS[icon as IconName] : Sparkles;
 }
 
 function ServiceIcon({
@@ -45,24 +57,27 @@ function ServiceIcon({
   icon: string | null | undefined;
   label: string;
 }) {
-  if (isImageUrl(icon)) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  if (isImageUrl(icon) && !imageFailed) {
     return (
       <Image
-        src={icon as string}
+        src={icon!.trim()}
         alt={label}
         width={28}
         height={28}
+        unoptimized
         className="h-8 w-8 object-contain"
+        onError={() => setImageFailed(true)}
       />
     );
   }
 
+  const Icon = getLucideIcon(icon);
 
-
-  const Icon =
-    icon && icon in ICONS ? ICONS[icon as IconName] : Sparkles;
-
-  return <Icon className="h-6 w-6 transition-all group-hover:text-[#f36d00]" />;
+  return (
+    <Icon className="h-6 w-6 text-current transition-all group-hover:text-[#f36d00]" />
+  );
 }
 
 function ServiceCard({
@@ -74,15 +89,17 @@ function ServiceCard({
   icon: string | null | undefined;
   href: string;
 }) {
+  const safeHref = getSafeHref(href);
+
   return (
     <Link
-      href={href}
+      href={safeHref}
       className={[
         "group w-full rounded-[14px] transition-all",
         "h-[112px] sm:h-[150px]",
         "flex flex-col items-center justify-center gap-3",
         "bg-transparent",
-        "hover:bg-[#f36d00] hover:border-[#1f1f1f] hover:border hover:shadow-[0_10px_22px_rgba(243,109,0,0.25)]",
+        "hover:border hover:border-[#1f1f1f] hover:bg-[#f36d00] hover:shadow-[0_10px_22px_rgba(243,109,0,0.25)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f36d00]/40",
       ].join(" ")}
       aria-label={label}
@@ -100,6 +117,10 @@ function ServiceCard({
 }
 
 export default function LocationServices({ services }: Props) {
+  if (!services || services.length === 0) {
+    return null;
+  }
+
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <div className="pb-8 lg:pb-16">
@@ -109,25 +130,20 @@ export default function LocationServices({ services }: Props) {
 
             <div className="relative px-2 py-6 md:px-10 lg:py-10">
               <div className="text-center">
-                {/* <span className="inline-flex items-center justify-center bg-[#f36d00] px-5 py-1 text-sm font-bold text-white">
-                  Our
-                </span> */}
                 <h2 className="mt-2 text-[28px] font-bold text-slate-800 md:text-[32px]">
                   Services
                 </h2>
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                {services.map((service, index) => {
-                  return (
-                    <ServiceCard
-                      key={`${service.label}-${index}`}
-                      label={service.label}
-                      icon={service.icon}
-                      href={service.href}
-                    />
-                  );
-                })}
+                {services.map((service, index) => (
+                  <ServiceCard
+                    key={`${service.label}-${index}`}
+                    label={service.label || "Service"}
+                    icon={service.icon}
+                    href={service.href || "#"}
+                  />
+                ))}
               </div>
             </div>
           </div>

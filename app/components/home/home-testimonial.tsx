@@ -186,6 +186,7 @@ export default function HomeTestimonial() {
                                             src={textTestimonials[safeIndex].image}
                                             alt="Testimonial"
                                             fill
+                                               unoptimized
                                             sizes="320px"
                                             className="object-cover rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
                                             priority={safeIndex === 0}

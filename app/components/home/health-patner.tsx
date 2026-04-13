@@ -159,6 +159,7 @@ export default function HealthPatner(): JSX.Element {
                                         src="/about-us/why-choose-us.png"
                                         alt="Doctor"
                                         fill
+                                           unoptimized
                                         className="rounded-2xl object-contain"
                                         priority
                                     />

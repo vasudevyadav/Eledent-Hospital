@@ -128,6 +128,7 @@ function AwardCard({ award }: { award: AwardItem }): JSX.Element {
                     src={award.image}
                     alt={award.alt}
                     fill
+                       unoptimized
                     className="object-cover"
                 />
 

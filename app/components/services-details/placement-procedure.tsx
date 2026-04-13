@@ -99,6 +99,7 @@ function MediaBlock({
           src={media.image_src}
           alt={media.image_alt ?? fallbackTitle ?? "Procedure image"}
           fill
+             unoptimized
           className="object-cover object-center"
         />
       </div>
@@ -159,6 +160,7 @@ export default function PlacementProcedure({
                         }
                         fill
                         priority
+                           unoptimized
                         className="object-cover object-center"
                       />
                     </div>
@@ -196,6 +198,7 @@ export default function PlacementProcedure({
                             height={18}
                             className="mt-[2px] shrink-0"
                             priority
+                               unoptimized
                             aria-hidden="true"
                           />
                           <span className="leading-[1.35]">{feature}</span>

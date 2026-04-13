@@ -35,6 +35,7 @@ export default function BlogHero({
             src={bannerSrc}
             alt={`${title} banner`}
             fill
+               unoptimized
             priority
             className="object-cover transition lg:rounded-3xl rounded-2xl"
           />

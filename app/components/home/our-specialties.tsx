@@ -178,6 +178,7 @@ export default function OurSpecialties() {
                         src={bgImage}
                         alt=""
                         fill
+                           unoptimized
                         className="object-cover object-bottom object-right opacity-60"
                     />
                 </div>
@@ -188,6 +189,7 @@ export default function OurSpecialties() {
                             <Image
                                 src={sideImage}
                                 alt="Specialties"
+                                   unoptimized
                                 fill
                                 className="h-full w-full object-cover"
                                 priority
@@ -256,6 +258,7 @@ export default function OurSpecialties() {
                                                     alt={active.title}
                                                     width={1000}
                                                     height={1000}
+                                                       unoptimized
                                                     className="h-full w-full object-cover"
                                                 />
                                             ) : (

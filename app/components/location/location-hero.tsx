@@ -14,6 +14,9 @@ type LocationHeroProps = {
   ctaText?: string;
 };
 
+const FALLBACK_BANNER =
+  "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/atraumatic-4.jpg";
+
 const locationDetails: Record<
   string,
   {
@@ -23,30 +26,44 @@ const locationDetails: Record<
 > = {
   kondapur: {
     phoneNumber: "77996 39994",
-    visitingHours: " Mon - Sun  9 AM to 8 PM",
+    visitingHours: "Mon - Sun 9 AM to 8 PM",
   },
   kukatpally: {
     phoneNumber: "90598 90578",
-    visitingHours: " Mon - Sun  9 AM to 9 PM",
+    visitingHours: "Mon - Sun 9 AM to 9 PM",
   },
   manikonda: {
     phoneNumber: "77996 59994",
-    visitingHours: " Mon - Sun  10 AM to 8 PM",
+    visitingHours: "Mon - Sun 10 AM to 8 PM",
   },
   "banjara-hills": {
     phoneNumber: "77996 49994",
-    visitingHours: " Mon - Sun  9:30 AM to 9 PM",
+    visitingHours: "Mon - Sun 9:30 AM to 9 PM",
   },
   kompally: {
     phoneNumber: "77997 69994",
-    visitingHours: " Mon - Sun  9 AM to 9 PM",
+    visitingHours: "Mon - Sun 9 AM to 9 PM",
   },
 };
 
+function normalizeLocationSlug(slug: string): string {
+  const cleanSlug = slug.toLowerCase().trim();
+
+  if (locationDetails[cleanSlug]) return cleanSlug;
+
+  if (cleanSlug.includes("kondapur")) return "kondapur";
+  if (cleanSlug.includes("kukatpally")) return "kukatpally";
+  if (cleanSlug.includes("manikonda")) return "manikonda";
+  if (cleanSlug.includes("banjara-hills")) return "banjara-hills";
+  if (cleanSlug.includes("kompally")) return "kompally";
+
+  return "";
+}
+
 export default function LocationHero({
   city,
-  subtitle = "Tincidunt suspendisse semper integer elementum maecenas.",
-  bannerSrc = "/location/location-main.png",
+  subtitle = "Expert dental care with advanced technology and specialist doctors.",
+  bannerSrc,
   phoneLabel = "Need a Dental Service?",
   hoursLabel = "Visiting Hours",
   ctaText = "Book Appointment",
@@ -54,36 +71,46 @@ export default function LocationHero({
   const { openModal } = useAppointmentModal();
   const params = useParams();
 
-  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
-  const normalizedSlug = typeof slug === "string" ? slug.toLowerCase() : "";
+  const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
+  const normalizedSlug =
+    typeof rawSlug === "string" ? normalizeLocationSlug(rawSlug) : "";
 
   const locationInfo = locationDetails[normalizedSlug] || {
     phoneNumber: "+91 7799619994",
     visitingHours: "Mon - Sun 9 AM to 9 PM",
   };
 
+  const finalBannerSrc =
+    typeof bannerSrc === "string" && bannerSrc.trim() !== ""
+      ? bannerSrc.trim()
+      : FALLBACK_BANNER;
+
   return (
-    <div className="lg:my-12 my-6 lg:mx-24 mx-4 lg:mt-40 mt-36 rounded">
+    <div className="mx-4 my-6 mt-36 rounded lg:mx-24 lg:my-12 lg:mt-40">
       <div className="mx-auto w-full max-w-7xl pb-24 lg:pb-16">
-        <section className="group relative z-0 lg:h-[440px] h-[330px] w-full overflow-visible">
+        <section className="group relative z-0 h-[330px] w-full overflow-visible lg:h-[440px]">
           <Image
-            src={bannerSrc}
+            src={finalBannerSrc}
             alt={`${city} banner`}
             fill
+            unoptimized
             priority
-            className="object-cover transition lg:rounded-3xl rounded-2xl"
+            className="rounded-2xl object-cover object-center transition lg:rounded-3xl"
           />
 
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="text-white text-4xl md:text-5xl font-semibold transition duration-300 group-hover:-translate-y-1">
+          <div className="absolute inset-0 rounded-2xl bg-black/35 lg:rounded-3xl" />
+
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
+            <h1 className="text-4xl font-semibold text-white transition duration-300 group-hover:-translate-y-1 md:text-5xl">
               {city}
             </h1>
-            <p className="text-white/80 text-sm md:text-base mt-3 max-w-xl transition duration-300 group-hover:text-white">
+
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-white/85 transition duration-300 group-hover:text-white md:text-base">
               {subtitle}
             </p>
           </div>
 
-          <div className="absolute lg:-bottom-8 -bottom-36 left-1/2 z-30 w-full -translate-x-1/2 px-4">
+          <div className="absolute left-1/2 z-30 w-full -translate-x-1/2 px-4 lg:-bottom-8 -bottom-36">
             <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 rounded-xl bg-[#484847]/95 px-6 py-5 shadow-2xl backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)] lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-6">
               <div className="flex items-center gap-3">
                 <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-orange-500 transition duration-300 hover:scale-105">
@@ -92,6 +119,7 @@ export default function LocationHero({
                     strokeWidth={2.5}
                   />
                 </div>
+
                 <div className="leading-tight">
                   <p className="mb-1.5 text-sm text-white/70">{phoneLabel}</p>
                   <a
@@ -112,6 +140,7 @@ export default function LocationHero({
                     strokeWidth={2.5}
                   />
                 </div>
+
                 <div className="leading-tight">
                   <p className="mb-1.5 text-sm text-white/70">{hoursLabel}</p>
                   <p className="text-sm font-semibold text-white md:text-lg">

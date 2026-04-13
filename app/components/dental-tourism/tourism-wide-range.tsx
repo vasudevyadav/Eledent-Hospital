@@ -92,6 +92,7 @@ const TourismWideRange: FC = () => {
                         src={item.imageSrc}
                         alt={item.imageAlt || item.title}
                         fill
+                        
                         className="object-cover"
                         unoptimized
                       />

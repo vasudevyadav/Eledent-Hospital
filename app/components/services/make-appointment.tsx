@@ -33,6 +33,7 @@ function StatIconCircle({ iconSrc, iconAlt }: StatIconCircleProps) {
                         alt={iconAlt}
                         width={42}
                         height={42}
+                           unoptimized
                         className="object-contain w-8 h-8 sm:w-9 sm:h-9 lg:w-12 lg:h-12"
                     />
                 </div>
@@ -213,6 +214,7 @@ export default function CommanTopRated() {
                                         alt="Doctor"
                                         fill
                                         priority
+                                           unoptimized
                                         className="object-contain object-bottom"
                                         style={{ filter: "drop-shadow(0 12px 18px rgba(0,0,0,0.12))" }}
                                     />
