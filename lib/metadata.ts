@@ -12,36 +12,34 @@ type MetaEntry = {
   description: string;
 };
 
-// Cache so API sirf ek baar call ho (build time pe)
-let metaCache: Record<string, MetaEntry> | null = null;
-
 async function fetchMetaMap(): Promise<Record<string, MetaEntry>> {
-  if (metaCache) return metaCache;
-
   try {
     const res = await fetch(
       "https://backend.eledenthospitals.com/wp-json/custom/v2/meta-data",
       {
-        next: { revalidate: 3600 }, // 1 hour cache (ISR)
+        next: { revalidate: 3600 },
       }
     );
 
-    if (!res.ok) throw new Error("API fetch failed");
+    if (!res.ok) {
+      throw new Error(`API fetch failed with status ${res.status}`);
+    }
 
     const data: { path: string; title: string; description: string }[] =
       await res.json();
 
-    metaCache = data.reduce((acc, item) => {
-      acc[item.path] = {
+    return data.reduce((acc, item) => {
+      const cleanPath = item.path.replace(/\/$/, "") || "/";
+
+      acc[cleanPath] = {
         title: item.title,
         description: item.description,
       };
+
       return acc;
     }, {} as Record<string, MetaEntry>);
-
-    return metaCache;
-  } catch (err) {
-    console.error("Meta API error:", err);
+  } catch (error) {
+    console.error("Meta API error:", error);
     return {};
   }
 }
@@ -53,20 +51,24 @@ export async function getMetadataByPath(path: string): Promise<Metadata> {
 
   const title = current?.title || defaultTitle;
   const description = current?.description || defaultDescription;
+  const canonicalUrl = cleanPath === "/" ? siteUrl : `${siteUrl}${cleanPath}`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
-      url: cleanPath === "/" ? siteUrl : `${siteUrl}${cleanPath}`,
+      url: canonicalUrl,
       siteName: "Eledent Dental Hospitals",
       locale: "en_IN",
       type: "website",
       images: [
         {
-          url: "/og-image.jpg",
+          url: `${siteUrl}/og-image.jpg`,
           width: 1200,
           height: 630,
           alt: title,
@@ -77,7 +79,7 @@ export async function getMetadataByPath(path: string): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og-image.jpg"],
+      images: [`${siteUrl}/og-image.jpg`],
     },
     icons: {
       icon: [
@@ -85,7 +87,13 @@ export async function getMetadataByPath(path: string): Promise<Metadata> {
         { url: "/icon.png", type: "image/png", sizes: "32x32" },
       ],
       shortcut: ["/favicon.ico"],
-      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+      apple: [
+        {
+          url: "/apple-icon.png",
+          sizes: "180x180",
+          type: "image/png",
+        },
+      ],
     },
   };
 }
