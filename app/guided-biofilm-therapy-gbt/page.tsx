@@ -6,7 +6,7 @@ import { getMetadataByPath } from "@/lib/metadata";
 import Image from "next/image";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return await getMetadataByPath("/guided-biofilm-therapy-gb");
+  return await getMetadataByPath("/guided-biofilm-therapy-gbt");
 }
 export default function GuidedBiofilmTherapyGb() {
   return (
