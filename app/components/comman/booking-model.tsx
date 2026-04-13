@@ -3,6 +3,7 @@
 import ReCAPTCHA from "react-google-recaptcha";
 import type { FC, ChangeEvent, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Location = {
   id: string;
@@ -35,6 +36,8 @@ const RECAPTCHA_SITE_KEY =
   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
+  const router = useRouter();
+
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -72,12 +75,12 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
 
         const validLocations = Array.isArray(result.data)
           ? result.data.filter(
-              (location) =>
-                typeof location?.id === "string" &&
-                location.id.trim() !== "" &&
-                typeof location?.city === "string" &&
-                location.city.trim() !== ""
-            )
+            (location) =>
+              typeof location?.id === "string" &&
+              location.id.trim() !== "" &&
+              typeof location?.city === "string" &&
+              location.city.trim() !== ""
+          )
           : [];
 
         setLocations(validLocations);
@@ -178,10 +181,11 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
         return;
       }
 
-      alert(data?.message || "Appointment booked successfully");
       resetForm();
       resetCaptcha();
       closeModal();
+
+      router.push("/thankyou");
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
