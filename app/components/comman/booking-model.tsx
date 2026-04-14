@@ -75,12 +75,12 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
 
         const validLocations = Array.isArray(result.data)
           ? result.data.filter(
-            (location) =>
-              typeof location?.id === "string" &&
-              location.id.trim() !== "" &&
-              typeof location?.city === "string" &&
-              location.city.trim() !== ""
-          )
+              (location) =>
+                typeof location?.id === "string" &&
+                location.id.trim() !== "" &&
+                typeof location?.city === "string" &&
+                location.city.trim() !== ""
+            )
           : [];
 
         setLocations(validLocations);
@@ -181,10 +181,24 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
         return;
       }
 
+      try {
+        await fetch("/api/click-to-call", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer: formData.phone.trim(),
+            locationId: formData.locationId,
+          }),
+        });
+      } catch (clickError) {
+        console.error("Click-to-call error after appointment:", clickError);
+      }
+
       resetForm();
       resetCaptcha();
       closeModal();
-
       router.push("/thankyou");
     } catch (error) {
       console.error("Submit error:", error);

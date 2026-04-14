@@ -25,7 +25,7 @@ export default function BlogDetailsHero({ hero }: BlogDetailsHeroProps) {
           fill
           priority
           unoptimized // ✅ Required for external URLs (backend.eledenthospitals.com)
-          className="lg:object-cover object-fill"
+          className="lg:object-cover object-fill object-top"
         />
 
         <div className="absolute inset-0 bg-black/10" />

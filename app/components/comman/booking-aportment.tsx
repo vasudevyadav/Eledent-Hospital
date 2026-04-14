@@ -73,8 +73,8 @@ const BookingAportment: FC = () => {
 
         const validLocations = Array.isArray(result.data)
           ? result.data.filter(
-            (location) => location?.id?.trim() && location?.city?.trim()
-          )
+              (location) => location?.id?.trim() && location?.city?.trim()
+            )
           : [];
 
         setLocations(validLocations);
@@ -146,7 +146,7 @@ const BookingAportment: FC = () => {
     try {
       setSubmitting(true);
 
-      const res = await fetch("/api/appointments", {
+      const appointmentRes = await fetch("/api/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -162,12 +162,27 @@ const BookingAportment: FC = () => {
         }),
       });
 
-      const data = await res.json();
+      const appointmentData = await appointmentRes.json();
 
-      if (!res.ok) {
-        alert(data?.message || "Failed to submit appointment.");
+      if (!appointmentRes.ok) {
+        alert(appointmentData?.message || "Failed to submit appointment.");
         resetCaptcha();
         return;
+      }
+
+      try {
+        await fetch("/api/click-to-call", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer: formData.phone.trim(),
+            locationId: formData.locationId,
+          }),
+        });
+      } catch (clickError) {
+        console.error("Click-to-call error after appointment:", clickError);
       }
 
       resetCaptcha();

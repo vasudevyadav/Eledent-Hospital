@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useRouter } from "next/navigation";
 import type {
   FC,
   ChangeEvent,
@@ -45,6 +46,8 @@ const RECAPTCHA_SITE_KEY =
   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 const BookingTourism: FC = () => {
+  const router = useRouter();
+
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -126,12 +129,12 @@ const BookingTourism: FC = () => {
 
         const validLocations = Array.isArray(result.data)
           ? result.data.filter(
-            (location) =>
-              typeof location?.id === "string" &&
-              location.id.trim() !== "" &&
-              typeof location?.city === "string" &&
-              location.city.trim() !== ""
-          )
+              (location) =>
+                typeof location?.id === "string" &&
+                location.id.trim() !== "" &&
+                typeof location?.city === "string" &&
+                location.city.trim() !== ""
+            )
           : [];
 
         setLocations(validLocations);
@@ -250,9 +253,26 @@ const BookingTourism: FC = () => {
         return;
       }
 
-      alert(data?.message || "Appointment booked successfully");
+      try {
+        await fetch("/api/click-to-call", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer: formData.phone.trim(),
+            locationId: formData.locationId,
+            countryCode: formData.countryCode,
+            fullPhone,
+          }),
+        });
+      } catch (clickError) {
+        console.error("Click-to-call error after appointment:", clickError);
+      }
+
       resetForm();
       resetCaptcha();
+      router.push("/thankyou");
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
@@ -281,8 +301,9 @@ const BookingTourism: FC = () => {
       <button
         type="button"
         onClick={() => setIsCountryDropdownOpen((prev) => !prev)}
-        className={`w-full bg-white rounded-full ${mobile ? "px-2 text-[10px]" : "px-4 text-sm"
-          } py-3 outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)] text-left flex items-center justify-between gap-2`}
+        className={`w-full bg-white rounded-full ${
+          mobile ? "px-2 text-[10px]" : "px-4 text-sm"
+        } py-3 outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)] text-left flex items-center justify-between gap-2`}
       >
         <span className="truncate">{selectedCountry.label}</span>
         <span className="text-xs">▼</span>
@@ -296,10 +317,11 @@ const BookingTourism: FC = () => {
                 key={country.country}
                 type="button"
                 onClick={(e) => handleCountryCodeSelect(e, country.value)}
-                className={`w-full px-4 py-3 text-sm text-left hover:bg-orange-50 transition ${formData.countryCode === country.value
+                className={`w-full px-4 py-3 text-sm text-left hover:bg-orange-50 transition ${
+                  formData.countryCode === country.value
                     ? "bg-orange-50 text-[#F37021] font-medium"
                     : "text-gray-700"
-                  }`}
+                }`}
               >
                 {country.label}
               </button>
