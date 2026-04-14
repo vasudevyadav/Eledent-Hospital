@@ -256,7 +256,7 @@ export default function Footer(): JSX.Element {
                                 </span>
                             </div>
 
-                            <div className="mt-4 flex items-center gap-2">
+                            <div className="mt-4 flex items-center gap-2 mb-5">
                                 <a
                                     href="https://www.facebook.com/EledentHospitals/"
                                     target="_blank"
@@ -270,6 +270,7 @@ export default function Footer(): JSX.Element {
                                         className="h-3 w-3 sm:h-6 sm:w-6"
                                         width={500}
                                         height={500}
+                                        unoptimized
                                         priority
                                     />
                                 </a>
@@ -307,6 +308,25 @@ export default function Footer(): JSX.Element {
                                         priority
                                     />
                                 </a>
+
+                            </div>
+
+                            <div>
+                                <h3 className="text-xl font-semibold opacity-90"> Accreditation </h3>
+
+                                <Link href="/" className="z-50 ">
+                                    <Image
+                                        src="/NABH-logo.png"
+                                        alt="Eledent logo"
+                                        className="w-10 lg:w-24"
+                                        width={500}
+                                        height={500}
+                                        priority
+                                    />
+
+
+                                </Link>
+
                             </div>
                         </div>
                     </div>
