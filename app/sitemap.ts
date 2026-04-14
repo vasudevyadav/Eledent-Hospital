@@ -53,7 +53,7 @@ const locationPages = [
 // LOCAL SEO PAGES
 const localSeoPages = [
   { route: "/dental-clinic-in-kondapur", priority: 0.7 },
-  { route: "/dentist-in-kondapur", priority: 0.7 },
+  { route: "/best-dentist-in-kondapur", priority: 0.7 },
   { route: "/best-dental-clinic-in-kukatpally", priority: 0.7 },
   { route: "/dentist-in-kukatpally", priority: 0.7 },
   { route: "/best-dentist-in-manikonda", priority: 0.7 },

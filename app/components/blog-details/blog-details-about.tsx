@@ -164,9 +164,9 @@ export default function BlogDetailsAbout({
 
           <aside className="self-start lg:sticky lg:top-36">
             <div className="mb-12 rounded-[15px] bg-[#ef6d2f] px-3 py-4">
-              <h3 className="text-[16px] font-bold text-white">
+              <h1 className="text-[16px] font-bold text-white">
                 Recent Article
-              </h3>
+              </h1>
 
               <div className="no-scrollbar mt-4 max-h-[410px] space-y-3 overflow-y-auto">
                 {recentArticles.length > 0 ? (
