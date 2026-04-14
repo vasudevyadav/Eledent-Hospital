@@ -47,7 +47,7 @@ export default function BlogDetailsAbout({
   return (
     <section className="bg-white px-4 py-5 lg:px-6 lg:py-8">
       <div className="mx-auto max-w-[1240px]">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_250px] xl:grid-cols-[minmax(0,1fr)_270px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_250px] xl:grid-cols-[minmax(0,1fr)_330px]">
           <div className="mb-2 min-w-0">
             <div
               className="

@@ -1,6 +1,7 @@
 "use client";
 
 import ReCAPTCHA from "react-google-recaptcha";
+import { useRouter } from "next/navigation";
 import type { FC, ChangeEvent, FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -31,6 +32,8 @@ const RECAPTCHA_SITE_KEY =
   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 const BookingBlog: FC = () => {
+  const router = useRouter();
+
   const [locations, setLocations] = useState<Location[]>([]);
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -174,9 +177,24 @@ const BookingBlog: FC = () => {
         return;
       }
 
-      alert(data?.message || "Appointment booked successfully");
+      try {
+        await fetch("/api/click-to-call", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            customer: formData.phone.trim(),
+            locationId: formData.locationId,
+          }),
+        });
+      } catch (clickError) {
+        console.error("Click-to-call error after appointment:", clickError);
+      }
+
       resetForm();
       resetCaptcha();
+      router.push("/thankyou");
     } catch (error) {
       console.error("Submit error:", error);
       alert("Something went wrong while submitting");
@@ -325,7 +343,7 @@ const BookingBlog: FC = () => {
               />
             </div>
 
-            <div className="mt-4 flex justify-center">
+            <div className="mt-4 flex justify-center lg:w-full overflow-hidden w-full">
               {RECAPTCHA_SITE_KEY ? (
                 <ReCAPTCHA
                   ref={recaptchaRef}
