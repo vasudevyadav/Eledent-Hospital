@@ -251,6 +251,7 @@ export default function Navbar() {
                   className="w-10 lg:w-10"
                   width={500}
                   height={500}
+                  unoptimized
                   priority
                 />
 

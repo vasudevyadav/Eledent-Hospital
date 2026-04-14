@@ -321,6 +321,7 @@ export default function Footer(): JSX.Element {
                                         className="w-10 lg:w-24"
                                         width={500}
                                         height={500}
+                                        unoptimized
                                         priority
                                     />
 

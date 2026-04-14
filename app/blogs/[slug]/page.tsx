@@ -5,6 +5,8 @@ import BlogDetailsHero from "@/app/components/blog-details/blog-details-hero";
 import BlogDetailsAbout from "@/app/components/blog-details/blog-details-about";
 import BlogDetailsFaq from "@/app/components/blog-details/blog-details-faq";
 import { notFound } from "next/navigation";
+import { getMetadataByPath } from "@/lib/metadata";
+
 
 type RecentArticle = {
   id: number;
@@ -47,15 +49,6 @@ type WpPost = {
     }>;
   };
 };
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "http://localhost:3000";
-
-function getAbsoluteImageUrl(image?: string) {
-  if (!image) return `${siteUrl}/og-image.jpg`;
-  if (image.startsWith("http://") || image.startsWith("https://")) return image;
-  return `${siteUrl}${image.startsWith("/") ? image : `/${image}`}`;
-}
 
 function stripHtml(html: string) {
   return html
@@ -131,7 +124,6 @@ async function getRecentBlogs(currentSlug: string): Promise<RecentArticle[]> {
       .map((post) => ({
         id: post.id,
         title: stripHtml(post.title?.rendered || ""),
-        // ✅ Fixed: full path so BlogDetailsAbout <Link> works correctly
         href: `/blogs/${post.slug}`,
         image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "",
       }));
@@ -147,51 +139,35 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const rawBlogData = await getRawBlogData(slug);
 
-  if (!rawBlogData) {
+  const path = `/blogs/${slug}`;
+  const metadata = await getMetadataByPath(path);
+
+  // fallback if API metadata is missing or default
+  if (
+    metadata.title === "Eledent Dental Hospitals" ||
+    metadata.description ===
+    "Eledent Dental Hospitals offers advanced dental care, painless treatments, expert dentists, and modern technology across Hyderabad."
+  ) {
+    const rawBlogData = await getRawBlogData(slug);
+
+    if (!rawBlogData) {
+      return {
+        title: "Blog Not Found - Eledent Dental Hospitals",
+        description: "The requested blog could not be found.",
+      };
+    }
+
     return {
-      title: "Blog Not Found - Eledent Dental Hospitals",
-      description: "The requested blog could not be found.",
+      ...metadata,
+      title: `${slugToTitle(slug)} - Eledent Dental Hospitals`,
+      description:
+        extractFirstParagraph(rawBlogData.content) ||
+        "Read expert dental insights, treatment guidance, and oral health information from Eledent Dental Hospitals.",
     };
   }
 
-  const title = `${slugToTitle(slug)} - Eledent Dental Hospitals`;
-  const description =
-    extractFirstParagraph(rawBlogData.content) ||
-    "Read expert dental insights, treatment guidance, and oral health information from Eledent Dental Hospitals.";
-  const image = getAbsoluteImageUrl(rawBlogData.image);
-  const canonicalUrl = `${siteUrl}/blogs/${slug}`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title,
-      description,
-      url: canonicalUrl,
-      siteName: "Eledent Dental Hospitals",
-      type: "article",
-      locale: "en_IN",
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: slugToTitle(slug),
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-    },
-  };
+  return metadata;
 }
 
 export default async function BlogDetailPage({
