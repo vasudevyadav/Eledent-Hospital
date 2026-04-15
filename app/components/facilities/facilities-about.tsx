@@ -27,21 +27,21 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
     id: "row-1",
     title: "Best World Class Facilities",
     subtitle:
-      "We help you give the best of the facilities to make sure that you are at ease. We assist you in terms of",
+      " We help you get the best facilities to make sure you feel at ease throughout your visit. We assist you with: ",
     bullets: [
       { id: "t1", text: "World class ambience with a comfortable and friendly environment." },
-      { id: "t2", text: "Ample reception area with skilled staff who proudly represent Eledent who are available 24/7 to assist and welcome you." },
+      { id: "t2", text: "Ample reception area with skilled staff who proudly represent Eledent and are available to assist and welcome you." },
       {
         id: "t3",
-        text: "Accommodated with a inhouse pharmacy, so that you can get all your medicines at a single go instead of searching for them at various medical stores.",
+        text: " In-house pharmacy, so you can get your medicines in one place instead of searching across multiple medical stores. ",
       },
       {
         id: "t4",
-        text: "We have well built and furnished hygiene cafeteria with some yummy food cooked for you to make sure that you don’t skip your meals for the day during your treatment.",
+        text: " Well-built and hygienic cafeteria with fresh food, so you do not have to miss your meals during treatment. ",
       },
       {
         id: "t5",
-        text: "While our experts might be busy at times with other patients, with no intention to make your day boring, we have also set up snooker tables only for you.",
+        text: "Recreation support including a pool table, VR games, and a recreation room to help make your waiting time more relaxed and engaging.",
       },
     ],
     image: {
@@ -59,20 +59,32 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
     bullets: [
       {
         id: "r1",
-        text: "Well facilitated Dress-up rooms and massage chairs for you to get freshen up after your treatment.",
+        text: "Well-facilitated consultation rooms designed for smooth and comfortable patient interactions.",
       },
-      { id: "r2", text: "We have air purifiers accommodated in every room to make sure that you are taking in fresh air." },
+      { id: "r2", text: "Dress-up rooms and massage chairs to help you freshen up and relax after treatment." },
       {
         id: "r3",
-        text: "We offer Aromatherapy to keep you refreshed and healthy. Dental conference room to give the doctors a forum to share the knowledge and dental case studies in order to improve our health care services. Check out san diego downtown.",
+        text: "Air purifiers in every room to support a fresher indoor environment.",
       },
       {
         id: "r4",
-        text: "There is a nice dental photo studio setup for you to make sure that all your moments before and after the smile makeover are captured.",
+        text: "Aromatherapy support to help patients feel more refreshed and relaxed during their visit.",
       },
       {
         id: "r5",
-        text: "We have the latest technology and Infrastructure to make things easier for you. We have CBCT room where we can get your digital x-rays done within fraction of seconds and let you know your dental condition.",
+        text: "Dental conference room that allows doctors to discuss cases and share clinical knowledge to improve patient care.",
+      },
+      {
+        id: "r6",
+        text: "Dental photo studio setup to capture before and after moments for smile makeover and aesthetic treatments.",
+      },
+      {
+        id: "r7",
+        text: "Latest technology and infrastructure to make diagnosis and treatment easier, including a CBCT room for digital dental X-rays within seconds.",
+      },
+      {
+        id: "r8",
+        text: "Six operatory chambers to reduce waiting time and support smoother treatment flow.",
       },
     ],
     image: {
@@ -87,23 +99,26 @@ const FACILITY_BLOCKS: FacilityBlock[] = [
   },
   {
     id: "row-3",
+
     bullets: [
       {
         id: "b1",
-        text: "We have 6 operatory chambers to make sure that we don’t keep you waiting for your turn. We are equipped with Microscopic endodontics for a painless root canal treatment with good and sterilized Conscious sedation apparatus along with the facilities to conduct blood diagnostics.",
+        text: "Microscopic endodontics for precise root canal treatment, conscious sedation support, and facilities for blood diagnostics.",
       },
-      { id: "b2", text: "We Specialise vcare for all to is your tooth issues with Ceno technology. Check website here." },
+      { id: "b2", text: "Wheelchair accessibility and lift access to make movement within the hospital easier and more comfortable for all patients." },
       {
         id: "b3",
-        text: "We have a huge waiting area for all patients along with executive lounges along with meet up rooms to clean yourself up after your treatment.",
+        text: "Huge waiting area with executive lounges and clean-up spaces for patient convenience.",
       },
       {
         id: "b4",
-        text: "We have 24/7 backup for electricity with International standard sterilisers to make sure there is no interruption in your treatment along with uninterrupted wifi services exclusively for you. Check how to find with diego here near me.",
+        text: "24/7 power backup with international standard sterilisers to ensure uninterrupted treatment and safety, along with uninterrupted Wi-Fi services.",
       },
-      { id: "b5", text: "We care for your life so we have the high standards when it comes to the safety and rooms." },
-      { id: "b6", text: "With Eledent, parking is no more a issue with our valet parking services." },
+      { id: "b5", text: "High standards of safety, hygiene, and patient support across all treatment and waiting areas." },
+      { id: "b6", text: " Valet parking services, so parking is never a concern during your visit. " },
+
     ],
+
     image: {
       src: "/facilities/Best-World-Class-Facilities3.jpg",
       alt: "Massage chair",
@@ -237,10 +252,41 @@ const FacilitiesAbouts: FC = () => {
           );
         })}
 
+
         <p className="mt-10 text-base text-black font-medium">
           Above details are official statement. With those worldclass facilities, we want to make sure that our
           customers are always at their comfort level to yield better results in their dental care.
         </p>
+
+
+        <h2 className="text-xl mt-6 lg:text-3xl font-semibold text-orange-600 mb-1"> Easy Access Across Our Dental Clinic Locations </h2>
+
+
+        <p className="mt-2 text-base text-black font-medium mb-10">
+          <ul>
+            <li className="list-disc list-inside text-gray-600 ">
+              Kondapur: Near HITEC City Metro Station.
+            </li>
+
+            <li className="list-disc list-inside text-gray-600 ">
+              KPHB / Kukatpally: Near KPHB Colony Metro Station.
+            </li>
+
+            <li className="list-disc list-inside text-gray-600 ">
+              Manikonda: Near Raidurg Metro Station.
+            </li>
+
+            <li className="list-disc list-inside text-gray-600 ">
+              Banjara Hills: Near Panjagutta Metro Station.
+            </li>
+
+            <li className="list-disc list-inside text-gray-600 ">
+              Kompally: Near JNTU College Metro Station.
+            </li>
+
+          </ul>
+        </p>
+
       </div>
     </section>
   );
