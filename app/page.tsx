@@ -15,8 +15,9 @@ import Footer from "./components/Footer";
 import BookingAportment from "./components/comman/booking-aportment";
 import AwardsSection from "./components/home/award";
 
-export const metadata: Metadata = getMetadataByPath("/");
-
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/");
+}
 export default function Home() {
   return (
     <div>

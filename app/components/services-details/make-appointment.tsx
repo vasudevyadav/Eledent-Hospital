@@ -37,6 +37,7 @@ function StatIconCircle({ iconSrc, iconAlt }: StatIconCircleProps) {
             alt={iconAlt}
             width={42}
             height={42}
+               unoptimized
             className="h-6 w-6 object-contain lg:h-10 lg:w-10"
           />
         </div>
@@ -182,7 +183,7 @@ const FALLBACK_DATA: TopRatedSection = {
       iconSrc:
         "https://backend.eledenthospitals.com/wp-content/uploads/2026/02/count-1.png",
       iconAlt: "Experience icon",
-      value: 100,
+      value: 20,
       decimals: 0,
       suffix: "+",
       label: "Years of Collective Experience",
@@ -242,7 +243,7 @@ export default function CommanTopRated({ data }: Props) {
           <div className="relative rounded-2xl bg-[#f47920]">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
               <div className="relative min-h-[330px] lg:min-h-[380px]">
-                <div className="relative z-10 max-w-xl pb-8 pr-0 pt-8 sm:pr-[34%] sm:pt-10 lg:pb-40 lg:pr-0 lg:pt-14">
+                <div className="relative z-10 max-w-xl pb-32 pr-0 pt-8 sm:pr-[34%] sm:pt-10 lg:pb-40 lg:pr-0 lg:pt-14">
                   <h2 className="mb-4 text-2xl font-semibold leading-tight text-white sm:mb-6 lg:text-4xl">
                     {sectionData.heroTitle}
                   </h2>
@@ -268,6 +269,7 @@ export default function CommanTopRated({ data }: Props) {
                       src={sectionData.doctorImageSrc}
                       alt={sectionData.doctorImageAlt}
                       fill
+                         unoptimized
                       priority
                       className="object-contain object-bottom"
                       style={{ filter: "drop-shadow(0 12px 18px rgba(0,0,0,0.12))" }}
@@ -283,7 +285,7 @@ export default function CommanTopRated({ data }: Props) {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-16">
             <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl lg:rounded-3xl">
               <div
-                className="absolute inset-0 opacity-90"
+                className="absolute lg:inset-0 opacity-90"
                 style={{
                   backgroundImage: `url('${sectionData.statsBgImage}'), ${HEX_BG}`,
                   backgroundRepeat: "no-repeat, repeat",

@@ -47,7 +47,7 @@ export default function BlogDetailsAbout({
   return (
     <section className="bg-white px-4 py-5 lg:px-6 lg:py-8">
       <div className="mx-auto max-w-[1240px]">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_250px] xl:grid-cols-[minmax(0,1fr)_270px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_250px] xl:grid-cols-[minmax(0,1fr)_330px]">
           <div className="mb-2 min-w-0">
             <div
               className="
@@ -164,9 +164,9 @@ export default function BlogDetailsAbout({
 
           <aside className="self-start lg:sticky lg:top-36">
             <div className="mb-12 rounded-[15px] bg-[#ef6d2f] px-3 py-4">
-              <h3 className="text-[16px] font-bold text-white">
+              <h1 className="text-[16px] font-bold text-white">
                 Recent Article
-              </h3>
+              </h1>
 
               <div className="no-scrollbar mt-4 max-h-[410px] space-y-3 overflow-y-auto">
                 {recentArticles.length > 0 ? (

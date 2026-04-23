@@ -7,14 +7,12 @@ import DentalImplants from "../../components/services-details/dental-implants";
 import ServicesAportment from "../../components/services-details/services-aportment";
 import ServicesCount from "../../components/services-details/services-count";
 import PlacementProcedure from "@/app/components/services-details/placement-procedure";
-import AfterBefore from "@/app/components/services-details/after-before";
 import CommanTopRated from "@/app/components/services-details/make-appointment";
 import ServicesFaq from "@/app/components/services-details/services-faq";
 import CommanTestimonial from "@/app/components/comman/comman-testimonial";
 import RelatedBlogsSection from "@/app/components/services-details/dental-implant-plan";
 import OverValue from "@/app/components/services-details/value";
 import { getMetadataByPath } from "@/lib/metadata";
-
 
 type PageProps = {
   params: Promise<{
@@ -24,8 +22,8 @@ type PageProps = {
 
 type ServiceResponse = {
   slug: string;
-  hero: any;
-  overview: any;
+  hero?: any;
+  overview?: any;
   appointment?: any;
   count?: any;
   procedure?: any;
@@ -41,6 +39,24 @@ type ServiceResponse = {
     slug?: string;
   };
 };
+
+function hasData(value: any): boolean {
+  if (value === null || value === undefined) return false;
+
+  if (typeof value === "string") {
+    return value.trim().length > 0;
+  }
+
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
+
+  if (typeof value === "object") {
+    return Object.keys(value).length > 0;
+  }
+
+  return true;
+}
 
 async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
   const url = `https://backend.eledenthospitals.com/wp-json/custom/v1/service/${encodeURIComponent(
@@ -79,39 +95,43 @@ export default async function ServicesDetailsPage({ params }: PageProps) {
   return (
     <div>
       <Navbar />
+
       <main>
-        <ServicesHero data={service.hero} />
+        {hasData(service.hero) ? <ServicesHero data={service.hero} /> : null}
 
-        {/* @ts-ignore */}
-        <DentalImplants data={service.overview} />
+        {hasData(service.overview) ? (
+          <DentalImplants data={service.overview} />
+        ) : null}
 
-        {service?.appointment ? (
-          // @ts-ignore
+        {hasData(service.appointment) ? (
+          // @ts-ignore: ServicesAportment props are not typed here; passing data anyway
           <ServicesAportment data={service.appointment} />
         ) : null}
 
-        {service?.count ? <ServicesCount data={service.count} /> : null}
+        {hasData(service.count) ? <ServicesCount data={service.count} /> : null}
 
-        {service?.procedure ? (
+        {hasData(service.procedure) ? (
           <PlacementProcedure procedureBlock={service.procedure} />
         ) : null}
 
-        {service?.value ? <OverValue data={service.value} /> : null}
+        {hasData(service.value) ? <OverValue data={service.value} /> : null}
 
-        {service?.beforeAfter ? <AfterBefore data={service.beforeAfter} /> : null}
+        {/* Before/After tabhi show hoga jab data aaye */}
+        {/* {hasData(service.beforeAfter) ? <AfterBefore data={service.beforeAfter} /> : null} */}
 
         <CommanTestimonial />
 
-        {currentCategorySlug ? (
+        {currentCategorySlug.trim() ? (
           <RelatedBlogsSection currentCategorySlug={currentCategorySlug} />
         ) : null}
 
-        {service?.ctaSection ? (
+        {hasData(service.ctaSection) ? (
           <CommanTopRated data={service.ctaSection} />
         ) : null}
 
-        {service?.faq ? <ServicesFaq data={service.faq} /> : null}
+        {hasData(service.faq) ? <ServicesFaq data={service.faq} /> : null}
       </main>
+
       <Footer />
     </div>
   );

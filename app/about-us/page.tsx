@@ -10,7 +10,9 @@ import AboutFaq from "../components/about-us/about-faq";
 import { getMetadataByPath } from "@/lib/metadata";
 import CommanTestimonial from "../components/comman/comman-testimonial";
 
-export const metadata: Metadata = getMetadataByPath("/about-us");
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/about-us");
+}
 
 export default function AboutUs() {
   return (

@@ -17,6 +17,15 @@ type AwardItem = {
 };
 
 const awardsData: AwardItem[] = [
+
+    {
+        id: 7,
+        image: "/award-by-anil.JPG",
+        alt: "Trusted Patient Care Recognition",
+        title: " Service excellence Award",
+        description: " Service excellence in dental implants by times of india by Anil kapoor ",
+        date: "Mar 06, 2026",
+    },
     {
         id: 1,
         image: "/trophy.jpeg",
@@ -128,6 +137,7 @@ function AwardCard({ award }: { award: AwardItem }): JSX.Element {
                     src={award.image}
                     alt={award.alt}
                     fill
+                    unoptimized
                     className="object-cover"
                 />
 

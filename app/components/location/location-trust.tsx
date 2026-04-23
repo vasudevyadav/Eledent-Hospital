@@ -28,11 +28,12 @@ function TrustCard({
             src={imageSrc}
             alt={imageAlt}
             fill
+               unoptimized
             className="object-cover"
             priority={false}
           />
 
-          {variant === "dashed-teal" && (
+          {/* {variant === "dashed-teal" && (
             <div className="pointer-events-none absolute -right-10 top-1/2 -translate-y-1/2">
               <div className="h-[150px] w-[150px] rounded-full border-[5px] border-dashed border-cyan-400/70 opacity-80" />
             </div>
@@ -40,7 +41,7 @@ function TrustCard({
 
           {variant === "blue-frame" && (
             <div className="pointer-events-none absolute inset-0 rounded-[14px] ring-2 ring-sky-200/80" />
-          )}
+          )} */}
         </div>
       </div>
 

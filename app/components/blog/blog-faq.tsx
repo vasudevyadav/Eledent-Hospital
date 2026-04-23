@@ -41,6 +41,7 @@ export default function BlogFaq({
                         src={backgroundImage}
                         alt="FAQ Background"
                         fill
+                           unoptimized
                         priority
                         className="object-cover"
                     />

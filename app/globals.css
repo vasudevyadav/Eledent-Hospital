@@ -4,6 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --font-primary: var(--font-poppins);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -13,11 +14,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  background-color: #ffffff !important;
+  color: #171717 !important;
 }
 
 .wp-heading-content h1,
@@ -35,6 +45,7 @@
 }
 
 @media (min-width: 1024px) {
+
   .wp-heading-content h1,
   .wp-heading-content h2,
   .wp-heading-content h3,
@@ -58,6 +69,7 @@
 }
 
 @media (min-width: 768px) {
+
   .wp-body-content p,
   .wp-body-content div,
   .wp-body-content li {
@@ -98,12 +110,6 @@
   line-height: inherit !important;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Poppins", sans-serif;
-}
-
 .text-primary {
   color: #e87733;
 }
@@ -121,14 +127,14 @@ body {
 }
 
 .home-about-bg {
-  background: url("../public/home/home-about-bg.png") no-repeat;
+  background: url("/home/home-about-bg.png") no-repeat;
   background-size: contain;
   background-position: left;
 }
 
 .home-servic-bg {
   background-color: #f7f9fc;
-  background-image: url("../public/home/home-servic-bg.png");
+  background-image: url("/home/home-servic-bg.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top right;

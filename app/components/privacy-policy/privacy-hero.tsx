@@ -12,6 +12,7 @@ export default function PrivacyHero() {
                     src="/about-us/about-us-hero.png"
                     alt="About Us banner"
                     fill
+                       unoptimized
                     priority
                     className="object-cover"
                 />

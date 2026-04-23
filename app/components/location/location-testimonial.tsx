@@ -74,9 +74,9 @@ export default function LocationTestimonial({ data = [] }: Props) {
         <section className="w-full bg-white lg:pt-10">
             <div className="mx-auto max-w-7xl px-6 lg:px-0">
                 <div className="text-center">
-                    <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
+                    {/* <span className="inline-flex items-center justify-center bg-orange-500 px-2.5 py-0.5 text-sm font-semibold text-white">
                         Our
-                    </span>
+                    </span> */}
 
                     <h2 className="mt-1 text-[25px] lg:font-bold font-semibold text-gray-800 md:text-[40px]">
                         Testimonials

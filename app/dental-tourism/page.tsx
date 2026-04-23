@@ -12,8 +12,9 @@ import TourismFaq from "../components/dental-tourism/tourism-faq";
 import BookingTourism from "../components/comman/booking-tourism";
 import { getMetadataByPath } from "@/lib/metadata";
 
-export const metadata: Metadata = getMetadataByPath("/dental-tourism");
-
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/dental-tourism");
+}
 export default function DentalTourism() {
   return (
     <div>

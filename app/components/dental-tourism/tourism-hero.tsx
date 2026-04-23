@@ -30,6 +30,7 @@ export default function TourismHero() {
                         src={heroData.bannerImage}
                         alt={heroData.bannerImageAlt}
                         fill
+                           unoptimized
                         priority
                         className="rounded-2xl object-cover lg:rounded-3xl"
                     />

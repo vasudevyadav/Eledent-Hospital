@@ -14,11 +14,11 @@ const LocationAbout: FC<Props> = ({ location }) => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:mb-6">
           <div className="pt-1">
-            <h1 className="text-xl lg:text-3xl font-semibold leading-snug text-[#f37021] lg:mt-0 mt-12">
+            <h2 className="text-xl lg:text-3xl font-semibold leading-snug text-[#f37021] lg:mt-0 mt-12">
               {location.aboutTitleLine1}
               <br />
               {location.aboutTitleLine2}
-            </h1>
+            </h2>
 
             <div className="mt-4 space-y-4 text-sm sm:text-base leading-7 text-gray-600">
               {location.aboutIntroParas.map((p, i) => (
@@ -33,6 +33,7 @@ const LocationAbout: FC<Props> = ({ location }) => {
                 src={location.aboutImageSrc}
                 alt={location.aboutImageAlt}
                 fill
+   unoptimized
                 priority
                 className="object-cover"
               />

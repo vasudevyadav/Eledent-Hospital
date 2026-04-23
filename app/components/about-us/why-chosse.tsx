@@ -163,7 +163,8 @@ export default function WhyChoose(): JSX.Element {
                                 </h3>
 
                                 <p className="mt-4 max-w-md text-xs leading-relaxed text-white sm:text-base">
-                                    At Eledent Dental Hospital, we value trust, clarity, and responsibility in every patient interaction. We believe patients should understand their treatment, feel respected in the process, and receive care that is planned around their real dental needs, comfort, and long-term oral health.
+                                    At Eledent Dental Hospital, the NABH-accredited dental hospital, we value trust, clarity, and responsibility in every patient interaction. We believe patients should understand their treatment, feel respected in the process, and receive care that is planned around their real dental needs, comfort, and long-term oral health.
+
                                 </p>
                             </div>
                         </div>

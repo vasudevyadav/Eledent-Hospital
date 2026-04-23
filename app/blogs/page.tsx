@@ -7,8 +7,10 @@ import BookingAportment from "../components/comman/booking-aportment";
 import BlogFaq from "../components/blog/blog-faq";
 import { getMetadataByPath } from "@/lib/metadata";
 
-export const metadata: Metadata = getMetadataByPath("/blogs");
 
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/blogs");
+}
 async function getBlogPageData() {
   try {
     const res = await fetch(

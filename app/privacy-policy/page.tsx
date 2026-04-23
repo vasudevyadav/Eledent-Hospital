@@ -5,7 +5,9 @@ import PrivacyDetails from "../components/privacy-policy/privacy-details";
 import PrivacyHero from "../components/privacy-policy/privacy-hero";
 import { getMetadataByPath } from "@/lib/metadata";
 
-export const metadata: Metadata = getMetadataByPath("/privacy-policy");
+export async function generateMetadata(): Promise<Metadata> {
+  return await getMetadataByPath("/privacy-policy");
+}
 
 export default function PrivacyPolicy() {
   return (

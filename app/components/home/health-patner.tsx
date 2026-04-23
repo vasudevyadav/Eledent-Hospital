@@ -141,7 +141,7 @@ export default function HealthPatner(): JSX.Element {
 
                             <p className=" w-fit mx-auto text-slate-400  lg:px-5 px-3 py-1 text-sm bg-[#f36d00] text-white font-semibold ">WHY CHOOSE US</p>
                             <h2 className="mt-3 text-lg font-semibold text-slate-900 sm:text-3xl">
-                                Multi-Speciality Dental Hospital Backed by Specialists & Advanced Tech
+                                Multi-Speciality, NABH–Accredited Dental Hospital Backed <br /> by Specialists & Advanced Tech
                             </h2>
                         </div>
 
@@ -159,6 +159,7 @@ export default function HealthPatner(): JSX.Element {
                                         src="/about-us/why-choose-us.png"
                                         alt="Doctor"
                                         fill
+                                        unoptimized
                                         className="rounded-2xl object-contain"
                                         priority
                                     />

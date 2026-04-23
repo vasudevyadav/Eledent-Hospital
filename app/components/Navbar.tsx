@@ -32,17 +32,17 @@ type NavItem = NavLinkItem | NavDropdownItem;
 
 type ApiService =
   | {
-      id?: number | string;
-      name?: string;
-      title?: string;
-      slug?: string;
-      link?: string;
-      url?: string;
-      href?: string;
-      post_name?: string;
-      post_title?: string;
-      service_name?: string;
-    }
+    id?: number | string;
+    name?: string;
+    title?: string;
+    slug?: string;
+    link?: string;
+    url?: string;
+    href?: string;
+    post_name?: string;
+    post_title?: string;
+    service_name?: string;
+  }
   | any;
 
 function toSlug(input: string) {
@@ -90,10 +90,10 @@ export default function Navbar() {
         const list: ApiService[] = Array.isArray(data)
           ? data
           : Array.isArray((data as any)?.data)
-          ? (data as any).data
-          : Array.isArray((data as any)?.services)
-          ? (data as any).services
-          : [];
+            ? (data as any).data
+            : Array.isArray((data as any)?.services)
+              ? (data as any).services
+              : [];
 
         const mapped = list
           .map((s) => {
@@ -195,7 +195,7 @@ export default function Navbar() {
       { type: "dropdown", name: "Services", key: "services", href: "/services" },
       { type: "link", name: "Dental Tourism", href: "/dental-tourism" },
       { type: "link", name: "Technology", href: "/technology" },
-      { type: "link", name: "Facilities", href: "/facilities" },
+      { type: "link", name: "Facilities", href: "/facility" },
       { type: "link", name: "Contact Us", href: "/contact-us" },
       { type: "dropdown", name: "Locations", key: "locations" },
     ],
@@ -243,7 +243,21 @@ export default function Navbar() {
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
+              <Link href="/" className="z-50  border-1 border-white rounded-full">
+                <Image
+                  src="/NABH-logo.png"
+                  alt="Eledent logo"
+                  className="w-10 lg:w-10"
+                  width={500}
+                  height={500}
+                  unoptimized
+                  priority
+                />
+
+
+              </Link>
+
               <a
                 href="https://www.instagram.com/eledenthospitals/"
                 aria-label="Instagram"
@@ -294,6 +308,8 @@ export default function Navbar() {
                   priority
                 />
               </a>
+
+
             </div>
           </div>
         </div>
@@ -309,7 +325,12 @@ export default function Navbar() {
                 height={500}
                 priority
               />
+
+
             </Link>
+
+
+
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -342,9 +363,8 @@ export default function Navbar() {
                           <Link
                             href={item.href}
                             onClick={(e) => handleNavigation(e, item.href)}
-                            className={`whitespace-nowrap transition-colors hover:text-[#E87733] ${
-                              isActive(item.href) ? "text-[#E87733]" : ""
-                            }`}
+                            className={`whitespace-nowrap transition-colors hover:text-[#E87733] ${isActive(item.href) ? "text-[#E87733]" : ""
+                              }`}
                           >
                             {item.name}
                           </Link>
@@ -366,11 +386,10 @@ export default function Navbar() {
                               onClick={(e) =>
                                 handleNavigation(e, item.href || "/services")
                               }
-                              className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-[#E87733] ${
-                                isDropdownActive("services")
-                                  ? "text-[#E87733]"
-                                  : ""
-                              }`}
+                              className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-[#E87733] ${isDropdownActive("services")
+                                ? "text-[#E87733]"
+                                : ""
+                                }`}
                             >
                               {item.name}
                               <ChevronDown className="h-3 w-3" />
@@ -398,11 +417,10 @@ export default function Navbar() {
                                         onClick={(e) =>
                                           handleNavigation(e, s.href)
                                         }
-                                        className={`block border-b border-gray-400 px-3 py-1 text-[13px] transition-colors hover:bg-gray-50 hover:text-[#E87733] ${
-                                          isActive(s.href)
-                                            ? "rounded bg-[#E87733] py-2 text-[#fff]"
-                                            : "text-gray-700"
-                                        }`}
+                                        className={`block border-b border-gray-400 px-3 py-1 text-[13px] transition-colors hover:bg-gray-50 hover:text-[#E87733] ${isActive(s.href)
+                                          ? "rounded bg-[#E87733] py-2 text-[#fff]"
+                                          : "text-gray-700"
+                                          }`}
                                       >
                                         {s.name}
                                       </Link>
@@ -429,11 +447,10 @@ export default function Navbar() {
                           onMouseLeave={() => setLocationsOpen(false)}
                         >
                           <button
-                            className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-[#E87733] ${
-                              isDropdownActive("locations")
-                                ? "text-[#E87733]"
-                                : ""
-                            }`}
+                            className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-[#E87733] ${isDropdownActive("locations")
+                              ? "text-[#E87733]"
+                              : ""
+                              }`}
                             type="button"
                           >
                             {item.name}
@@ -447,11 +464,10 @@ export default function Navbar() {
                                   key={l.href}
                                   href={l.href}
                                   onClick={(e) => handleNavigation(e, l.href)}
-                                  className={`block px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 hover:text-[#E87733] ${
-                                    isActive(l.href)
-                                      ? "bg-gray-50 text-[#E87733]"
-                                      : "text-gray-700"
-                                  }`}
+                                  className={`block px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 hover:text-[#E87733] ${isActive(l.href)
+                                    ? "bg-gray-50 text-[#E87733]"
+                                    : "text-gray-700"
+                                    }`}
                                 >
                                   {l.name}
                                 </Link>
@@ -459,12 +475,14 @@ export default function Navbar() {
                             </div>
                           )}
                         </div>
+
+
                       </span>
                     );
                   })}
                 </div>
 
-                <div className="absolute -right-10 top-[1px] z-50 py-0.5">
+                <div className="absolute -right-8 top-[1px] z-50 py-0.5">
                   <button
                     type="button"
                     onClick={() => setAppointmentModalOpen(true)}
@@ -473,6 +491,9 @@ export default function Navbar() {
                     Book an Appointment
                   </button>
                 </div>
+
+
+
               </div>
             </nav>
           </div>
@@ -486,9 +507,8 @@ export default function Navbar() {
             />
 
             <div
-              className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] transform bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
-                mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-              }`}
+              className={`fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] transform bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                }`}
             >
               <div className="flex items-center justify-between border-b border-gray-200 p-4">
                 <Image
@@ -520,11 +540,10 @@ export default function Navbar() {
                           key={link.href}
                           href={link.href}
                           onClick={(e) => handleNavigation(e, link.href)}
-                          className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                            isActive(link.href)
-                              ? "bg-orange-50 text-[#E87733]"
-                              : "text-gray-700 hover:bg-gray-50 hover:text-[#E87733]"
-                          }`}
+                          className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${isActive(link.href)
+                            ? "bg-orange-50 text-[#E87733]"
+                            : "text-gray-700 hover:bg-gray-50 hover:text-[#E87733]"
+                            }`}
                         >
                           {link.name}
                         </Link>
@@ -536,11 +555,10 @@ export default function Navbar() {
                       <Link
                         href="/services"
                         onClick={(e) => handleNavigation(e, "/services")}
-                        className={`flex-1 rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                          isServicesActive
-                            ? "bg-orange-50 text-[#E87733]"
-                            : "text-gray-700 hover:bg-gray-50 hover:text-[#E87733]"
-                        }`}
+                        className={`flex-1 rounded-lg px-4 py-3 text-base font-medium transition-colors ${isServicesActive
+                          ? "bg-orange-50 text-[#E87733]"
+                          : "text-gray-700 hover:bg-gray-50 hover:text-[#E87733]"
+                          }`}
                       >
                         Services
                       </Link>
@@ -554,9 +572,8 @@ export default function Navbar() {
                         type="button"
                       >
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-200 ${
-                            mobileServicesOpen ? "rotate-180" : ""
-                          }`}
+                          className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
                     </div>
@@ -580,11 +597,10 @@ export default function Navbar() {
                               key={s.href}
                               href={s.href}
                               onClick={(e) => handleNavigation(e, s.href)}
-                              className={`block rounded-lg px-4 py-2 text-sm transition-colors ${
-                                isActive(s.href)
-                                  ? "bg-orange-50 text-[#E87733]"
-                                  : "text-gray-600 hover:bg-gray-50 hover:text-[#E87733]"
-                              }`}
+                              className={`block rounded-lg px-4 py-2 text-sm transition-colors ${isActive(s.href)
+                                ? "bg-orange-50 text-[#E87733]"
+                                : "text-gray-600 hover:bg-gray-50 hover:text-[#E87733]"
+                                }`}
                             >
                               {s.name}
                             </Link>
@@ -603,18 +619,16 @@ export default function Navbar() {
                       onClick={() =>
                         setMobileLocationsOpen(!mobileLocationsOpen)
                       }
-                      className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                        isLocationsActive
-                          ? "bg-orange-50 text-[#E87733]"
-                          : "text-gray-700 hover:bg-gray-50 hover:text-[#E87733]"
-                      }`}
+                      className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors ${isLocationsActive
+                        ? "bg-orange-50 text-[#E87733]"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-[#E87733]"
+                        }`}
                       type="button"
                     >
                       Locations
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          mobileLocationsOpen ? "rotate-180" : ""
-                        }`}
+                        className={`h-4 w-4 transition-transform duration-200 ${mobileLocationsOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
@@ -625,11 +639,10 @@ export default function Navbar() {
                             key={l.href}
                             href={l.href}
                             onClick={(e) => handleNavigation(e, l.href)}
-                            className={`block rounded-lg px-4 py-2 text-sm transition-colors ${
-                              isActive(l.href)
-                                ? "bg-orange-50 text-[#E87733]"
-                                : "text-gray-600 hover:bg-gray-50 hover:text-[#E87733]"
-                            }`}
+                            className={`block rounded-lg px-4 py-2 text-sm transition-colors ${isActive(l.href)
+                              ? "bg-orange-50 text-[#E87733]"
+                              : "text-gray-600 hover:bg-gray-50 hover:text-[#E87733]"
+                              }`}
                           >
                             {l.name}
                           </Link>
@@ -655,7 +668,11 @@ export default function Navbar() {
         )}
       </header>
 
+
+
       <div className="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 flex-col items-end gap-0 sm:block lg:block">
+
+        {/* CALL */}
         <a
           href="tel:+917799619994"
           aria-label="Call Now"
@@ -664,6 +681,27 @@ export default function Navbar() {
           <Phone size={20} strokeWidth={2.5} className="text-white" />
         </a>
 
+        {/* WHATSAPP */}
+        <a
+          href="https://api.whatsapp.com/send/?phone=917799739994&text="
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          className="group mr-0 flex h-[56px] w-[52px] items-center justify-center bg-[#25D366] shadow-lg transition hover:bg-[#1ebe5d]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="text-white"
+          >
+            <path d="M20.52 3.48A11.94 11.94 0 0012.01 0C5.38 0 .02 5.36.02 12c0 2.12.55 4.19 1.6 6.02L0 24l6.17-1.62A11.96 11.96 0 0012.01 24c6.63 0 11.99-5.36 11.99-12 0-3.2-1.25-6.21-3.48-8.52zM12 21.82c-1.81 0-3.57-.49-5.1-1.41l-.36-.21-3.66.96.98-3.57-.23-.37A9.8 9.8 0 012.2 12C2.2 6.6 6.6 2.2 12 2.2c2.61 0 5.06 1.02 6.91 2.86A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.82-9.8 9.82zm5.45-7.36c-.3-.15-1.76-.87-2.03-.97-.27-.1-.46-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.6.14-.14.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.52s1.08 2.93 1.23 3.13c.15.2 2.13 3.26 5.17 4.57.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z" />
+          </svg>
+        </a>
+
+        {/* BOOK */}
         <button
           type="button"
           onClick={() => setAppointmentModalOpen(true)}
@@ -673,50 +711,46 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* MOBILE BOTTOM BAR */}
       <div className="fixed inset-x-0 bottom-0 z-50 overflow-hidden border-t border-gray-200 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.08)] md:hidden">
-        <div className="grid w-full grid-cols-2">
+        <div className="grid w-full grid-cols-3">
+
+          {/* CALL */}
           <a
             href="tel:+917799619994"
-            className="flex min-w-0 flex-col items-center justify-center gap-1 bg-[#25D366] px-2 py-2 text-center text-sm font-semibold text-white"
+            className="flex flex-col items-center justify-center gap-1 bg-[#25D366] px-2 py-2 text-sm font-semibold text-white"
           >
-            <span className="mb-1 flex items-center justify-center leading-none">
-              <Phone size={20} strokeWidth={2.5} className="text-white" />
-            </span>
+            <Phone size={20} strokeWidth={2.5} />
             <span>Call</span>
           </a>
 
-          <button
-            type="button"
-            onClick={() => setAppointmentModalOpen(true)}
-            className="flex min-w-0 flex-col items-center justify-center gap-1 bg-[#E87733] px-2 py-2 text-center text-sm font-semibold text-white"
+          {/* WHATSAPP */}
+          <a
+            href="https://api.whatsapp.com/send/?phone=917799739994&text="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center gap-1 bg-[#128C7E] px-2 py-2 text-sm font-semibold text-white"
           >
-            <span className="mb-1 flex items-center justify-center leading-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-calendar-days text-white"
-                aria-hidden="true"
-              >
-                <path d="M8 2v4"></path>
-                <path d="M16 2v4"></path>
-                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                <path d="M3 10h18"></path>
-                <path d="M8 14h.01"></path>
-                <path d="M12 14h.01"></path>
-                <path d="M16 14h.01"></path>
-                <path d="M8 18h.01"></path>
-                <path d="M12 18h.01"></path>
-                <path d="M16 18h.01"></path>
-              </svg>
-            </span>
-            <span>Book Now</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="text-white"
+            >
+              <path d="M20.52 3.48A11.94 11.94 0 0012.01 0C5.38 0 .02 5.36.02 12c0 2.12.55 4.19 1.6 6.02L0 24l6.17-1.62A11.96 11.96 0 0012.01 24c6.63 0 11.99-5.36 11.99-12 0-3.2-1.25-6.21-3.48-8.52zM12 21.82c-1.81 0-3.57-.49-5.1-1.41l-.36-.21-3.66.96.98-3.57-.23-.37A9.8 9.8 0 012.2 12C2.2 6.6 6.6 2.2 12 2.2c2.61 0 5.06 1.02 6.91 2.86A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.82-9.8 9.82zm5.45-7.36c-.3-.15-1.76-.87-2.03-.97-.27-.1-.46-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.6.14-.14.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.52s1.08 2.93 1.23 3.13c.15.2 2.13 3.26 5.17 4.57.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z" />
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+
+          {/* BOOK */}
+          <button
+            onClick={() => setAppointmentModalOpen(true)}
+            className="flex flex-col items-center justify-center gap-1 bg-[#E87733] px-2 py-2 text-sm font-semibold text-white"
+          >
+            <CalendarDays size={20} strokeWidth={2.3} />
+            <span>Book</span>
           </button>
         </div>
       </div>

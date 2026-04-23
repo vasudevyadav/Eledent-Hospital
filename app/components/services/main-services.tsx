@@ -37,8 +37,13 @@ const SERVICE_SECTION_META = {
   cardsPerPage: 6,
 };
 
-const SERVICES_API_URL =
-  "https://backend.eledenthospitals.com/wp-json/custom/v1/services";
+const SERVICES_API_URL = "/api/services";
+const FALLBACK_IMAGE = "/images/placeholder-service.jpg";
+const FALLBACK_ICON = "/images/default-service-icon.png";
+
+function isExternalUrl(url?: string): boolean {
+  return !!url && /^https?:\/\//i.test(url);
+}
 
 export default function DentalServices(): JSX.Element {
   const [cards, setCards] = useState<ServiceCardItem[]>([]);
@@ -55,10 +60,7 @@ export default function DentalServices(): JSX.Element {
 
         const response = await fetch(SERVICES_API_URL, {
           method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          cache: "no-store", // fresh data (works in browser, harmless here)
+          cache: "no-store",
         });
 
         if (!response.ok) {
@@ -66,29 +68,31 @@ export default function DentalServices(): JSX.Element {
         }
 
         const result: ServicesApiResponse = await response.json();
-
         const safeData = Array.isArray(result?.data) ? result.data : [];
 
-        // Basic cleanup / fallback
         const normalizedData: ServiceCardItem[] = safeData.map((item, index) => ({
-          imageSrc: item.imageSrc || "/images/placeholder-service.jpg",
-          imageAlt: item.imageAlt || item.title || `Service image ${index + 1}`,
-          iconSrc: item.iconSrc || "",
-          title: item.title || `Service ${index + 1}`,
-          description: item.description || "Service details will be updated soon.",
-          slug: item.slug || "#",
+          imageSrc: item.imageSrc?.trim() || FALLBACK_IMAGE,
+          imageAlt: item.imageAlt?.trim() || item.title || `Service image ${index + 1}`,
+          iconSrc: item.iconSrc?.trim() || FALLBACK_ICON,
+          title: item.title?.trim() || `Service ${index + 1}`,
+          description:
+            item.description?.trim() || "Service details will be updated soon.",
+          slug: item.slug?.trim() || "#",
         }));
 
         if (isMounted) {
           setCards(normalizedData);
         }
       } catch (err) {
+        console.error("Services fetch error:", err);
+
         if (isMounted) {
           setError(
             err instanceof Error
               ? err.message
               : "Something went wrong while loading services."
           );
+          setCards([]);
         }
       } finally {
         if (isMounted) {
@@ -120,9 +124,9 @@ export default function DentalServices(): JSX.Element {
         <div className="w-full rounded-xl bg-[#F3F4F6] py-10 sm:py-8 lg:py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-6 text-center sm:mb-8 lg:mb-10">
-              <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+              {/* <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
                 {SERVICE_SECTION_META.badge}
-              </span>
+              </span> */}
               <h2 className="text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl lg:text-4xl">
                 {SERVICE_SECTION_META.heading}
               </h2>
@@ -162,9 +166,7 @@ export default function DentalServices(): JSX.Element {
             <h2 className="text-2xl font-bold leading-tight text-[#1a1a1a] sm:text-3xl lg:text-4xl">
               {SERVICE_SECTION_META.heading}
             </h2>
-            <p className="mt-4 text-sm text-red-600 sm:text-base">
-              {error}
-            </p>
+            <p className="mt-4 text-sm text-red-600 sm:text-base">{error}</p>
           </div>
         </div>
       </section>
@@ -206,7 +208,6 @@ function DentalServicesGrid({
   const start = (currentPage - 1) * cardsPerPage;
   const visibleCards = cards.slice(start, start + cardsPerPage);
 
-  // Reset page if API data changes and current page becomes invalid
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
       setCurrentPage(1);
@@ -215,9 +216,8 @@ function DentalServicesGrid({
 
   return (
     <section className="w-full px-4 sm:px-6 lg:px-20">
-      <div className="w-full bg-[#F3F4F6] py-10 sm:py-8 lg:py-12 rounded-xl">
+      <div className="w-full rounded-xl bg-[#F3F4F6] py-10 sm:py-8 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Heading */}
           <div className="mb-6 text-center sm:mb-8 lg:mb-10">
             {badge && (
               <span className="mb-2 inline-block bg-[#F47A20] px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
@@ -229,14 +229,12 @@ function DentalServicesGrid({
             </h2>
           </div>
 
-          {/* Cards Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
             {visibleCards.map((card, idx) => (
               <ServiceCard key={`svc-${start + idx}-${card.slug}`} {...card} />
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:mt-8">
               <button
@@ -269,9 +267,7 @@ function DentalServicesGrid({
 
               <button
                 type="button"
-                onClick={() =>
-                  setCurrentPage((p) => Math.min(totalPages, p + 1))
-                }
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
                 aria-label="Next page"
                 className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:border-[#F47A20] hover:text-[#F47A20] disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10"
@@ -294,32 +290,36 @@ function ServiceCard({
   description,
   slug,
 }: ServiceCardItem): JSX.Element {
-  const serviceHref = `/services/${slug}`;
+  const serviceHref = slug === "#" ? "#" : `/services/${slug}`;
+  const [currentImage, setCurrentImage] = useState(imageSrc || FALLBACK_IMAGE);
+  const [currentIcon, setCurrentIcon] = useState(iconSrc || FALLBACK_ICON);
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-      {/* Image */}
       <div className="relative h-[200px] w-full overflow-hidden sm:h-[220px] lg:h-[240px]">
         <Image
-          src={imageSrc}
-          alt={imageAlt}
+          src={currentImage}
+          alt={imageAlt || title}
           fill
+          unoptimized={isExternalUrl(currentImage)}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="rounded-[18px] object-cover object-center p-2 transition-transform duration-500 group-hover:scale-105"
+          onError={() => setCurrentImage(FALLBACK_IMAGE)}
         />
       </div>
 
-      {/* Content */}
       <div className="flex flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pb-5">
         <div className="mb-2 flex items-center gap-2 sm:gap-2.5">
-          {iconSrc ? (
+          {currentIcon ? (
             <div className="relative mt-0.5 h-7 w-7 shrink-0 sm:h-8 sm:w-8">
               <Image
-                src={iconSrc}
-                alt=""
+                src={currentIcon}
+                alt={`${title} icon`}
                 fill
+                unoptimized={isExternalUrl(currentIcon)}
                 sizes="32px"
                 className="object-contain invert"
+                onError={() => setCurrentIcon(FALLBACK_ICON)}
               />
             </div>
           ) : (
@@ -333,12 +333,8 @@ function ServiceCard({
             </svg>
           )}
 
-          {/* Heading clickable */}
           <h3 className="text-sm font-semibold leading-snug text-[#1a1a1a] lg:text-lg">
-            <Link
-              href={serviceHref}
-              className="transition-colors hover:text-[#F47A20]"
-            >
+            <Link href={serviceHref} className="transition-colors hover:text-[#F47A20]">
               {title}
             </Link>
           </h3>
@@ -350,10 +346,9 @@ function ServiceCard({
           {description}
         </p>
 
-        {/* Know More clickable */}
         <Link
           href={serviceHref}
-          className="mt-auto mx-auto flex items-center gap-1.5 rounded-md bg-[#F47A20] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-[#e46713] w-fit sm:px-8 sm:text-sm"
+          className="mx-auto mt-auto flex w-fit items-center gap-1.5 rounded-md bg-[#F47A20] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-[#e46713] sm:px-8 sm:text-sm"
         >
           Know More
           <svg
