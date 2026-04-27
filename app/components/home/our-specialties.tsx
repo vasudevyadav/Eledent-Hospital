@@ -57,7 +57,7 @@ export default function OurSpecialties() {
                 setError("");
 
                 const res = await fetch(
-                    "https://backend.eledenthospitals.com/wp-json/custom/v2/specialties",
+                    "https://cms.eledenthospitals.com/wp-json/custom/v2/specialties",
                     {
                         method: "GET",
                         cache: "no-store",

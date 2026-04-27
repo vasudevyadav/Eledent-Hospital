@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 async function getBlogPageData() {
   try {
     const res = await fetch(
-      "https://backend.eledenthospitals.com/wp-json/custom/v1/blogs",
+      "https://cms.eledenthospitals.com/wp-json/custom/v1/blogs",
       {
         next: { revalidate: 60 },
       }

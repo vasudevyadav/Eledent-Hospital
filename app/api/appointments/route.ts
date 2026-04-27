@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 
     const baseUrl =
       process.env.NEXT_PUBLIC_API_BASE_URL ||
-      "https://backend.eledenthospitals.com/wp-json/custom/v1";
+      "https://cms.eledenthospitals.com/wp-json/custom/v1";
 
     const wpRes = await fetch(`${baseUrl}/appointments`, {
       method: "POST",

@@ -59,7 +59,7 @@ function hasData(value: any): boolean {
 }
 
 async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
-  const url = `https://backend.eledenthospitals.com/wp-json/custom/v1/service/${encodeURIComponent(
+  const url = `https://cms.eledenthospitals.com/wp-json/custom/v1/service/${encodeURIComponent(
     slug
   )}`;
 
