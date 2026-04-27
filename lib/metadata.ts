@@ -15,7 +15,7 @@ type MetaEntry = {
 async function fetchMetaMap(): Promise<Record<string, MetaEntry>> {
   try {
     const res = await fetch(
-      "https://backend.eledenthospitals.com/wp-json/custom/v2/meta-data",
+      "https://cms.eledenthospitals.com/wp-json/custom/v2/meta-data",
       {
         next: { revalidate: 3600 },
       }

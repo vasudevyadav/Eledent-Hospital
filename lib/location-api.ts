@@ -79,7 +79,7 @@ type LocationApiResponse = {
 };
 
 const BASE_URL =
-  "https://backend.eledenthospitals.com/wp-json/custom/v1/locations";
+  "https://cms.eledenthospitals.com/wp-json/custom/v1/locations";
 
 export async function getLocationBySlug(
   slug: string

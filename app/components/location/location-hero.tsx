@@ -15,7 +15,7 @@ type LocationHeroProps = {
 };
 
 const FALLBACK_BANNER =
-  "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/atraumatic-4.jpg";
+  "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/atraumatic-4.jpg";
 
 const locationDetails: Record<
   string,

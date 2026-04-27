@@ -11,49 +11,49 @@ export default function CommanTestimonial() {
         () => [
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/Kompally-4.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/Kompally-4.png",
                 name: "Patient Review 1",
             },
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/Kukatpally-5.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/Kukatpally-5.png",
                 name: "Patient Review 2",
             },
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/Kukatpally-3.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/Kukatpally-3.png",
                 name: "Patient Review 3",
             },
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/banjara-hills.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/banjara-hills.png",
                 name: "Patient Review 4",
             },
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/banjara-hills-3.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/banjara-hills-3.png",
                 name: "Patient Review 5",
             },
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/monikonda.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/monikonda.png",
                 name: "Patient Review 6",
             },
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/kondapur-4.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/kondapur-4.png",
                 name: "Patient Review 7",
             },
 
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/Kukatpally-3.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/Kukatpally-3.png",
                 name: "Patient Review 8",
             },
 
             {
                 image:
-                    "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/Kompally.png",
+                    "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/Kompally.png",
                 name: "Patient Review 9",
             },
         ],

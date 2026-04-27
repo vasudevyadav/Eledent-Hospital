@@ -18,7 +18,7 @@ type ServicesApiResponse = {
 };
 
 const API_URL =
-  "https://backend.eledenthospitals.com/wp-json/custom/v1/services";
+  "https://cms.eledenthospitals.com/wp-json/custom/v1/services";
 
 const TourismWideRange: FC = () => {
   const [services, setServices] = useState<Service[]>([]);

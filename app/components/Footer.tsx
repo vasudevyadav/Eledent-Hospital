@@ -46,7 +46,7 @@ export default function Footer(): JSX.Element {
                 setLoading(true);
 
                 const res = await fetch(
-                    "https://backend.eledenthospitals.com/wp-json/custom/v1/services",
+                    "https://cms.eledenthospitals.com/wp-json/custom/v1/services",
                     { cache: "no-store" }
                 );
 

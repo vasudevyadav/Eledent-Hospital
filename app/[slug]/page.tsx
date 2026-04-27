@@ -32,7 +32,7 @@ const locationSchemas: Record<string, object[]> = {
       url: "https://eledenthospitals.com/kondapur",
       logo: "https://eledenthospitals.com/White-Logo1.png",
       image:
-        "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/location-main.png",
+        "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/location-main.png",
       description:
         "Eledent Dental Hospital in Kondapur offers state-of-the-art dental care including implants, braces, root canal treatment, laser gum treatment, paediatric dentistry, smile makeover, and cosmetic procedures. Located in K1 Primo Building, near Kondapur Bus Stop.",
       telephone: "+917799639994",
@@ -198,7 +198,7 @@ const locationSchemas: Record<string, object[]> = {
       url: "https://eledenthospitals.com/kukatpally",
       logo: "https://eledenthospitals.com/White-Logo1.png",
       image:
-        "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/location-main.png",
+        "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/location-main.png",
       description:
         "Eledent Dental Hospital in Kukatpally (KPHB) offers complete family and advanced dental care using digital X-rays, 3D scanners, CEREC CAD/CAM and laser treatments. Conveniently located opposite Holistic Hospital, KPHB Phase 1, near KPHB Metro Station and Forum Sujana Mall.",
       telephone: "+919059890578",
@@ -356,7 +356,7 @@ const locationSchemas: Record<string, object[]> = {
       url: "https://eledenthospitals.com/manikonda",
       logo: "https://eledenthospitals.com/White-Logo1.png",
       image:
-        "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/location-main.png",
+        "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/location-main.png",
       description:
         "Eledent Dental Hospital in Manikonda provides advanced family and cosmetic dental care with digital radiography, 3D intraoral scanning, CAD/CAM single-day crowns, microscopic dentistry, laser systems, and Zoom whitening. Located in Sunshine Regulas Building, above KFC, Manikonda Main Road.",
       telephone: "+917799659994",
@@ -509,7 +509,7 @@ const locationSchemas: Record<string, object[]> = {
       url: "https://eledenthospitals.com/banjara-hills",
       logo: "https://eledenthospitals.com/White-Logo1.png",
       image:
-        "https://backend.eledenthospitals.com/wp-content/uploads/2026/03/blog-banner-1.png",
+        "https://cms.eledenthospitals.com/wp-content/uploads/2026/03/blog-banner-1.png",
       description:
         "Eledent Dental Hospital in Banjara Hills offers advanced orthodontic and routine dental care with CBCT, intraoral scanning, CAD/CAM, laser dentistry, Zoom whitening, and child-friendly paediatric care. Located on Road No. 12, Sri Ram Nagar Colony, Raichandani Construction building.",
       telephone: "+917799649994",

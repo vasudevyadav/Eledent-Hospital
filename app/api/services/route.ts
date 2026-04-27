@@ -14,7 +14,7 @@ type ServicesApiResponse = {
 };
 
 const WORDPRESS_API_URL =
-    "https://backend.eledenthospitals.com/wp-json/custom/v1/services";
+    "https://cms.eledenthospitals.com/wp-json/custom/v1/services";
 
 export async function GET() {
     try {

@@ -89,7 +89,7 @@ function extractFirstParagraph(html: string) {
 async function getRawBlogData(slug: string) {
   try {
     const res = await fetch(
-      `https://backend.eledenthospitals.com/wp-json/custom/v1/${slug}`,
+      `https://cms.eledenthospitals.com/wp-json/custom/v1/${slug}`,
       {
         next: { revalidate: 60 },
       }
@@ -108,7 +108,8 @@ async function getRawBlogData(slug: string) {
 async function getRecentBlogs(currentSlug: string): Promise<RecentArticle[]> {
   try {
     const res = await fetch(
-      "https://backend.eledenthospitals.com/wp-json/wp/v2/posts?per_page=8&_embed",
+
+      "https://cms.eledenthospitals.com/wp-json/wp/v2/posts?per_page=8&_embed",
       {
         next: { revalidate: 60 },
       }
