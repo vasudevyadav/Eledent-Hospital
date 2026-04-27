@@ -15,15 +15,6 @@ import { getCountries, getCountryCallingCode } from "libphonenumber-js";
 type Location = {
   id: string;
   city: string;
-  href: string;
-  addressLines: string[];
-  mapEmbedSrc: string;
-};
-
-type LocationApiResponse = {
-  success: boolean;
-  count: number;
-  data: Location[];
 };
 
 type FormDataType = {
@@ -42,14 +33,19 @@ type CountryCodeOption = {
   country: string;
 };
 
-const RECAPTCHA_SITE_KEY =
-  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+
+const staticLocations: Location[] = [
+  { id: "kondapur", city: "Kondapur" },
+  { id: "kukatpally", city: "Kukatpally" },
+  { id: "manikonda", city: "Manikonda" },
+  { id: "banjara-hills", city: "Banjara Hills" },
+  { id: "kompally", city: "Kompally" },
+];
 
 const BookingTourism: FC = () => {
   const router = useRouter();
 
-  const [locations, setLocations] = useState<Location[]>([]);
-  const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -103,50 +99,10 @@ const BookingTourism: FC = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
-
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        setLoadingLocations(true);
-
-        const baseUrl =
-          process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://cms.eledenthospitals.com/wp-json/custom/v1";
-
-        const response = await fetch(`${baseUrl}/locations`, {
-          cache: "no-store",
-        });
-
-        const result: LocationApiResponse = await response.json();
-
-        if (!response.ok || !result?.success) {
-          throw new Error("Failed to fetch locations");
-        }
-
-        const validLocations = Array.isArray(result.data)
-          ? result.data.filter(
-              (location) =>
-                typeof location?.id === "string" &&
-                location.id.trim() !== "" &&
-                typeof location?.city === "string" &&
-                location.city.trim() !== ""
-            )
-          : [];
-
-        setLocations(validLocations);
-      } catch (error) {
-        console.error("Location fetch error:", error);
-        setLocations([]);
-      } finally {
-        setLoadingLocations(false);
-      }
-    };
-
-    fetchLocations();
   }, []);
 
   const handleChange = (
@@ -174,10 +130,12 @@ const BookingTourism: FC = () => {
     value: string
   ) => {
     e.preventDefault();
+
     setFormData((prev) => ({
       ...prev,
       countryCode: value,
     }));
+
     setIsCountryDropdownOpen(false);
   };
 
@@ -361,6 +319,7 @@ const BookingTourism: FC = () => {
                     className="object-cover rounded-full p-2"
                   />
                 </div>
+
                 <div>
                   <p className="text-sm font-medium mb-1">Call Our</p>
                   <p className="text-lg font-semibold">Patient Care Team</p>
@@ -394,6 +353,7 @@ const BookingTourism: FC = () => {
             </div>
           </div>
 
+          {/* Desktop Form */}
           <div className="lg:absolute right-10 top-1/2 lg:-translate-y-1/2 w-[440px] z-20 hidden lg:block">
             <form
               onSubmit={handleSubmit}
@@ -448,6 +408,7 @@ const BookingTourism: FC = () => {
                     >
                       Phone
                     </label>
+
                     <div className="flex gap-3">
                       <CountryCodeDropdown />
 
@@ -490,6 +451,7 @@ const BookingTourism: FC = () => {
                     >
                       Location
                     </label>
+
                     <select
                       id="tourism-location-desktop"
                       name="locationId"
@@ -498,11 +460,10 @@ const BookingTourism: FC = () => {
                       className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                     >
                       <option value="" disabled>
-                        {loadingLocations
-                          ? "Loading locations..."
-                          : "Select Location"}
+                        Select Location
                       </option>
-                      {locations.map((location) => (
+
+                      {staticLocations.map((location) => (
                         <option key={location.id} value={location.id}>
                           {location.city}
                         </option>
@@ -547,7 +508,9 @@ const BookingTourism: FC = () => {
                 <div className="flex justify-center mt-6">
                   <button
                     type="submit"
-                    disabled={submitting || !captchaToken || !RECAPTCHA_SITE_KEY}
+                    disabled={
+                      submitting || !captchaToken || !RECAPTCHA_SITE_KEY
+                    }
                     className="bg-[#F37021] text-white px-10 py-3 rounded-full text-sm font-semibold shadow-lg hover:scale-105 transition disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {submitting ? "Submitting..." : "Book Appointment"}
@@ -560,6 +523,7 @@ const BookingTourism: FC = () => {
           <div className="absolute right-0 top-0 h-full w-[90px] rounded-r-[20px] bg-[#F37021] z-0 pointer-events-none" />
         </div>
 
+        {/* Mobile Form */}
         <div className="z-20 lg:hidden block">
           <form
             onSubmit={handleSubmit}
@@ -614,6 +578,7 @@ const BookingTourism: FC = () => {
                   >
                     Phone
                   </label>
+
                   <div className="flex gap-3">
                     <CountryCodeDropdown mobile />
 
@@ -657,6 +622,7 @@ const BookingTourism: FC = () => {
                 >
                   Location
                 </label>
+
                 <select
                   id="tourism-location-mobile"
                   name="locationId"
@@ -665,11 +631,10 @@ const BookingTourism: FC = () => {
                   className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
                 >
                   <option value="" disabled>
-                    {loadingLocations
-                      ? "Loading locations..."
-                      : "Select Location"}
+                    Select Location
                   </option>
-                  {locations.map((location) => (
+
+                  {staticLocations.map((location) => (
                     <option key={location.id} value={location.id}>
                       {location.city}
                     </option>

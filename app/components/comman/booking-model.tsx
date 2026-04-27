@@ -2,21 +2,12 @@
 
 import ReCAPTCHA from "react-google-recaptcha";
 import type { FC, ChangeEvent, FormEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type Location = {
   id: string;
   city: string;
-  href: string;
-  addressLines: string[];
-  mapEmbedSrc: string;
-};
-
-type LocationApiResponse = {
-  success: boolean;
-  count: number;
-  data: Location[];
 };
 
 type FormDataType = {
@@ -32,14 +23,19 @@ type BookingModelProps = {
   closeModal: () => void;
 };
 
-const RECAPTCHA_SITE_KEY =
-  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+
+const staticLocations: Location[] = [
+  { id: "kondapur", city: "Kondapur" },
+  { id: "kukatpally", city: "Kukatpally" },
+  { id: "manikonda", city: "Manikonda" },
+  { id: "banjara-hills", city: "Banjara Hills" },
+  { id: "kompally", city: "Kompally" },
+];
 
 const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
   const router = useRouter();
 
-  const [locations, setLocations] = useState<Location[]>([]);
-  const [loadingLocations, setLoadingLocations] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
@@ -53,47 +49,6 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
     locationId: "",
     message: "",
   });
-
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        setLoadingLocations(true);
-
-        const baseUrl =
-          process.env.NEXT_PUBLIC_API_BASE_URL ||
-          "https://cms.eledenthospitals.com/wp-json/custom/v1";
-
-        const response = await fetch(`${baseUrl}/locations`, {
-          cache: "no-store",
-        });
-
-        const result: LocationApiResponse = await response.json();
-
-        if (!response.ok || !result?.success) {
-          throw new Error("Failed to fetch locations");
-        }
-
-        const validLocations = Array.isArray(result.data)
-          ? result.data.filter(
-              (location) =>
-                typeof location?.id === "string" &&
-                location.id.trim() !== "" &&
-                typeof location?.city === "string" &&
-                location.city.trim() !== ""
-            )
-          : [];
-
-        setLocations(validLocations);
-      } catch (error) {
-        console.error("Location fetch error:", error);
-        setLocations([]);
-      } finally {
-        setLoadingLocations(false);
-      }
-    };
-
-    fetchLocations();
-  }, []);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -320,6 +275,7 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
               >
                 Location
               </label>
+
               <select
                 id="modal-location"
                 name="locationId"
@@ -328,10 +284,10 @@ const BookingModel: FC<BookingModelProps> = ({ closeModal }) => {
                 className="w-full bg-white rounded-full px-6 py-3 text-sm outline-none shadow-[0_2px_20px_rgba(0,0,0,0.20)]"
               >
                 <option value="" disabled>
-                  {loadingLocations ? "Loading locations..." : "Select Location"}
+                  Select Location
                 </option>
 
-                {locations.map((location) => (
+                {staticLocations.map((location) => (
                   <option key={location.id} value={location.id}>
                     {location.city}
                   </option>
