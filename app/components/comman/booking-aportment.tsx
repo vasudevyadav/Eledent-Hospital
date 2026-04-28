@@ -193,7 +193,7 @@ const BookingAportment: FC = () => {
   );
 
   return (
-    <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 -mt-6">
+    <section className="lg:pb-20 pb-10 px-4 sm:px-8 lg:px-24 mt-6">
       <div className="lg:max-w-7xl mx-auto relative">
         <div className="relative bg-[#F37021] lg:rounded-[20px] flex items-center px-10 overflow-visible">
           <div className="flex justify-center lg:w-[56%] lg:py-16 py-8 relative z-10">

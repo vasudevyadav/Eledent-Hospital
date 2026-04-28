@@ -16,6 +16,7 @@ const staticPages = [
   { route: "/privacy-policy", changeFrequency: "yearly" as const, priority: 0.3 },
   { route: "/terms-and-conditions", changeFrequency: "yearly" as const, priority: 0.3 },
   { route: "/services", changeFrequency: "monthly" as const, priority: 0.9 },
+  { route: "/corporate-tie-ups", changeFrequency: "monthly" as const, priority: 0.9 },
 ];
 
 // SERVICES
