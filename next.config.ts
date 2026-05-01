@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.join(__dirname),
+  },
+
   images: {
     remotePatterns: [
       {
@@ -27,6 +32,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cms.eledenthospitals.com",
         pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "reinventmedia.in",
+        pathname: "/insightOpinion/wp-content/uploads/**",
       },
     ],
   },
@@ -59,7 +69,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
+        source:
+          "/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
         destination:
           "/blogs/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care",
         permanent: true,
@@ -80,7 +91,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
+        source:
+          "/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
         destination:
           "/blogs/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth",
         permanent: true,
@@ -97,7 +109,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/types-of-dental-filling-which-one-is-right-for-your-teeth",
-        destination: "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        destination:
+          "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
         permanent: true,
       },
       {
@@ -117,7 +130,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/teeth-whitening-process-achieve-a-brighter-smile-easily",
-        destination: "/blogs/teeth-whitening-process-achieve-a-brighter-smile-easily",
+        destination:
+          "/blogs/teeth-whitening-process-achieve-a-brighter-smile-easily",
         permanent: true,
       },
       {
@@ -127,7 +141,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/best-reasons-to-have-your-teeth-professionally-whitened",
-        destination: "/blogs/best-reasons-to-have-your-teeth-professionally-whitened",
+        destination:
+          "/blogs/best-reasons-to-have-your-teeth-professionally-whitened",
         permanent: true,
       },
       {
@@ -137,7 +152,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/why-dental-implants-are-the-best-solution-for-missing-teeth",
-        destination: "/blogs/why-dental-implants-are-the-best-solution-for-missing-teeth",
+        destination:
+          "/blogs/why-dental-implants-are-the-best-solution-for-missing-teeth",
         permanent: true,
       },
       {
@@ -147,7 +163,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/types-of-dental-implants-and-which-one-is-best-for-you",
-        destination: "/blogs/types-of-dental-implants-and-which-one-is-best-for-you",
+        destination:
+          "/blogs/types-of-dental-implants-and-which-one-is-best-for-you",
         permanent: true,
       },
       {
@@ -212,7 +229,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/blog/category/dental-filling",
-        destination: "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        destination:
+          "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
         permanent: true,
       },
       {
@@ -252,7 +270,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/blog/category/teeth-whitening",
-        destination: "/blogs/teeth-whitening-process-achieve-a-brighter-smile-easily",
+        destination:
+          "/blogs/teeth-whitening-process-achieve-a-brighter-smile-easily",
         permanent: true,
       },
       {
@@ -273,6 +292,16 @@ const nextConfig: NextConfig = {
       {
         source: "/services/smile-makeover",
         destination: "/services/smile-makeover-hyderabad",
+        permanent: true,
+      },
+      {
+        source: "/services/smile-makeover-in-hyderabad",
+        destination: "/services/smile-makeover-hyderabad",
+        permanent: true,
+      },
+      {
+        source: "/services/advanced-dental-implants",
+        destination: "/services/advanced-and-painless-dental-implants",
         permanent: true,
       },
     ];

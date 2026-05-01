@@ -1,0 +1,70 @@
+RewriteEngine On
+
+# -----------------------------------------------
+# REDIRECTS
+# -----------------------------------------------
+
+# Location slug: /location/xxx -> /xxx
+RewriteRule ^location/(.+)/?$ /$1 [R=301,L]
+
+# Blog article redirects
+RewriteRule ^dental-implant-cost-in-hyderabad/?$ /blogs/dental-implant-cost-in-hyderabad [R=301,L]
+RewriteRule ^root-canal-treatment-cost-in-hyderabad/?$ /blogs/root-canal-treatment-cost-in-hyderabad [R=301,L]
+RewriteRule ^look-for-a-pediatric-dentist-for-your-infants-teeth/?$ /blogs/look-for-a-pediatric-dentist-for-your-infants-teeth [R=301,L]
+RewriteRule ^how-smile-makeovers-transform-facial-harmony/?$ /blogs/how-smile-makeovers-transform-facial-harmony [R=301,L]
+RewriteRule ^the-benefits-of-digital-dentistry-advanced-technology-for-precise-care/?$ /blogs/the-benefits-of-digital-dentistry-advanced-technology-for-precise-care [R=301,L]
+RewriteRule ^step-by-step-guide-to-the-dental-implant-procedure/?$ /blogs/step-by-step-guide-to-the-dental-implant-procedure [R=301,L]
+RewriteRule ^get-your-wisdom-tooth-removed-to-prevent-tooth-loss/?$ /blogs/get-your-wisdom-tooth-removed-to-prevent-tooth-loss [R=301,L]
+RewriteRule ^a-step-by-step-guide-how-to-get-invisalign-treatment/?$ /blogs/a-step-by-step-guide-how-to-get-invisalign-treatment [R=301,L]
+RewriteRule ^know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth/?$ /blogs/know-the-benefits-of-dental-implants-say-goodbye-to-missing-teeth [R=301,L]
+RewriteRule ^how-to-fix-teeth-gap-expert-solutions/?$ /blogs/how-to-fix-teeth-gap-expert-solutions [R=301,L]
+RewriteRule ^what-are-dental-veneers-and-how-do-they-work/?$ /blogs/what-are-dental-veneers-and-how-do-they-work [R=301,L]
+RewriteRule ^types-of-dental-filling-which-one-is-right-for-your-teeth/?$ /blogs/types-of-dental-filling-which-one-is-right-for-your-teeth [R=301,L]
+RewriteRule ^common-causes-of-tooth-pain-and-how-to-address-them/?$ /blogs/common-causes-of-tooth-pain-and-how-to-address-them [R=301,L]
+RewriteRule ^how-safe-are-dental-implants-if-you-have-diabetes/?$ /blogs/how-safe-are-dental-implants-if-you-have-diabetes [R=301,L]
+RewriteRule ^benefits-of-invisalign-straighter-and-healthier-teeth/?$ /blogs/benefits-of-invisalign-straighter-and-healthier-teeth [R=301,L]
+RewriteRule ^teeth-whitening-process-achieve-a-brighter-smile-easily/?$ /blogs/teeth-whitening-process-achieve-a-brighter-smile-easily [R=301,L]
+RewriteRule ^dental-crowns-types-benefits-and-procedure/?$ /blogs/dental-crowns-types-benefits-and-procedure [R=301,L]
+RewriteRule ^best-reasons-to-have-your-teeth-professionally-whitened/?$ /blogs/best-reasons-to-have-your-teeth-professionally-whitened [R=301,L]
+RewriteRule ^advantages-of-laser-assisted-root-canal-treatment/?$ /blogs/advantages-of-laser-assisted-root-canal-treatment [R=301,L]
+RewriteRule ^why-dental-implants-are-the-best-solution-for-missing-teeth/?$ /blogs/why-dental-implants-are-the-best-solution-for-missing-teeth [R=301,L]
+RewriteRule ^what-is-smile-design-types-treatment-its-cost/?$ /blogs/what-is-smile-design-types-treatment-its-cost [R=301,L]
+RewriteRule ^types-of-dental-implants-and-which-one-is-best-for-you/?$ /blogs/types-of-dental-implants-and-which-one-is-best-for-you [R=301,L]
+
+# Service redirects
+RewriteRule ^services/invisalign-treatment-hyderabad/?$ /services/invisalign-treatment [R=301,L]
+RewriteRule ^conseous-sedation/?$ /services/conscious-sedation [R=301,L]
+RewriteRule ^conscious-sedation-hyderabad/?$ /services/conscious-sedation [R=301,L]
+RewriteRule ^services/wisdom-teeth-removal-hyderabad/?$ /services/wisdom-teeth-removal [R=301,L]
+RewriteRule ^services/braces-treatments/?$ /services/braces-aligners [R=301,L]
+RewriteRule ^services/dental-veneers-in-hyderabad/?$ /services/dental-veneers [R=301,L]
+RewriteRule ^services/orthodontist-in-hyderabad/?$ /services/orthodontic-treatment [R=301,L]
+RewriteRule ^services/tooth-pain-treatment-in-hyderabad/?$ /services/tooth-pain-treatment [R=301,L]
+RewriteRule ^microscopic-dentistry/?$ /services/microscopic-dentistry [R=301,L]
+RewriteRule ^smile-makeover/?$ /services/smile-makeover-hyderabad [R=301,L]
+RewriteRule ^services/smile-makeover/?$ /services/smile-makeover-hyderabad [R=301,L]
+RewriteRule ^services/smile-makeover-in-hyderabad/?$ /services/smile-makeover-hyderabad [R=301,L]
+RewriteRule ^services/advanced-dental-implants/?$ /services/advanced-and-painless-dental-implants [R=301,L]
+
+# Location redirects
+RewriteRule ^dentist-in-kondapur/?$ /best-dentist-in-kondapur [R=301,L]
+
+# Blog category redirects
+RewriteRule ^blog/category/dental-care/?$ / [R=301,L]
+RewriteRule ^blog/category/dental-crowns/?$ /blogs/dental-crowns-types-benefits-and-procedure [R=301,L]
+RewriteRule ^blog/category/dental-filling/?$ /blogs/types-of-dental-filling-which-one-is-right-for-your-teeth [R=301,L]
+RewriteRule ^blog/category/dental-implant/?$ /blogs/dental-implant-cost-in-hyderabad [R=301,L]
+RewriteRule ^blog/category/invisalign/?$ /blogs/a-step-by-step-guide-how-to-get-invisalign-treatment [R=301,L]
+RewriteRule ^blog/category/pediatric/?$ /blogs/look-for-a-pediatric-dentist-for-your-infants-teeth [R=301,L]
+RewriteRule ^blog/category/root-canal-treatment/?$ /blogs/root-canal-treatment-cost-in-hyderabad [R=301,L]
+RewriteRule ^blog/category/smile-design/?$ /blogs/what-is-smile-design-types-treatment-its-cost [R=301,L]
+RewriteRule ^blog/category/smile-makeover/?$ /blogs/how-smile-makeovers-transform-facial-harmony [R=301,L]
+RewriteRule ^blog/category/teeth-gap-treatment/?$ /blogs/how-to-fix-teeth-gap-expert-solutions [R=301,L]
+RewriteRule ^blog/category/teeth-whitening/?$ /blogs/teeth-whitening-process-achieve-a-brighter-smile-easily [R=301,L]
+RewriteRule ^blog/category/tooth-pain/?$ /blogs/common-causes-of-tooth-pain-and-how-to-address-them [R=301,L]
+RewriteRule ^blog/category/wisdom-tooth/?$ /blogs/get-your-wisdom-tooth-removed-to-prevent-tooth-loss [R=301,L]
+
+# -----------------------------------------------
+# Proxy everything else to Next.js (port 3002)
+# -----------------------------------------------
+RewriteRule ^(.*)$ http://127.0.0.1:3002/$1 [P,L]
