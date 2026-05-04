@@ -5,7 +5,6 @@ import DoctorsHero from "../components/doctors/doctors-hero";
 import DoctorsList from "../components/doctors/doctors-list";
 import BookingAportment from "../components/comman/booking-aportment";
 import { fetchDoctors } from "@/lib/doctors-api";
-import { DOCTORS } from "@/lib/doctors-data";
 
 export const metadata: Metadata = {
     title: "Our Doctors | Eledent Dental Hospital",
@@ -13,25 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default async function DoctorsPage() {
-    let doctors = await fetchDoctors();
-
-    // Fall back to static data if API returns empty
-    if (doctors.length === 0) {
-        doctors = DOCTORS.map((d) => ({
-            name: d.name,
-            education: d.education,
-            post: d.post,
-            image: d.image ?? "",
-            slug: d.slug,
-        }));
-    }
+    const doctors = await fetchDoctors();
 
     return (
         <div>
             <Navbar />
             <main>
                 <DoctorsHero />
-                <DoctorsList doctors={doctors} />
+                {doctors.length > 0 && <DoctorsList doctors={doctors} />}
                 <div className="my-10 mt-28">
                     <BookingAportment />
                 </div>
