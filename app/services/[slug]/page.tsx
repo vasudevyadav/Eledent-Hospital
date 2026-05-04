@@ -61,9 +61,7 @@ function hasData(value: any): boolean {
 }
 
 async function getServiceBySlug(slug: string): Promise<ServiceResponse | null> {
-  const url = `https://cms.eledenthospitals.com/wp-json/custom/v1/service/${encodeURIComponent(
-    slug
-  )}`;
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/service/${encodeURIComponent(slug)}`;
 
   try {
     const res = await fetch(url, { cache: "no-store" });

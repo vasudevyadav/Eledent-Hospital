@@ -63,11 +63,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_API_BASE_URL ||
-      "https://cms.eledenthospitals.com/wp-json/custom/v1";
-
-    const wpRes = await fetch(`${baseUrl}/appointments`, {
+    const wpRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/appointments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

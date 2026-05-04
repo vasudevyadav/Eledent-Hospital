@@ -81,7 +81,7 @@ export default function Navbar() {
         setServicesLoading(true);
 
         const res = await fetch(
-          "https://cms.eledenthospitals.com/wp-json/custom/v1/services",
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`,
           { cache: "no-store" }
         );
 

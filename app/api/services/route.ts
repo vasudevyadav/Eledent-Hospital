@@ -13,8 +13,7 @@ type ServicesApiResponse = {
     data: ServiceCardItem[];
 };
 
-const WORDPRESS_API_URL =
-    "https://cms.eledenthospitals.com/wp-json/custom/v1/services";
+const WORDPRESS_API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`;
 
 export async function GET() {
     try {

@@ -86,7 +86,7 @@ export default function HomeServicesStatic() {
         const fetchServices = async () => {
             try {
                 const res = await fetch(
-                    "https://cms.eledenthospitals.com/wp-json/custom/v1/services"
+                    `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`
                 );
                 const data = await res.json();
                 setServices(data?.data || []);

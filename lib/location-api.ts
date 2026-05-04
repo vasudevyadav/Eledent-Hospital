@@ -78,8 +78,7 @@ type LocationApiResponse = {
   data: LocationData[];
 };
 
-const BASE_URL =
-  "https://cms.eledenthospitals.com/wp-json/custom/v1/locations";
+const BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/locations`;
 
 export async function getLocationBySlug(
   slug: string

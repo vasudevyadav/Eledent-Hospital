@@ -17,8 +17,7 @@ type ServicesApiResponse = {
   data: Service[];
 };
 
-const API_URL =
-  "https://cms.eledenthospitals.com/wp-json/custom/v1/services";
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`;
 
 const TourismWideRange: FC = () => {
   const [services, setServices] = useState<Service[]>([]);

@@ -57,7 +57,7 @@ export default function OurSpecialties() {
                 setError("");
 
                 const res = await fetch(
-                    "https://cms.eledenthospitals.com/wp-json/custom/v2/specialties",
+                    `${process.env.NEXT_PUBLIC_API_BASE_URL_V2}/specialties`,
                     {
                         method: "GET",
                         cache: "no-store",
