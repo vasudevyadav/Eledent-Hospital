@@ -193,6 +193,7 @@ export default function Navbar() {
       { type: "link", name: "Home", href: "/" },
       { type: "link", name: "About Us", href: "/about-us" },
       { type: "dropdown", name: "Services", key: "services", href: "/services" },
+      { type: "link", name: "Doctors", href: "/doctors" },
       { type: "link", name: "Dental Tourism", href: "/dental-tourism" },
       { type: "link", name: "Technology", href: "/technology" },
       { type: "link", name: "Facilities", href: "/facility" },
@@ -347,7 +348,7 @@ export default function Navbar() {
 
             <nav className="relative hidden items-center lg:flex">
               <div className="flex items-center gap-8 rounded-full bg-[#E8E5E6] py-3 pl-10 pr-40">
-                <div className="flex items-center gap-2 text-[15px] font-medium text-[#4A4A4A]">
+                <div className="flex items-center gap-1 text-sm font-medium text-[#4A4A4A]">
                   {navItems.map((item, idx) => {
                     const isLast = idx === navItems.length - 1;
 

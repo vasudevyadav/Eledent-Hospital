@@ -10,6 +10,7 @@ import LocationServices from "@/app/components/location/location-services";
 import LocationTestimonial from "@/app/components/location/location-testimonial";
 import LocationTransport from "@/app/components/location/location-transport";
 import LocationTrust from "@/app/components/location/location-trust";
+import LocationDoctors from "@/app/components/location/location-doctors";
 import Navbar from "@/app/components/Navbar";
 import { getLocationBySlug } from "@/lib/location-api";
 import { getMetadataByPath } from "@/lib/metadata";
@@ -880,6 +881,8 @@ export default async function LocationPage({ params }: Props) {
           trustHeading={location.trustHeading}
           trustCards={location.trustCards}
         />
+
+        <LocationDoctors locationSlug={slug} />
 
         {hasTransportData && <LocationTransport location={location} />}
 
