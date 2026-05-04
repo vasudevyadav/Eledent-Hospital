@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import ServicesHero from "../../components/services-details/services-hero";
-import DentalImplants from "../../components/services-details/dental-implants";
-import ServicesAportment from "../../components/services-details/services-aportment";
-import ServicesCount from "../../components/services-details/services-count";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
+import ServicesHero from "@/app/components/services-details/services-hero";
+import DentalImplants from "@/app/components/services-details/dental-implants";
+import ServicesAportment from "@/app/components/services-details/services-aportment";
+import ServicesCount from "@/app/components/services-details/services-count";
 import PlacementProcedure from "@/app/components/services-details/placement-procedure";
 import CommanTopRated from "@/app/components/services-details/make-appointment";
 import ServicesFaq from "@/app/components/services-details/services-faq";
