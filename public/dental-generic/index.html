@@ -78,7 +78,7 @@
     </header>
 
 
-    <section class="home-banner-area banner-down">
+    <section class="home-banner-area banner-down " id="heroBanner">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
@@ -1037,15 +1037,415 @@
 
     <!-- ========== Sticy Btn ========== -->
 
-    <div class="stiky-btn-inr">
-        <div class="sticky-btn sticky-call-btn" style="opacity: 1; visibility: visible;">
-            <a href="tel:+91 77997 19994">
-                <i class="fa-solid fa-phone-volume"></i>
+    <style>
+        .sidebar-bx {
+            position: fixed;
+            top: -80px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            transition: top 0.4s ease;
+            z-index: 9999;
+        }
+
+        .sidebar-bx.visible {
+            top: 0;
+        }
+
+        .sidebar-bx-inr {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .sidebar-bx-inr .item {
+            width: 200px;
+            height: 63px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+            gap: 6px;
+            padding: 8px 5px;
+        }
+
+        .sidebar-bx-inr .item:last-child {
+            border-right: none;
+        }
+
+        .sidebar-bx-inr .item:nth-child(1) {
+            background: linear-gradient(180deg, #f37326, #de5503);
+            border-bottom-left-radius: 10px;
+        }
+
+        .sidebar-bx-inr .item:nth-child(2) {
+            background: linear-gradient(180deg, #d5621d, #d35103);
+        }
+
+        .sidebar-bx-inr .item:nth-child(3) {
+            background: linear-gradient(180deg, #d4560b, #d45f00);
+        }
+
+        .sidebar-bx-inr .item:nth-child(4) {
+            background: linear-gradient(180deg, #d45f00, #bf4e00);
+        }
+
+        .sidebar-bx-inr .item:nth-child(5) {
+            background: linear-gradient(180deg, #ec691b, #c7520c);
+            border-bottom-right-radius: 10px;
+        }
+
+        .sidebar-bx-inr .item .strip-location {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .sidebar-bx-inr .item .strip-number-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sidebar-bx-inr .item .strip-number-row i {
+            font-size: 12px;
+        }
+
+        .sidebar-bx-inr .item .strip-number-row .strip-number {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            line-height: 1;
+        }
+
+        .sidebar-bx-inr .item:hover {
+            filter: brightness(1.15);
+            transform: scaleY(1.04);
+        }
+
+
+        .mob-bottom-bar {
+            display: none;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar-bx {
+                display: none !important;
+            }
+
+            .mob-bottom-bar {
+                display: flex;
+                position: fixed;
+                bottom: -1px;
+                left: 0;
+                right: 0;
+                z-index: 9999;
+                box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .mob-bottom-bar .mob-btn {
+                text-align: center;
+                color: #fff;
+                width: 100%;
+                font-size: 12px;
+                padding: 12px 5px;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                border: none;
+                cursor: pointer;
+                font-family: inherit;
+            }
+
+            .mob-bottom-bar .mob-btn i {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .mob-btn-appointment {
+                background: linear-gradient(135deg, #f37326, #d45f00);
+                border-top-left-radius: 10px;
+            }
+
+            .mob-btn-call {
+                background: linear-gradient(135deg, #d45f00, #a03d00);
+                border-top-right-radius: 10px;
+            }
+
+            .mob-btn-appointment:hover,
+            .mob-btn-call:hover {
+                filter: brightness(1.1);
+            }
+
+            .call-popup-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.55);
+                z-index: 99999;
+                align-items: flex-end;
+                justify-content: center;
+            }
+
+            .call-popup-overlay.open {
+                display: flex;
+            }
+
+            .call-popup-box {
+                background: #fff;
+                width: 100%;
+                border-radius: 20px 20px 0 0;
+                padding: 20px 0 30px;
+                animation: slideUp 0.3s ease;
+            }
+
+            @keyframes slideUp {
+                from {
+                    transform: translateY(100%);
+                }
+
+                to {
+                    transform: translateY(0);
+                }
+            }
+
+            .call-popup-box .popup-title {
+                text-align: center;
+                font-size: 14px;
+                font-weight: 700;
+                color: #333;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: 0 20px 15px;
+                border-bottom: 1px solid #eee;
+                margin-bottom: 5px;
+            }
+
+            .call-popup-box .popup-title span {
+                color: #e87722;
+            }
+
+            .call-popup-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 14px 24px;
+                border-bottom: 1px solid #f5f5f5;
+                text-decoration: none;
+                transition: background 0.2s;
+            }
+
+            .call-popup-item:last-child {
+                border-bottom: none;
+            }
+
+            .call-popup-item:hover {
+                background: #fff5ee;
+            }
+
+            .call-popup-item .popup-branch {
+                font-size: 13px;
+                font-weight: 700;
+                color: #333;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .call-popup-item .popup-num {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 14px;
+                font-weight: 700;
+                color: #e87722;
+            }
+
+            .call-popup-item .popup-num i {
+                font-size: 14px;
+                color: #e87722;
+            }
+
+            .popup-close-btn {
+                display: block;
+                width: calc(100% - 48px);
+                margin: 15px 24px 0;
+                padding: 13px;
+                background: #f37326;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                font-size: 13px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                cursor: pointer;
+            }
+        }
+    </style>
+
+
+    <!-- ===== DESKTOP TOP STRIP ===== -->
+    <section class="top-sidebar-bx">
+        <div class="sidebar-bx is-top" id="eledentStrip">
+            <div class="sidebar-bx-inr">
+
+                <a href="tel:07557188078" class="item">
+                    <span class="strip-location">Kondapur</span>
+                    <div class="strip-number-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="strip-number">075 5718 8078</span>
+                    </div>
+                </a>
+
+                <a href="tel:07557188079" class="item">
+                    <span class="strip-location">Manikonda</span>
+                    <div class="strip-number-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="strip-number">075 5718 8079</span>
+                    </div>
+                </a>
+
+                <a href="tel:07557188080" class="item">
+                    <span class="strip-location">Kompally</span>
+                    <div class="strip-number-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="strip-number">075 5718 8080</span>
+                    </div>
+                </a>
+
+                <a href="tel:07557188081" class="item">
+                    <span class="strip-location">KPHB</span>
+                    <div class="strip-number-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="strip-number">075 5718 8081</span>
+                    </div>
+                </a>
+
+                <a href="tel:07557188082" class="item">
+                    <span class="strip-location">Banjara Hills</span>
+                    <div class="strip-number-row">
+                        <i class="fa-solid fa-phone"></i>
+                        <span class="strip-number">075 5718 8082</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== MOBILE BOTTOM BAR ===== -->
+    <div class="mob-bottom-bar">
+
+        <a href="#book-appointment" class="mob-btn mob-btn-appointment">
+            <i class="fa-solid fa-calendar-check"></i><br>
+            Book Appointment
+        </a>
+
+        <button class="mob-btn mob-btn-call" onclick="openCallPopup()">
+            <i class="fa-solid fa-phone"></i><br>
+            Call Us
+        </button>
+
+    </div>
+
+
+    <!-- ===== CALL POPUP ===== -->
+    <div class="call-popup-overlay mob-view" id="callPopup" onclick="closeCallPopup(event)">
+        <div class="call-popup-box">
+
+            <div class="popup-title">Select <span>Branch</span> to Call</div>
+
+            <a href="tel:07557188078" class="call-popup-item">
+                <span class="popup-branch">Kondapur</span>
+                <span class="popup-num">
+                    <i class="fa-solid fa-phone"></i>
+                    075 5718 8078
+                </span>
             </a>
+
+            <a href="tel:07557188079" class="call-popup-item">
+                <span class="popup-branch">Manikonda</span>
+                <span class="popup-num">
+                    <i class="fa-solid fa-phone"></i>
+                    075 5718 8079
+                </span>
+            </a>
+
+            <a href="tel:07557188080" class="call-popup-item">
+                <span class="popup-branch">Kompally</span>
+                <span class="popup-num">
+                    <i class="fa-solid fa-phone"></i>
+                    075 5718 8080
+                </span>
+            </a>
+
+            <a href="tel:07557188081" class="call-popup-item">
+                <span class="popup-branch">KPHB</span>
+                <span class="popup-num">
+                    <i class="fa-solid fa-phone"></i>
+                    075 5718 8081
+                </span>
+            </a>
+
+            <a href="tel:07557188082" class="call-popup-item">
+                <span class="popup-branch">Banjara Hills</span>
+                <span class="popup-num">
+                    <i class="fa-solid fa-phone"></i>
+                    075 5718 8082
+                </span>
+            </a>
+
+            <button class="popup-close-btn" onclick="closeCallPopup()">Close</button>
+
         </div>
     </div>
 
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        const heroBanner = document.getElementById('heroBanner');
+        const strip = document.getElementById('eledentStrip');
+
+        if (heroBanner && strip) {
+            const observer = new IntersectionObserver((entries) => {
+                if (!entries[0].isIntersecting) {
+                    strip.classList.add('visible');
+                } else {
+                    strip.classList.remove('visible');
+                }
+            }, {
+                threshold: 0
+            });
+
+            observer.observe(heroBanner);
+        }
+
+        // Call popup
+        function openCallPopup() {
+            document.getElementById('callPopup').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCallPopup(e) {
+            if (!e || e.target === document.getElementById('callPopup') || e.currentTarget.classList.contains('popup-close-btn')) {
+                document.getElementById('callPopup').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+
     <!-- ========== Sticy Btn End ========== -->
+
+
+
 
 
     <!-- Popup HTML -->

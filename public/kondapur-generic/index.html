@@ -1032,18 +1032,61 @@
     <!-- Modal popup -->
 
 
+   
+
+
+
+
     <!-- ========== Sticy Btn ========== -->
 
-    <div class="stiky-btn-inr">
-        <div class="sticky-btn sticky-call-btn" style="opacity: 1; visibility: visible;">
-            <a href="tel:+91 77997 19994">
-                <i class="fa-solid fa-phone-volume"></i>
-            </a>
-        </div>
+    <div class="fixed-bottom-strip">
+        <a href="tel:+9175571 88080" class="fbs-btn"><i class="fa-solid fa-phone-volume"></i><br>Kondapur</a>
+        <a href="tel:+9175571 88078" class="fbs-btn"><i class="fa-solid fa-phone-volume"></i><br>Kukatpally</a>
     </div>
 
-    <!-- ========== Sticy Btn End ========== -->
 
+    <style>
+        .fixed-bottom-strip {
+            position: fixed;
+            bottom: auto;
+            left: auto;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            flex-direction: column;
+            border-radius: 10px 0 0 10px;
+            overflow: hidden;
+            display: flex;
+            z-index: 99999;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        .fbs-btn {
+            text-align: center;
+            padding: 18px 10px 18px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+            background: #e46713;
+            color: #fff !important;
+        }
+
+        .fbs-btn:hover i {
+            transform: scale(1.08);
+        }
+
+        .fbs-btn i {
+            font-size: 19px;
+            margin-bottom: 5px;
+            transition: all 0.4s;
+        }
+    </style>
+
+    <!-- ========== Sticy Btn End ========== -->
 
     <!-- Popup HTML -->
     <div id="book-popup" class="popup-overlay" style="display: none;">
