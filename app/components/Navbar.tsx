@@ -316,12 +316,12 @@ export default function Navbar() {
         </div>
 
         <div className="w-full bg-white shadow-sm">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-0">
             <Link href="/" className="relative z-50 flex items-center">
               <Image
                 src="/White-Logo1.png"
                 alt="Eledent logo"
-                className="w-28 sm:w-28 lg:w-40"
+                className="w-28 sm:w-28 lg:w-36"
                 width={500}
                 height={500}
                 priority
