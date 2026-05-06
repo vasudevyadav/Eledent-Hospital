@@ -1341,7 +1341,9 @@
 
             <div class="iframe-wrapper">
                 <iframe src="https://api.leadconnectorhq.com/widget/form/pDce9nK7M2lAZoylmNVC"
+                    style="width:100%;height:500px;border:none;border-radius:3px"
                     title="Generic Google Ads LP" allow="autoplay" loading="lazy"></iframe>
+                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
             </div>
         </div>
     </div>
@@ -1395,8 +1397,8 @@
         .iframe-wrapper {
             flex: 1;
             overflow-y: auto;
-            max-height: 90vh;
-            /* control scroll inside popup */
+            min-height: 400px;
+            max-height: calc(90vh - 160px);
             border-radius: 6px;
         }
 
@@ -1413,9 +1415,10 @@
         /* Iframe fills wrapper */
         .iframe-wrapper iframe {
             width: 100%;
-            height: 100%;
+            min-height: 500px;
             border: none;
             border-radius: 6px;
+            display: block;
         }
 
         /* Close button */
