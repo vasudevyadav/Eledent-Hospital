@@ -193,7 +193,7 @@ export default function Navbar() {
       { type: "link", name: "Home", href: "/" },
       { type: "link", name: "About Us", href: "/about-us" },
       { type: "dropdown", name: "Services", key: "services", href: "/services" },
-      { type: "link", name: "Doctors", href: "/doctors" },
+      { type: "link", name: "Our Doctors", href: "/doctors" },
       { type: "link", name: "Dental Tourism", href: "/dental-tourism" },
       { type: "link", name: "Technology", href: "/technology" },
       { type: "link", name: "Facilities", href: "/facility" },

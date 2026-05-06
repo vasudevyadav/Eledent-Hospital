@@ -123,7 +123,7 @@ export default function Footer(): JSX.Element {
         { name: "Technology", href: "/technology" },
         { name: "Facilities", href: "/facility" },
         { name: "Contact Us", href: "/co" },
-        { name: "Doctors", href: "/doctors" },
+        { name: " Our Doctors", href: "/doctors" },
         { name: "Privacy Policy", href: "/privacy-policy" },
         { name: "Terms And Conditions", href: "/terms-and-conditions" },
         { name: "Blogs", href: "/blogs" },
