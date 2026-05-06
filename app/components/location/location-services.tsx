@@ -66,7 +66,6 @@ function ServiceIcon({
         alt={label}
         width={28}
         height={28}
-        unoptimized
         className="h-8 w-8 object-contain"
         onError={() => setImageFailed(true)}
       />

@@ -94,7 +94,6 @@ const AboutDetails: FC = () => {
               width={900}
               height={900}
               priority
-                 unoptimized
               className="w-full h-[530px] object-cover"
             />
 
@@ -107,7 +106,6 @@ const AboutDetails: FC = () => {
                   alt="Background"
                   fill
                   priority
-                     unoptimized
                   className="object-cover"
                 />
 
@@ -123,7 +121,6 @@ const AboutDetails: FC = () => {
                       width={112}
                       height={112}
                       priority
-                         unoptimized
                       className="w-14 h-14 object-contain"
                     />
                   </div>

@@ -70,7 +70,6 @@ export default function ServicesFaq(): JSX.Element {
             src="/about-us/faq-image.png"
             alt="FAQ Background"
             fill
-               unoptimized
             priority
             className="object-cover object-left"
           />

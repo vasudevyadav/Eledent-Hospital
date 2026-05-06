@@ -72,6 +72,8 @@ export default function HeroSection() {
                                             alt={`Hero slide ${index + 1}`}
                                             fill
                                             priority={index === 0}
+                                            fetchPriority={index === 0 ? "high" : "low"}
+                                            sizes="(max-width: 1024px) 100vw, 90vw"
                                             className="object-cover object-top rounded-2xl"
                                         />
                                     </div>

@@ -28,7 +28,6 @@ function TrustCard({
             src={imageSrc}
             alt={imageAlt}
             fill
-               unoptimized
             className="object-cover"
             priority={false}
           />

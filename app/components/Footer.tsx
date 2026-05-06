@@ -46,8 +46,7 @@ export default function Footer(): JSX.Element {
                 setLoading(true);
 
                 const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`,
-                    { cache: "no-store" }
+                    `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`
                 );
 
                 const data: ApiItem[] = await res.json();
@@ -269,10 +268,9 @@ export default function Footer(): JSX.Element {
                                         src="/home/facebook.png"
                                         alt="Facebook"
                                         className="h-3 w-3 sm:h-6 sm:w-6"
-                                        width={500}
-                                        height={500}
-                                        unoptimized
-                                        priority
+                                        width={24}
+                                        height={24}
+                                        loading="lazy"
                                     />
                                 </a>
 
@@ -287,9 +285,9 @@ export default function Footer(): JSX.Element {
                                         src="/home/instagram.png"
                                         alt="Instagram"
                                         className="h-3 w-3 sm:h-6 sm:w-6"
-                                        width={500}
-                                        height={500}
-                                        priority
+                                        width={24}
+                                        height={24}
+                                        loading="lazy"
                                     />
                                 </a>
 
@@ -304,9 +302,9 @@ export default function Footer(): JSX.Element {
                                         src="/home/youtube.png"
                                         alt="YouTube"
                                         className="h-3 w-3 sm:h-6 sm:w-6"
-                                        width={500}
-                                        height={500}
-                                        priority
+                                        width={24}
+                                        height={24}
+                                        loading="lazy"
                                     />
                                 </a>
 
@@ -320,10 +318,9 @@ export default function Footer(): JSX.Element {
                                         src="/NABH-logo.png"
                                         alt="Eledent logo"
                                         className="w-10 lg:w-24"
-                                        width={500}
-                                        height={500}
-                                        unoptimized
-                                        priority
+                                        width={96}
+                                        height={96}
+                                        loading="lazy"
                                     />
 
 

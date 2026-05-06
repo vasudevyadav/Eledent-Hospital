@@ -120,9 +120,7 @@ export default function LocationMapsSection() {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/locations`, {
-          cache: "no-store",
-        });
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/locations`);
 
         if (!response.ok) {
           throw new Error(`Failed to fetch locations: ${response.status}`);

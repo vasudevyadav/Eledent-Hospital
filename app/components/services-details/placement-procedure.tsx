@@ -99,7 +99,6 @@ function MediaBlock({
           src={media.image_src}
           alt={media.image_alt ?? fallbackTitle ?? "Procedure image"}
           fill
-             unoptimized
           className="object-cover object-center"
         />
       </div>
@@ -112,11 +111,11 @@ function MediaBlock({
         <iframe
           src={media.embed_url}
           title={media.title ?? fallbackTitle ?? "YouTube video player"}
-          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="mx-auto h-[320px] w-full rounded-xl md:h-[400px] lg:h-[500px] lg:w-[90%]"
+          loading="lazy"
+          className="mx-auto h-[320px] w-full rounded-xl border-0 md:h-[400px] lg:h-[500px] lg:w-[90%]"
         />
       </div>
     );
@@ -160,7 +159,6 @@ export default function PlacementProcedure({
                         }
                         fill
                         priority
-                           unoptimized
                         className="object-cover object-center"
                       />
                     </div>
@@ -198,7 +196,6 @@ export default function PlacementProcedure({
                             height={18}
                             className="mt-[2px] shrink-0"
                             priority
-                               unoptimized
                             aria-hidden="true"
                           />
                           <span className="leading-[1.35]">{feature}</span>

@@ -60,7 +60,7 @@ export default function OurSpecialties() {
                     `${process.env.NEXT_PUBLIC_API_BASE_URL_V2}/specialties`,
                     {
                         method: "GET",
-                        cache: "no-store",
+                        next: { revalidate: 3600 },
                     }
                 );
 
@@ -178,7 +178,7 @@ export default function OurSpecialties() {
                         src={bgImage}
                         alt=""
                         fill
-                           unoptimized
+                        sizes="75vw"
                         className="object-cover object-bottom object-right opacity-60"
                     />
                 </div>
@@ -189,8 +189,8 @@ export default function OurSpecialties() {
                             <Image
                                 src={sideImage}
                                 alt="Specialties"
-                                   unoptimized
                                 fill
+                                sizes="(max-width: 1024px) 100vw, 380px"
                                 className="h-full w-full object-cover"
                                 priority
                             />
@@ -251,15 +251,14 @@ export default function OurSpecialties() {
                                             </a>
                                         </div>
 
-                                        <div className="h-[240px] overflow-hidden rounded-[16px] bg-white shadow-lg sm:h-[300px] lg:h-[320px]">
+                                        <div className="relative h-[240px] overflow-hidden rounded-[16px] bg-white shadow-lg sm:h-[300px] lg:h-[320px]">
                                             {active?.detailImage ? (
                                                 <Image
                                                     src={active.detailImage}
                                                     alt={active.title}
-                                                    width={1000}
-                                                    height={1000}
-                                                       unoptimized
-                                                    className="h-full w-full object-cover"
+                                                    fill
+                                                    sizes="(max-width: 1024px) 100vw, 340px"
+                                                    className="object-cover"
                                                 />
                                             ) : (
                                                 <div className="flex h-full items-center justify-center text-sm text-gray-400">

@@ -63,7 +63,6 @@ const StatPill: FC<{ stat: Stat; start: boolean }> = ({ stat, start }) => {
           alt={stat.label1}
           width={34}
           height={34}
-             unoptimized
           className="object-contain w-10 h-10"
           priority
         />

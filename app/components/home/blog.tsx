@@ -116,7 +116,6 @@ export default function BlogMain(): JSX.Element {
 
         const response = await fetch(API_URL, {
           method: "GET",
-          cache: "no-store",
         });
 
         if (!response.ok) {
@@ -214,9 +213,8 @@ export default function BlogMain(): JSX.Element {
                       src={c.img}
                       alt={c.title}
                       fill
-                      
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px"
                       priority={idx === 0}
-                      unoptimized
                     />
                   </div>
                   <div className="absolute bottom-0 right-0 rounded-tl-[6px] bg-[#f47200] px-4 py-1.5 text-xs font-medium text-white">

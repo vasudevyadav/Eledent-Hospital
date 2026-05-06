@@ -22,7 +22,6 @@ export default function ServicesHero({ data }: Props) {
             alt={data.bannerImageAlt}
             fill
             priority
-               unoptimized
             className="rounded-3xl object-cover"
           />
 

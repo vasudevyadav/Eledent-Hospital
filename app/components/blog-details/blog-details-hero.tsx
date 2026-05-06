@@ -24,7 +24,6 @@ export default function BlogDetailsHero({ hero }: BlogDetailsHeroProps) {
           alt={hero.title || "Blog Hero"}
           fill
           priority
-          unoptimized // ✅ Required for external URLs (backend.eledenthospitals.com)
           className="lg:object-cover object-fill object-center"
         />
 

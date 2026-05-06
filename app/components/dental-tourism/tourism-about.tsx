@@ -126,8 +126,9 @@ const TourismAbout: FC = () => {
                         <Image
                           src={sec.imageSrc}
                           alt={sec.imageAlt}
-                          width={500}
-                          height={500}
+                          width={600}
+                          height={450}
+                          sizes="(max-width: 1024px) 100vw, 50vw"
                           className="w-full h-[450px] object-contain"
                           priority
                         />
@@ -146,8 +147,9 @@ const TourismAbout: FC = () => {
                       <Image
                         src={sec.imageSrc}
                         alt={sec.imageAlt}
-                        width={500}
-                        height={500}
+                        width={600}
+                        height={450}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         className="w-full h-[450px] object-cover"
                         priority
                       />

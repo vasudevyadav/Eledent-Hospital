@@ -135,7 +135,6 @@ export default function LocationGallery({ gallery }: { gallery: GalleryItem[] })
                       src={item.src}
                       alt={item.alt}
                       fill
-                         unoptimized
                       className="object-cover"
                       sizes="(max-width: 768px) 90vw, 370px"
                       priority={false}
@@ -241,7 +240,6 @@ export default function LocationGallery({ gallery }: { gallery: GalleryItem[] })
                 src={gallery[active].src}
                 alt={gallery[active].alt}
                 fill
-                   unoptimized
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, 1000px"
                 priority

@@ -115,7 +115,6 @@ export default function WhyChoose(): JSX.Element {
                                 alt="Doctor"
                                 fill
                                 priority
-                                   unoptimized
                                 className="object-contain"
                             />
                         </div>
@@ -217,7 +216,6 @@ function FeatureRow({
                         src={iconSrc}
                         alt={iconAlt || title}
                         fill
-                           unoptimized
                         sizes="20px"
                         className="object-contain brightness-0 invert"
                     />
@@ -243,7 +241,6 @@ function ValueCard({ title, desc, iconSrc, iconAlt }: ValueItem) {
                         src={iconSrc}
                         alt={iconAlt || title}
                         fill
-                           unoptimized
                         sizes="35px"
                         className="object-contain"
                     />

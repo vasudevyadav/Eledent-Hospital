@@ -33,7 +33,6 @@ const LocationAbout: FC<Props> = ({ location }) => {
                 src={location.aboutImageSrc}
                 alt={location.aboutImageAlt}
                 fill
-   unoptimized
                 priority
                 className="object-cover"
               />

@@ -216,7 +216,6 @@ const BookingAportment: FC = () => {
                     src="/services-main/support.png"
                     alt="Support"
                     fill
-                    unoptimized
                     className="object-cover rounded-full p-2"
                   />
                 </div>

@@ -38,7 +38,6 @@ export default function DentalImplantPlacement({
                     src={clinicImageSrc}
                     alt="Dentist showing X-ray to patient at Eledent Dental Hospital"
                     fill
-                       unoptimized
                     priority
                     className="object-cover object-center"
                   />
@@ -72,7 +71,6 @@ export default function DentalImplantPlacement({
                         alt=""
                         width={18}
                         height={18}
-                           unoptimized
                         className="mt-[2px] flex-shrink-0"
                         priority
                       />
@@ -152,11 +150,11 @@ export default function DentalImplantPlacement({
                 height="420"
                 src="https://www.youtube.com/embed/jvLg2GrJpMM?si=aLnd5WK_ifderI-O&controls=0"
                 title="YouTube video player"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="mx-auto rounded-xl"
+                loading="lazy"
+                className="mx-auto rounded-xl border-0"
               ></iframe>
             </div>
 

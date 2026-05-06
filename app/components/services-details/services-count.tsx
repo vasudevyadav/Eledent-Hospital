@@ -61,7 +61,6 @@ const StatPill: FC<{ stat: CountStatItem; start: boolean }> = ({ stat, start }) 
           alt={stat.label1}
           width={34}
           height={34}
-             unoptimized
           className="h-10 w-10 object-contain"
           priority
         />

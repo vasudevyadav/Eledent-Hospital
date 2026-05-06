@@ -37,7 +37,6 @@ export default function ServicesFaq({ data }: Props): JSX.Element | null {
             src={data.backgroundImageSrc ?? "/about-us/faq-image.png"}
             alt={data.backgroundImageAlt ?? "FAQ Background"}
             fill
-               unoptimized
             priority
             className="object-cover object-left"
           />

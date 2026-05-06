@@ -93,7 +93,6 @@ export default function LocationHero({
             src={finalBannerSrc}
             alt={`${city} banner`}
             fill
-            unoptimized
             priority
             className="rounded-2xl object-cover object-center transition lg:rounded-3xl"
           />

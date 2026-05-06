@@ -137,7 +137,6 @@ const BlogCard: FC<{ post: BlogPost }> = ({ post }) => {
                 src={getValidImageSrc(post.image)}
                 alt={post.title || "Blog image"}
                 fill
-                unoptimized
                 sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover"
               />

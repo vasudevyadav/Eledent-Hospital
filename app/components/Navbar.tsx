@@ -13,7 +13,8 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import BookingModel from "./comman/booking-model";
+import dynamic from "next/dynamic";
+const BookingModel = dynamic(() => import("./comman/booking-model"), { ssr: false });
 
 type NavLinkItem = {
   type: "link";
@@ -81,8 +82,7 @@ export default function Navbar() {
         setServicesLoading(true);
 
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`,
-          { cache: "no-store" }
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/services`
         );
 
         const data: ApiService[] = await res.json();
@@ -250,10 +250,8 @@ export default function Navbar() {
                   src="/NABH-logo.png"
                   alt="Eledent logo"
                   className="w-10 lg:w-10"
-                  width={500}
-                  height={500}
-                  unoptimized
-                  priority
+                  width={40}
+                  height={40}
                 />
 
 
@@ -270,9 +268,9 @@ export default function Navbar() {
                   src="/home/instagram.png"
                   alt="Instagram"
                   className="h-3 w-3 sm:h-5 sm:w-5"
-                  width={500}
-                  height={500}
-                  priority
+                  width={20}
+                  height={20}
+                  loading="lazy"
                 />
               </a>
 
@@ -287,9 +285,9 @@ export default function Navbar() {
                   src="/home/facebook.png"
                   alt="Facebook"
                   className="h-3 w-3 sm:h-5 sm:w-5"
-                  width={500}
-                  height={500}
-                  priority
+                  width={20}
+                  height={20}
+                  loading="lazy"
                 />
               </a>
 
@@ -304,9 +302,9 @@ export default function Navbar() {
                   src="/home/youtube.png"
                   alt="YouTube"
                   className="h-3 w-3 sm:h-5 sm:w-5"
-                  width={500}
-                  height={500}
-                  priority
+                  width={20}
+                  height={20}
+                  loading="lazy"
                 />
               </a>
 
@@ -322,8 +320,8 @@ export default function Navbar() {
                 src="/White-Logo1.png"
                 alt="Eledent logo"
                 className="w-28 sm:w-28 lg:w-36"
-                width={500}
-                height={500}
+                width={144}
+                height={50}
                 priority
               />
 
@@ -516,8 +514,8 @@ export default function Navbar() {
                   src="/White-Logo1.png"
                   alt="Eledent logo"
                   className="w-32"
-                  width={500}
-                  height={500}
+                  width={128}
+                  height={45}
                   priority
                 />
                 <button

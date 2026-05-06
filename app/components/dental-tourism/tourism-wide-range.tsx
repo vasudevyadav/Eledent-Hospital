@@ -50,8 +50,8 @@ const TourismWideRange: FC = () => {
   }, []);
 
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-7xl mx-4 lg:mx-10 bg-[#e9eaeb] py-14 sm:py-12 px-4 lg:px-20 lg:rounded-2xl">
+    <section className="w-full flex justify-center">
+      <div className=" max-w-7xl  mx-4 lg:mx-10 mx-auto bg-[#e9eaeb] py-14 sm:py-12 px-4 lg:px-20 lg:rounded-2xl">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-xl lg:text-4xl font-semibold text-black">
             The Wide Range of Treatments Provided Under Dental Tourism Are

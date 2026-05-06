@@ -58,8 +58,8 @@ function ServiceCard({
                     src={image}
                     alt={label}
                     fill
+                    sizes="64px"
                     className="object-contain p-3 transition-all duration-300 ease-out group-hover:scale-110"
-                    unoptimized
                 />
             </div>
 
