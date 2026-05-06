@@ -4,6 +4,9 @@ export type DoctorListItem = {
     post: string;
     image: string;
     slug: string;
+    facebook: string;
+    instagram: string;
+    linkedin: string;
 };
 
 export function nameToSlug(name: string): string {
@@ -18,12 +21,15 @@ export async function fetchDoctors(): Promise<DoctorListItem[]> {
         if (!res.ok) return [];
         const json = await res.json();
         if (!json.status) return [];
-        return (json.data as Array<{ name: string; education: string; post: string; image: string }>).map((d) => ({
+        return (json.data as Array<{ name: string; education: string; post: string; image: string; facebook: string; instagram: string; linkedin: string }>).map((d) => ({
             name: d.name,
             education: d.education,
             post: d.post,
             image: d.image,
             slug: nameToSlug(d.name),
+            facebook: d.facebook,
+            instagram: d.instagram,
+            linkedin: d.linkedin,
         }));
     } catch {
         return [];

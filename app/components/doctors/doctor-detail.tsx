@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Doctor } from "@/lib/doctors-data";
 import type { DoctorAPIData } from "@/lib/doctors-api";
+import BookingModel from "@/app/components/comman/booking-model";
 
 type Props = {
     apiData: DoctorAPIData;
@@ -71,6 +72,8 @@ function AccordionPanel({ items }: { items: AccordionItem[] }) {
 }
 
 export default function DoctorDetail({ apiData, staticDoctor }: Props) {
+    const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
+
     // API is primary source; static is name/image fallback
     const name        = apiData.basicInfo.name || staticDoctor?.name || "";
     const education   = apiData.basicInfo.education   || staticDoctor?.education || "";
@@ -156,6 +159,7 @@ export default function DoctorDetail({ apiData, staticDoctor }: Props) {
     ];
 
     return (
+        <>
         <div>
             {/* Hero Section */}
             <div className="lg:my-6 my-4 lg:mx-24 mx-6 lg:mt-40 mt-36">
@@ -193,7 +197,7 @@ export default function DoctorDetail({ apiData, staticDoctor }: Props) {
                     {/* Left — profile card */}
                     <div className="lg:col-span-1">
                         <div className="lg:sticky lg:top-32 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100">
-                            <div className="relative h-64 sm:h-72 w-full bg-gradient-to-br from-orange-50 to-orange-100">
+                            <div className="relative h-64 lg:h-80 w-full bg-gradient-to-br from-orange-50 to-orange-100">
                                 {profileImage ? (
                                     <Image
                                         src={profileImage}
@@ -231,12 +235,12 @@ export default function DoctorDetail({ apiData, staticDoctor }: Props) {
                                     </div>
                                 )}
 
-                                <a
-                                    href={phone ? `tel:${phone.replace(/\s/g, "")}` : "#"}
+                                <button
+                                    onClick={() => setAppointmentModalOpen(true)}
                                     className="mt-5 block w-full text-center bg-[#f47200] hover:bg-orange-600 text-white text-sm font-semibold py-3 rounded-xl transition-colors"
                                 >
                                     Book Appointment
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -260,5 +264,16 @@ export default function DoctorDetail({ apiData, staticDoctor }: Props) {
                 </div>
             </div>
         </div>
+
+            {appointmentModalOpen && (
+                <div className="fixed inset-0 z-[999] flex items-center justify-center lg:p-4">
+                    <div
+                        className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
+                        onClick={() => setAppointmentModalOpen(false)}
+                    />
+                    <BookingModel closeModal={() => setAppointmentModalOpen(false)} />
+                </div>
+            )}
+        </>
     );
 }
