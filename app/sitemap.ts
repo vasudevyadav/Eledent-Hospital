@@ -69,6 +69,30 @@ const localSeoPages = [
   { route: "/best-dentist-in-kompally", priority: 0.7 },
 ];
 
+// DOCTOR PAGES
+const doctorPages = [
+  { route: "/doctors/dr-manchana-ashok-kumar", priority: 0.7 },
+  { route: "/doctors/dr-matham-charan-kumar", priority: 0.7 },
+  { route: "/doctors/dr-suhaas-pradhyumna", priority: 0.7 },
+  { route: "/doctors/dr-e-santhosh-kumar", priority: 0.7 },
+  { route: "/doctors/dr-haneesh-mudra", priority: 0.7 },
+  { route: "/doctors/dr-ruchira-ganachari", priority: 0.7 },
+  { route: "/doctors/dr-b-dharanija", priority: 0.7 },
+  { route: "/doctors/dr-himasree-kasireddy", priority: 0.7 },
+  { route: "/doctors/dr-mounica", priority: 0.7 },
+  { route: "/doctors/dr-borugadda-sujan-sekhar", priority: 0.7 },
+  { route: "/doctors/dr-nagajyothi-namilikonda", priority: 0.7 },
+  { route: "/doctors/dr-tarun-nalam", priority: 0.7 },
+  { route: "/doctors/dr-sai-nikitha-arakari", priority: 0.7 },
+  { route: "/doctors/dr-malathi", priority: 0.7 },
+  { route: "/doctors/dr-vani", priority: 0.7 },
+  { route: "/doctors/dr-kaduluri-rajith", priority: 0.7 },
+  { route: "/doctors/dr-satish-p", priority: 0.7 },
+  { route: "/doctors/dr-priyanka-reddy-pinninti", priority: 0.7 },
+  { route: "/doctors/dr-n-sreevani", priority: 0.7 },
+  { route: "/doctors/dr-sushna-komuravelli", priority: 0.7 },
+];
+
 // BLOGS
 async function getBlogs() {
   return [
@@ -251,6 +275,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: page.priority,
   }));
 
+  const doctorEntries: MetadataRoute.Sitemap = doctorPages.map((doctor) => ({
+    url: `${baseUrl}${doctor.route}`,
+    lastModified: today,
+    changeFrequency: "monthly",
+    priority: doctor.priority,
+  }));
+
   const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
     url: `${baseUrl}/blogs/${blog.slug}`,
     lastModified: new Date(blog.updatedAt),
@@ -263,6 +294,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...serviceEntries,
     ...locationEntries,
     ...localSeoEntries,
+    ...doctorEntries,
     ...blogEntries,
   ];
 
