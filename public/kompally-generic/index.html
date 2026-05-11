@@ -7,9 +7,9 @@
     <base href="/kompally-generic/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Eledent Hospital</title>
+    <title>Best Dental Clinic in Kompally, Hyderabad | Eledent International Digital Dentistry</title>
     <meta name="description"
-        content="Experience exceptional dental care at our best clinic in Ghatkopar East. Skilled professionals, advanced treatments, and a healthy, confident smile awaits you." />
+        content="Looking for expert dental care in Kompally, Hyderabad? Eledent offers painless dental treatments including implants, root canals, braces, and smile makeovers with advanced digital technology." />
     <META NAME="robots" CONTENT="noindex,nofollow">
     <link rel="icon" href="images/fav-icon.png" sizes="32x32" />
 
@@ -79,7 +79,7 @@
     </header>
 
 
-    <section class="home-banner-area banner-down " id="heroBanner">
+    <section class="home-banner-area banner-down ">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
@@ -1344,10 +1344,11 @@
             Book Appointment
         </a>
 
-        <button class="mob-btn mob-btn-call" onclick="openCallPopup()">
+
+        <a href="tel:07557188080" class="mob-btn mob-btn-call" onclick="openCallPopup()">
             <i class="fa-solid fa-phone"></i><br>
             Call Us
-        </button>
+        </a>
 
     </div>
 
@@ -1403,39 +1404,43 @@
         </div>
     </div>
 
-
-    <!-- ===== SCRIPT ===== -->
-    <script>
-        const heroBanner = document.getElementById('heroBanner');
-        const strip = document.getElementById('eledentStrip');
-
-        if (heroBanner && strip) {
-            const observer = new IntersectionObserver((entries) => {
-                if (!entries[0].isIntersecting) {
-                    strip.classList.add('visible');
-                } else {
-                    strip.classList.remove('visible');
-                }
-            }, {
-                threshold: 0
-            });
-
-            observer.observe(heroBanner);
-        }
-
-        // Call popup
-        function openCallPopup() {
-            document.getElementById('callPopup').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCallPopup(e) {
-            if (!e || e.target === document.getElementById('callPopup') || e.currentTarget.classList.contains('popup-close-btn')) {
-                document.getElementById('callPopup').classList.remove('open');
-                document.body.style.overflow = '';
+    <style>
+        @media (max-width: 768px) {
+            .floating-call-btn {
+                display: none !important;
             }
         }
-    </script>
+    </style>
+
+    <div class="floating-call-btn" style="position:fixed; bottom:80px; right:40px; z-index:9999;">
+
+        <a href="tel:07557188080" style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            background:#3b1f14;
+            color:#ffffff;
+            padding:16px;
+            border-radius:9999px;
+            box-shadow:0 15px 40px rgba(0,0,0,0.35);
+            font-weight:600;
+            font-size:13px;
+            text-decoration:none;
+            border:1px solid rgba(255,255,255,0.12);
+            transition:all 0.25s ease;
+            white-space:nowrap;
+        " onmouseover="this.style.background='#f37326'" onmouseout="this.style.background='#3b1f14'">
+
+            <svg style="width:28px; height:28px; flex-shrink:0;" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
+                </path>
+            </svg>
+
+        </a>
+    </div>
+
+
 
     <!-- ========== Sticy Btn End ========== -->
 
