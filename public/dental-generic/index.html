@@ -1459,9 +1459,10 @@
 
 
             <div class="iframe-wrapper">
-                <iframe src="https://api.leadconnectorhq.com/widget/form/pDce9nK7M2lAZoylmNVC"
+                <iframe id="popup-iframe" src=""
+                    data-src="https://api.leadconnectorhq.com/widget/form/pDce9nK7M2lAZoylmNVC"
                     style="width:100%;height:500px;border:none;border-radius:3px"
-                    title="Generic Google Ads LP" allow="autoplay" loading="lazy"></iframe>
+                    title="Generic Google Ads LP" allow="autoplay"></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
             </div>
         </div>
@@ -1587,6 +1588,10 @@
                 let scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
 
                 if (scrollPercent >= 50 && !shown) {
+                    var iframe = document.getElementById('popup-iframe');
+                    if (iframe) {
+                        iframe.src = iframe.getAttribute('data-src');
+                    }
                     $('#book-popup').fadeIn(400);
                     shown = true;
                 }
