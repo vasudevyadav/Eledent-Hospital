@@ -1,0 +1,318 @@
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+
+	.book-appointment {
+		max-height: 640px;
+	}
+
+	.home-banner-area {
+		padding: 100px 0px 40px;
+	}
+
+}
+
+@media (min-width: 992px) {
+	.mob-view {
+		display: none;
+	}
+
+}
+
+
+@media screen and (max-width: 992px) {
+
+	.desk-view {
+		display: none;
+	}
+
+	.talk-to-cd h6 {
+		font-size: 14px;
+	}
+
+	.talk-to-cd h2 {
+		font-size: 20px;
+	}
+
+	.talk-to-cd .t-inner .img-box img {
+		width: 65px;
+	}
+
+	.top-lft-logo img {
+        width: 130px;
+        margin-left: 5px;
+        padding: 13px 25px;
+	}
+
+	.clinic-near-you {
+		padding: 30px 0px 40px;
+		text-align: center;
+	}
+
+	.heading hr {
+		margin: 20px auto 20px;
+	}
+
+	.clinic-map-bx {
+		margin-bottom: 35px;
+	}
+
+	.find-dental-near-bx {
+		padding-right: 0px;
+	}
+
+	.find-dental-near-bx .heading h2 {
+		font-size: 26px;
+		line-height: 36px;
+	}
+
+	.blog-faq h2 {
+		margin-bottom: 0px;
+	}
+
+	.faq-about-plan-area.faq-inner {
+		padding: 0px 0px 20px;
+	}
+
+	.clinic-near-you .book-appointment-out {
+		padding-left: 0px;
+	}
+
+	.footer-area {
+		margin-bottom: 0;
+	}
+
+	.header-area {
+		padding: 10px 0px;
+	}
+
+	.apt-call-info a {
+		padding: 0;
+		font-size: 13px;
+	}
+
+	.apt-call-info i {
+		padding: 7px;
+		margin-right: 5px;
+	}
+
+	.excellence-dentistry {
+		padding: 25px 0px 60px;
+	}
+
+	.faq-about-plan-area .blog-faq .accordion-button {
+		font-size: 15px;
+	}
+
+	.dental-imp-cost {
+		padding: 20px 0px 60px;
+	}
+
+	.heading h2 {
+		text-align: center;
+	}
+
+	.excellence-dentistry .price-terms p {
+		padding: 5px;
+	}
+
+	.excellence-dentistry .price-terms p del {
+		padding: 0 2px;
+	}
+
+	.ext-bx p::before,
+	.ext-bx p::after {
+		display: none;
+	}
+
+	.banner-lft-cnt {
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	.home-banner-area {
+		padding: 130px 0px 50px;
+	}
+
+	   .home-banner-area .banner-lft-cnt ul {
+      margin-bottom: 10px;
+    }
+
+	    .home-banner-area .banner-lft-cnt ul li {
+              padding-left: 0px;
+        font-size: 16px;
+        line-height: 23px;
+    }
+	.appoint-head {
+    width: auto;
+    justify-content: center;
+}
+	    .home-banner-area .banner-lft-cnt ul li::before {
+       display: none;
+    }
+
+	.home-banner-area .banner-lft-cnt ul li::before {
+		left: auto;
+		margin-left: -15px;
+	}
+
+	.ext-bx p {
+		font-size: 14px;
+	}
+
+	.ext-bx img {
+		width: 50px;
+		height: 50px;
+	}
+
+
+	.imp-cost-lft .heading {
+		text-align: center;
+	}
+
+	.limited-offer {
+		text-align: center;
+	}
+
+	.cost-slide .owl-dots .owl-dot {
+		width: 17px;
+		height: 4px;
+	}
+
+	.excellence-slide .owl-dots .owl-dot {
+		width: 17px;
+		height: 4px;
+	}
+
+	.indtestimonials .owl-dots .owl-dot {
+		width: 17px;
+		height: 4px;
+	}
+
+	.home-banner-area .banner-lft-cnt h3 {
+		font-size: 21px;
+	}
+
+	.indabout {
+		text-align: center;
+	}
+
+	.indabout .heading h2 {
+		margin: 20px 0 5px;
+	}
+
+	.why-ic-bx {
+		margin: 10px 0;
+	}
+
+	.why-rgt-img img {
+		margin-left: -5px;
+	}
+
+	.clinic-address {
+		margin-bottom: 50px;
+	}
+
+	.image1 img {
+		width: 100%;
+	}
+
+	.home-banner-area {
+		padding: 70px 0px 40px;
+		background-image: none;
+		background-color: #de6d21;
+	}
+
+
+}
+
+
+
+
+@media screen and (max-width: 767px) {
+
+	    .heading h2 {
+        font-size: 35px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+	.heading p br {
+		display: none;
+	}
+
+	.ext-bx p {
+		font-size: 14px;
+		margin-bottom: 15px;
+	}
+
+	.faq-inner #accordionExample {
+		padding: 20px 0px;
+	}
+
+	.foot-prcy p {
+		font-size: 13px;
+		text-align: center;
+	}
+
+	.excel-bx {
+		margin-bottom: 10px;
+	}
+
+
+	html,
+	body {
+
+		overflow-x: hidden;
+
+	}
+	
+	.header-area {
+		padding: 20px 0px;
+	}
+	
+
+	.appoint-head {
+		margin-top: 20px;
+	}
+	
+	.gogle-review .owl-dots .owl-dot {
+		width: 20px;
+	}
+	
+
+	.sticky-btn {
+		bottom: 20px;
+		left: 20px;
+		width: 70px;
+		height: 70px;
+	}
+	
+	.offer-area .heading h2 {
+        font-size: 35px;
+    }
+    
+    .offer-area .heading h3 {
+        font-size: 27px;
+    }
+    
+    .offer-img img {
+        margin: 10px 0;
+    }
+    
+    .offer-area .heading {
+        margin-bottom: 20px !important;
+    }
+    
+    .offer-img {
+        padding: 0 10px;
+    }
+	
+}
+
+@media screen and (max-width: 500px) {
+
+	.blog-faq .heading h2 {
+		font-size: 45px;
+	}
+
+
+}

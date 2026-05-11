@@ -93,7 +93,6 @@ const doctorPages = [
   { route: "/doctors/dr-sushna-komuravelli", priority: 0.7 },
 ];
 
-// BLOGS
 async function getBlogs() {
   return [
     {

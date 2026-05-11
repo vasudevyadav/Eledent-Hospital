@@ -335,6 +335,10 @@ const nextConfig: NextConfig = {
         source: "/kukatpally-generic",
         destination: "/kukatpally-generic/index.html",
       },
+      {
+        source: "/kompally-generic",
+        destination: "/kompally-generic/index.html",
+      },
     ];
   },
 };
