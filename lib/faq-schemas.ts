@@ -739,7 +739,7 @@ export const faqSchemas: Record<string, Record<string, unknown>> = {
   "/services/dental-fillings": dentalFillingsFaq,
   "/services/invisalign-treatment": invisalignFaq,
   "/services/tooth-pain-treatment": toothacheFaq,
-  "/services/pediatric-dentistry": pediatricDentistryFaq,
+  "/services/pediatric-dentistry-in-hyderabad": pediatricDentistryFaq,
   "/services/teeth-gap-treatment": teethGapFaq,
   "/services/single-visit-dentistry": singleVisitDentistryFaq,
   "/services/conscious-sedation": consciousSedationFaq,

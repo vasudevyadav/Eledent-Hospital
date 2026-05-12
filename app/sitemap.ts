@@ -19,9 +19,10 @@ const staticPages = [
   { route: "/corporate-tie-ups", changeFrequency: "monthly" as const, priority: 0.9 },
 ];
 
+
 // SERVICES
 const services = [
-  { slug: "pediatric-dentistry", priority: 0.8 },
+  { slug: "pediatric-dentistry-in-hyderabad", priority: 0.8 },
   { slug: "advanced-and-painless-dental-implants", priority: 0.8 },
   { slug: "laser-gum-treatment-hyderabad", priority: 0.8 },
   { slug: "orthodontic-treatment", priority: 0.8 },
