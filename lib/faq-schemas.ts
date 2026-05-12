@@ -725,7 +725,6 @@ export const faqSchemas: Record<string, Record<string, unknown>> = {
   "/facility": facilityFaq,
   "/corporate-tie-ups": corporateFaq,
   "/guided-biofilm-therapy-gbt": gbtFaq,
-  // Service detail pages — sitemap slugs se match kiya hua
   "/services/advanced-and-painless-dental-implants": dentalImplantsFaq,
   "/services/orthodontic-treatment": dentalBracesFaq,
   "/services/braces-aligners": clearAlignersFaq,
@@ -746,7 +745,6 @@ export const faqSchemas: Record<string, Record<string, unknown>> = {
   "/services/microscopic-dentistry": microscopicDentistryFaq,
 };
 
-// Dynamic service slug pages ke liye helper (API data se schema banata hai)
 export function buildServiceFaqSchema(
   items: { question: string; answer: string }[]
 ): Record<string, unknown> {

@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://eledenthospitals.com";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -298,20 +299,30 @@ const organizationSchema = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   title: {
     default: "Eledent Dental Hospitals",
     template: "%s",
   },
+
   description:
     "Eledent Dental Hospitals offers advanced dental care, painless treatments, expert dentists, and modern technology across Hyderabad.",
+
   applicationName: "Eledent Dental Hospitals",
   authors: [{ name: "Eledent Dental Hospitals" }],
   creator: "Eledent Dental Hospitals",
   publisher: "Eledent Dental Hospitals",
+
   robots: {
     index: true,
     follow: true,
   },
+
+  // Dynamic canonical URL based on current route
+  alternates: {
+    canonical: "./",
+  },
+
   openGraph: {
     title: "Eledent Dental Hospitals",
     description:
@@ -329,6 +340,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Eledent Dental Hospitals",
@@ -336,6 +348,7 @@ export const metadata: Metadata = {
       "Eledent Dental Hospitals offers advanced dental care, painless treatments, expert dentists, and modern technology across Hyderabad.",
     images: ["/og-image.jpg"],
   },
+
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -393,7 +406,9 @@ export default function RootLayout({
           />
         </noscript>
 
-        <AppointmentModalProvider>{children}</AppointmentModalProvider>
+        <AppointmentModalProvider>
+          {children}
+        </AppointmentModalProvider>
       </body>
     </html>
   );
