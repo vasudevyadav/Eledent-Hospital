@@ -281,6 +281,14 @@ const nextConfig: NextConfig = {
         destination: "/blogs/common-causes-of-tooth-pain-and-how-to-address-them",
         permanent: true,
       },
+
+      {
+        source: "/blog/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        destination: "/blogs/types-of-dental-filling-which-one-is-right-for-your-teeth",
+        permanent: true,
+      },
+
+
       {
         source: "/blog/category/wisdom-tooth",
         destination: "/blogs/get-your-wisdom-tooth-removed-to-prevent-tooth-loss",
