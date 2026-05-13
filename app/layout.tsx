@@ -313,12 +313,15 @@ export const metadata: Metadata = {
   creator: "Eledent Dental Hospitals",
   publisher: "Eledent Dental Hospitals",
 
+  verification: {
+    google: "NQ04UepItdz2B-mPqjMmDHfeNr6XFLqxdeUMdhvA2x0",
+  },
+
   robots: {
     index: true,
     follow: true,
   },
 
-  // Dynamic canonical URL based on current route
   alternates: {
     canonical: "./",
   },
