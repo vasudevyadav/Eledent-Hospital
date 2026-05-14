@@ -52,13 +52,7 @@ export default function HomeTestimonial() {
 
     const videoTestimonials = useMemo<VideoTestimonial[]>(
         () => [
-            {
-                title: "Comfortable treatment experience",
-                author: "Ananya Verma",
-                role: "Hyderabad",
-                youtubeId: "oGFZWgHvW",
-                image: "/testimonials/testimonial-video-1.jpg",
-            },
+
             {
                 title: "Quick appointment, great staff",
                 author: "Sahil Mehta",
@@ -73,6 +67,7 @@ export default function HomeTestimonial() {
                 youtubeId: "Cyp5ko7v1Kc?si",
                 image: "/testimonials/testimonial-video-3.jpg",
             },
+
         ],
         []
     );
@@ -186,7 +181,7 @@ export default function HomeTestimonial() {
                                             src={textTestimonials[safeIndex].image}
                                             alt="Testimonial"
                                             fill
-                                               unoptimized
+                                            unoptimized
                                             sizes="320px"
                                             className="object-cover rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
                                             priority={safeIndex === 0}

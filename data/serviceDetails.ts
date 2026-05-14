@@ -453,7 +453,7 @@ export const SERVICE_DETAILS_DATA: Record<string, ServiceDetailsPageData> = {
                     text: "Good experience overall. Modern setup, quick appointment, and the treatment was smooth.",
                     author: "Priya Sharma",
                     role: "Delhi",
-                    rating: 4.8,
+                    rating: 4.9,
                     image: "/services/testimonial-3.jpg",
                     imageAlt: "Patient testimonial 3",
                 },

@@ -68,8 +68,8 @@ export default function HomeTestimonial() {
                         <button
                             onClick={() => setActiveTab("text")}
                             className={`rounded-full px-4 py-2 text-[12px] font-semibold transition ${activeTab === "text"
-                                    ? "bg-orange-500 text-white shadow-sm"
-                                    : "bg-white text-gray-700 border border-orange-500 hover:bg-orange-50"
+                                ? "bg-orange-500 text-white shadow-sm"
+                                : "bg-white text-gray-700 border border-orange-500 hover:bg-orange-50"
                                 }`}
                         >
                             Text Testimonials
@@ -78,8 +78,8 @@ export default function HomeTestimonial() {
                         <button
                             onClick={() => setActiveTab("video")}
                             className={`rounded-full px-4 py-2 text-[12px] font-semibold transition ${activeTab === "video"
-                                    ? "bg-orange-500 text-white shadow-sm"
-                                    : "bg-white text-orange-500 border border-orange-500 hover:bg-orange-50"
+                                ? "bg-orange-500 text-white shadow-sm"
+                                : "bg-white text-orange-500 border border-orange-500 hover:bg-orange-50"
                                 }`}
                         >
                             Video Testimonials

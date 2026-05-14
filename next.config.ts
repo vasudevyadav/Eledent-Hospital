@@ -328,8 +328,8 @@ const nextConfig: NextConfig = {
         destination: "/store-visit-generic/index.html",
       },
       {
-        source: "/kondapur-generic",
-        destination: "/kondapur-generic/index.html",
+        source: "/kondapur-kukatpally-generic",
+        destination: "/kondapur-kukatpally-generic/index.html",
       },
       {
         source: "/dental-generic",

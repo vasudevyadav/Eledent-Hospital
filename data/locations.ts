@@ -127,7 +127,7 @@ export const LOCATIONS: LocationData[] = [
           "30,000+ successful dental cases completed across branches.",
           "22,000+ dental implants and 27,000+ root canals done with set protocols.",
           "9,500+ braces and aligner cases and 5,000+ digital smile design cases.",
-          "Kondapur branch holds a 4.8/5 rating based on 680+ verified customer reviews.",
+          "Kondapur branch holds a 4.9/5 rating based on 680+ verified customer reviews.",
         ],
         variant: "dashed-teal",
       },
