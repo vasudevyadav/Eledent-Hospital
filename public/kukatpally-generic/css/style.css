@@ -203,7 +203,7 @@ ul {
 .home-banner-area {
     background-color: #fff6f0;
     padding: 170px 0px 60px;
-    background-image: url('../images/banner-01.jpg');
+    background-image: url('../images/Eledent-Kondapur-generic.jpg');
     background-repeat: no-repeat;
     width: 100%;
     background-position: 50% 50%;
@@ -1254,8 +1254,8 @@ div#book-appointment p {
 }
 
 
-.discount-info span{
-font-weight: 700;
+.discount-info span {
+    font-weight: 700;
     font-size: 21px;
 }
 
@@ -1461,11 +1461,12 @@ font-weight: 700;
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.15);
     }
+
     100% {
         transform: scale(1);
     }
 }
-
