@@ -1593,6 +1593,24 @@
         }
     </script>
 
+<!-- WhatsApp Floating Button -->
+<style>
+  #wa-float-btn { bottom: 20px; }
+  @media (max-width: 768px) { #wa-float-btn { bottom: 80px; } }
+</style>
+<a id="wa-float-btn"
+   href="https://api.whatsapp.com/send/?phone=917799739994&text="
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="WhatsApp 917799739994"
+   style="position:fixed;right:20px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background-color:#25D366;box-shadow:0 4px 12px rgba(0,0,0,0.25);transition:background-color 0.2s ease;text-decoration:none;"
+   onmouseover="this.style.backgroundColor='#1ebe5d'"
+   onmouseout="this.style.backgroundColor='#25D366'">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="#ffffff">
+    <path d="M20.52 3.48A11.94 11.94 0 0012.01 0C5.38 0 .02 5.36.02 12c0 2.12.55 4.19 1.6 6.02L0 24l6.17-1.62A11.96 11.96 0 0012.01 24c6.63 0 11.99-5.36 11.99-12 0-3.2-1.25-6.21-3.48-8.52zM12 21.82c-1.81 0-3.57-.49-5.1-1.41l-.36-.21-3.66.96.98-3.57-.23-.37A9.8 9.8 0 012.2 12C2.2 6.6 6.6 2.2 12 2.2c2.61 0 5.06 1.02 6.91 2.86A9.72 9.72 0 0121.8 12c0 5.4-4.4 9.82-9.8 9.82zm5.45-7.36c-.3-.15-1.76-.87-2.03-.97-.27-.1-.46-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.6.14-.14.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.52s1.08 2.93 1.23 3.13c.15.2 2.13 3.26 5.17 4.57.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"></path>
+  </svg>
+</a>
+
 </body>
 
 </html>
